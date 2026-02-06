@@ -1,0 +1,152 @@
+{
+  "source_id": "7e66b5891db",
+  "overlays": [
+    {
+      "type": "intro_title",
+      "start": 0.08,
+      "end": 5.16,
+      "text": "100% edited by Codex",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/ChatGPT-Logo.svg/2560px-ChatGPT-Logo.svg.png"
+    },
+    {
+      "type": "label",
+      "start": 5.76,
+      "end": 25.6,
+      "text": "RAW RECORDING"
+    },
+    {
+      "type": "disclaimer",
+      "start": 6.0,
+      "end": 16.0,
+      "text": "Everything on-screen, including motion overlays, is rendered by Codex"
+    },
+    {
+      "type": "codex_callout",
+      "start": 14.16,
+      "end": 122.84,
+      "text": "CODEX",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/ChatGPT-Logo.svg/2560px-ChatGPT-Logo.svg.png"
+    },
+    {
+      "type": "status_left",
+      "start": 26.08,
+      "end": 33.36,
+      "text": "ACTIVE SPEAKER DETECTION"
+    },
+    {
+      "type": "endpoints",
+      "start": 33.36,
+      "end": 39.92,
+      "rect": {
+        "x": 501,
+        "y": 84,
+        "width": 321,
+        "height": 322
+      }
+    },
+    {
+      "type": "status_left",
+      "start": 33.36,
+      "end": 38.72,
+      "text": "SPEAKER DETECTED"
+    },
+    {
+      "type": "box",
+      "start": 34.64,
+      "end": 39.92,
+      "rect": {
+        "x": 501,
+        "y": 84,
+        "width": 321,
+        "height": 322
+      }
+    },
+    {
+      "type": "status_left",
+      "start": 38.72,
+      "end": 50.6,
+      "text": "TRACKING SPEAKER"
+    },
+    {
+      "type": "box_track",
+      "start": 39.92,
+      "end": 50.6
+    },
+    {
+      "type": "canvas",
+      "start": 51.44,
+      "end": 64.16
+    },
+    {
+      "type": "status_left",
+      "start": 49.8,
+      "end": 57.28,
+      "text": "BRINGING IN CANVAS"
+    },
+    {
+      "type": "status_left",
+      "start": 57.28,
+      "end": 64.16,
+      "text": "CANVAS BROUGHT IN"
+    },
+    {
+      "type": "status_left",
+      "start": 64.16,
+      "end": 122.84,
+      "text": "ANIMATING FROM TRANSCRIPT"
+    },
+    {
+      "type": "tool_flow",
+      "start": 70.0,
+      "end": 93.96,
+      "items": [
+        {
+          "icon": "transcription",
+          "label": "Transcription",
+          "detail": "NVIDIA Parakeet v3",
+          "start": 70.0
+        },
+        {
+          "icon": "speaker",
+          "label": "Active speaker detection",
+          "detail": "TalkNet-ASD",
+          "start": 75.6
+        },
+        {
+          "icon": "remotion",
+          "label": "Animation skills",
+          "detail": "Remotion",
+          "start": 82.8
+        }
+      ]
+    },
+    {
+      "type": "offline_notice",
+      "start": 95.12,
+      "end": 107.68,
+      "items": [
+        {
+          "icon": "clock",
+          "label": "Not real-time",
+          "start": 95.12
+        },
+        {
+          "icon": "cloud",
+          "label": "Offline processed",
+          "detail": "rendered after recording",
+          "start": 99.24
+        },
+        {
+          "icon": "chat",
+          "label": "Talking to CODEX back and forth",
+          "start": 101.0
+        }
+      ]
+    },
+    {
+      "type": "pixel_pulse",
+      "start": 107.68,
+      "end": 122.84
+    }
+  ]
+}

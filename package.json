@@ -1,0 +1,22 @@
+{
+  "name": "codex-edited-video-demo-remotion",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "remotion studio",
+    "studio:project": "node scripts/studio_project.mjs",
+    "render": "remotion render src/index.js ActiveSpeakerDetection",
+    "render:occlusion": "remotion render src/index.js OcclusionDemo /tmp/occlusion-demo.mp4",
+    "render:occlusion:hq": "remotion render src/index.js OcclusionDemo /tmp/occlusion-demo-hq.mp4 --image-format=png --crf=15 --x264-preset=slow"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "@remotion/google-fonts": "4.0.410",
+    "@remotion/media": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remotion": "^4.0.0",
+    "roughjs": "^4.6.6"
+  }
+}

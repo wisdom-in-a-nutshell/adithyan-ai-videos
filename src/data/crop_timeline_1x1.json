@@ -1,0 +1,44 @@
+{
+  "aspect_ratio": "1:1",
+  "scenes": [
+    {
+      "scene_number": 1,
+      "start_seconds": 0.0,
+      "end_seconds": 42.791666666666664,
+      "first_frame_time": 0.0,
+      "crop": {
+        "x": 463,
+        "y": 0,
+        "width": 1080,
+        "height": 1080,
+        "apply_letterbox": false
+      }
+    },
+    {
+      "scene_number": 2,
+      "start_seconds": 42.791666666666664,
+      "end_seconds": 45.75,
+      "first_frame_time": 42.791666666666664,
+      "crop": {
+        "x": 687,
+        "y": 0,
+        "width": 1080,
+        "height": 1080,
+        "apply_letterbox": false
+      }
+    },
+    {
+      "scene_number": 3,
+      "start_seconds": 45.75,
+      "end_seconds": 123.083333,
+      "first_frame_time": 45.75,
+      "crop": {
+        "x": 447,
+        "y": 0,
+        "width": 1080,
+        "height": 1080,
+        "apply_letterbox": false
+      }
+    }
+  ]
+}

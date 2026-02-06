@@ -1,0 +1,258 @@
+[
+  {
+    "text": "This",
+    "type": "word",
+    "start": 0.16,
+    "end": 0.32,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "video",
+    "type": "word",
+    "start": 0.32,
+    "end": 0.64,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "was",
+    "type": "word",
+    "start": 0.64,
+    "end": 0.8,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "100%",
+    "type": "word",
+    "start": 0.8,
+    "end": 1.28,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "edited",
+    "type": "word",
+    "start": 1.6,
+    "end": 1.92,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "by",
+    "type": "word",
+    "start": 1.92,
+    "end": 2.0,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "Codex",
+    "type": "word",
+    "start": 2.0,
+    "end": 2.48,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "and",
+    "type": "word",
+    "start": 2.48,
+    "end": 2.56,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "0%",
+    "type": "word",
+    "start": 2.56,
+    "end": 2.8,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "by",
+    "type": "word",
+    "start": 2.8,
+    "end": 2.88,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "me.",
+    "type": "word",
+    "start": 2.88,
+    "end": 3.12,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "Let",
+    "type": "word",
+    "start": 3.12,
+    "end": 3.28,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "me",
+    "type": "word",
+    "start": 3.28,
+    "end": 3.44,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "show",
+    "type": "word",
+    "start": 3.44,
+    "end": 3.68,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "you",
+    "type": "word",
+    "start": 3.68,
+    "end": 3.84,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "what",
+    "type": "word",
+    "start": 3.84,
+    "end": 4.0,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "I",
+    "type": "word",
+    "start": 4.0,
+    "end": 4.08,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "mean.",
+    "type": "word",
+    "start": 4.08,
+    "end": 4.4,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "So,",
+    "type": "word",
+    "start": 4.56,
+    "end": 4.72,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "this",
+    "type": "word",
+    "start": 4.72,
+    "end": 4.88,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "was",
+    "type": "word",
+    "start": 4.88,
+    "end": 5.04,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "the",
+    "type": "word",
+    "start": 5.04,
+    "end": 5.12,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "actual",
+    "type": "word",
+    "start": 5.12,
+    "end": 5.44,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "recording.",
+    "type": "word",
+    "start": 5.44,
+    "end": 5.92,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "This",
+    "type": "word",
+    "start": 6.08,
+    "end": 6.24,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "is",
+    "type": "word",
+    "start": 6.24,
+    "end": 6.32,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "me",
+    "type": "word",
+    "start": 6.32,
+    "end": 6.48,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "in",
+    "type": "word",
+    "start": 6.48,
+    "end": 6.56,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "my",
+    "type": "word",
+    "start": 6.56,
+    "end": 6.64,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "pajamas,",
+    "type": "word",
+    "start": 6.64,
+    "end": 7.12,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "in",
+    "type": "word",
+    "start": 7.12,
+    "end": 7.28,
+    "speaker_id": null,
+    "characters": null
+  },
+  {
+    "text": "my",
+    "type": "word",
+    "start": 7.28,
+    "end": 7.36,
+    "speaker_id": null,
+    "characters": null
+  }
+]
