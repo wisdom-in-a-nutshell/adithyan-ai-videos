@@ -68,3 +68,33 @@ venv/bin/python scripts/tools/media/matting.py "<video-url>" \
 Notes:
 - `matting.json` should contain `alpha_url`.
 - Our Remotion launch/render scripts auto-load `matting.json` (if present) and pass `alphaUrl` as a prop.
+
+## Video Transforms / Proxies (Optional)
+
+When matting/transcription is slow, create a smaller proxy video first (trim and/or scale), then iterate on that.
+
+Tool: `~/GitHub/win/scripts/tools/media/transform.py`
+
+- This ingests the URL (channel **must** be `ADITHYAN` for this workflow), then produces an `output_url`.
+- Use the `output_url` as the `video_url` in `projects/<project-id>/project.json` while iterating.
+
+Example (make a 720p proxy):
+
+```bash
+cd /Users/adi/GitHub/win
+venv/bin/python scripts/tools/media/transform.py "<video-url>" \
+  --channel ADITHYAN \
+  --scale 720p \
+  --out /Users/adi/GitHub/adithyan-ai-videos/projects/<project-id>/transform_720p.json
+```
+
+Example (trim a short working segment + scale):
+
+```bash
+cd /Users/adi/GitHub/win
+venv/bin/python scripts/tools/media/transform.py "<video-url>" \
+  --channel ADITHYAN \
+  --trim-start 0 --trim-end 20 \
+  --scale 720p \
+  --out /Users/adi/GitHub/adithyan-ai-videos/projects/<project-id>/transform_working.json
+```
