@@ -9,7 +9,7 @@ Keep storyboards as data you can iterate on. Prefer one file per project:
 - `beats[]`: list of beats
 - each beat has `start`, `end` (seconds), plus intent + overlay notes
 - optionally include `sentences[]` to reference `projects/<project-id>/sentences.json`
-- optionally include `sentence_text[]` (or a single `transcript` string) to inline the exact transcript for that beat (usually derived from `sentences[]`)
+- optionally include `transcript` to inline the exact transcript for that beat (usually derived from `sentences[]`)
 
 Example:
 
@@ -20,7 +20,7 @@ Example:
       "source_start": 0.0,
       "source_end": 1.5,
       "sentences": [1, 2],
-      "sentence_text": ["Sentence one.", "Sentence two."],
+      "transcript": ["Sentence one.", "Sentence two."],
       "intent": "Hook",
       "visual_notes": ["High-contrast hero text"]
     },
@@ -28,7 +28,7 @@ Example:
       "source_start": 1.5,
       "source_end": 5.0,
       "sentences": [3],
-      "sentence_text": ["Sentence three."],
+      "transcript": ["Sentence three."],
       "intent": "Demo",
       "visual_notes": ["Text behind subject (requires matting)"]
     }
