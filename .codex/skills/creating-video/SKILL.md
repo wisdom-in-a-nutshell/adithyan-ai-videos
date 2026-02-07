@@ -20,6 +20,7 @@ References:
 
 - Intake questions: `references/intake.md`
 - Storyboard format: `references/storyboard.md`
+- Tooling inventory (WIN CLI helpers): `references/tools.md`
 - Verification loop (render/stills): `references/verification.md`
 - Overlay component catalog: `references/overlay-components.md`
 - Style tokens + readability rules: `references/style-tokens.md`
