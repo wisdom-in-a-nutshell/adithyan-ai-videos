@@ -17,7 +17,7 @@ import {
 import {CanvasSketchFrame, OverlayRenderer} from './overlay_kit/index.js';
 import timeline from './data/timeline.json';
 import activeSpeakerFrames from './data/active_speaker_frames.json';
-import defaultTranscriptWords from './data/transcript_words.json';
+import defaultTranscriptWords from './data/transcript.json';
 
 const DEFAULT_RESOLUTION = {width: 1920, height: 1080};
 const TRANSITION_SECONDS = 0.35;

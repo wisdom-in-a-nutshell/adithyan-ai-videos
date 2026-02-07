@@ -21,7 +21,7 @@ Command:
 cd /Users/adi/GitHub/win
 venv/bin/python scripts/tools/media/transcribe.py "<video-url>" \
   --channel ADITHYAN \
-  --out /Users/adi/GitHub/adithyan-ai-videos/projects/<project-id>/transcript_words.json
+  --out /Users/adi/GitHub/adithyan-ai-videos/projects/<project-id>/transcript.json
 ```
 
 Notes:

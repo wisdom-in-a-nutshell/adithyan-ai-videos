@@ -76,7 +76,7 @@ Use the project launcher which downloads assets once and serves them via `--publ
 
 - Store per-video inputs under `projects/<project-id>/project.json`.
 - If you have word-level timings, place them at:
-  - `projects/<project-id>/transcript_words.json`
+  - `projects/<project-id>/transcript.json`
   - `scripts/*_project.mjs` will auto-load it into props as `transcriptWords`.
 - Keep `project.json` minimal and stable. For the occlusion demo we only require `video_url` and
   use a default alpha matte URL in `scripts/*_project.mjs`.

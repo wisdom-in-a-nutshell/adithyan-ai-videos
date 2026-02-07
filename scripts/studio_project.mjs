@@ -75,7 +75,7 @@ if (fs.existsSync(mattingPath)) {
   }
 }
 
-const transcriptPath = path.join(projectDir, 'transcript_words.json');
+const transcriptPath = path.join(projectDir, 'transcript.json');
 if (fs.existsSync(transcriptPath)) {
   try {
     const transcriptPayload = JSON.parse(fs.readFileSync(transcriptPath, 'utf-8'));

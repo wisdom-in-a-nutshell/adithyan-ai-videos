@@ -26,7 +26,7 @@ node scripts/render_project.mjs projects/occlusion-demo/project.json \
 - Minimal per-project config lives in `projects/<project-id>/project.json`.
   - Required: `video_url`
 - Optional word-level timings:
-  - `projects/<project-id>/transcript_words.json`
+  - `projects/<project-id>/transcript.json`
 
 ## Environment knobs
 

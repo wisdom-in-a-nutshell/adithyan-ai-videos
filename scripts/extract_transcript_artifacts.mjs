@@ -2,7 +2,7 @@
 /**
  * Extract thin transcript artifacts from a full transcript payload.
  *
- * Input (canonical): projects/<id>/transcript_words.json
+ * Input (canonical): projects/<id>/transcript.json
  * - expected shape: { source_id, text, words, sentences }
  *
  * Output (derived, optional):
@@ -87,7 +87,7 @@ if (!projectDirArg) {
 }
 
 const projectDir = path.resolve(projectDirArg);
-const canonicalPath = path.join(projectDir, 'transcript_words.json');
+const canonicalPath = path.join(projectDir, 'transcript.json');
 if (!fs.existsSync(canonicalPath)) {
   die(`Missing canonical transcript file: ${canonicalPath}`);
 }
@@ -111,4 +111,3 @@ fs.writeFileSync(
 console.log(`[OK] Wrote ${path.join(projectDir, 'words.json')} (${words.length} words)`);
 // eslint-disable-next-line no-console
 console.log(`[OK] Wrote ${path.join(projectDir, 'sentences.json')} (${sentences.length} sentences)`);
-
