@@ -31,6 +31,16 @@ Notes:
   - `words` (normalized word timings)
   - `sentences`
 - Channel should always be `ADITHYAN` for this workflow.
+- After transcription, generate thin derived artifacts for convenience:
+
+```bash
+cd /Users/adi/GitHub/adithyan-ai-videos
+node scripts/extract_transcript_artifacts.mjs projects/<project-id>
+```
+
+Outputs:
+- `projects/<project-id>/words.json`
+- `projects/<project-id>/sentences.json`
 
 If the user does not have a storyboard:
 
