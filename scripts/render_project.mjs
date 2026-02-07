@@ -19,7 +19,6 @@ import {spawnSync} from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import {getDefaultCacheBaseDir, prepareProjectAssetCache} from './asset_cache.mjs';
-import {DEFAULT_OCCLUSION_ALPHA_URL} from './occlusion_defaults.mjs';
 
 const die = (msg) => {
   // eslint-disable-next-line no-console
@@ -118,11 +117,23 @@ const outputPath = out ?? `/tmp/${id}.mp4`;
 // Minimal contract: allow snake_case project.json while passing camelCase props.
 const props = {
   videoUrl: project.video_url ?? project.videoUrl,
-  alphaUrl: DEFAULT_OCCLUSION_ALPHA_URL,
 };
 
 if (!props.videoUrl) {
   die(`Project is missing video_url/videoUrl: ${projectPath}`);
+}
+
+const mattingPath = path.join(projectDir, 'matting.json');
+if (fs.existsSync(mattingPath)) {
+  try {
+    const mattingPayload = JSON.parse(fs.readFileSync(mattingPath, 'utf-8'));
+    const alphaUrl = mattingPayload?.alpha_url ?? mattingPayload?.alphaUrl ?? undefined;
+    if (typeof alphaUrl === 'string' && alphaUrl.length > 0) {
+      props.alphaUrl = alphaUrl;
+    }
+  } catch (err) {
+    die(`Failed to parse ${mattingPath}: ${err}`);
+  }
 }
 
 const transcriptPath = path.join(projectDir, 'transcript_words.json');
@@ -151,7 +162,7 @@ if (!noCache) {
   const cache = await prepareProjectAssetCache({
     projectId: id,
     videoUrl: props.videoUrl,
-    alphaUrl: props.alphaUrl,
+    alphaUrl: props.alphaUrl ?? null,
     cacheBaseDir,
     refresh: refreshCache,
   });

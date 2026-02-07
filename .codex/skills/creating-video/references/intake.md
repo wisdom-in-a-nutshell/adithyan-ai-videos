@@ -19,19 +19,42 @@ Command:
 
 ```bash
 cd /Users/adi/GitHub/win
-venv/bin/python scripts/tools/video/transcribe.py "<video-url>" \
+venv/bin/python scripts/tools/media/transcribe.py "<video-url>" \
   --channel ADITHYAN \
   --out /Users/adi/GitHub/adithyan-ai-videos/projects/<project-id>/transcript_words.json
 ```
 
 Notes:
-- Default output is a JSON object with `source_id` + `words` (word-level timings).
-- Our Remotion scripts accept either:
-  - a raw words array, or
-  - `{source_id, words}` (preferred).
+- By default this emits a full JSON payload:
+  - `source_id`
+  - `text`
+  - `words` (normalized word timings)
+  - `sentences`
+- Channel should always be `ADITHYAN` for this workflow.
 
 If the user does not have a storyboard:
 
 - Draft a 3–7 beat storyboard (timestamps, intent, overlay notes).
 - Confirm it with the user.
 - Then implement in Remotion and verify with short renders.
+
+## Foreground Matting / Alpha (Optional)
+
+Don’t put `alpha_url` in `project.json`.
+
+If/when occlusion is needed, generate a matte in WIN and write it to:
+
+- `projects/<project-id>/matting.json`
+
+Command:
+
+```bash
+cd /Users/adi/GitHub/win
+venv/bin/python scripts/tools/media/matting.py "<video-url>" \
+  --model-version v2 \
+  --out /Users/adi/GitHub/adithyan-ai-videos/projects/<project-id>/matting.json
+```
+
+Notes:
+- `matting.json` should contain `alpha_url`.
+- Our Remotion launch/render scripts auto-load `matting.json` (if present) and pass `alphaUrl` as a prop.
