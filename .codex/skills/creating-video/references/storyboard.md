@@ -8,6 +8,7 @@ Keep storyboards as data you can iterate on. Prefer one file per project:
 
 - `beats[]`: list of beats
 - each beat has `start`, `end` (seconds), plus intent + overlay notes
+- optionally include `sentences[]` to reference `projects/<project-id>/sentences.json`
 
 Example:
 
@@ -15,20 +16,18 @@ Example:
 {
   "beats": [
     {
-      "start": 0.0,
-      "end": 1.5,
+      "source_start": 0.0,
+      "source_end": 1.5,
+      "sentences": [1, 2],
       "intent": "Hook",
-      "overlays": [
-        {"type": "status_pill", "text": "Active speaker", "pos": "top_left"}
-      ]
+      "visual_notes": ["High-contrast hero text"]
     },
     {
-      "start": 1.5,
-      "end": 5.0,
+      "source_start": 1.5,
+      "source_end": 5.0,
+      "sentences": [3],
       "intent": "Demo",
-      "overlays": [
-        {"type": "occlusion_text", "text": "WORDS BEHIND ME", "style": "os_pill"}
-      ]
+      "visual_notes": ["Text behind subject (requires matting)"]
     }
   ]
 }
@@ -38,4 +37,5 @@ Example:
 
 - The schema can evolve; what matters is: beats + timing + intent.
 - Keep “implementation details” (exact props) out of the storyboard unless needed.
-- If an effect needs matting, note it on the beat (`occlusion_text` implies `alpha_url`).
+- Use `source_start`/`source_end` (seconds in the original recording). We’ll map these into an edited timeline later.
+- If an effect needs matting, note it on the beat (e.g. “text behind subject”) and generate `projects/<project-id>/matting.json` when needed.
