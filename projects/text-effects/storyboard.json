@@ -12,6 +12,10 @@
       "source_start": 1.84,
       "source_end": 10.96,
       "sentences": [1, 2],
+      "sentence_text": [
+        "This video was 100% edited by Codex, including all the text effects that you'd see behind and in front of me.",
+        "Let me show you how."
+      ],
       "intent": "Hook: prove the claim immediately (text behind + in front).",
       "visual_notes": [
         "Kinetic hero text: THIS VIDEO / 100% / EDITED BY CODEX.",
@@ -24,6 +28,10 @@
       "source_start": 11.04,
       "source_end": 24.48,
       "sentences": [3, 4],
+      "sentence_text": [
+        "So this was the actual raw recording, and I'm going to walk you through the steps that are needed to achieve the text motion effects with Codex.",
+        "And as I'm explaining, I'll also ask Codex itself to animate so that it's easier for you to follow."
+      ],
       "intent": "Set expectation: raw recording → steps → Codex animates while explaining.",
       "visual_notes": ["Breadcrumb: Raw → Masks → Layers → Text FX."]
     },
@@ -32,6 +40,7 @@
       "source_start": 52.8,
       "source_end": 59.68,
       "sentences": [8],
+      "sentence_text": ["Specifically, we are going to give it access to three tools, SAM3, map anyone and remotion."],
       "intent": "Introduce the toolchain: SAM3 → MatAnyone → Remotion.",
       "visual_notes": ["Three tool cards with arrows left-to-right."]
     },
@@ -40,6 +49,16 @@
       "source_start": 59.76,
       "source_end": 81.84,
       "sentences": [9, 10, 11, 12, 13, 14, 15, 16],
+      "sentence_text": [
+        "So first I'll start with SAM 3.",
+        "So first I'm just going to show you what it does and then explain.",
+        "So now I'm going to ask Codex to use SAM 3 to create a segment mask of a person.",
+        "That's the prompt.",
+        "Then it'll look something like this.",
+        "So what you saw there is it kind of segmented away a person from the given video.",
+        "So it generates a static mask.",
+        "So that was the first tool."
+      ],
       "intent": "SAM3: create a static segmentation mask for the person.",
       "visual_notes": ["Show the mask result and label it: static mask."]
     },
@@ -48,6 +67,18 @@
       "source_start": 81.92,
       "source_end": 131.28,
       "sentences": [17, 18, 19, 20, 21, 22, 23, 24, 25, 26],
+      "sentence_text": [
+        "Next, we are going to ask Codex to take this output from the tool one and pass it to the second tool, which is called as Mat Anyone.",
+        "Now I'm going to ask Codex to do that and ask it to track me and create a mask throughout the video.",
+        "So if I do that, then it'll essentially look something like this.",
+        "Hopefully now there is a green screen behind me.",
+        "So essentially you have like a green screen without a green screen.",
+        "That is nice for our use case because it essentially gives us two layers now.",
+        "One, the mask that we just extracted out from Matt anyone, and the other one is the original video.",
+        "So you can take these two and kind of sandwich it like this, and then put in whatever effects you want, either in the front or in between or in the back.",
+        "So essentially you have layers that you can play with.",
+        "So how do we do this?"
+      ],
       "intent": "MatAnyone: track the person through the whole video → matte video.",
       "visual_notes": [
         "Explain: green screen without a green screen.",
@@ -59,6 +90,16 @@
       "source_start": 132.0,
       "source_end": 182.0,
       "sentences": [27, 28, 29, 30, 31, 32, 33, 34],
+      "sentence_text": [
+        "We are going to take the output of this tool and then go to the third tool and ask Codex to use this popular remotion skill to kind of compose this all together.",
+        "For example, I can ask Codex to take the remotion skill and just blur the background of the background layer.",
+        "Hopefully then now it's sort of blurred out and then you can only see me a little more clearly.",
+        "I can ask it to put a text in front of me.",
+        "put a text behind me, put a text behind me that is with some fancy effects.",
+        "So yeah, once you have those things, you can ask Codex with three motion skills to manipulate and play around with it.",
+        "So this is how we generated the text effects that I showed you right in the beginning.",
+        "All of this was just done with prompting Codex."
+      ],
       "intent": "Remotion: compose layers and add effects (blur bg, text front, text behind).",
       "visual_notes": [
         "Quick demo montage: blur background, text in front, text behind with fancy effects.",
@@ -70,6 +111,15 @@
       "source_start": 206.64,
       "source_end": 232.24,
       "sentences": [40, 41, 42, 43, 44, 45, 46],
+      "sentence_text": [
+        "So to recap, here are the three things that we used.",
+        "We used SAM 3 to create a segmentation mask around the prompt.",
+        "In this case, it was called a person.",
+        "And then we took that mask and fed it to Matt anyone.",
+        "And then he asked it to track across the video.",
+        "So he essentially had like a green screen.",
+        "And 3rd, then used Remotion to compose interesting effects."
+      ],
       "intent": "Recap the 3 tools and what each contributed.",
       "visual_notes": ["Return to the three tool cards; add one-line summaries."]
     },
@@ -78,6 +128,11 @@
       "source_start": 232.32,
       "source_end": 243.6,
       "sentences": [47, 48, 49],
+      "sentence_text": [
+        "Of course, as the title suggests, all of this was done by talking to my friend Codex, directly in my case, Terminal.",
+        "No video editor or anything else was used.",
+        "It was done all by Codex."
+      ],
       "intent": "Close: done by talking to Codex; no traditional editor.",
       "visual_notes": ["On-screen: No editor. All Codex."]
     },
@@ -86,6 +141,7 @@
       "source_start": 258.96,
       "source_end": 260.32,
       "sentences": [53],
+      "sentence_text": ["And that's it for this video."],
       "intent": "Final end card.",
       "visual_notes": ["Simple end slate or quick fade out."]
     }
