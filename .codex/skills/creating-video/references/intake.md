@@ -25,8 +25,10 @@ venv/bin/python scripts/tools/video/transcribe.py "<video-url>" \
 ```
 
 Notes:
-- The output is a JSON object with `source_id` + `words` (word-level timings).
-- Remotion project loaders should accept either a raw words array or `{source_id, words}`.
+- Default output is a JSON object with `source_id` + `words` (word-level timings).
+- Our Remotion scripts accept either:
+  - a raw words array, or
+  - `{source_id, words}` (preferred).
 
 If the user does not have a storyboard:
 

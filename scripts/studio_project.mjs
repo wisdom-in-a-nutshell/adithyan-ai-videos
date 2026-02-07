@@ -67,7 +67,19 @@ if (!props.videoUrl) {
 const transcriptPath = path.join(projectDir, 'transcript_words.json');
 if (fs.existsSync(transcriptPath)) {
   try {
-    props.transcriptWords = JSON.parse(fs.readFileSync(transcriptPath, 'utf-8'));
+    const transcriptPayload = JSON.parse(fs.readFileSync(transcriptPath, 'utf-8'));
+    if (Array.isArray(transcriptPayload)) {
+      props.transcriptWords = transcriptPayload;
+    } else if (transcriptPayload && typeof transcriptPayload === 'object') {
+      if (Array.isArray(transcriptPayload.words)) {
+        props.transcriptWords = transcriptPayload.words;
+        props.transcriptSourceId = transcriptPayload.source_id ?? transcriptPayload.sourceId ?? null;
+      } else {
+        props.transcriptWords = transcriptPayload;
+      }
+    } else {
+      props.transcriptWords = transcriptPayload;
+    }
   } catch (err) {
     die(`Failed to parse ${transcriptPath}: ${err}`);
   }
