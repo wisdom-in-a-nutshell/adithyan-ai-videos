@@ -1,23 +1,24 @@
-# Remotion Agent Edits
+# Remotion Video Playground
 
 ## Scope
 
-This folder owns the Remotion demo for agent-edited videos. Keep overlay logic reusable and timelines data-driven.
+This repo is the Remotion workspace for building short, marketing-style videos and effects (text overlays, occlusion, motion experiments). Keep it **project-driven** (`projects/<id>/...`) and avoid expanding the config surface area unless a real use-case demands it.
 
-## Structure (current)
+## Repo Layout (What Matters)
 
-- Compositions + layout: `src/Root.js`, `src/MainVideo.js`
-- Occlusion demo composite: `src/components/ForegroundMatteComposite.js`
-- Reusable overlays + renderer: `src/overlay_kit/overlays.js`
-- RoughJS helpers + styles: `src/overlay_kit/rough.js`
-- Sketch filter + font: `src/styles/sketch.js`
-- Overlay timing (main demo): `src/data/timeline.json`
+- Compositions: `src/Root.js`
+- Main overlay demo: `src/MainVideo.js` + `src/data/timeline.json`
+- Occlusion demo: `src/components/ForegroundMatteComposite.js`
+- Reusable overlay primitives: `src/overlay_kit/`
+- Project launch + repeatable renders: `scripts/studio_project.mjs`, `scripts/render_project.mjs`
+- Remote asset cache (downloads once, reuses locally): `scripts/asset_cache.mjs`
+- Per-video inputs/artifacts: `projects/<project-id>/`
 
 ## Guidance
 
-- Keep overlays configurable via `timeline.json`; avoid hardcoding timing in components.
-- Apply sketch styling to overlays only, not the raw footage.
-- Prefer small, incremental visual changes and preview in Remotion.
+- Keep reusable overlay/animation primitives in `src/overlay_kit/` (not inside one-off comps).
+- Keep timing data-driven (JSON) where possible; avoid hardcoding timings deep in components.
+- Don’t add new compositions/components unless explicitly asked for the current project.
 
 ## Reuse + Documentation Discipline
 
@@ -42,11 +43,6 @@ This folder owns the Remotion demo for agent-edited videos. Keep overlay logic r
 - If the text still shimmers while moving, prefer adding a subtle `textBackdrop` (pill-shaped box)
   behind the text over trying to micro-tune feathering; it stabilizes edges and is easier to art-direct.
 
-## Occlusion Demo (Local)
-
-- `OcclusionDemo` in `src/Root.js` wires `ForegroundMatteComposite` for quick previews.
-- Defaults point at the sample video + alpha URL; swap via props for new tests.
-
 ## Local Asset Cache (Recommended)
 
 Remote MP4/WebM URLs are convenient, but can feel like they re-fetch on every Studio restart.
@@ -59,32 +55,30 @@ Use the project launcher which downloads assets once and serves them via `--publ
 - Cache location:
   - defaults to `~/.cache/win-remotion-assets`
   - override with `WIN_REMOTION_ASSET_CACHE=/tmp/win-remotion-assets`
-- To try a different alpha without editing code:
-  - `WIN_OCCLUSION_ALPHA_URL=<alpha.webm-url> npm run studio:project -- projects/<project-id>/project.json`
+- What’s cached:
+  - `video_url` from `projects/<project-id>/project.json`
+  - optional `alpha_url` from `projects/<project-id>/matting.json`
 
 ## Verification Loop (Keep Iterating Until It Looks Right)
 
-- Use still renders to self-verify changes without relying on Studio playback.
-- Recommended quick checks (pick 2–3 timestamps):
-  - `npx remotion still src/index.js OcclusionDemo /tmp/occ-0_5s.png --frame 15`
-  - `npx remotion still src/index.js OcclusionDemo /tmp/occ-2s.png --frame 60`
-  - `npx remotion still src/index.js OcclusionDemo /tmp/occ-4s.png --frame 120`
-- For audio sync concerns, render a short clip and review locally:
-  - `npx remotion render src/index.js OcclusionDemo /tmp/occ-5s.mp4 --frames 0-150`
+- Prefer `scripts/render_project.mjs` over raw Studio playback; it’s deterministic and uses the local cache.
+- Quick occlusion checks (renders MP4 + stills under `/tmp`):
+  - `node scripts/render_project.mjs projects/<project-id>/project.json --comp OcclusionDemo --out /tmp/<project-id>.mp4 --seconds 5 --fps 24`
+- If you need to force asset refresh:
+  - add `--refresh`
 
 ## Creating Videos (Project Files)
 
 - Store per-video inputs under `projects/<project-id>/project.json`.
 - If you have word-level timings, place them at:
   - `projects/<project-id>/transcript.json`
-  - `scripts/*_project.mjs` will auto-load it into props as `transcriptWords`.
-- Keep `project.json` minimal and stable. For the occlusion demo we only require `video_url` and
-  use a default alpha matte URL in `scripts/*_project.mjs`.
+  - `scripts/studio_project.mjs` and `scripts/render_project.mjs` auto-load it into props as `transcriptWords`.
+- Keep `project.json` minimal and stable. For this repo:
+  - required: `video_url` (source video)
+  - optional: `projects/<project-id>/matting.json` (contains `alpha_url` when occlusion is needed)
 - Example:
   - `id`, `name`
   - `video_url` (source video)
-- If you later add support for custom mattes, consider extending the contract with `alpha_url`
-  again, but keep it optional to avoid config sprawl.
 - Close the loop with a short render + stills (preferred):
   - `node scripts/render_project.mjs projects/<project-id>/project.json --comp OcclusionDemo --out /tmp/<project-id>.mp4 --seconds 5 --fps 24`
   - Stills go to `/tmp/<project-id>-stills/`
