@@ -6,11 +6,12 @@ This folder owns the Remotion demo for agent-edited videos. Keep overlay logic r
 
 ## Structure (current)
 
-- Composition + layout: `core/operations/marketing/agent_edits/remotion/src/MainVideo.js`
-- Reusable overlays + renderer: `core/operations/marketing/agent_edits/remotion/src/overlay_kit/overlays.js`
-- RoughJS helpers + styles: `core/operations/marketing/agent_edits/remotion/src/overlay_kit/rough.js`
-- Sketch filter + font: `core/operations/marketing/agent_edits/remotion/src/styles/sketch.js`
-- Overlay timing: `core/operations/marketing/agent_edits/remotion/src/data/timeline.json`
+- Compositions + layout: `src/Root.js`, `src/MainVideo.js`
+- Occlusion demo composite: `src/components/ForegroundMatteComposite.js`
+- Reusable overlays + renderer: `src/overlay_kit/overlays.js`
+- RoughJS helpers + styles: `src/overlay_kit/rough.js`
+- Sketch filter + font: `src/styles/sketch.js`
+- Overlay timing (main demo): `src/data/timeline.json`
 
 ## Guidance
 
@@ -73,9 +74,9 @@ Use the project launcher which downloads assets once and serves them via `--publ
 
 ## Creating Videos (Project Files)
 
-- Store per-video inputs under `core/operations/marketing/agent_edits/remotion/projects/<project-id>/project.json`.
+- Store per-video inputs under `projects/<project-id>/project.json`.
 - If you have word-level timings, place them at:
-  - `core/operations/marketing/agent_edits/remotion/projects/<project-id>/transcript_words.json`
+  - `projects/<project-id>/transcript_words.json`
   - `scripts/*_project.mjs` will auto-load it into props as `transcriptWords`.
 - Keep `project.json` minimal and stable. For the occlusion demo we only require `video_url` and
   use a default alpha matte URL in `scripts/*_project.mjs`.
