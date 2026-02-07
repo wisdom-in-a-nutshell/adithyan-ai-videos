@@ -1,0 +1,4 @@
+interface:
+  display_name: "Creating Video"
+  short_description: "Storyboard+overlays+verify"
+  default_prompt: "Use $creating-video to go from idea/storyboard to Remotion overlays and a short verification render."
