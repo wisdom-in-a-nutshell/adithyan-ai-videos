@@ -52,6 +52,16 @@ export const RemotionRoot = () => {
         height={720}
         defaultProps={OCCLUSION_DEFAULT_PROPS}
       />
+      <Composition
+        id="TextEffects"
+        component={ForegroundMatteComposite}
+        // Give Studio enough timeline to scrub through longer source videos.
+        durationInFrames={OCCLUSION_FPS * 300}
+        fps={OCCLUSION_FPS}
+        width={1280}
+        height={720}
+        defaultProps={OCCLUSION_DEFAULT_PROPS}
+      />
     </>
   );
 };
