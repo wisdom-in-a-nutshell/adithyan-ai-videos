@@ -41,4 +41,4 @@ Example:
 - The schema can evolve; what matters is: beats + timing + intent.
 - Keep “implementation details” (exact props) out of the storyboard unless needed.
 - Use `source_start`/`source_end` (seconds in the original recording). We’ll map these into an edited timeline later.
-- If an effect needs matting, note it on the beat (e.g. “text behind subject”) and generate `projects/<project-id>/matting.json` when needed.
+- If an effect needs occlusion (text behind subject), note it on the beat (e.g. “text behind subject”) and ensure your composition uses an `alpha.webm` URL (VP9 with alpha) in `src/projects/<project-id>/assets.js`.

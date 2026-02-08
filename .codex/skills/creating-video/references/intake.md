@@ -59,23 +59,17 @@ If iteration is slow (matting, Studio playback, remote fetch), it’s ok to work
 
 ## Foreground Matting / Alpha (Optional)
 
-If/when occlusion is needed, generate a matte in WIN and write it to:
+If/when occlusion is needed, you want a **real alpha asset** (typically `alpha.webm` = VP9 + alpha).
 
-- `projects/<project-id>/matting.json`
+Workflow:
 
-Command:
-
-```bash
-cd /Users/adi/GitHub/win
-venv/bin/python scripts/tools/media/matting.py "<video-url>" \
-  --model-version v2 \
-  --out /Users/adi/GitHub/adithyan-ai-videos/projects/<project-id>/matting.json
-```
+- Generate an `alpha.webm` via your preferred pipeline (WIN/Modal/etc).
+- Paste the resulting `alpha.webm` URL into `src/projects/<project-id>/assets.js` (code-first).
 
 Notes:
-- `matting.json` should contain `alpha_url`.
-- Prefer wiring the alpha URL in code (e.g. `src/projects/<project-id>/assets.js`) while iterating.
-- If you do keep `projects/<project-id>/matting.json`, treat it as a generated artifact (input to code), not a “manifest/contract”.
+
+- We are intentionally not standardizing on `projects/<project-id>/matting.json` as a required artifact.
+- If you keep any generated matte metadata, treat it as a scratch artifact, not a contract.
 
 ## Other Tools
 
