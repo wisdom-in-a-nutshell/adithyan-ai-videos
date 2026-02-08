@@ -3,7 +3,7 @@ import {interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 
 const clamp01 = (v) => Math.max(0, Math.min(1, v));
 
-const Pill = ({text, icon = null, minWidthCh = null}) => {
+const Pill = ({text, emoji = null, minWidthCh = null}) => {
   return (
     <div
       style={{
@@ -12,7 +12,7 @@ const Pill = ({text, icon = null, minWidthCh = null}) => {
         backgroundColor: 'rgba(255,255,255,0.92)',
         color: '#111827',
         // Match the general scale used by the top-left status pill.
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 600,
         letterSpacing: 0.6,
         boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
@@ -25,46 +25,18 @@ const Pill = ({text, icon = null, minWidthCh = null}) => {
         minWidth: minWidthCh ? `${minWidthCh}ch` : undefined,
       }}
     >
-      {icon ? <span style={{display: 'flex', alignItems: 'center'}}>{icon}</span> : null}
+      {emoji ? (
+        <span style={{display: 'flex', alignItems: 'center', fontSize: 18}}>
+          {emoji}
+        </span>
+      ) : null}
       <span>{text}</span>
     </div>
   );
 };
 
-const ToolsIcon = ({size = 18, color = '#111827'}) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <path
-      d="M14.5 6.5a4.5 4.5 0 0 0 6 6L14 19l-3 0 0-3L17.5 9.5a4.5 4.5 0 0 1-3-3z"
-      stroke={color}
-      strokeWidth="2"
-      strokeLinejoin="round"
-      strokeLinecap="round"
-    />
-    <path
-      d="M10 20l-2 2"
-      stroke={color}
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-  </svg>
-);
-
-const ArtifactsIcon = ({size = 18, color = '#111827'}) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-    <path
-      d="M12 2l1.2 4.2L17 7.4l-3.8 1.2L12 13l-1.2-4.4L7 7.4l3.8-1.2L12 2z"
-      stroke={color}
-      strokeWidth="2"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M6 14l.7 2.3L9 17l-2.3.7L6 20l-.7-2.3L3 17l2.3-.7L6 14z"
-      stroke={color}
-      strokeWidth="2"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
+const TOOLS_EMOJI = '🛠';
+const ARTIFACTS_EMOJI = '✨';
 
 // Project-scoped overlay:
 // A clean line coming "from Codex" and staging:
@@ -150,6 +122,56 @@ export const CodexToolsArtifactsOverlay = ({
   const artifactsMinWidthCh =
     Math.max(artifactsTextDigital.length, artifactsTextCoding.length, artifactsTextVideo.length) + 4;
 
+  const FlowDot = ({y, opacity: dotOpacity}) => {
+    if (!Number.isFinite(y) || dotOpacity <= 0) {
+      return null;
+    }
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          left: lineX - 5,
+          top: y - 5,
+          width: 10,
+          height: 10,
+          borderRadius: 999,
+          backgroundColor: '#3b82f6',
+          boxShadow: '0 0 10px rgba(59,130,246,0.7)',
+          opacity: dotOpacity,
+        }}
+      />
+    );
+  };
+
+  const flowAnim = (start, length, fromY, toY) => {
+    const p = clamp01((t - start) / length);
+    const y = interpolate(p, [0, 1], [fromY, toY]);
+    const o = interpolate(p, [0, 0.1, 0.9, 1], [0, 1, 1, 0]);
+    return {y, o};
+  };
+
+  const segment1End = toolsY - 6;
+  const segment2Start = toolsY + 44 + 6;
+  const segment2End = artifactsY - 6;
+
+  // Re-run the "flow" on each narration-driven state transition.
+  const f1a = flowAnim(resolvedToolsSeconds, 0.55, 0, segment1End);
+  const f1b = flowAnim(resolvedCodingStartSeconds, 0.55, 0, segment1End);
+  const f1c = flowAnim(resolvedVideoStartSeconds, 0.55, 0, segment1End);
+
+  const f2a = flowAnim(resolvedArtifactsSeconds, 0.55, segment2Start, segment2End);
+  const f2b = flowAnim(resolvedCodingStartSeconds + 0.18, 0.55, segment2Start, segment2End);
+  const f2c = flowAnim(resolvedVideoStartSeconds + 0.18, 0.55, segment2Start, segment2End);
+
+  const dot1 = [f1a, f1b, f1c].reduce(
+    (acc, cur) => (cur.o > acc.o ? cur : acc),
+    {y: 0, o: 0}
+  );
+  const dot2 = [f2a, f2b, f2c].reduce(
+    (acc, cur) => (cur.o > acc.o ? cur : acc),
+    {y: 0, o: 0}
+  );
+
   return (
     <div
       style={{
@@ -178,6 +200,7 @@ export const CodexToolsArtifactsOverlay = ({
             transform: `scaleY(${lineToTools})`,
           }}
         />
+        <FlowDot y={dot1.y} opacity={dot1.o} />
         <div
           style={{
             position: 'absolute',
@@ -203,7 +226,7 @@ export const CodexToolsArtifactsOverlay = ({
         >
           <div style={{position: 'relative'}}>
             <div style={{opacity: 1 - codingSwap}}>
-              <Pill text={toolsTextDigital} icon={<ToolsIcon />} minWidthCh={toolsMinWidthCh} />
+              <Pill text={toolsTextDigital} emoji={TOOLS_EMOJI} minWidthCh={toolsMinWidthCh} />
             </div>
             <div
               style={{
@@ -214,10 +237,10 @@ export const CodexToolsArtifactsOverlay = ({
                 opacity: codingSwap * (1 - videoSwap),
               }}
             >
-              <Pill text={toolsTextCoding} icon={<ToolsIcon />} minWidthCh={toolsMinWidthCh} />
+              <Pill text={toolsTextCoding} emoji={TOOLS_EMOJI} minWidthCh={toolsMinWidthCh} />
             </div>
             <div style={{position: 'absolute', top: 0, left: 0, width: '100%', opacity: videoSwap}}>
-              <Pill text={toolsTextVideo} icon={<ToolsIcon />} minWidthCh={toolsMinWidthCh} />
+              <Pill text={toolsTextVideo} emoji={TOOLS_EMOJI} minWidthCh={toolsMinWidthCh} />
             </div>
           </div>
         </div>
@@ -234,6 +257,7 @@ export const CodexToolsArtifactsOverlay = ({
             transform: `scaleY(${lineToArtifacts})`,
           }}
         />
+        <FlowDot y={dot2.y} opacity={dot2.o} />
         <div
           style={{
             position: 'absolute',
@@ -260,7 +284,7 @@ export const CodexToolsArtifactsOverlay = ({
           {/* Artifacts pill swaps with the narration. */}
           <div style={{position: 'relative'}}>
             <div style={{opacity: 1 - codingSwap}}>
-              <Pill text={artifactsTextDigital} icon={<ArtifactsIcon />} minWidthCh={artifactsMinWidthCh} />
+              <Pill text={artifactsTextDigital} emoji={ARTIFACTS_EMOJI} minWidthCh={artifactsMinWidthCh} />
             </div>
             <div
               style={{
@@ -271,10 +295,10 @@ export const CodexToolsArtifactsOverlay = ({
                 opacity: codingSwap * (1 - videoSwap),
               }}
             >
-              <Pill text={artifactsTextCoding} icon={<ArtifactsIcon />} minWidthCh={artifactsMinWidthCh} />
+              <Pill text={artifactsTextCoding} emoji={ARTIFACTS_EMOJI} minWidthCh={artifactsMinWidthCh} />
             </div>
             <div style={{position: 'absolute', top: 0, left: 0, width: '100%', opacity: videoSwap}}>
-              <Pill text={artifactsTextVideo} icon={<ArtifactsIcon />} minWidthCh={artifactsMinWidthCh} />
+              <Pill text={artifactsTextVideo} emoji={ARTIFACTS_EMOJI} minWidthCh={artifactsMinWidthCh} />
             </div>
           </div>
         </div>
