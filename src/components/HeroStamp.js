@@ -259,8 +259,17 @@ export const HeroStamp = ({
     extrapolateRight: 'clamp',
   });
 
+  const pulseAt = (atSeconds) =>
+    interpolate(t, [atSeconds - 0.06, atSeconds, atSeconds + 0.10, atSeconds + 0.22], [0, 1, 0.65, 0], {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+    });
+  const blinkBase =
+    blinkSecondsList.length === 0 ? 0 : Math.min(1, blinkSecondsList.reduce((acc, s) => acc + pulseAt(s), 0));
+  const blinkStrength = blinkBase * (layer === 'behind' ? 1.0 : 0.9);
+
   // One shared style for all text in this stamp: same weight, same shadow, no faux-bold.
-  // Add a subtle glow so the behind/front layers feel more "alive" without adding motion jitter.
+  // Add a subtle glow only during the blink window.
   const sharedTextStyle = {
     fontWeight: 400,
     WebkitFontSmoothing: 'antialiased',
@@ -271,15 +280,6 @@ export const HeroStamp = ({
       3
     )})`,
   };
-
-  const pulseAt = (atSeconds) =>
-    interpolate(t, [atSeconds - 0.06, atSeconds, atSeconds + 0.10, atSeconds + 0.22], [0, 1, 0.65, 0], {
-      extrapolateLeft: 'clamp',
-      extrapolateRight: 'clamp',
-    });
-  const blinkBase =
-    blinkSecondsList.length === 0 ? 0 : Math.min(1, blinkSecondsList.reduce((acc, s) => acc + pulseAt(s), 0));
-  const blinkStrength = blinkBase * (layer === 'behind' ? 1.0 : 0.9);
 
   const percentTextStyle = {
     ...sharedTextStyle,
