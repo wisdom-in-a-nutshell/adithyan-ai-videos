@@ -4,6 +4,9 @@ export const TEXT_EFFECTS_VIDEO_URL =
 export const TEXT_EFFECTS_ALPHA_URL =
   'https://storage.aipodcast.ing/cache/matanyone/alpha/88efdd42-c664-4df2-8c7d-34824323e95c.webm';
 
+export const TEXT_EFFECTS_CODEX_LOGO_URL =
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/ChatGPT-Logo.svg/2560px-ChatGPT-Logo.svg.png';
+
 // Storyboard beat: setup-what-youll-see
 export const TEXT_EFFECTS_SETUP_START_SECONDS = 9.2;
 export const TEXT_EFFECTS_SETUP_END_SECONDS = 22.64;

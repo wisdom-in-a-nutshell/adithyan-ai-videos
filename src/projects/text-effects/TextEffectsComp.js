@@ -4,12 +4,13 @@ import {HeroStamp} from '../../components/HeroStamp.js';
 import transcriptWords from './transcript_words.json';
 import {
   TEXT_EFFECTS_ALPHA_URL,
+  TEXT_EFFECTS_CODEX_LOGO_URL,
   TEXT_EFFECTS_SETUP_END_SECONDS,
   TEXT_EFFECTS_SETUP_START_SECONDS,
   TEXT_EFFECTS_VIDEO_URL,
 } from './assets.js';
 import {SKETCH_FONT_FAMILY} from '../../styles/sketch.js';
-import {DisclaimerOverlay, LabelOverlay} from '../../overlay_kit/overlays.js';
+import {CodexCallout, DisclaimerOverlay, LabelOverlay} from '../../overlay_kit/overlays.js';
 
 const resolveAssetSrc = (src) => {
   if (!src || typeof src !== 'string') {
@@ -47,6 +48,29 @@ const findLetMeShowYouHowEndSeconds = (words) => {
     }
   }
 
+  return null;
+};
+
+const findFirstWordInRangeSeconds = (words, targets, startSeconds, endSeconds) => {
+  if (!Array.isArray(words) || !Array.isArray(targets)) {
+    return null;
+  }
+  const targetSet = new Set(targets.map((t) => normalizeWord(t)));
+  for (const w of words) {
+    if (w?.type !== 'word' || typeof w?.text !== 'string') {
+      continue;
+    }
+    const start = Number(w.start);
+    if (!Number.isFinite(start)) {
+      continue;
+    }
+    if (start < startSeconds || start > endSeconds) {
+      continue;
+    }
+    if (targetSet.has(normalizeWord(w.text))) {
+      return start;
+    }
+  }
   return null;
 };
 
@@ -99,10 +123,29 @@ export const TextEffectsComp = (props) => {
           )
         );
 
+        const codexSeconds =
+          findFirstWordInRangeSeconds(
+            transcriptWords,
+            ['codex', 'codec', 'codecs'],
+            TEXT_EFFECTS_SETUP_START_SECONDS,
+            TEXT_EFFECTS_SETUP_END_SECONDS
+          ) ?? TEXT_EFFECTS_SETUP_START_SECONDS;
+        const codexFrom = Math.max(0, Math.floor(codexSeconds * fps));
+        const codexDur = Math.max(1, Math.min(durationInFrames - codexFrom, from + dur - codexFrom));
+
         return (
           <>
             <Sequence name="Setup: RAW RECORDING (Front)" from={from} durationInFrames={dur}>
               <LabelOverlay text="RAW RECORDING" durationInFrames={dur} scale={1} />
+            </Sequence>
+
+            <Sequence name="Setup: CODEX (Front)" from={codexFrom} durationInFrames={codexDur}>
+              <CodexCallout
+                text="CODEX"
+                logo={TEXT_EFFECTS_CODEX_LOGO_URL}
+                durationInFrames={codexDur}
+                scale={1}
+              />
             </Sequence>
 
             <Sequence name="Setup: Disclaimer (Front)" from={from} durationInFrames={dur}>

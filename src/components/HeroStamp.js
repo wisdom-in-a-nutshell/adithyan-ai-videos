@@ -213,9 +213,10 @@ export const HeroStamp = ({
   });
 
   const topInset = Math.round(height * 0.09);
-  const sideInset = Math.round(width * 0.075);
+  // Pull the corner labels inward so they sit closer to the subject (horizontal only).
+  const sideInset = Math.round(width * 0.14);
 
-  const percentFontSize = Math.round(Math.min(width, height) * 0.52);
+  const percentFontSize = Math.round(Math.min(width, height) * 0.48);
   const cornerFontSize = Math.round(Math.min(width, height) * 0.12);
   const bottomFontSize = Math.round(Math.min(width, height) * 0.095);
 
@@ -255,32 +256,33 @@ export const HeroStamp = ({
     return null;
   }
 
-  if (layer === 'front') {
-    if (editedOpacity <= 0 || baseOpacity <= 0) {
-      return null;
-    }
+	  if (layer === 'front') {
+	    if (editedOpacity <= 0 || baseOpacity <= 0) {
+	      return null;
+	    }
 
-    return (
-      <div
-        style={{
-          position: 'absolute',
+	    return (
+	      <div
+	        style={{
+	          position: 'absolute',
           inset: 0,
           opacity: baseOpacity * editedOpacity,
           pointerEvents: 'none',
         }}
       >
-		        <div
-		          style={{
-		            position: 'absolute',
-		            left: '50%',
-		            bottom: Math.round(height * 0.11),
-		            transform: `translate3d(-50%, ${Math.round(editedLift)}px, 0)`,
-		            color: textColor,
-		            ...sharedTextStyle,
-		            fontSize: bottomFontSize,
-		            whiteSpace: 'nowrap',
-		          }}
-		        >
+			        <div
+			          style={{
+			            position: 'absolute',
+			            left: '50%',
+			            bottom: Math.round(height * 0.11),
+			            transform: `translate3d(-50%, ${Math.round(editedLift)}px, 0)`,
+			            color: textColor,
+			            ...sharedTextStyle,
+			            fontSize: bottomFontSize,
+			            WebkitTextStroke: '1px rgba(0,0,0,0.35)',
+			            whiteSpace: 'nowrap',
+			          }}
+			        >
 	          {bottomPrefixText}{' '}
 	          <span
 	            style={{
