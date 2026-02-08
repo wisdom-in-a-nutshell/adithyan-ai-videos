@@ -5,6 +5,10 @@ import transcriptWords from './transcript_words.json';
 import {
   TEXT_EFFECTS_ALPHA_URL,
   TEXT_EFFECTS_CODEX_LOGO_URL,
+  TEXT_EFFECTS_SETUP_ARTIFACTS_SECONDS,
+  TEXT_EFFECTS_SETUP_CODING_START_SECONDS,
+  TEXT_EFFECTS_SETUP_TOOLS_SECONDS,
+  TEXT_EFFECTS_SETUP_VIDEO_START_SECONDS,
   TEXT_EFFECTS_SETUP_END_SECONDS,
   TEXT_EFFECTS_SETUP_CODEX_END_SECONDS,
   TEXT_EFFECTS_SETUP_CODEX_START_SECONDS,
@@ -136,7 +140,13 @@ export const TextEffectsComp = (props) => {
             <CodexToolsArtifactsOverlay
               durationInFrames={dur}
               startSeconds={TEXT_EFFECTS_SETUP_CODEX_START_SECONDS}
-              videoToolsSeconds={videoToolsSeconds}
+              toolsSeconds={TEXT_EFFECTS_SETUP_TOOLS_SECONDS}
+              artifactsSeconds={TEXT_EFFECTS_SETUP_ARTIFACTS_SECONDS}
+              codingStartSeconds={TEXT_EFFECTS_SETUP_CODING_START_SECONDS}
+              videoStartSeconds={TEXT_EFFECTS_SETUP_VIDEO_START_SECONDS}
+              // Make the line appear to originate from the Codex pill.
+              baseLeft={32}
+              baseTop={142}
             />
           </Sequence>
         );

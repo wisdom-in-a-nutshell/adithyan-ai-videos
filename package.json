@@ -7,12 +7,7 @@
     "start": "remotion studio",
     "studio:project": "node scripts/studio_project.mjs",
     "studio:text-effects": "remotion studio",
-    "render": "remotion render src/index.js ActiveSpeakerDetection",
-    "render:occlusion": "remotion render src/index.js OcclusionDemo /tmp/occlusion-demo.mp4",
-    "render:occlusion:hq": "remotion render src/index.js OcclusionDemo /tmp/occlusion-demo-hq.mp4 --image-format=png --crf=15 --x264-preset=slow",
-    "render:text-effects": "node scripts/render_text_effects.mjs",
-    "render:text-effects:preview": "node scripts/render_text_effects.mjs --preview",
-    "render:text-effects:clip": "node scripts/render_text_effects.mjs --preview"
+    "render": "node scripts/render.mjs"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
