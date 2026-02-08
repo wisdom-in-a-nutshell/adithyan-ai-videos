@@ -391,6 +391,8 @@ export const HeroStamp = ({
           textShadow: '0 30px 110px rgba(0,0,0,0.65), 0 0 36px rgba(59,130,246,0.25)',
           opacity: 0.95,
           whiteSpace: 'nowrap',
+          // Avoid the "scratchy" interior look from the sketch SVG filter.
+          filter: 'none',
         }}
       >
         {/* Spark / burst (behind subject) */}
