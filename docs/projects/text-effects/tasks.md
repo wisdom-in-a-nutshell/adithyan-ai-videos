@@ -49,7 +49,7 @@ Produce a repeatable, data-driven Remotion project that adds “text behind + in
 - [ ] Preview in Studio using cached assets:
   - `npm run studio:project -- projects/text-effects/project.json --comp TextEffects`
 - [ ] Implement storyboard-driven overlays in the `TextEffects` composition **only when explicitly requested** (keep primitives reusable in `src/overlay_kit/`).
-- [ ] Validation: short render + stills to check occlusion edges, text readability, and timing:
+- [x] Validation: short render + stills to check occlusion edges, text readability, and timing:
   - `node scripts/render_project.mjs projects/text-effects/project.json --comp TextEffects --out /tmp/text-effects.mp4 --seconds 10 --fps 24`
 - [ ] Review `AGENTS.md` guidance for any new durable workflow notes; update only if something new emerges.
 - [ ] Archive: move this project doc under `docs/projects/archive/text-effects/` when the project is “done enough”.
@@ -61,6 +61,7 @@ Produce a repeatable, data-driven Remotion project that adds “text behind + in
 - Deterministic render:
   - `node scripts/render_project.mjs projects/text-effects/project.json --comp TextEffects --out /tmp/text-effects.mp4 --seconds 10 --fps 24`
   - Inspect `/tmp/text-effects-stills/` for occlusion halos/flicker and text readability.
+  - If you see `npm error could not determine executable to run`, run `npm ci` first.
 - Contract sanity:
   - `projects/text-effects/project.json` contains only `video_url`
   - `projects/text-effects/matting.json` contains `alpha_url` when occlusion is used
@@ -71,6 +72,7 @@ Produce a repeatable, data-driven Remotion project that adds “text behind + in
 - 2026-02-08: Re-transcribed the current source and regenerated `sentences.json` + `words.json`.
 - 2026-02-08: Created/updated storyboard beats and inlined per-beat transcript (`transcript[]`) for review.
 - 2026-02-08: Generated MatAnyone output and wrote `projects/text-effects/matting.json` with `alpha_url` (VP9 WebM with alpha).
+- 2026-02-08: [DONE] Ran deterministic render + stills for `TextEffects` (`/tmp/text-effects.mp4`, `/tmp/text-effects-stills/`).
 
 ## Next 3 Actions
 1. Open `projects/text-effects/storyboard.json` and edit beats/copy until you like the cut.
