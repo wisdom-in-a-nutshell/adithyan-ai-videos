@@ -32,22 +32,25 @@ const printHelp = () => {
   // eslint-disable-next-line no-console
   console.log(`
 Usage:
-  npm run render -- [--comp <Name>] [--preview] [--from <sec>] [--to <sec>]
-                 [--scale <n>] [--crf <n>] [--out <path>] [--no-open]
+  npm run render -- [--comp <Name>] [--from <sec>] [--to <sec>]
+                 [--preview|--hq] [--scale <n>] [--crf <n>]
+                 [--out <path>] [--no-open]
 
 Defaults:
   --comp     TextEffects
-  --out      /tmp/<comp>.mp4 (or /tmp/<comp>-preview.mp4 if --preview)
+  --preview  on (fast iteration)
+  --out      /tmp/<comp>.mp4
 
 Preview preset:
   --preview  sets --scale 0.25 and --crf 28 (override with explicit --scale/--crf)
+  --hq       disables preview defaults (full-res render)
 
 Render only a time slice (seconds -> frames based on composition fps):
   --from 0 --to 5
 
 Examples:
-  npm run render
-  npm run render -- --preview
+  npm run render               # preview by default
+  npm run render -- --hq       # full quality
   npm run render -- --preview --from 0 --to 6
   npm run render -- --comp OcclusionDemo --from 0 --to 3
   npm run render -- --comp ActiveSpeakerDetection --preview --from 10 --to 20
@@ -56,7 +59,8 @@ Examples:
 
 const entry = 'src/index.js';
 const comp = getArg('--comp') || 'TextEffects';
-const isPreview = hasFlag('--preview');
+const isHQ = hasFlag('--hq') || hasFlag('--full');
+const isPreview = !isHQ;
 const noOpen = hasFlag('--no-open');
 const fromSeconds = toNumber(getArg('--from'));
 const toSeconds = toNumber(getArg('--to'));
@@ -64,9 +68,7 @@ const toSeconds = toNumber(getArg('--to'));
 const scale = toNumber(getArg('--scale')) ?? (isPreview ? 0.25 : null);
 const crf = toNumber(getArg('--crf')) ?? (isPreview ? 28 : null);
 
-const out =
-  getArg('--out') ||
-  (isPreview ? `/tmp/${comp}-preview.mp4` : `/tmp/${comp}.mp4`);
+const out = getArg('--out') || `/tmp/${comp}.mp4`;
 
 if (hasFlag('--help') || hasFlag('-h')) {
   printHelp();
