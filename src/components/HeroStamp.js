@@ -108,7 +108,8 @@ const appearOpacity = ({t, startSeconds, fadeInSeconds = 0.12}) => {
   if (!Number.isFinite(startSeconds)) {
     return 0;
   }
-  return interpolate(t, [startSeconds - 0.03, startSeconds + fadeInSeconds], [0, 1], {
+  // Avoid "early" appearance before the word actually starts.
+  return interpolate(t, [startSeconds, startSeconds + fadeInSeconds], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
@@ -163,7 +164,8 @@ export const HeroStamp = ({
   const percentOpacity = appearOpacity({t, startSeconds: timing.percentStart});
   const editedOpacity = appearOpacity({t, startSeconds: timing.editedStart});
 
-  const percentFrame = Math.round(timing.percentStart * fps);
+  // Use ceil so the pop never starts earlier than the word timing (at most 1 frame late).
+  const percentFrame = Math.ceil(timing.percentStart * fps);
   const pop = spring({
     fps,
     frame: frame - percentFrame,
