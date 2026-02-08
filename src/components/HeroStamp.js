@@ -216,8 +216,11 @@ export const HeroStamp = ({
   });
 
   const topInset = Math.round(height * 0.09);
-  // Pull the corner labels inward so they sit closer to the subject (horizontal only).
-  const sideInset = Math.round(width * 0.14);
+  // Corner label insets. Keep vertical spacing stable; tune horizontal per-corner.
+  // NOTE: We intentionally push the right label ("VIDEO") further to the right so it
+  // doesn't sit over the subject's head.
+  const leftInset = Math.round(width * 0.14);
+  const rightInset = Math.round(width * 0.06);
 
   // Keep the center hero big, but not so big that it clutters the frame.
   const percentFontSize = Math.round(Math.min(width, height) * 0.40);
@@ -349,7 +352,7 @@ export const HeroStamp = ({
 	      <div
 	        style={{
 	          position: 'absolute',
-	          left: sideInset,
+	          left: leftInset,
 	          top: topInset,
 	          transform: `translate3d(${Math.round(thisSlideX)}px, ${Math.round(cornerSlide)}px, 0)`,
 	          fontSize: cornerFontSize,
@@ -360,13 +363,13 @@ export const HeroStamp = ({
 	          opacity: 0.92,
 	        }}
 	      >
-        <span style={{opacity: thisOpacity}}>{topLeftText}</span>
-      </div>
+	        <span style={{opacity: thisOpacity}}>{topLeftText}</span>
+	      </div>
 
 	      <div
 	        style={{
 	          position: 'absolute',
-	          right: sideInset,
+	          right: rightInset,
 	          top: topInset,
 	          transform: `translate3d(${Math.round(videoSlideX)}px, ${Math.round(cornerSlide)}px, 0)`,
 	          fontSize: cornerFontSize,
