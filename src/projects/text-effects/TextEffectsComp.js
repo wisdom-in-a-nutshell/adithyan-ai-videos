@@ -23,6 +23,7 @@ import {
   StatusLeftOverlay,
 } from '../../overlay_kit/overlays.js';
 import {CodexToolsArtifactsOverlay} from './CodexToolsArtifactsOverlay.js';
+import {TEXT_EFFECTS_UI_SCALE} from './ui.js';
 
 const resolveAssetSrc = (src) => {
   if (!src || typeof src !== 'string') {
@@ -229,31 +230,31 @@ export const TextEffectsComp = (props) => {
           // Keep the Codex pill on-screen from first mention through the rest of the cut.
           const codexDur = Math.max(1, durationInFrames - codexFrom);
 
-          return (
-            <>
-              <Sequence name="Setup: RAW RECORDING (Front)" from={from} durationInFrames={dur}>
-                <LabelOverlay text="RAW RECORDING" durationInFrames={dur} scale={1} />
-              </Sequence>
+	          return (
+	            <>
+	              <Sequence name="Setup: RAW RECORDING (Front)" from={from} durationInFrames={dur}>
+	                <LabelOverlay text="RAW RECORDING" durationInFrames={dur} scale={TEXT_EFFECTS_UI_SCALE} />
+	              </Sequence>
 
-              <Sequence name="Setup: CODEX (Front)" from={codexFrom} durationInFrames={codexDur}>
-                <CodexCallout
-                  text="CODEX"
-                  logo={TEXT_EFFECTS_CODEX_LOGO_URL}
-                  durationInFrames={codexDur}
-                  scale={1}
-                />
-              </Sequence>
+	              <Sequence name="Setup: CODEX (Front)" from={codexFrom} durationInFrames={codexDur}>
+	                <CodexCallout
+	                  text="CODEX"
+	                  logo={TEXT_EFFECTS_CODEX_LOGO_URL}
+	                  durationInFrames={codexDur}
+	                  scale={TEXT_EFFECTS_UI_SCALE}
+	                />
+	              </Sequence>
 
-              <Sequence name="Setup: Disclaimer (Front)" from={from} durationInFrames={dur}>
-                <DisclaimerOverlay
-                  text="Everything on-screen, including motion overlays, is rendered by Codex"
-                  durationInFrames={dur}
-                  scale={1}
-                />
-              </Sequence>
-            </>
-          );
-        })()}
+	              <Sequence name="Setup: Disclaimer (Front)" from={from} durationInFrames={dur}>
+	                <DisclaimerOverlay
+	                  text="Everything on-screen, including motion overlays, is rendered by Codex"
+	                  durationInFrames={dur}
+	                  scale={TEXT_EFFECTS_UI_SCALE}
+	                />
+	              </Sequence>
+	            </>
+	          );
+	        })()}
 
         {(() => {
           const from = Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_CODEX_START_SECONDS * fps));
@@ -265,29 +266,30 @@ export const TextEffectsComp = (props) => {
             )
           );
 
-          return (
-            <>
-              <Sequence name="Setup: ANIMATING (Front)" from={from} durationInFrames={dur}>
-                <StatusLeftOverlay text="ANIMATING" durationInFrames={dur} scale={1} />
-              </Sequence>
+	        return (
+	          <>
+	            <Sequence name="Setup: ANIMATING (Front)" from={from} durationInFrames={dur}>
+	              <StatusLeftOverlay text="ANIMATING" durationInFrames={dur} scale={TEXT_EFFECTS_UI_SCALE} />
+	            </Sequence>
 
-              <Sequence name="Setup: Codex -> Tools -> Artifacts (Front)" from={from} durationInFrames={dur}>
-                <CodexToolsArtifactsOverlay
-                  durationInFrames={dur}
-                  startSeconds={TEXT_EFFECTS_SETUP_CODEX_START_SECONDS}
-                  toolsSeconds={TEXT_EFFECTS_SETUP_TOOLS_SECONDS}
-                  artifactsSeconds={TEXT_EFFECTS_SETUP_ARTIFACTS_SECONDS}
-                  codingStartSeconds={TEXT_EFFECTS_SETUP_CODING_START_SECONDS}
-                  videoStartSeconds={TEXT_EFFECTS_SETUP_VIDEO_START_SECONDS}
-                  frameOffset={from}
-                  // Align under the CODEX pill.
-                  baseLeft={32}
-                  baseTop={142}
-                />
-              </Sequence>
-            </>
-          );
-        })()}
+	            <Sequence name="Setup: Codex -> Tools -> Artifacts (Front)" from={from} durationInFrames={dur}>
+	              <CodexToolsArtifactsOverlay
+	                durationInFrames={dur}
+	                startSeconds={TEXT_EFFECTS_SETUP_CODEX_START_SECONDS}
+	                toolsSeconds={TEXT_EFFECTS_SETUP_TOOLS_SECONDS}
+	                artifactsSeconds={TEXT_EFFECTS_SETUP_ARTIFACTS_SECONDS}
+	                codingStartSeconds={TEXT_EFFECTS_SETUP_CODING_START_SECONDS}
+	                videoStartSeconds={TEXT_EFFECTS_SETUP_VIDEO_START_SECONDS}
+	                frameOffset={from}
+	                // Align under the CODEX pill.
+	                scale={TEXT_EFFECTS_UI_SCALE}
+	                baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
+	                baseTop={142 * TEXT_EFFECTS_UI_SCALE}
+	              />
+	            </Sequence>
+	          </>
+	        );
+	      })()}
 
         <Sequence name="HeroStamp (Front)" from={0} durationInFrames={holdFrames}>
           <HeroStamp layer="front" transcriptWords={transcriptWords} holdUntilSeconds={holdUntilSeconds} />

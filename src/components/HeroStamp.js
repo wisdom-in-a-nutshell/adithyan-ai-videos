@@ -325,6 +325,17 @@ export const HeroStamp = ({
     extrapolateRight: 'clamp',
   });
 
+  // Make "100%" read better behind the subject by widening it (without changing font weight).
+  const percentStretchX = 1.12;
+
+  // Slide in from the left for readability and momentum.
+  const percentSlideX = interpolate(
+    t,
+    [percentStart - 0.06, percentStart + 0.18],
+    [-120, 0],
+    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+  );
+
   return (
     <div
       style={{
@@ -383,16 +394,18 @@ export const HeroStamp = ({
         <span style={{opacity: videoOpacity}}>{topRightText}</span>
       </div>
 
-		      <div
-		        style={{
-		          position: 'absolute',
-		          left: '50%',
-		          top: '50%',
-		          transform: `translate3d(-50%, -52%, 0) rotate(${percentRotate}deg) scale(${settle * percentZoom})`,
-		          fontSize: percentFontSize,
-		          ...sharedTextStyle,
-		          letterSpacing: -4,
-		          lineHeight: 1,
+			      <div
+			        style={{
+			          position: 'absolute',
+			          left: '50%',
+			          top: '50%',
+			          transform: `translate3d(calc(-50% + ${Math.round(
+			            percentSlideX
+			          )}px), -52%, 0) rotate(${percentRotate}deg) scale(${settle * percentZoom})`,
+			          fontSize: percentFontSize,
+			          ...sharedTextStyle,
+			          letterSpacing: -4,
+			          lineHeight: 1,
 		          color: accentColor,
 		          opacity: 0.98,
 		          whiteSpace: 'nowrap',
@@ -437,16 +450,17 @@ export const HeroStamp = ({
           <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth="2" />
         </svg>
 
-        <span style={{opacity: percentOpacity}}>
-          <span
-            style={{
-              display: 'inline-block',
-              transform: `translate3d(0, 0, 0) scale(${percentScale})`,
-            }}
-          >
-            {centerText}
-          </span>
-        </span>
+	        <span style={{opacity: percentOpacity}}>
+	          <span
+	            style={{
+	              display: 'inline-block',
+	              transform: `translate3d(0, 0, 0) scale(${percentScale}) scaleX(${percentStretchX})`,
+	              transformOrigin: '50% 50%',
+	            }}
+	          >
+	            {centerText}
+	          </span>
+	        </span>
       </div>
     </div>
   );
