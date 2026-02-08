@@ -74,6 +74,7 @@ Produce a repeatable, data-driven Remotion project that adds “text behind + in
 - 2026-02-08: Generated MatAnyone output and wrote `projects/text-effects/matting.json` with `alpha_url` (VP9 WebM with alpha).
 - 2026-02-08: [DONE] Ran deterministic render + stills for `TextEffects` (`/tmp/text-effects.mp4`, `/tmp/text-effects-stills/`).
 - 2026-02-08: Increased `TextEffects` mask edge cleanup by bumping `shrinkPx` to 4 (quick green-fringe mitigation).
+- 2026-02-08: Re-transcribed the current `project.json` URL (WIN `transcribe.py`), regenerated `words.json` + `sentences.json`, and refreshed storyboard beat timings/transcript from `sentences.json`.
 
 ## Next 3 Actions
 1. Open `projects/text-effects/storyboard.json` and edit beats/copy until you like the cut.
