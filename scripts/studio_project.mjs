@@ -96,6 +96,18 @@ if (fs.existsSync(transcriptPath)) {
   }
 }
 
+const storyboardPath = path.join(projectDir, 'storyboard.json');
+if (fs.existsSync(storyboardPath)) {
+  try {
+    const storyboardPayload = JSON.parse(fs.readFileSync(storyboardPath, 'utf-8'));
+    if (storyboardPayload && typeof storyboardPayload === 'object') {
+      props.storyboard = storyboardPayload;
+    }
+  } catch (err) {
+    die(`Failed to parse ${storyboardPath}: ${err}`);
+  }
+}
+
 let publicDir = null;
 let propsPath = path.join(cacheBaseDir, id, 'studio-props.json');
 

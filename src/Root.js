@@ -34,6 +34,9 @@ const TEXT_EFFECTS_DEFAULT_PROPS = {
   // Slightly more aggressive edge cleanup for the marketing text-effects demo.
   // Increase if you still see a green fringe; decrease if hair/shoulders look "cut off".
   shrinkPx: 4,
+  // If transcript word timings feel slightly early/late vs the video, tweak this.
+  // Positive values delay all HeroStamp elements.
+  heroStampTimingOffsetSeconds: 0,
 };
 
 export const RemotionRoot = () => {

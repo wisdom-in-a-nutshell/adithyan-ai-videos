@@ -136,12 +136,30 @@ export const HeroStamp = ({
   bottomAccentText = 'CODEX',
   accentColor = '#3b82f6',
   textColor = '#f6f2ee',
+  timingOffsetSeconds = 0,
 }) => {
   const frame = useCurrentFrame();
   const {fps, width, height, durationInFrames} = useVideoConfig();
 
   const inferredTiming = useMemo(() => findPhraseTiming(transcriptWords), [transcriptWords]);
-  const timing = timingOverride ?? inferredTiming;
+  const timing = useMemo(() => {
+    const base = timingOverride ?? inferredTiming;
+    const offset = Number(timingOffsetSeconds);
+    if (!Number.isFinite(offset) || offset === 0) {
+      return base;
+    }
+    return {
+      ...base,
+      thisStart: base.thisStart + offset,
+      thisEnd: base.thisEnd + offset,
+      videoStart: base.videoStart + offset,
+      videoEnd: base.videoEnd + offset,
+      percentStart: base.percentStart + offset,
+      percentEnd: base.percentEnd + offset,
+      editedStart: base.editedStart + offset,
+      codexEnd: base.codexEnd + offset,
+    };
+  }, [inferredTiming, timingOverride, timingOffsetSeconds]);
   const t = frame / Math.max(1, fps);
 
   const phraseStart = timing.thisStart;

@@ -27,6 +27,7 @@ export const ForegroundMatteComposite = ({
   shrinkPx = 0,
   heroStamp = true,
   heroStampAccentColor = '#3b82f6',
+  heroStampTimingOffsetSeconds = 0,
 }) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
@@ -99,6 +100,7 @@ export const ForegroundMatteComposite = ({
         <HeroStamp
           layer="behind"
           transcriptWords={transcriptWords}
+          timingOffsetSeconds={heroStampTimingOffsetSeconds}
           accentColor={heroStampAccentColor}
           textColor={textColor}
         />
@@ -143,6 +145,7 @@ export const ForegroundMatteComposite = ({
         <HeroStamp
           layer="front"
           transcriptWords={transcriptWords}
+          timingOffsetSeconds={heroStampTimingOffsetSeconds}
           accentColor={heroStampAccentColor}
           textColor={textColor}
         />
