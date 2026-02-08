@@ -117,41 +117,6 @@ export const TextEffectsComp = (props) => {
         <HeroStamp layer="behind" transcriptWords={transcriptWords} holdUntilSeconds={holdUntilSeconds} />
       </Sequence>
 
-      {(() => {
-        const from = Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_CODEX_START_SECONDS * fps));
-        const dur = Math.max(
-          1,
-          Math.min(
-            durationInFrames - from,
-            Math.ceil((TEXT_EFFECTS_SETUP_CODEX_END_SECONDS - TEXT_EFFECTS_SETUP_CODEX_START_SECONDS) * fps)
-          )
-        );
-
-        const videoToolsSeconds =
-          findFirstWordInRangeSeconds(
-            transcriptWords,
-            ['video'],
-            TEXT_EFFECTS_SETUP_CODEX_START_SECONDS,
-            TEXT_EFFECTS_SETUP_CODEX_END_SECONDS
-          ) ?? null;
-
-        return (
-          <Sequence name="Setup: Codex -> Tools -> Artifacts (Behind)" from={from} durationInFrames={dur}>
-            <CodexToolsArtifactsOverlay
-              durationInFrames={dur}
-              startSeconds={TEXT_EFFECTS_SETUP_CODEX_START_SECONDS}
-              toolsSeconds={TEXT_EFFECTS_SETUP_TOOLS_SECONDS}
-              artifactsSeconds={TEXT_EFFECTS_SETUP_ARTIFACTS_SECONDS}
-              codingStartSeconds={TEXT_EFFECTS_SETUP_CODING_START_SECONDS}
-              videoStartSeconds={TEXT_EFFECTS_SETUP_VIDEO_START_SECONDS}
-              // Make the line appear to originate from the Codex pill.
-              baseLeft={32}
-              baseTop={142}
-            />
-          </Sequence>
-        );
-      })()}
-
       <Sequence name="Foreground Alpha" from={0} durationInFrames={durationInFrames}>
         <Video
           src={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL)}
@@ -218,9 +183,26 @@ export const TextEffectsComp = (props) => {
         );
 
         return (
-          <Sequence name="Setup: ANIMATING (Front)" from={from} durationInFrames={dur}>
-            <StatusLeftOverlay text="ANIMATING" durationInFrames={dur} scale={1} />
-          </Sequence>
+          <>
+            <Sequence name="Setup: ANIMATING (Front)" from={from} durationInFrames={dur}>
+              <StatusLeftOverlay text="ANIMATING" durationInFrames={dur} scale={1} />
+            </Sequence>
+
+            <Sequence name="Setup: Codex -> Tools -> Artifacts (Front)" from={from} durationInFrames={dur}>
+              <CodexToolsArtifactsOverlay
+                durationInFrames={dur}
+                startSeconds={TEXT_EFFECTS_SETUP_CODEX_START_SECONDS}
+                toolsSeconds={TEXT_EFFECTS_SETUP_TOOLS_SECONDS}
+                artifactsSeconds={TEXT_EFFECTS_SETUP_ARTIFACTS_SECONDS}
+                codingStartSeconds={TEXT_EFFECTS_SETUP_CODING_START_SECONDS}
+                videoStartSeconds={TEXT_EFFECTS_SETUP_VIDEO_START_SECONDS}
+                frameOffset={from}
+                // Align under the CODEX pill.
+                baseLeft={32}
+                baseTop={142}
+              />
+            </Sequence>
+          </>
         );
       })()}
 

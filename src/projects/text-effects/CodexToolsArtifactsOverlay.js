@@ -55,13 +55,17 @@ export const CodexToolsArtifactsOverlay = ({
   codingStartSeconds = null,
   videoStartSeconds = null,
   videoSeconds = null,
+  // `useCurrentFrame()` is relative to the nearest <Sequence>.
+  // Pass the sequence `from` frame to compute absolute (composition) time.
+  frameOffset = 0,
   // Align with the existing Codex callout pill (top: 88px, left: 32px, height: ~44px).
   baseLeft = 32,
   baseTop = 142,
 }) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
-  const t = videoSeconds ?? frame / fps;
+  const absoluteFrame = frame + (Number.isFinite(frameOffset) ? frameOffset : 0);
+  const t = videoSeconds ?? absoluteFrame / fps;
 
   const appear = clamp01((t - startSeconds) / 0.35);
   const opacity = interpolate(appear, [0, 1], [0, 1]);

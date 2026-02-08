@@ -219,9 +219,11 @@ export const HeroStamp = ({
   // Pull the corner labels inward so they sit closer to the subject (horizontal only).
   const sideInset = Math.round(width * 0.14);
 
-  const percentFontSize = Math.round(Math.min(width, height) * 0.48);
-  const cornerFontSize = Math.round(Math.min(width, height) * 0.145);
-  const bottomFontSize = Math.round(Math.min(width, height) * 0.125);
+  // Keep the center hero big, but not so big that it clutters the frame.
+  const percentFontSize = Math.round(Math.min(width, height) * 0.40);
+  // User polish pass: make THIS/VIDEO and EDITED BY chunkier/larger.
+  const cornerFontSize = Math.round(Math.min(width, height) * 0.181);
+  const bottomFontSize = Math.round(Math.min(width, height) * 0.156);
 
   const cornerSlide = interpolate(t, [timing.thisStart, timing.thisStart + 0.35], [22, 0], {
     extrapolateLeft: 'clamp',
@@ -253,8 +255,8 @@ export const HeroStamp = ({
     WebkitFontSmoothing: 'antialiased',
     MozOsxFontSmoothing: 'grayscale',
     // Use outline for "thickness" instead of fontWeight to avoid faux-bold artifacts.
-    WebkitTextStroke: '2.4px rgba(0,0,0,0.50)',
-    textShadow: '0 14px 40px rgba(0,0,0,0.58)',
+    WebkitTextStroke: '3px rgba(0,0,0,0.52)',
+    textShadow: '0 16px 46px rgba(0,0,0,0.60)',
   };
 
   if (baseOpacity <= 0) {
