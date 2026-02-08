@@ -217,8 +217,8 @@ export const HeroStamp = ({
   const sideInset = Math.round(width * 0.14);
 
   const percentFontSize = Math.round(Math.min(width, height) * 0.48);
-  const cornerFontSize = Math.round(Math.min(width, height) * 0.12);
-  const bottomFontSize = Math.round(Math.min(width, height) * 0.095);
+  const cornerFontSize = Math.round(Math.min(width, height) * 0.145);
+  const bottomFontSize = Math.round(Math.min(width, height) * 0.125);
 
   const cornerSlide = interpolate(t, [timing.thisStart, timing.thisStart + 0.35], [22, 0], {
     extrapolateLeft: 'clamp',
@@ -249,7 +249,9 @@ export const HeroStamp = ({
     fontWeight: 400,
     WebkitFontSmoothing: 'antialiased',
     MozOsxFontSmoothing: 'grayscale',
-    textShadow: '0 10px 28px rgba(0,0,0,0.55)',
+    // Use outline for "thickness" instead of fontWeight to avoid faux-bold artifacts.
+    WebkitTextStroke: '2.4px rgba(0,0,0,0.50)',
+    textShadow: '0 14px 40px rgba(0,0,0,0.58)',
   };
 
   if (baseOpacity <= 0) {
@@ -279,7 +281,6 @@ export const HeroStamp = ({
 			            color: textColor,
 			            ...sharedTextStyle,
 			            fontSize: bottomFontSize,
-			            WebkitTextStroke: '1px rgba(0,0,0,0.35)',
 			            whiteSpace: 'nowrap',
 			          }}
 			        >

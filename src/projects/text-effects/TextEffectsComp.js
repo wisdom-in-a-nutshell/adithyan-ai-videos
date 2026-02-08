@@ -131,7 +131,8 @@ export const TextEffectsComp = (props) => {
             TEXT_EFFECTS_SETUP_END_SECONDS
           ) ?? TEXT_EFFECTS_SETUP_START_SECONDS;
         const codexFrom = Math.max(0, Math.floor(codexSeconds * fps));
-        const codexDur = Math.max(1, Math.min(durationInFrames - codexFrom, from + dur - codexFrom));
+        // Keep the Codex pill on-screen from first mention through the rest of the cut.
+        const codexDur = Math.max(1, durationInFrames - codexFrom);
 
         return (
           <>
