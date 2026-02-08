@@ -183,11 +183,14 @@ export const HeroStamp = ({
   // Important: each element appears at its timestamp and then stays.
   const thisOpacity = appearOpacity({t, startSeconds: timing.thisStart});
   const videoOpacity = appearOpacity({t, startSeconds: timing.videoStart});
-  const percentOpacity = appearOpacity({t, startSeconds: timing.percentStart});
+  // Let the big "100%" lead slightly so it feels snappier.
+  const percentLeadSeconds = 0.08;
+  const percentStart = Math.max(0, timing.percentStart - percentLeadSeconds);
+  const percentOpacity = appearOpacity({t, startSeconds: percentStart});
   const editedOpacity = appearOpacity({t, startSeconds: timing.editedStart});
 
   // Use ceil so the pop never starts earlier than the word timing (at most 1 frame late).
-  const percentFrame = Math.ceil(timing.percentStart * fps);
+  const percentFrame = Math.ceil(percentStart * fps);
   const pop = spring({
     fps,
     frame: frame - percentFrame,
