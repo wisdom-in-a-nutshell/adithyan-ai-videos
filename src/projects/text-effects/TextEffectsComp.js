@@ -6,11 +6,14 @@ import {
   TEXT_EFFECTS_ALPHA_URL,
   TEXT_EFFECTS_CODEX_LOGO_URL,
   TEXT_EFFECTS_SETUP_END_SECONDS,
+  TEXT_EFFECTS_SETUP_CODEX_END_SECONDS,
+  TEXT_EFFECTS_SETUP_CODEX_START_SECONDS,
   TEXT_EFFECTS_SETUP_START_SECONDS,
   TEXT_EFFECTS_VIDEO_URL,
 } from './assets.js';
 import {SKETCH_FONT_FAMILY} from '../../styles/sketch.js';
 import {CodexCallout, DisclaimerOverlay, LabelOverlay} from '../../overlay_kit/overlays.js';
+import {CodexToolsArtifactsOverlay} from './CodexToolsArtifactsOverlay.js';
 
 const resolveAssetSrc = (src) => {
   if (!src || typeof src !== 'string') {
@@ -105,6 +108,35 @@ export const TextEffectsComp = (props) => {
         <HeroStamp layer="behind" transcriptWords={transcriptWords} holdUntilSeconds={holdUntilSeconds} />
       </Sequence>
 
+      {(() => {
+        const from = Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_CODEX_START_SECONDS * fps));
+        const dur = Math.max(
+          1,
+          Math.min(
+            durationInFrames - from,
+            Math.ceil((TEXT_EFFECTS_SETUP_CODEX_END_SECONDS - TEXT_EFFECTS_SETUP_CODEX_START_SECONDS) * fps)
+          )
+        );
+
+        const videoToolsSeconds =
+          findFirstWordInRangeSeconds(
+            transcriptWords,
+            ['video'],
+            TEXT_EFFECTS_SETUP_CODEX_START_SECONDS,
+            TEXT_EFFECTS_SETUP_CODEX_END_SECONDS
+          ) ?? null;
+
+        return (
+          <Sequence name="Setup: Codex -> Tools -> Artifacts (Behind)" from={from} durationInFrames={dur}>
+            <CodexToolsArtifactsOverlay
+              durationInFrames={dur}
+              startSeconds={TEXT_EFFECTS_SETUP_CODEX_START_SECONDS}
+              videoToolsSeconds={videoToolsSeconds}
+            />
+          </Sequence>
+        );
+      })()}
+
       <Sequence name="Foreground Alpha" from={0} durationInFrames={durationInFrames}>
         <Video
           src={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL)}
@@ -157,6 +189,23 @@ export const TextEffectsComp = (props) => {
               />
             </Sequence>
           </>
+        );
+      })()}
+
+      {(() => {
+        const from = Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_CODEX_START_SECONDS * fps));
+        const dur = Math.max(
+          1,
+          Math.min(
+            durationInFrames - from,
+            Math.ceil((TEXT_EFFECTS_SETUP_CODEX_END_SECONDS - TEXT_EFFECTS_SETUP_CODEX_START_SECONDS) * fps)
+          )
+        );
+
+        return (
+          <Sequence name="Setup: ANIMATING (Front)" from={from} durationInFrames={dur}>
+            <LabelOverlay text="ANIMATING" durationInFrames={dur} scale={1} />
+          </Sequence>
         );
       })()}
 
