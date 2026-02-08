@@ -3,7 +3,7 @@ import {interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 
 const clamp01 = (v) => Math.max(0, Math.min(1, v));
 
-const SubPill = ({text}) => {
+const Pill = ({text}) => {
   return (
     <div
       style={{
@@ -11,28 +11,8 @@ const SubPill = ({text}) => {
         borderRadius: 14,
         backgroundColor: 'rgba(255,255,255,0.92)',
         color: '#111827',
-        fontSize: 16,
-        fontWeight: 650,
-        boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
-        whiteSpace: 'nowrap',
-      }}
-    >
-      {text}
-    </div>
-  );
-};
-
-const HeaderPill = ({text}) => {
-  return (
-    <div
-      style={{
-        padding: '10px 14px',
-        borderRadius: 14,
-        backgroundColor: 'rgba(255,255,255,0.92)',
-        color: '#ef4444',
-        fontSize: 28,
-        fontWeight: 900,
-        letterSpacing: 0.2,
+        fontSize: 18,
+        fontWeight: 700,
         boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
         whiteSpace: 'nowrap',
       }}
@@ -80,17 +60,6 @@ export const CodexToolsArtifactsOverlay = ({
   const resolvedVideoStartSeconds =
     Number.isFinite(videoStartSeconds) ? videoStartSeconds : resolvedCodingStartSeconds + 4.0;
 
-  const stage =
-    t >= resolvedVideoStartSeconds ? 'video' : t >= resolvedCodingStartSeconds ? 'coding' : 'digital';
-
-  const toolsSub = stage === 'video' ? 'Video tools' : stage === 'coding' ? 'Coding tools' : 'Tools';
-  const artifactsHeader =
-    stage === 'video'
-      ? 'Video artifacts'
-      : stage === 'coding'
-        ? 'Coding artifacts'
-        : 'Digital artifacts';
-
   // Smooth text swap on stage boundaries.
   const swapDur = 0.35;
   const codingSwap = clamp01((t - resolvedCodingStartSeconds) / swapDur);
@@ -109,9 +78,9 @@ export const CodexToolsArtifactsOverlay = ({
 
   // Layout: fixed stack under the Codex pill.
   const colX = 0;
-  const toolsY = 18;
-  const toolsSubY = toolsY + 58;
-  const artifactsY = toolsSubY + 86;
+  // Nudge Tools down a bit so it reads as a distinct "step" below the CODEX pill.
+  const toolsY = 38;
+  const artifactsY = toolsY + 92;
   const lineX = 22;
 
   const lineColor = 'rgba(59,130,246,0.92)';
@@ -121,6 +90,15 @@ export const CodexToolsArtifactsOverlay = ({
   // Animate the line drawing, aligned with the content coming in.
   const lineToTools = interpolate(showTools, [0, 1], [0, 1]);
   const lineToArtifacts = interpolate(showArtifacts, [0, 1], [0, 1]);
+
+  // Crossfade labels while keeping a single pill per node.
+  const toolsTextDigital = 'Tools';
+  const toolsTextCoding = 'Coding tools';
+  const toolsTextVideo = 'Video tools';
+
+  const artifactsTextDigital = 'Digital artifacts';
+  const artifactsTextCoding = 'Coding artifacts';
+  const artifactsTextVideo = 'Video artifacts';
 
   return (
     <div
@@ -172,16 +150,32 @@ export const CodexToolsArtifactsOverlay = ({
             transform: `translateY(${toolsSlide}px)`,
           }}
         >
-          <HeaderPill text="Tools" />
+          <div style={{position: 'relative'}}>
+            <div style={{opacity: 1 - codingSwap}}>
+              <Pill text={toolsTextDigital} />
+            </div>
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                opacity: codingSwap * (1 - videoSwap),
+              }}
+            >
+              <Pill text={toolsTextCoding} />
+            </div>
+            <div style={{position: 'absolute', inset: 0, opacity: videoSwap}}>
+              <Pill text={toolsTextVideo} />
+            </div>
+          </div>
         </div>
 
         <div
           style={{
             position: 'absolute',
             left: lineX,
-            top: toolsSubY + 40,
+            top: toolsY + 44,
             width: lineW,
-            height: Math.max(0, artifactsY - (toolsSubY + 40)),
+            height: Math.max(0, artifactsY - (toolsY + 44)),
             backgroundColor: lineColor,
             transformOrigin: 'top',
             transform: `scaleY(${lineToArtifacts})`,
@@ -205,44 +199,15 @@ export const CodexToolsArtifactsOverlay = ({
           style={{
             position: 'absolute',
             left: colX,
-            top: toolsSubY,
-            opacity: toolsOpacity,
-            transform: `translateY(${toolsSlide}px)`,
-          }}
-        >
-          {/* Crossfade between stages for the "tools" sub-label. */}
-          <div style={{position: 'relative'}}>
-            <div style={{opacity: 1 - codingSwap}}>
-              <SubPill text="Tools" />
-            </div>
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                opacity: codingSwap * (1 - videoSwap),
-              }}
-            >
-              <SubPill text="Coding tools" />
-            </div>
-            <div style={{position: 'absolute', inset: 0, opacity: videoSwap}}>
-              <SubPill text="Video tools" />
-            </div>
-          </div>
-        </div>
-
-        <div
-          style={{
-            position: 'absolute',
-            left: colX,
             top: artifactsY,
             opacity: artifactsOpacity,
             transform: `translateY(${artifactsSlide}px)`,
           }}
         >
-          {/* Artifacts header swaps with the narration. */}
+          {/* Artifacts pill swaps with the narration. */}
           <div style={{position: 'relative'}}>
             <div style={{opacity: 1 - codingSwap}}>
-              <HeaderPill text="Digital artifacts" />
+              <Pill text={artifactsTextDigital} />
             </div>
             <div
               style={{
@@ -251,10 +216,10 @@ export const CodexToolsArtifactsOverlay = ({
                 opacity: codingSwap * (1 - videoSwap),
               }}
             >
-              <HeaderPill text="Coding artifacts" />
+              <Pill text={artifactsTextCoding} />
             </div>
             <div style={{position: 'absolute', inset: 0, opacity: videoSwap}}>
-              <HeaderPill text="Video artifacts" />
+              <Pill text={artifactsTextVideo} />
             </div>
           </div>
         </div>
