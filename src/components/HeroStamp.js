@@ -243,6 +243,14 @@ export const HeroStamp = ({
     extrapolateRight: 'clamp',
   });
 
+  // One shared style for all text in this stamp: same weight, same shadow, no stroke.
+  const sharedTextStyle = {
+    fontWeight: 400,
+    WebkitFontSmoothing: 'antialiased',
+    MozOsxFontSmoothing: 'grayscale',
+    textShadow: '0 10px 28px rgba(0,0,0,0.55)',
+  };
+
   if (baseOpacity <= 0) {
     return null;
   }
@@ -261,21 +269,18 @@ export const HeroStamp = ({
           pointerEvents: 'none',
         }}
       >
-	        <div
-	          style={{
-	            position: 'absolute',
-	            left: '50%',
-	            bottom: Math.round(height * 0.11),
-	            transform: `translate3d(-50%, ${Math.round(editedLift)}px, 0)`,
-	            color: textColor,
-	            // Keep this dead-simple so the interior fill stays clean.
-	            fontWeight: 500,
-	            fontSize: bottomFontSize,
-	            WebkitFontSmoothing: 'antialiased',
-	            MozOsxFontSmoothing: 'grayscale',
-	            whiteSpace: 'nowrap',
-	          }}
-	        >
+		        <div
+		          style={{
+		            position: 'absolute',
+		            left: '50%',
+		            bottom: Math.round(height * 0.11),
+		            transform: `translate3d(-50%, ${Math.round(editedLift)}px, 0)`,
+		            color: textColor,
+		            ...sharedTextStyle,
+		            fontSize: bottomFontSize,
+		            whiteSpace: 'nowrap',
+		          }}
+		        >
 	          {bottomPrefixText}{' '}
 	          <span
 	            style={{
@@ -333,65 +338,56 @@ export const HeroStamp = ({
         }}
       />
 
-      <div
-        style={{
-          position: 'absolute',
-          left: sideInset,
-          top: topInset,
-          transform: `translate3d(${Math.round(thisSlideX)}px, ${Math.round(cornerSlide)}px, 0)`,
-          fontSize: cornerFontSize,
-          fontWeight: 950,
-          letterSpacing: 1,
-          textTransform: 'uppercase',
-          color: textColor,
-          opacity: 0.92,
-          WebkitTextStroke: '1px rgba(0,0,0,0.22)',
-          textShadow:
-            '0 1px 0 rgba(0,0,0,0.35), 0 18px 60px rgba(0,0,0,0.55), 0 2px 10px rgba(0,0,0,0.45)',
-        }}
-      >
+	      <div
+	        style={{
+	          position: 'absolute',
+	          left: sideInset,
+	          top: topInset,
+	          transform: `translate3d(${Math.round(thisSlideX)}px, ${Math.round(cornerSlide)}px, 0)`,
+	          fontSize: cornerFontSize,
+	          ...sharedTextStyle,
+	          letterSpacing: 1,
+	          textTransform: 'uppercase',
+	          color: textColor,
+	          opacity: 0.92,
+	        }}
+	      >
         <span style={{opacity: thisOpacity}}>{topLeftText}</span>
-      </div>
-
-      <div
-        style={{
-          position: 'absolute',
-          right: sideInset,
-          top: topInset,
-          transform: `translate3d(${Math.round(videoSlideX)}px, ${Math.round(cornerSlide)}px, 0)`,
-          fontSize: cornerFontSize,
-          fontWeight: 950,
-          letterSpacing: 1,
-          textTransform: 'uppercase',
-          color: textColor,
-          opacity: 0.92,
-          WebkitTextStroke: '1px rgba(0,0,0,0.22)',
-          textShadow:
-            '0 1px 0 rgba(0,0,0,0.35), 0 18px 60px rgba(0,0,0,0.55), 0 2px 10px rgba(0,0,0,0.45)',
-        }}
-      >
-        <span style={{opacity: videoOpacity}}>{topRightText}</span>
       </div>
 
 	      <div
 	        style={{
 	          position: 'absolute',
-	          left: '50%',
-	          top: '50%',
-	          transform: `translate3d(-50%, -52%, 0) rotate(${percentRotate}deg) scale(${settle * percentZoom})`,
-	          fontSize: percentFontSize,
-	          // ArchitectsDaughter only has limited weights; forcing ultra-bold creates "faux bold"
-	          // artifacts (scratchy interior / ridges) at large sizes.
-	          fontWeight: 400,
-	          letterSpacing: -4,
-	          lineHeight: 1,
-	          color: accentColor,
-	          opacity: 0.98,
-	          whiteSpace: 'nowrap',
-	          // Keep it plain to avoid interior artifacts.
-	          filter: 'none',
+	          right: sideInset,
+	          top: topInset,
+	          transform: `translate3d(${Math.round(videoSlideX)}px, ${Math.round(cornerSlide)}px, 0)`,
+	          fontSize: cornerFontSize,
+	          ...sharedTextStyle,
+	          letterSpacing: 1,
+	          textTransform: 'uppercase',
+	          color: textColor,
+	          opacity: 0.92,
 	        }}
 	      >
+        <span style={{opacity: videoOpacity}}>{topRightText}</span>
+      </div>
+
+		      <div
+		        style={{
+		          position: 'absolute',
+		          left: '50%',
+		          top: '50%',
+		          transform: `translate3d(-50%, -52%, 0) rotate(${percentRotate}deg) scale(${settle * percentZoom})`,
+		          fontSize: percentFontSize,
+		          ...sharedTextStyle,
+		          letterSpacing: -4,
+		          lineHeight: 1,
+		          color: accentColor,
+		          opacity: 0.98,
+		          whiteSpace: 'nowrap',
+		          filter: 'none',
+		        }}
+		      >
         {/* Spark / burst (behind subject) */}
         <svg
           viewBox="0 0 200 200"

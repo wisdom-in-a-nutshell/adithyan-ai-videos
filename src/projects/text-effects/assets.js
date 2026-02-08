@@ -8,5 +8,8 @@ export const TEXT_EFFECTS_ALPHA_URL =
 export const TEXT_EFFECTS_SETUP_START_SECONDS = 9.2;
 export const TEXT_EFFECTS_SETUP_END_SECONDS = 22.64;
 
-// Cut includes beat 1 (hero stamp) + beat 2 (setup overlays).
-export const TEXT_EFFECTS_CUT_SECONDS = 23.0;
+export const TEXT_EFFECTS_THREE_TOOLS_START_SECONDS = 50.96;
+export const TEXT_EFFECTS_THREE_TOOLS_END_SECONDS = 57.84;
+
+// Cut includes beat 1 (hero stamp) + beat 2 (setup overlays) + beat 3 (three tools).
+export const TEXT_EFFECTS_CUT_SECONDS = 58.2;
