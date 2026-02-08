@@ -104,6 +104,36 @@ const findPhraseTiming = (words) => {
   return fallback;
 };
 
+const findFirstWordStartAfter = (words, targetWord, afterSeconds, beforeSeconds) => {
+  if (!Array.isArray(words)) {
+    return null;
+  }
+  const onlyWords = words.filter((w) => w?.type === 'word' && typeof w?.text === 'string');
+  if (onlyWords.length === 0) {
+    return null;
+  }
+
+  const target = normalizeWord(targetWord);
+  const after = Number(afterSeconds);
+  const before = Number(beforeSeconds);
+  for (const w of onlyWords) {
+    const start = Number(w.start);
+    if (!Number.isFinite(start)) {
+      continue;
+    }
+    if (Number.isFinite(after) && start < after) {
+      continue;
+    }
+    if (Number.isFinite(before) && start > before) {
+      continue;
+    }
+    if (normalizeWord(w.text) === target) {
+      return start;
+    }
+  }
+  return null;
+};
+
 const appearOpacity = ({t, startSeconds, fadeInSeconds = 0.12}) => {
   if (!Number.isFinite(startSeconds)) {
     return 0;
@@ -169,6 +199,11 @@ export const HeroStamp = ({
   const holdEnd = Number.isFinite(holdUntil)
     ? holdUntil
     : Math.max(timing.codexEnd + 0.25, compEndSeconds - 0.35);
+
+  const behindCueSeconds = useMemo(() => {
+    // Trigger the blink/glow when the *spoken* word "behind" happens after the hero phrase.
+    return findFirstWordStartAfter(transcriptWords, 'behind', timing.codexEnd, holdEnd);
+  }, [transcriptWords, timing.codexEnd, holdEnd]);
 
   const baseIn = interpolate(t, [phraseStart - 0.12, phraseStart + 0.12], [0, 1], {
     extrapolateLeft: 'clamp',
@@ -260,20 +295,24 @@ export const HeroStamp = ({
     MozOsxFontSmoothing: 'grayscale',
     // Use outline for "thickness" instead of fontWeight to avoid faux-bold artifacts.
     WebkitTextStroke: '3px rgba(0,0,0,0.52)',
-    textShadow:
-      layer === 'behind'
-        ? '0 16px 46px rgba(0,0,0,0.60), 0 0 18px rgba(255,255,255,0.14)'
-        : '0 16px 46px rgba(0,0,0,0.60), 0 0 14px rgba(255,255,255,0.10)',
+    textShadow: '0 16px 46px rgba(0,0,0,0.60)',
   };
 
-  const percentGlowKick = interpolate(pop, [0, 0.35, 1], [0, 1, 0.55], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
+  const behindBlink =
+    behindCueSeconds === null
+      ? 0
+      : interpolate(
+          t,
+          [behindCueSeconds - 0.06, behindCueSeconds, behindCueSeconds + 0.10, behindCueSeconds + 0.22],
+          [0, 1, 0.65, 0],
+          {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+        );
+  const blinkStrength = behindBlink * (layer === 'behind' ? 1.0 : 0.9);
+
   const percentTextStyle = {
     ...sharedTextStyle,
     // Blue halo makes "100%" read through partial occlusion.
-    textShadow: `${sharedTextStyle.textShadow}, 0 0 26px rgba(59,130,246,${(0.34 * percentGlowKick).toFixed(
+    textShadow: `${sharedTextStyle.textShadow}, 0 0 28px rgba(59,130,246,${(0.45 * blinkStrength).toFixed(
       3
     )})`,
   };
@@ -312,7 +351,9 @@ export const HeroStamp = ({
 		          <span
 		            style={{
 		              color: accentColor,
-		              textShadow: `0 0 22px rgba(59,130,246,0.28), ${sharedTextStyle.textShadow}`,
+		              textShadow: `${sharedTextStyle.textShadow}, 0 0 24px rgba(59,130,246,${(
+		                0.40 * blinkStrength
+		              ).toFixed(3)})`,
 		            }}
 		          >
 		            {bottomAccentText}
