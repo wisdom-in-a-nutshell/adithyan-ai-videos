@@ -261,32 +261,29 @@ export const HeroStamp = ({
           pointerEvents: 'none',
         }}
       >
-        <div
-          style={{
-            position: 'absolute',
-            left: '50%',
-            bottom: Math.round(height * 0.11),
-            transform: `translate3d(-50%, ${Math.round(editedLift)}px, 0)`,
-            color: textColor,
-            fontWeight: 900,
-            fontSize: bottomFontSize,
-            letterSpacing: 2.2,
-            textTransform: 'uppercase',
-            textShadow:
-              '0 14px 44px rgba(0,0,0,0.75), 0 2px 10px rgba(0,0,0,0.55), 0 0 26px rgba(0,0,0,0.35)',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {bottomPrefixText}{' '}
-          <span
-            style={{
-              color: accentColor,
-              textShadow:
-                '0 14px 44px rgba(0,0,0,0.75), 0 2px 10px rgba(0,0,0,0.55), 0 0 32px rgba(59,130,246,0.35)',
-            }}
-          >
-            {bottomAccentText}
-          </span>
+	        <div
+	          style={{
+	            position: 'absolute',
+	            left: '50%',
+	            bottom: Math.round(height * 0.11),
+	            transform: `translate3d(-50%, ${Math.round(editedLift)}px, 0)`,
+	            color: textColor,
+	            // Keep this dead-simple so the interior fill stays clean.
+	            fontWeight: 500,
+	            fontSize: bottomFontSize,
+	            WebkitFontSmoothing: 'antialiased',
+	            MozOsxFontSmoothing: 'grayscale',
+	            whiteSpace: 'nowrap',
+	          }}
+	        >
+	          {bottomPrefixText}{' '}
+	          <span
+	            style={{
+	              color: accentColor,
+	            }}
+	          >
+	            {bottomAccentText}
+	          </span>
         </div>
       </div>
     );

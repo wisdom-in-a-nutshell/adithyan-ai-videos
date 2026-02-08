@@ -2,8 +2,14 @@ import React from 'react';
 import {Sequence, Video, useVideoConfig} from 'remotion';
 import {HeroStamp} from '../../components/HeroStamp.js';
 import transcriptWords from './transcript_words.json';
-import {TEXT_EFFECTS_ALPHA_URL, TEXT_EFFECTS_VIDEO_URL} from './assets.js';
+import {
+  TEXT_EFFECTS_ALPHA_URL,
+  TEXT_EFFECTS_SETUP_END_SECONDS,
+  TEXT_EFFECTS_SETUP_START_SECONDS,
+  TEXT_EFFECTS_VIDEO_URL,
+} from './assets.js';
 import {SKETCH_FONT_FAMILY} from '../../styles/sketch.js';
+import {DisclaimerOverlay, LabelOverlay} from '../../overlay_kit/overlays.js';
 
 const resolveAssetSrc = (src) => {
   if (!src || typeof src !== 'string') {
@@ -82,6 +88,33 @@ export const TextEffectsComp = (props) => {
           style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}}
         />
       </Sequence>
+
+      {(() => {
+        const from = Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_START_SECONDS * fps));
+        const dur = Math.max(
+          1,
+          Math.min(
+            durationInFrames - from,
+            Math.ceil((TEXT_EFFECTS_SETUP_END_SECONDS - TEXT_EFFECTS_SETUP_START_SECONDS) * fps)
+          )
+        );
+
+        return (
+          <>
+            <Sequence name="Setup: RAW RECORDING (Front)" from={from} durationInFrames={dur}>
+              <LabelOverlay text="RAW RECORDING" durationInFrames={dur} scale={1} />
+            </Sequence>
+
+            <Sequence name="Setup: Disclaimer (Front)" from={from} durationInFrames={dur}>
+              <DisclaimerOverlay
+                text="Everything on-screen, including motion overlays, is rendered by Codex"
+                durationInFrames={dur}
+                scale={1}
+              />
+            </Sequence>
+          </>
+        );
+      })()}
 
       <Sequence name="HeroStamp (Front)" from={0} durationInFrames={holdFrames}>
         <HeroStamp layer="front" transcriptWords={transcriptWords} holdUntilSeconds={holdUntilSeconds} />

@@ -4,5 +4,9 @@ export const TEXT_EFFECTS_VIDEO_URL =
 export const TEXT_EFFECTS_ALPHA_URL =
   'https://storage.aipodcast.ing/cache/matanyone/alpha/88efdd42-c664-4df2-8c7d-34824323e95c.webm';
 
-// Cut ends at "Let me show you how." + a small tail.
-export const TEXT_EFFECTS_CUT_SECONDS = 9.2;
+// Storyboard beat: setup-what-youll-see
+export const TEXT_EFFECTS_SETUP_START_SECONDS = 9.2;
+export const TEXT_EFFECTS_SETUP_END_SECONDS = 22.64;
+
+// Cut includes beat 1 (hero stamp) + beat 2 (setup overlays).
+export const TEXT_EFFECTS_CUT_SECONDS = 23.0;
