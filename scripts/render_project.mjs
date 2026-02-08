@@ -246,8 +246,9 @@ if (!stillsOnly) {
   ]);
 }
 
+let stillDir = null;
 if (doStills) {
-  const stillDir = stillsDirArg ?? `/tmp/${id}-stills`;
+  stillDir = stillsDirArg ?? `/tmp/${id}-stills`;
   fs.mkdirSync(stillDir, {recursive: true});
   const stillFramesSet = new Set();
 
@@ -293,9 +294,13 @@ if (doStills) {
   }
 }
 
-if (openOutputs) {
+if (openOutputs && !stillsOnly) {
   run('open', [outputPath]);
 }
 
 // eslint-disable-next-line no-console
-console.log(`[OK] Rendered ${outputPath}`);
+console.log(
+  stillsOnly
+    ? `[OK] Rendered stills${stillDir ? ` in ${stillDir}` : ''}`
+    : `[OK] Rendered ${outputPath}`
+);

@@ -4,7 +4,7 @@ Goal: close the loop without relying on Studio playback.
 
 ## Preferred (Project File Based)
 
-Render a short clip (default 5s) + 3 stills:
+Render a short clip (default 5s) + a few stills:
 
 ```bash
 cd ~/GitHub/adithyan-ai-videos
@@ -24,6 +24,10 @@ Optional flags:
 
 - `--open` to open outputs
 - `--no-stills` to skip stills
+- `--stills-only` to skip MP4 and only render stills (fast iteration)
+- `--stills-frames 46,55,60` to render only specific frames
+- `--stills-dir /tmp/foo` to write stills to a custom directory
+- `--shrink-px N` / `--feather-px N` to override matte edge cleanup (passed via props)
 
 ## Direct CLI (When Debugging Quickly)
 
@@ -47,3 +51,7 @@ npx remotion still src/index.js OcclusionDemo /tmp/occ-f0010.png --frame 10
 - Studio playback can show temporal artifacts that disappear in render (or vice versa).
 - Mismatched `fps` between source and alpha causes “double image” / ghosting.
 - Upscaling 720p assets during iteration amplifies aliasing artifacts.
+- Green fringe/halo around subject edges:
+  - usually comes from the RGBA `alpha.webm` having green-tinted RGB near partially-transparent edges
+  - `feather` can amplify spill (it blurs edge colors outward)
+  - prefer `shrink` (erode) first; if `shrink` has to be too large, consider rebuilding RGBA from `mask_url` + the original `video_url`
