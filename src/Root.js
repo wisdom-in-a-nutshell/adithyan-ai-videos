@@ -3,6 +3,7 @@ import {Composition, staticFile} from 'remotion';
 import {MainVideo} from './MainVideo.js';
 import {ForegroundMatteComposite} from './components/ForegroundMatteComposite.js';
 import {TextEffectsComp} from './projects/text-effects/TextEffectsComp.js';
+import {TEXT_EFFECTS_CUT_SECONDS} from './projects/text-effects/assets.js';
 import storyboard from './data/timeline_storyboard_v1.json';
 import cropTimeline from './data/crop_timeline_1x1.json';
 
@@ -30,18 +31,6 @@ const OCCLUSION_DEFAULT_PROPS = {
   heroStamp: true,
 };
 
-const TEXT_EFFECTS_DEFAULT_PROPS = {
-  ...OCCLUSION_DEFAULT_PROPS,
-  // Slightly more aggressive edge cleanup for the marketing text-effects demo.
-  // Increase if you still see a green fringe; decrease if hair/shoulders look "cut off".
-  shrinkPx: 4,
-  // If transcript word timings feel slightly early/late vs the video, tweak this.
-  // Positive values delay all HeroStamp elements.
-  heroStampTimingOffsetSeconds: 0,
-};
-
-// Cut ends at "Let me show you how." (sentence end ~9.12s) + a little tail for audio/visual ease.
-const TEXT_EFFECTS_CUT_SECONDS = 9.6;
 const TEXT_EFFECTS_DURATION = Math.ceil(TEXT_EFFECTS_CUT_SECONDS * OCCLUSION_FPS);
 
 export const RemotionRoot = () => {
@@ -74,7 +63,7 @@ export const RemotionRoot = () => {
         fps={OCCLUSION_FPS}
         width={1280}
         height={720}
-        defaultProps={TEXT_EFFECTS_DEFAULT_PROPS}
+        defaultProps={{}}
       />
     </>
   );
