@@ -46,6 +46,20 @@
       ]
     },
     {
+      "id": "setup-what-codex-is",
+      "source_start": 22.64,
+      "source_end": 50.96,
+      "sentences": [],
+      "transcript": [
+        "Now, Codex is a really smart general-purpose agent or harness. Depending upon which tools you give it access to, it can interact with the digital world and produce some nice digital artifacts.",
+        "And today, as you may know, Codex ships with good default coding tools, so it can produce really good coding artifacts. But what we are going to do in this video is give it access to video tools and ask it to produce video artifacts."
+      ],
+      "intent": "Bridge: explain Codex + tools concept before introducing the 3 tools.",
+      "visual_notes": [
+        "Keep the RAW RECORDING + disclaimer on-screen while explaining, or optionally show a simple 2-line bullet: Codex + Tools → Artifacts."
+      ]
+    },
+    {
       "id": "three-tools",
       "source_start": 50.96,
       "source_end": 57.84,
