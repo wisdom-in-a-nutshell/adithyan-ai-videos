@@ -29,6 +29,13 @@ const OCCLUSION_DEFAULT_PROPS = {
   heroStamp: true,
 };
 
+const TEXT_EFFECTS_DEFAULT_PROPS = {
+  ...OCCLUSION_DEFAULT_PROPS,
+  // Slightly more aggressive edge cleanup for the marketing text-effects demo.
+  // Increase if you still see a green fringe; decrease if hair/shoulders look "cut off".
+  shrinkPx: 4,
+};
+
 export const RemotionRoot = () => {
   return (
     <>
@@ -60,7 +67,7 @@ export const RemotionRoot = () => {
         fps={OCCLUSION_FPS}
         width={1280}
         height={720}
-        defaultProps={OCCLUSION_DEFAULT_PROPS}
+        defaultProps={TEXT_EFFECTS_DEFAULT_PROPS}
       />
     </>
   );
