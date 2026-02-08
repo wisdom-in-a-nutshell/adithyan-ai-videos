@@ -259,20 +259,15 @@ export const TextEffectsComp = (props) => {
 	        })()}
 
         {(() => {
-          const from = Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_CODEX_START_SECONDS * fps));
-          const dur = Math.max(
-            1,
-            Math.min(
-              durationInFrames - from,
-              Math.ceil((TEXT_EFFECTS_SETUP_CODEX_END_SECONDS - TEXT_EFFECTS_SETUP_CODEX_START_SECONDS) * fps)
-            )
-          );
+        const from = Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_CODEX_START_SECONDS * fps));
+        // Keep this status pill visible through the rest of the cut.
+        const dur = Math.max(1, durationInFrames - from);
 
-	        return (
-	          <>
-	            <Sequence name="Setup: ANIMATING (Front)" from={from} durationInFrames={dur}>
-	              <StatusLeftOverlay text="ANIMATING" durationInFrames={dur} scale={TEXT_EFFECTS_UI_SCALE} />
-	            </Sequence>
+        return (
+          <>
+            <Sequence name="Setup: ANIMATING (Front)" from={from} durationInFrames={dur}>
+              <StatusLeftOverlay text="ANIMATING" durationInFrames={dur} scale={TEXT_EFFECTS_UI_SCALE} />
+            </Sequence>
 
             <Sequence
               name="Setup: Tools -> Digital Artifacts"
@@ -291,9 +286,11 @@ export const TextEffectsComp = (props) => {
                 artifactsText="Digital artifacts"
                 frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_TOOLS_SECONDS * fps))}
                 scale={TEXT_EFFECTS_UI_SCALE}
+                // Align to the bottom of the CODEX pill (CodexCallout: top 88, height 44).
+                // NOTE: The overlay is scaled via CSS transform, so `baseTop/baseLeft` must be in
+                // final (scaled) pixel space to avoid overlapping the CODEX pill.
                 baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
-                // CODEx callout: top 88 + (height 44 + padding 20) = 152
-                baseTop={152 * TEXT_EFFECTS_UI_SCALE}
+                baseTop={132 * TEXT_EFFECTS_UI_SCALE}
               />
             </Sequence>
 
@@ -315,7 +312,7 @@ export const TextEffectsComp = (props) => {
                 frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_CODING_TOOLS_SECONDS * fps))}
                 scale={TEXT_EFFECTS_UI_SCALE}
                 baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
-                baseTop={152 * TEXT_EFFECTS_UI_SCALE}
+                baseTop={132 * TEXT_EFFECTS_UI_SCALE}
               />
             </Sequence>
 
@@ -337,7 +334,7 @@ export const TextEffectsComp = (props) => {
                 frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))}
                 scale={TEXT_EFFECTS_UI_SCALE}
                 baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
-                baseTop={152 * TEXT_EFFECTS_UI_SCALE}
+                baseTop={132 * TEXT_EFFECTS_UI_SCALE}
               />
             </Sequence>
           </>
