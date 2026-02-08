@@ -138,7 +138,6 @@ export const HeroStamp = ({
   textColor = '#f6f2ee',
   timingOffsetSeconds = 0,
   holdUntilSeconds,
-  blinkSeconds = null,
 }) => {
   const frame = useCurrentFrame();
   const {fps, width, height, durationInFrames} = useVideoConfig();
@@ -170,12 +169,6 @@ export const HeroStamp = ({
   const holdEnd = Number.isFinite(holdUntil)
     ? holdUntil
     : Math.max(timing.codexEnd + 0.25, compEndSeconds - 0.35);
-
-  const blinkSecondsList = Array.isArray(blinkSeconds)
-    ? blinkSeconds
-    : Number.isFinite(Number(blinkSeconds))
-      ? [Number(blinkSeconds)]
-      : [];
 
   const baseIn = interpolate(t, [phraseStart - 0.12, phraseStart + 0.12], [0, 1], {
     extrapolateLeft: 'clamp',
@@ -313,11 +306,13 @@ export const HeroStamp = ({
 	      <div
 	        style={{
 	          position: 'absolute',
-          inset: 0,
-          opacity: baseOpacity * editedOpacity,
-          pointerEvents: 'none',
-        }}
-      >
+	          inset: 0,
+	          opacity: baseOpacity * editedOpacity,
+	          filter: blinkFilter,
+	          willChange: 'filter',
+	          pointerEvents: 'none',
+	        }}
+	      >
 			        <div
 			          style={{
 			            position: 'absolute',
@@ -377,16 +372,18 @@ export const HeroStamp = ({
     {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
   );
 
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        inset: 0,
-        opacity: baseOpacity,
-        pointerEvents: 'none',
-        transform: `translate3d(0, ${Math.round(lift)}px, 0)`,
-      }}
-    >
+		  return (
+		    <div
+		      style={{
+		        position: 'absolute',
+		        inset: 0,
+		        opacity: baseOpacity,
+		        filter: blinkFilter,
+		        willChange: 'filter',
+		        pointerEvents: 'none',
+		        transform: `translate3d(0, ${Math.round(lift)}px, 0)`,
+		      }}
+		    >
       {/* Readability wash + vignette (behind subject) */}
       <div
         style={{
