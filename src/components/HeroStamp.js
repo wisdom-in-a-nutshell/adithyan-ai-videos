@@ -373,25 +373,25 @@ export const HeroStamp = ({
         <span style={{opacity: videoOpacity}}>{topRightText}</span>
       </div>
 
-      <div
-        style={{
-          position: 'absolute',
-          left: '50%',
-          top: '50%',
-          transform: `translate3d(-50%, -52%, 0) rotate(${percentRotate}deg) scale(${settle * percentZoom})`,
-          fontSize: percentFontSize,
-          fontWeight: 1000,
-          letterSpacing: -6,
-          lineHeight: 1,
-          color: accentColor,
-          WebkitTextStroke: '2px rgba(0,0,0,0.18)',
-          textShadow: '0 30px 110px rgba(0,0,0,0.65), 0 0 36px rgba(59,130,246,0.25)',
-          opacity: 0.95,
-          whiteSpace: 'nowrap',
-          // Avoid the "scratchy" interior look from the sketch SVG filter.
-          filter: 'none',
-        }}
-      >
+	      <div
+	        style={{
+	          position: 'absolute',
+	          left: '50%',
+	          top: '50%',
+	          transform: `translate3d(-50%, -52%, 0) rotate(${percentRotate}deg) scale(${settle * percentZoom})`,
+	          fontSize: percentFontSize,
+	          // ArchitectsDaughter only has limited weights; forcing ultra-bold creates "faux bold"
+	          // artifacts (scratchy interior / ridges) at large sizes.
+	          fontWeight: 400,
+	          letterSpacing: -4,
+	          lineHeight: 1,
+	          color: accentColor,
+	          opacity: 0.98,
+	          whiteSpace: 'nowrap',
+	          // Keep it plain to avoid interior artifacts.
+	          filter: 'none',
+	        }}
+	      >
         {/* Spark / burst (behind subject) */}
         <svg
           viewBox="0 0 200 200"
