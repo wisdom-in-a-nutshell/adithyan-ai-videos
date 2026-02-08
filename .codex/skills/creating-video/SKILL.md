@@ -48,7 +48,9 @@ References:
 1. Create `src/projects/<project-id>/` with `assets.js`, `<Project>Comp.js`, and (optionally) `transcript_words.json`.
 2. Register it in `src/Root.js` as a `<Composition id="...">`.
 3. Preview: `npm start` and select the composition in Studio.
-4. Render: `npx remotion render src/index.js <CompositionId> /tmp/<project-id>.mp4`.
+4. Render (fast preview by default, auto-opens on macOS): `npm run render`.
+   - Render a time slice in seconds (recommended for iteration): `npm run render -- --from 0 --to 6`
+   - Full quality: `npm run render -- --hq`
 
 ## Expected Outputs (What To Produce)
 

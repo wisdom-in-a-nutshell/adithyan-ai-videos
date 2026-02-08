@@ -9,12 +9,18 @@ npm start
 
 ```bash
 cd ~/GitHub/adithyan-ai-videos
-npx remotion render src/index.js <CompositionId> /tmp/<id>.mp4
+npm run render
 ```
 
-If a project has helper npm scripts, use them:
+### Fast Iteration (Recommended)
 
 ```bash
-npm run studio:text-effects
-npm run render:text-effects
+# Render just a slice (timestamps in seconds)
+npm run render -- --from 0 --to 6
+
+# Full quality (disable preview defaults)
+npm run render -- --hq
+
+# Pick a different composition
+npm run render -- --comp OcclusionDemo --from 0 --to 3
 ```

@@ -4,11 +4,15 @@ Goal: close the loop without relying on Studio playback.
 
 ## Preferred (Code-First)
 
-Render a short clip (default 5s) + a few stills:
+Render a short clip (seconds-based) + a few stills:
 
 ```bash
 cd ~/GitHub/adithyan-ai-videos
-npx remotion render src/index.js <CompositionId> /tmp/<id>.mp4 --frames 0-119
+
+# Fast preview render (auto-opens on macOS)
+npm run render -- --from 0 --to 5
+
+# Stills (use composition ids and explicit frames)
 npx remotion still src/index.js <CompositionId> /tmp/<id>-f0048.png --frame 48
 npx remotion still src/index.js <CompositionId> /tmp/<id>-f0055.png --frame 55
 npx remotion still src/index.js <CompositionId> /tmp/<id>-f0060.png --frame 60
@@ -16,7 +20,7 @@ npx remotion still src/index.js <CompositionId> /tmp/<id>-f0060.png --frame 60
 
 Outputs:
 
-- Video: `/tmp/<id>.mp4`
+- Video: `/tmp/<CompositionId>.mp4`
 - Stills: `/tmp/<id>-f*.png`
 
 ## Checklist (What To Look For)
