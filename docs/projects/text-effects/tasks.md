@@ -12,7 +12,7 @@ Produce a repeatable, data-driven Remotion project that adds “text behind + in
 - Repo: `~/GitHub/adithyan-ai-videos`
 - Project folder: `projects/text-effects/`
 - Current “actual” source video (remote): `projects/text-effects/transform_720p.json` `input_url`
-- Current working proxy (720p, for speed): `projects/text-effects/project.json` `video_url`
+- Current working video (720p, used everywhere): `projects/text-effects/project.json` `video_url`
 - Transcript artifacts:
   - Canonical: `projects/text-effects/transcript.json`
   - Derived convenience files: `projects/text-effects/words.json`, `projects/text-effects/sentences.json`
@@ -29,6 +29,7 @@ Produce a repeatable, data-driven Remotion project that adds “text behind + in
 - Keep `projects/<id>/project.json` minimal: only `video_url` required.
 - Always ingest/transcribe/transform under channel `ADITHYAN` (WIN tooling convention).
 - Use a 720p proxy for iteration speed, generated via WIN `transform.py`, and store the transform payload in `projects/<id>/transform_720p.json`.
+- Keep only one “working video URL” in the project: the 720p URL in `projects/<id>/project.json` (avoid “proxy vs original” confusion during iteration).
 - Keep occlusion optional and separate: matting lives in `projects/<id>/matting.json` (not in `project.json`).
 - Storyboard is the source of truth for creative intent and timing; it is editable by hand.
 - Storyboard beats include `transcript[]` inline for human review (derived from `sentences.json`).
