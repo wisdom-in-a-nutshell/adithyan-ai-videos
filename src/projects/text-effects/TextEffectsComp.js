@@ -3,6 +3,7 @@ import {Sequence, Video, useVideoConfig} from 'remotion';
 import {HeroStamp} from '../../components/HeroStamp.js';
 import transcriptWords from './transcript_words.json';
 import {TEXT_EFFECTS_ALPHA_URL, TEXT_EFFECTS_VIDEO_URL} from './assets.js';
+import {SKETCH_FONT_FAMILY} from '../../styles/sketch.js';
 
 const resolveAssetSrc = (src) => {
   if (!src || typeof src !== 'string') {
@@ -54,7 +55,15 @@ export const TextEffectsComp = (props) => {
       : durationInFrames;
 
   return (
-    <div style={{position: 'relative', width: '100%', height: '100%', backgroundColor: '#000'}}>
+    <div
+      style={{
+        position: 'relative',
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#000',
+        fontFamily: SKETCH_FONT_FAMILY,
+      }}
+    >
       <Sequence name="Background" from={0} durationInFrames={durationInFrames}>
         <Video
           src={resolveAssetSrc(TEXT_EFFECTS_VIDEO_URL)}
