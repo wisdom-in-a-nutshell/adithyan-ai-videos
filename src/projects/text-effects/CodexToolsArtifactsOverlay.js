@@ -7,14 +7,15 @@ const Pill = ({text, emoji = null, minWidthCh = null}) => {
   return (
     <div
       style={{
-        padding: '10px 14px',
-        borderRadius: 14,
+        height: 44,
+        padding: '0 16px',
+        borderRadius: 16,
         backgroundColor: 'rgba(255,255,255,0.92)',
         color: '#111827',
         // Match the general scale used by the top-left status pill.
-        fontSize: 22,
+        fontSize: 21,
         fontWeight: 600,
-        letterSpacing: 0.6,
+        letterSpacing: 0.4,
         boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
         whiteSpace: 'nowrap',
         boxSizing: 'border-box',
@@ -48,8 +49,8 @@ export const CodexToolsArtifactsOverlay = ({
   startSeconds = 0,
   toolsSeconds = null,
   artifactsSeconds = null,
-  codingStartSeconds = null,
-  videoStartSeconds = null,
+  toolsText = 'Tools',
+  artifactsText = 'Digital artifacts',
   videoSeconds = null,
   // `useCurrentFrame()` is relative to the nearest <Sequence>.
   // Pass the sequence `from` frame to compute absolute (composition) time.
@@ -72,15 +73,6 @@ export const CodexToolsArtifactsOverlay = ({
     Number.isFinite(toolsSeconds) ? toolsSeconds : startSeconds;
   const resolvedArtifactsSeconds =
     Number.isFinite(artifactsSeconds) ? artifactsSeconds : resolvedToolsSeconds + 0.4;
-  const resolvedCodingStartSeconds =
-    Number.isFinite(codingStartSeconds) ? codingStartSeconds : startSeconds + 2.0;
-  const resolvedVideoStartSeconds =
-    Number.isFinite(videoStartSeconds) ? videoStartSeconds : resolvedCodingStartSeconds + 4.0;
-
-  // Smooth text swap on stage boundaries.
-  const swapDur = 0.35;
-  const codingSwap = clamp01((t - resolvedCodingStartSeconds) / swapDur);
-  const videoSwap = clamp01((t - resolvedVideoStartSeconds) / swapDur);
 
   const showTools = clamp01((t - resolvedToolsSeconds) / 0.35);
   const showArtifacts = clamp01((t - resolvedArtifactsSeconds) / 0.35);
@@ -95,10 +87,10 @@ export const CodexToolsArtifactsOverlay = ({
 
   // Layout: fixed stack under the Codex pill.
   const colX = 0;
-  // Equal vertical rhythm between Codex -> Tools -> Artifacts.
-  const stepY = 104;
-  const toolsY = stepY;
-  const artifactsY = stepY * 2;
+  const pillH = 44;
+  const gapY = 44;
+  const toolsY = gapY;
+  const artifactsY = toolsY + pillH + gapY;
   const lineX = 22;
 
   const lineColor = 'rgba(59,130,246,0.92)';
@@ -109,18 +101,8 @@ export const CodexToolsArtifactsOverlay = ({
   const lineToTools = interpolate(showTools, [0, 1], [0, 1]);
   const lineToArtifacts = interpolate(showArtifacts, [0, 1], [0, 1]);
 
-  // Crossfade labels while keeping a single pill per node.
-  const toolsTextDigital = 'Tools';
-  const toolsTextCoding = 'Coding tools';
-  const toolsTextVideo = 'Video tools';
-
-  const artifactsTextDigital = 'Digital artifacts';
-  const artifactsTextCoding = 'Coding artifacts';
-  const artifactsTextVideo = 'Video artifacts';
-
-  const toolsMinWidthCh = Math.max(toolsTextDigital.length, toolsTextCoding.length, toolsTextVideo.length) + 4;
-  const artifactsMinWidthCh =
-    Math.max(artifactsTextDigital.length, artifactsTextCoding.length, artifactsTextVideo.length) + 4;
+  const toolsMinWidthCh = toolsText.length + 4;
+  const artifactsMinWidthCh = artifactsText.length + 4;
 
   const FlowDot = ({y, opacity: dotOpacity}) => {
     if (!Number.isFinite(y) || dotOpacity <= 0) {
@@ -151,26 +133,12 @@ export const CodexToolsArtifactsOverlay = ({
   };
 
   const segment1End = toolsY - 6;
-  const segment2Start = toolsY + 44 + 6;
+  const segment2Start = toolsY + pillH + 6;
   const segment2End = artifactsY - 6;
 
-  // Re-run the "flow" on each narration-driven state transition.
-  const f1a = flowAnim(resolvedToolsSeconds, 0.55, 0, segment1End);
-  const f1b = flowAnim(resolvedCodingStartSeconds, 0.55, 0, segment1End);
-  const f1c = flowAnim(resolvedVideoStartSeconds, 0.55, 0, segment1End);
-
-  const f2a = flowAnim(resolvedArtifactsSeconds, 0.55, segment2Start, segment2End);
-  const f2b = flowAnim(resolvedCodingStartSeconds + 0.18, 0.55, segment2Start, segment2End);
-  const f2c = flowAnim(resolvedVideoStartSeconds + 0.18, 0.55, segment2Start, segment2End);
-
-  const dot1 = [f1a, f1b, f1c].reduce(
-    (acc, cur) => (cur.o > acc.o ? cur : acc),
-    {y: 0, o: 0}
-  );
-  const dot2 = [f2a, f2b, f2c].reduce(
-    (acc, cur) => (cur.o > acc.o ? cur : acc),
-    {y: 0, o: 0}
-  );
+  // Single flow per overlay instance (the caller should mount a new overlay per stage).
+  const dot1 = flowAnim(resolvedToolsSeconds, 0.55, 0, segment1End);
+  const dot2 = flowAnim(resolvedArtifactsSeconds, 0.55, segment2Start, segment2End);
 
   return (
     <div
@@ -224,34 +192,16 @@ export const CodexToolsArtifactsOverlay = ({
             transform: `translateY(${toolsSlide}px)`,
           }}
         >
-          <div style={{position: 'relative'}}>
-            <div style={{opacity: 1 - codingSwap}}>
-              <Pill text={toolsTextDigital} emoji={TOOLS_EMOJI} minWidthCh={toolsMinWidthCh} />
-            </div>
-            <div
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                opacity: codingSwap * (1 - videoSwap),
-              }}
-            >
-              <Pill text={toolsTextCoding} emoji={TOOLS_EMOJI} minWidthCh={toolsMinWidthCh} />
-            </div>
-            <div style={{position: 'absolute', top: 0, left: 0, width: '100%', opacity: videoSwap}}>
-              <Pill text={toolsTextVideo} emoji={TOOLS_EMOJI} minWidthCh={toolsMinWidthCh} />
-            </div>
-          </div>
+          <Pill text={toolsText} emoji={TOOLS_EMOJI} minWidthCh={toolsMinWidthCh} />
         </div>
 
         <div
           style={{
             position: 'absolute',
             left: lineX,
-            top: toolsY + 44,
+            top: toolsY + pillH,
             width: lineW,
-            height: Math.max(0, artifactsY - (toolsY + 44)),
+            height: Math.max(0, artifactsY - (toolsY + pillH)),
             backgroundColor: lineColor,
             transformOrigin: 'top',
             transform: `scaleY(${lineToArtifacts})`,
@@ -281,26 +231,7 @@ export const CodexToolsArtifactsOverlay = ({
             transform: `translateY(${artifactsSlide}px)`,
           }}
         >
-          {/* Artifacts pill swaps with the narration. */}
-          <div style={{position: 'relative'}}>
-            <div style={{opacity: 1 - codingSwap}}>
-              <Pill text={artifactsTextDigital} emoji={ARTIFACTS_EMOJI} minWidthCh={artifactsMinWidthCh} />
-            </div>
-            <div
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '100%',
-                opacity: codingSwap * (1 - videoSwap),
-              }}
-            >
-              <Pill text={artifactsTextCoding} emoji={ARTIFACTS_EMOJI} minWidthCh={artifactsMinWidthCh} />
-            </div>
-            <div style={{position: 'absolute', top: 0, left: 0, width: '100%', opacity: videoSwap}}>
-              <Pill text={artifactsTextVideo} emoji={ARTIFACTS_EMOJI} minWidthCh={artifactsMinWidthCh} />
-            </div>
-          </div>
+          <Pill text={artifactsText} emoji={ARTIFACTS_EMOJI} minWidthCh={artifactsMinWidthCh} />
         </div>
       </div>
     </div>

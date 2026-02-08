@@ -5,10 +5,12 @@ import transcriptWords from './transcript_words.json';
 import {
   TEXT_EFFECTS_ALPHA_URL,
   TEXT_EFFECTS_CODEX_LOGO_URL,
-  TEXT_EFFECTS_SETUP_ARTIFACTS_SECONDS,
-  TEXT_EFFECTS_SETUP_CODING_START_SECONDS,
+  TEXT_EFFECTS_SETUP_CODING_ARTIFACTS_SECONDS,
+  TEXT_EFFECTS_SETUP_CODING_TOOLS_SECONDS,
+  TEXT_EFFECTS_SETUP_DIGITAL_ARTIFACTS_SECONDS,
   TEXT_EFFECTS_SETUP_TOOLS_SECONDS,
-  TEXT_EFFECTS_SETUP_VIDEO_START_SECONDS,
+  TEXT_EFFECTS_SETUP_VIDEO_ARTIFACTS_SECONDS,
+  TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS,
   TEXT_EFFECTS_SETUP_END_SECONDS,
   TEXT_EFFECTS_SETUP_CODEX_END_SECONDS,
   TEXT_EFFECTS_SETUP_CODEX_START_SECONDS,
@@ -272,24 +274,75 @@ export const TextEffectsComp = (props) => {
 	              <StatusLeftOverlay text="ANIMATING" durationInFrames={dur} scale={TEXT_EFFECTS_UI_SCALE} />
 	            </Sequence>
 
-	            <Sequence name="Setup: Codex -> Tools -> Artifacts (Front)" from={from} durationInFrames={dur}>
-	              <CodexToolsArtifactsOverlay
-	                durationInFrames={dur}
-	                startSeconds={TEXT_EFFECTS_SETUP_CODEX_START_SECONDS}
-	                toolsSeconds={TEXT_EFFECTS_SETUP_TOOLS_SECONDS}
-	                artifactsSeconds={TEXT_EFFECTS_SETUP_ARTIFACTS_SECONDS}
-	                codingStartSeconds={TEXT_EFFECTS_SETUP_CODING_START_SECONDS}
-	                videoStartSeconds={TEXT_EFFECTS_SETUP_VIDEO_START_SECONDS}
-	                frameOffset={from}
-	                // Align under the CODEX pill.
-	                scale={TEXT_EFFECTS_UI_SCALE}
-	                baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
-	                baseTop={142 * TEXT_EFFECTS_UI_SCALE}
-	              />
-	            </Sequence>
-	          </>
-	        );
-	      })()}
+            <Sequence
+              name="Setup: Tools -> Digital Artifacts"
+              from={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_TOOLS_SECONDS * fps))}
+              durationInFrames={Math.max(
+                1,
+                Math.ceil((TEXT_EFFECTS_SETUP_CODING_TOOLS_SECONDS - TEXT_EFFECTS_SETUP_TOOLS_SECONDS) * fps)
+              )}
+            >
+              <CodexToolsArtifactsOverlay
+                durationInFrames={dur}
+                startSeconds={TEXT_EFFECTS_SETUP_TOOLS_SECONDS}
+                toolsSeconds={TEXT_EFFECTS_SETUP_TOOLS_SECONDS}
+                artifactsSeconds={TEXT_EFFECTS_SETUP_DIGITAL_ARTIFACTS_SECONDS}
+                toolsText="Tools"
+                artifactsText="Digital artifacts"
+                frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_TOOLS_SECONDS * fps))}
+                scale={TEXT_EFFECTS_UI_SCALE}
+                baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
+                // CODEx callout: top 88 + (height 44 + padding 20) = 152
+                baseTop={152 * TEXT_EFFECTS_UI_SCALE}
+              />
+            </Sequence>
+
+            <Sequence
+              name="Setup: Coding Tools -> Coding Artifacts"
+              from={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_CODING_TOOLS_SECONDS * fps))}
+              durationInFrames={Math.max(
+                1,
+                Math.ceil((TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS - TEXT_EFFECTS_SETUP_CODING_TOOLS_SECONDS) * fps)
+              )}
+            >
+              <CodexToolsArtifactsOverlay
+                durationInFrames={dur}
+                startSeconds={TEXT_EFFECTS_SETUP_CODING_TOOLS_SECONDS}
+                toolsSeconds={TEXT_EFFECTS_SETUP_CODING_TOOLS_SECONDS}
+                artifactsSeconds={TEXT_EFFECTS_SETUP_CODING_ARTIFACTS_SECONDS}
+                toolsText="Coding tools"
+                artifactsText="Coding artifacts"
+                frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_CODING_TOOLS_SECONDS * fps))}
+                scale={TEXT_EFFECTS_UI_SCALE}
+                baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
+                baseTop={152 * TEXT_EFFECTS_UI_SCALE}
+              />
+            </Sequence>
+
+            <Sequence
+              name="Setup: Video Tools -> Video Artifacts"
+              from={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))}
+              durationInFrames={Math.max(
+                1,
+                Math.ceil((TEXT_EFFECTS_SETUP_CODEX_END_SECONDS - TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS) * fps)
+              )}
+            >
+              <CodexToolsArtifactsOverlay
+                durationInFrames={dur}
+                startSeconds={TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS}
+                toolsSeconds={TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS}
+                artifactsSeconds={TEXT_EFFECTS_SETUP_VIDEO_ARTIFACTS_SECONDS}
+                toolsText="Video tools"
+                artifactsText="Video artifacts"
+                frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))}
+                scale={TEXT_EFFECTS_UI_SCALE}
+                baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
+                baseTop={152 * TEXT_EFFECTS_UI_SCALE}
+              />
+            </Sequence>
+          </>
+        );
+      })()}
 
         <Sequence name="HeroStamp (Front)" from={0} durationInFrames={holdFrames}>
           <HeroStamp layer="front" transcriptWords={transcriptWords} holdUntilSeconds={holdUntilSeconds} />

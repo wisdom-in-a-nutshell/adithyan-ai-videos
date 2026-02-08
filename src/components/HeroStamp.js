@@ -197,16 +197,15 @@ export const HeroStamp = ({
     config: {damping: 14, stiffness: 220, mass: 0.8},
     durationInFrames: Math.round(0.9 * fps),
   });
-  // Make the center hit feel more like a "moment".
-  const percentScale = interpolate(pop, [0, 1], [0.82, 1.14], {
+  const percentScale = interpolate(pop, [0, 1], [0.88, 1.06], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
-  const settle = interpolate(pop, [0.62, 1], [1.14, 1], {
+  const settle = interpolate(pop, [0.65, 1], [1.06, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
-  const percentRotate = interpolate(pop, [0, 0.35, 1], [-2.4, 1.6, 0], {
+  const percentRotate = interpolate(pop, [0, 0.4, 1], [-1.6, 1.2, 0], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
@@ -254,23 +253,29 @@ export const HeroStamp = ({
   });
 
   // One shared style for all text in this stamp: same weight, same shadow, no faux-bold.
+  // Add a subtle glow so the behind/front layers feel more "alive" without adding motion jitter.
   const sharedTextStyle = {
     fontWeight: 400,
     WebkitFontSmoothing: 'antialiased',
     MozOsxFontSmoothing: 'grayscale',
     // Use outline for "thickness" instead of fontWeight to avoid faux-bold artifacts.
     WebkitTextStroke: '3px rgba(0,0,0,0.52)',
-    textShadow: '0 16px 46px rgba(0,0,0,0.60)',
+    textShadow:
+      layer === 'behind'
+        ? '0 16px 46px rgba(0,0,0,0.60), 0 0 18px rgba(255,255,255,0.14)'
+        : '0 16px 46px rgba(0,0,0,0.60), 0 0 14px rgba(255,255,255,0.10)',
   };
 
+  const percentGlowKick = interpolate(pop, [0, 0.35, 1], [0, 1, 0.55], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
   const percentTextStyle = {
     ...sharedTextStyle,
-    // Give the "100%" a bit of extra contrast/energy without affecting other text.
-    textShadow: [
-      sharedTextStyle.textShadow,
-      '0 0 26px rgba(59,130,246,0.42)',
-      '0 20px 70px rgba(0,0,0,0.35)',
-    ].join(', '),
+    // Blue halo makes "100%" read through partial occlusion.
+    textShadow: `${sharedTextStyle.textShadow}, 0 0 26px rgba(59,130,246,${(0.34 * percentGlowKick).toFixed(
+      3
+    )})`,
   };
 
   if (baseOpacity <= 0) {
@@ -304,13 +309,14 @@ export const HeroStamp = ({
 			          }}
 			        >
 	          {bottomPrefixText}{' '}
-	          <span
-	            style={{
-	              color: accentColor,
-	            }}
-	          >
-	            {bottomAccentText}
-	          </span>
+		          <span
+		            style={{
+		              color: accentColor,
+		              textShadow: `0 0 22px rgba(59,130,246,0.28), ${sharedTextStyle.textShadow}`,
+		            }}
+		          >
+		            {bottomAccentText}
+		          </span>
         </div>
       </div>
     );
@@ -339,18 +345,13 @@ export const HeroStamp = ({
   // Make "100%" read better behind the subject by widening it (without changing font weight).
   const percentStretchX = 1.12;
 
-  // Slide in from far-left for readability and momentum.
-  // Use a spring (instead of a linear interpolate) so it feels less "mechanical".
-  const slideIn = spring({
-    fps,
-    frame: frame - percentFrame,
-    config: {damping: 18, stiffness: 200, mass: 0.9},
-    durationInFrames: Math.round(0.55 * fps),
-  });
-  const percentSlideX = interpolate(slideIn, [0, 1], [-Math.round(width * 0.75), 0], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
+  // Gentle slide-in from the left (avoid jumpy motion).
+  const percentSlideX = interpolate(
+    t,
+    [percentStart - 0.06, percentStart + 0.18],
+    [-120, 0],
+    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+  );
 
   return (
     <div
