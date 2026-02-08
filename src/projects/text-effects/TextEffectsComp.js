@@ -1,7 +1,15 @@
 import React from 'react';
-import {ForegroundMatteComposite} from '../../components/ForegroundMatteComposite.js';
+import {Sequence, Video, useVideoConfig} from 'remotion';
+import {HeroStamp} from '../../components/HeroStamp.js';
 import transcriptWords from './transcript_words.json';
 import {TEXT_EFFECTS_ALPHA_URL, TEXT_EFFECTS_VIDEO_URL} from './assets.js';
+
+const resolveAssetSrc = (src) => {
+  if (!src || typeof src !== 'string') {
+    return src;
+  }
+  return src;
+};
 
 const normalizeWord = (value) => {
   if (typeof value !== 'string') {
@@ -38,19 +46,37 @@ const findLetMeShowYouHowEndSeconds = (words) => {
 // Project-specific composition wrapper for `text-effects`.
 // Keep the cut short while iterating; extend later when we implement storyboard-driven beats.
 export const TextEffectsComp = (props) => {
+  const {fps, durationInFrames} = useVideoConfig();
   const holdUntilSeconds = findLetMeShowYouHowEndSeconds(transcriptWords);
+  const holdFrames =
+    Number.isFinite(holdUntilSeconds) && holdUntilSeconds !== null
+      ? Math.min(durationInFrames, Math.max(1, Math.ceil(holdUntilSeconds * fps)))
+      : durationInFrames;
+
   return (
-    <ForegroundMatteComposite
-      {...props}
-      videoUrl={TEXT_EFFECTS_VIDEO_URL}
-      alphaUrl={TEXT_EFFECTS_ALPHA_URL}
-      transcriptWords={transcriptWords}
-      backgroundBlur={0}
-      backgroundDim={0}
-      featherPx={0}
-      shrinkPx={0}
-      heroStamp
-      heroStampHoldUntilSeconds={holdUntilSeconds}
-    />
+    <div style={{position: 'relative', width: '100%', height: '100%', backgroundColor: '#000'}}>
+      <Sequence name="Background" from={0} durationInFrames={durationInFrames}>
+        <Video
+          src={resolveAssetSrc(TEXT_EFFECTS_VIDEO_URL)}
+          style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}}
+        />
+      </Sequence>
+
+      <Sequence name="HeroStamp (Behind)" from={0} durationInFrames={holdFrames}>
+        <HeroStamp layer="behind" transcriptWords={transcriptWords} holdUntilSeconds={holdUntilSeconds} />
+      </Sequence>
+
+      <Sequence name="Foreground Alpha" from={0} durationInFrames={durationInFrames}>
+        <Video
+          src={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL)}
+          muted
+          style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}}
+        />
+      </Sequence>
+
+      <Sequence name="HeroStamp (Front)" from={0} durationInFrames={holdFrames}>
+        <HeroStamp layer="front" transcriptWords={transcriptWords} holdUntilSeconds={holdUntilSeconds} />
+      </Sequence>
+    </div>
   );
 };

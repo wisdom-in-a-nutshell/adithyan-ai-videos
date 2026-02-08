@@ -19,6 +19,8 @@ This repo is the Remotion workspace for building short, marketing-style videos a
 - Keep reusable overlay/animation primitives in `src/overlay_kit/` (not inside one-off comps).
 - Keep timing data-driven (JSON) where possible; avoid hardcoding timings deep in components.
 - Don’t add new compositions/components unless explicitly asked for the current project.
+- For code-first iteration on a specific video, put the composition under `src/projects/<project-id>/` and register it in `src/Root.js`.
+- If you want effects to be visible as timeline blocks in Remotion Studio, wrap them in named `<Sequence>` components (instead of rendering everything inline).
 
 ## Reuse + Documentation Discipline
 
