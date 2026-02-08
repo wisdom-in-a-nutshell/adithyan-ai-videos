@@ -10,6 +10,16 @@
  *     --fps 24 \
  *     --stills
  *
+ * Stills-only (no MP4), with optional matte overrides:
+ *   node scripts/render_project.mjs projects/text-effects/project.json \
+ *     --comp TextEffects \
+ *     --seconds 5 \
+ *     --fps 24 \
+ *     --stills-only \
+ *     --stills-frames 46,55,60 \
+ *     --stills-dir /tmp/text-effects-stills-shrink6 \
+ *     --shrink-px 6
+ *
  * Notes:
  * - We pass project values via `--props` so the same composition can be reused.
  * - Prefer short renders and a few stills while iterating. Studio playback can mislead.
@@ -94,10 +104,15 @@ const out = getArg('out', undefined);
 const seconds = Number(getArg('seconds', '5'));
 const fps = Number(getArg('fps', '24'));
 const doStills = !hasFlag('no-stills'); // default on
+const stillsOnly = hasFlag('stills-only');
 const openOutputs = hasFlag('open');
 const refreshCache = hasFlag('refresh');
 const noCache = hasFlag('no-cache');
 const prepareOnly = hasFlag('prepare-only');
+const stillsFramesRaw = getArg('stills-frames', null);
+const stillsDirArg = getArg('stills-dir', null);
+const shrinkPxOverrideRaw = getArg('shrink-px', null);
+const featherPxOverrideRaw = getArg('feather-px', null);
 const cacheBaseDir = getArg('cache-dir', getDefaultCacheBaseDir());
 
 if (!Number.isFinite(seconds) || seconds <= 0) {
@@ -118,6 +133,22 @@ const outputPath = out ?? `/tmp/${id}.mp4`;
 const props = {
   videoUrl: project.video_url ?? project.videoUrl,
 };
+
+if (shrinkPxOverrideRaw !== null) {
+  const n = Number(shrinkPxOverrideRaw);
+  if (!Number.isFinite(n) || n < 0) {
+    die(`Invalid --shrink-px: ${shrinkPxOverrideRaw}`);
+  }
+  props.shrinkPx = n;
+}
+
+if (featherPxOverrideRaw !== null) {
+  const n = Number(featherPxOverrideRaw);
+  if (!Number.isFinite(n) || n < 0) {
+    die(`Invalid --feather-px: ${featherPxOverrideRaw}`);
+  }
+  props.featherPx = n;
+}
 
 if (!props.videoUrl) {
   die(`Project is missing video_url/videoUrl: ${projectPath}`);
@@ -200,33 +231,45 @@ if (publicDir) {
   commonArgs.push('--public-dir', publicDir);
 }
 
-run('npx', [
-  'remotion',
-  'render',
-  entry,
-  comp,
-  outputPath,
-  '--frames',
-  framesArg,
-  '--props',
-  propsJson,
-  ...commonArgs,
-]);
+if (!stillsOnly) {
+  run('npx', [
+    'remotion',
+    'render',
+    entry,
+    comp,
+    outputPath,
+    '--frames',
+    framesArg,
+    '--props',
+    propsJson,
+    ...commonArgs,
+  ]);
+}
 
 if (doStills) {
-  const stillDir = `/tmp/${id}-stills`;
+  const stillDir = stillsDirArg ?? `/tmp/${id}-stills`;
   fs.mkdirSync(stillDir, {recursive: true});
-  const stillFramesSet = new Set([
-    Math.min(frames - 1, Math.round(0.25 * fps)),
-    Math.min(frames - 1, Math.round(1 * fps)),
-    Math.min(frames - 1, Math.round(2.5 * fps)),
-    Math.min(frames - 1, Math.round(4 * fps)),
-  ]);
+  const stillFramesSet = new Set();
 
-  for (const f of getHeroTimingFrames({transcriptWords: props.transcriptWords, fps})) {
-    stillFramesSet.add(Math.min(frames - 1, f));
-    stillFramesSet.add(Math.min(frames - 1, Math.max(0, f - 1)));
-    stillFramesSet.add(Math.min(frames - 1, f + 1));
+  if (typeof stillsFramesRaw === 'string' && stillsFramesRaw.length > 0) {
+    for (const token of stillsFramesRaw.split(',')) {
+      const n = Number(token.trim());
+      if (!Number.isFinite(n) || n < 0) {
+        die(`Invalid --stills-frames token: ${token}`);
+      }
+      stillFramesSet.add(Math.min(frames - 1, Math.round(n)));
+    }
+  } else {
+    stillFramesSet.add(Math.min(frames - 1, Math.round(0.25 * fps)));
+    stillFramesSet.add(Math.min(frames - 1, Math.round(1 * fps)));
+    stillFramesSet.add(Math.min(frames - 1, Math.round(2.5 * fps)));
+    stillFramesSet.add(Math.min(frames - 1, Math.round(4 * fps)));
+
+    for (const f of getHeroTimingFrames({transcriptWords: props.transcriptWords, fps})) {
+      stillFramesSet.add(Math.min(frames - 1, f));
+      stillFramesSet.add(Math.min(frames - 1, Math.max(0, f - 1)));
+      stillFramesSet.add(Math.min(frames - 1, f + 1));
+    }
   }
 
   const stillFrames = Array.from(stillFramesSet).sort((a, b) => a - b);
