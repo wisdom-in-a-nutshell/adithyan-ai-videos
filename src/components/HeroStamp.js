@@ -295,16 +295,13 @@ export const HeroStamp = ({
 			          }}
 			        >
 	          {bottomPrefixText}{' '}
-		          <span
-		            style={{
-		              color: accentColor,
-		              textShadow: `${sharedTextStyle.textShadow}, 0 0 24px rgba(59,130,246,${(
-		                0.40 * blinkStrength
-		              ).toFixed(3)})`,
-		            }}
-		          >
-		            {bottomAccentText}
-		          </span>
+	          <span
+	            style={{
+	              color: accentColor,
+	            }}
+	          >
+	            {bottomAccentText}
+	          </span>
         </div>
       </div>
     );
