@@ -139,7 +139,7 @@
     },
     {
       "id": "tool-3-remotion",
-      "source_start": 130.16,
+      "source_start": 129.52,
       "source_end": 180.16,
       "sentences": [
         27,
@@ -166,6 +166,19 @@
         "Quick demo montage: blur background, text in front, text behind with fancy effects.",
         "This is the payoff: match the opening promise."
       ]
+    },
+    {
+      "id": "bridge-open-source",
+      "source_start": 180.16,
+      "source_end": 204.8,
+      "sentences": [],
+      "transcript": [
+        "And actually, in fact, Codex was the one that came up with this idea of SAM 3 and Mat Anyone to use those tools.",
+        "I kind of knew SAM 3, but I did not know about Mat Anyone. And it came up with this idea to use these tools and wrote a client for itself so it can use it.",
+        "All three of these things that I said are open source, so you can grab them. And depending upon your Mac, you could even run them locally."
+      ],
+      "intent": "Bridge: Codex came up with the toolchain; tools are open source.",
+      "visual_notes": []
     },
     {
       "id": "recap",
@@ -212,6 +225,19 @@
       "visual_notes": [
         "On-screen: No editor. All Codex."
       ]
+    },
+    {
+      "id": "bridge-links-github",
+      "source_start": 241.76,
+      "source_end": 257.12,
+      "sentences": [],
+      "transcript": [
+        "The intermediate artifacts that Codex generated, the code that was generated in Remotion, and it's all linked probably in the description.",
+        "Hopefully I'll put this all in GitHub, clean it up.",
+        "You can check that if you want for inspiration."
+      ],
+      "intent": "Bridge: point to links/GitHub for artifacts and code.",
+      "visual_notes": []
     },
     {
       "id": "tag-end",
