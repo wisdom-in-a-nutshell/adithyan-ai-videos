@@ -43,6 +43,13 @@ References:
 - Composition registry: `~/GitHub/adithyan-ai-videos/src/Root.js`
 - Transcript timing data (recommended): `~/GitHub/adithyan-ai-videos/src/projects/<project-id>/transcript_words.json`
 
+## Golden Path (Code-First)
+
+1. Create `src/projects/<project-id>/` with `assets.js`, `<Project>Comp.js`, and (optionally) `transcript_words.json`.
+2. Register it in `src/Root.js` as a `<Composition id="...">`.
+3. Preview: `npm start` and select the composition in Studio.
+4. Render: `npx remotion render src/index.js <CompositionId> /tmp/<project-id>.mp4`.
+
 ## Expected Outputs (What To Produce)
 
 For a new video project, the “done” state is:
