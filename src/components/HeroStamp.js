@@ -137,6 +137,7 @@ export const HeroStamp = ({
   accentColor = '#3b82f6',
   textColor = '#f6f2ee',
   timingOffsetSeconds = 0,
+  holdUntilSeconds,
 }) => {
   const frame = useCurrentFrame();
   const {fps, width, height, durationInFrames} = useVideoConfig();
@@ -164,7 +165,10 @@ export const HeroStamp = ({
 
   const phraseStart = timing.thisStart;
   const compEndSeconds = durationInFrames / Math.max(1, fps);
-  const holdEnd = Math.max(timing.codexEnd + 0.25, compEndSeconds - 0.35);
+  const holdUntil = Number(holdUntilSeconds);
+  const holdEnd = Number.isFinite(holdUntil)
+    ? holdUntil
+    : Math.max(timing.codexEnd + 0.25, compEndSeconds - 0.35);
 
   const baseIn = interpolate(t, [phraseStart - 0.12, phraseStart + 0.12], [0, 1], {
     extrapolateLeft: 'clamp',
