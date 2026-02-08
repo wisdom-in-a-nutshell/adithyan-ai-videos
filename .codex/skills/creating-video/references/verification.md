@@ -2,40 +2,22 @@
 
 Goal: close the loop without relying on Studio playback.
 
-## Preferred (Project File Based)
+## Preferred (Code-First)
 
 Render a short clip (default 5s) + a few stills:
 
 ```bash
 cd ~/GitHub/adithyan-ai-videos
-node scripts/render_project.mjs projects/<project-id>/project.json \
-  --comp OcclusionDemo \
-  --out /tmp/<project-id>.mp4 \
-  --seconds 5 \
-  --fps 24
+npx remotion render src/index.js <CompositionId> /tmp/<id>.mp4 --frames 0-119
+npx remotion still src/index.js <CompositionId> /tmp/<id>-f0048.png --frame 48
+npx remotion still src/index.js <CompositionId> /tmp/<id>-f0055.png --frame 55
+npx remotion still src/index.js <CompositionId> /tmp/<id>-f0060.png --frame 60
 ```
 
 Outputs:
 
-- Video: `/tmp/<project-id>.mp4`
-- Stills: `/tmp/<project-id>-stills/frame-*.png`
-
-Optional flags:
-
-- `--open` to open outputs
-- `--no-stills` to skip stills
-- `--stills-only` to skip MP4 and only render stills (fast iteration)
-- `--stills-frames 46,55,60` to render only specific frames
-- `--stills-dir /tmp/foo` to write stills to a custom directory
-- `--shrink-px N` / `--feather-px N` to override matte edge cleanup (passed via props)
-
-## Direct CLI (When Debugging Quickly)
-
-```bash
-cd ~/GitHub/adithyan-ai-videos
-npx remotion render src/index.js OcclusionDemo /tmp/occ-5s.mp4 --frames 0-119
-npx remotion still src/index.js OcclusionDemo /tmp/occ-f0010.png --frame 10
-```
+- Video: `/tmp/<id>.mp4`
+- Stills: `/tmp/<id>-f*.png`
 
 ## Checklist (What To Look For)
 
@@ -54,4 +36,4 @@ npx remotion still src/index.js OcclusionDemo /tmp/occ-f0010.png --frame 10
 - Green fringe/halo around subject edges:
   - usually comes from the RGBA `alpha.webm` having green-tinted RGB near partially-transparent edges
   - `feather` can amplify spill (it blurs edge colors outward)
-  - prefer `shrink` (erode) first; if `shrink` has to be too large, consider rebuilding RGBA from `mask_url` + the original `video_url`
+  - prefer `shrink` (erode) first; if `shrink` has to be too large, re-run matting to get a cleaner `alpha.webm`
