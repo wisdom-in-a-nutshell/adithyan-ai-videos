@@ -12,7 +12,12 @@ import {
   TEXT_EFFECTS_VIDEO_URL,
 } from './assets.js';
 import {SKETCH_FONT_FAMILY} from '../../styles/sketch.js';
-import {CodexCallout, DisclaimerOverlay, LabelOverlay} from '../../overlay_kit/overlays.js';
+import {
+  CodexCallout,
+  DisclaimerOverlay,
+  LabelOverlay,
+  StatusLeftOverlay,
+} from '../../overlay_kit/overlays.js';
 import {CodexToolsArtifactsOverlay} from './CodexToolsArtifactsOverlay.js';
 
 const resolveAssetSrc = (src) => {
@@ -204,7 +209,7 @@ export const TextEffectsComp = (props) => {
 
         return (
           <Sequence name="Setup: ANIMATING (Front)" from={from} durationInFrames={dur}>
-            <LabelOverlay text="ANIMATING" durationInFrames={dur} scale={1} />
+            <StatusLeftOverlay text="ANIMATING" durationInFrames={dur} scale={1} />
           </Sequence>
         );
       })()}
