@@ -104,36 +104,6 @@ const findPhraseTiming = (words) => {
   return fallback;
 };
 
-const findFirstWordStartAfter = (words, targetWord, afterSeconds, beforeSeconds) => {
-  if (!Array.isArray(words)) {
-    return null;
-  }
-  const onlyWords = words.filter((w) => w?.type === 'word' && typeof w?.text === 'string');
-  if (onlyWords.length === 0) {
-    return null;
-  }
-
-  const target = normalizeWord(targetWord);
-  const after = Number(afterSeconds);
-  const before = Number(beforeSeconds);
-  for (const w of onlyWords) {
-    const start = Number(w.start);
-    if (!Number.isFinite(start)) {
-      continue;
-    }
-    if (Number.isFinite(after) && start < after) {
-      continue;
-    }
-    if (Number.isFinite(before) && start > before) {
-      continue;
-    }
-    if (normalizeWord(w.text) === target) {
-      return start;
-    }
-  }
-  return null;
-};
-
 const appearOpacity = ({t, startSeconds, fadeInSeconds = 0.12}) => {
   if (!Number.isFinite(startSeconds)) {
     return 0;
@@ -168,6 +138,7 @@ export const HeroStamp = ({
   textColor = '#f6f2ee',
   timingOffsetSeconds = 0,
   holdUntilSeconds,
+  blinkSeconds = null,
 }) => {
   const frame = useCurrentFrame();
   const {fps, width, height, durationInFrames} = useVideoConfig();
@@ -200,10 +171,11 @@ export const HeroStamp = ({
     ? holdUntil
     : Math.max(timing.codexEnd + 0.25, compEndSeconds - 0.35);
 
-  const behindCueSeconds = useMemo(() => {
-    // Trigger the blink/glow when the *spoken* word "behind" happens after the hero phrase.
-    return findFirstWordStartAfter(transcriptWords, 'behind', timing.codexEnd, holdEnd);
-  }, [transcriptWords, timing.codexEnd, holdEnd]);
+  const blinkSecondsList = Array.isArray(blinkSeconds)
+    ? blinkSeconds
+    : Number.isFinite(Number(blinkSeconds))
+      ? [Number(blinkSeconds)]
+      : [];
 
   const baseIn = interpolate(t, [phraseStart - 0.12, phraseStart + 0.12], [0, 1], {
     extrapolateLeft: 'clamp',
@@ -295,19 +267,19 @@ export const HeroStamp = ({
     MozOsxFontSmoothing: 'grayscale',
     // Use outline for "thickness" instead of fontWeight to avoid faux-bold artifacts.
     WebkitTextStroke: '3px rgba(0,0,0,0.52)',
-    textShadow: '0 16px 46px rgba(0,0,0,0.60)',
+    textShadow: `0 16px 46px rgba(0,0,0,0.60), 0 0 16px rgba(255,255,255,${(0.12 * blinkStrength).toFixed(
+      3
+    )})`,
   };
 
-  const behindBlink =
-    behindCueSeconds === null
-      ? 0
-      : interpolate(
-          t,
-          [behindCueSeconds - 0.06, behindCueSeconds, behindCueSeconds + 0.10, behindCueSeconds + 0.22],
-          [0, 1, 0.65, 0],
-          {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
-        );
-  const blinkStrength = behindBlink * (layer === 'behind' ? 1.0 : 0.9);
+  const pulseAt = (atSeconds) =>
+    interpolate(t, [atSeconds - 0.06, atSeconds, atSeconds + 0.10, atSeconds + 0.22], [0, 1, 0.65, 0], {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+    });
+  const blinkBase =
+    blinkSecondsList.length === 0 ? 0 : Math.min(1, blinkSecondsList.reduce((acc, s) => acc + pulseAt(s), 0));
+  const blinkStrength = blinkBase * (layer === 'behind' ? 1.0 : 0.9);
 
   const percentTextStyle = {
     ...sharedTextStyle,

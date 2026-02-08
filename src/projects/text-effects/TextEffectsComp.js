@@ -5,6 +5,7 @@ import transcriptWords from './transcript_words.json';
 import {
   TEXT_EFFECTS_ALPHA_URL,
   TEXT_EFFECTS_CODEX_LOGO_URL,
+  TEXT_EFFECTS_HERO_BLINK_SECONDS,
   TEXT_EFFECTS_SETUP_CODING_ARTIFACTS_SECONDS,
   TEXT_EFFECTS_SETUP_CODING_TOOLS_SECONDS,
   TEXT_EFFECTS_SETUP_DIGITAL_ARTIFACTS_SECONDS,
@@ -200,7 +201,12 @@ export const TextEffectsComp = (props) => {
         </Sequence>
 
         <Sequence name="HeroStamp (Behind)" from={0} durationInFrames={holdFrames}>
-          <HeroStamp layer="behind" transcriptWords={transcriptWords} holdUntilSeconds={holdUntilSeconds} />
+          <HeroStamp
+            layer="behind"
+            transcriptWords={transcriptWords}
+            holdUntilSeconds={holdUntilSeconds}
+            blinkSeconds={TEXT_EFFECTS_HERO_BLINK_SECONDS}
+          />
         </Sequence>
 
         <Sequence name="Foreground Alpha" from={0} durationInFrames={durationInFrames}>
@@ -342,7 +348,12 @@ export const TextEffectsComp = (props) => {
       })()}
 
         <Sequence name="HeroStamp (Front)" from={0} durationInFrames={holdFrames}>
-          <HeroStamp layer="front" transcriptWords={transcriptWords} holdUntilSeconds={holdUntilSeconds} />
+          <HeroStamp
+            layer="front"
+            transcriptWords={transcriptWords}
+            holdUntilSeconds={holdUntilSeconds}
+            blinkSeconds={TEXT_EFFECTS_HERO_BLINK_SECONDS}
+          />
         </Sequence>
       </div>
     </div>

@@ -28,5 +28,9 @@ export const TEXT_EFFECTS_SETUP_VIDEO_ARTIFACTS_SECONDS = 49.6;
 export const TEXT_EFFECTS_THREE_TOOLS_START_SECONDS = 50.96;
 export const TEXT_EFFECTS_THREE_TOOLS_END_SECONDS = 57.84;
 
+// Hero stamp highlight: hardcode these for now (fast iteration).
+// Based on transcript: "behind" (~6.48s) and "in front" (~7.32s).
+export const TEXT_EFFECTS_HERO_BLINK_SECONDS = [6.48, 7.32];
+
 // Cut includes beat 1 (hero stamp) + beat 2 (setup overlays) + beat 3 (three tools).
 export const TEXT_EFFECTS_CUT_SECONDS = 58.2;

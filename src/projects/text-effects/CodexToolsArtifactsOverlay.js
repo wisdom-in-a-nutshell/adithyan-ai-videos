@@ -3,7 +3,7 @@ import {interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 
 const clamp01 = (v) => Math.max(0, Math.min(1, v));
 
-const Pill = ({text, emoji = null, minWidthCh = null}) => {
+const Pill = ({text, emoji = null}) => {
   return (
     <div
       style={{
@@ -19,11 +19,9 @@ const Pill = ({text, emoji = null, minWidthCh = null}) => {
         boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
         whiteSpace: 'nowrap',
         boxSizing: 'border-box',
-        width: '100%',
         display: 'flex',
         alignItems: 'center',
         gap: 10,
-        minWidth: minWidthCh ? `${minWidthCh}ch` : undefined,
       }}
     >
       {emoji ? (
@@ -88,7 +86,8 @@ export const CodexToolsArtifactsOverlay = ({
   // Layout: fixed stack under the Codex pill.
   const colX = 0;
   const pillH = 44;
-  const gapY = 44;
+  // Increase vertical spacing for readability (20% more than before).
+  const gapY = 44 * 1.2;
   const toolsY = gapY;
   const artifactsY = toolsY + pillH + gapY;
   const lineX = 22;
@@ -100,9 +99,6 @@ export const CodexToolsArtifactsOverlay = ({
   // Animate the line drawing, aligned with the content coming in.
   const lineToTools = interpolate(showTools, [0, 1], [0, 1]);
   const lineToArtifacts = interpolate(showArtifacts, [0, 1], [0, 1]);
-
-  const toolsMinWidthCh = toolsText.length + 4;
-  const artifactsMinWidthCh = artifactsText.length + 4;
 
   const FlowDot = ({y, opacity: dotOpacity}) => {
     if (!Number.isFinite(y) || dotOpacity <= 0) {
@@ -150,7 +146,7 @@ export const CodexToolsArtifactsOverlay = ({
         transformOrigin: 'top left',
         opacity,
         zIndex: 30,
-        width: 520,
+        width: 'auto',
         pointerEvents: 'none',
       }}
     >
@@ -192,7 +188,7 @@ export const CodexToolsArtifactsOverlay = ({
             transform: `translateY(${toolsSlide}px)`,
           }}
         >
-          <Pill text={toolsText} emoji={TOOLS_EMOJI} minWidthCh={toolsMinWidthCh} />
+          <Pill text={toolsText} emoji={TOOLS_EMOJI} />
         </div>
 
         <div
@@ -231,7 +227,7 @@ export const CodexToolsArtifactsOverlay = ({
             transform: `translateY(${artifactsSlide}px)`,
           }}
         >
-          <Pill text={artifactsText} emoji={ARTIFACTS_EMOJI} minWidthCh={artifactsMinWidthCh} />
+          <Pill text={artifactsText} emoji={ARTIFACTS_EMOJI} />
         </div>
       </div>
     </div>

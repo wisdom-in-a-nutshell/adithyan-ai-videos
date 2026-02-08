@@ -54,12 +54,10 @@ If iteration is slow (matting, Studio playback, remote fetch), it’s ok to work
 
 - Use WIN `transform.py` (`~/GitHub/win/scripts/tools/media/transform.py`) and discover flags via `--help`.
 - Persist the transform output JSON under the project folder (e.g. `projects/<project-id>/transform_720p.json`).
-- While iterating, set `projects/<project-id>/project.json` `video_url` to the transform `output_url`.
+- While iterating, point your composition’s `VIDEO_URL` (usually in `src/projects/<project-id>/assets.js`) to the transform `output_url`.
 - Keep the original source URL referenced in the transform JSON (`input_url`) for later “final” exports.
 
 ## Foreground Matting / Alpha (Optional)
-
-Don’t put `alpha_url` in `project.json`.
 
 If/when occlusion is needed, generate a matte in WIN and write it to:
 
@@ -76,7 +74,8 @@ venv/bin/python scripts/tools/media/matting.py "<video-url>" \
 
 Notes:
 - `matting.json` should contain `alpha_url`.
-- Our Remotion launch/render scripts auto-load `matting.json` (if present) and pass `alphaUrl` as a prop.
+- Prefer wiring the alpha URL in code (e.g. `src/projects/<project-id>/assets.js`) while iterating.
+- If you do keep `projects/<project-id>/matting.json`, treat it as a generated artifact (input to code), not a “manifest/contract”.
 
 ## Other Tools
 

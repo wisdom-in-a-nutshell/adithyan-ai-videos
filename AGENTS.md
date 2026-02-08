@@ -10,9 +10,10 @@ This repo is the Remotion workspace for building short, marketing-style videos a
 - Main overlay demo: `src/MainVideo.js` + `src/data/timeline.json`
 - Occlusion demo: `src/components/ForegroundMatteComposite.js`
 - Reusable overlay primitives: `src/overlay_kit/`
-- Project launch + repeatable renders: `scripts/studio_project.mjs`, `scripts/render_project.mjs`
-- Remote asset cache (downloads once, reuses locally): `scripts/asset_cache.mjs`
-- Per-video inputs/artifacts: `projects/<project-id>/`
+- Per-video code (recommended for fast iteration): `src/projects/<project-id>/`
+- Optional project launch + repeatable renders (legacy-ish, but still useful): `scripts/studio_project.mjs`, `scripts/render_project.mjs`
+- Optional remote asset cache (downloads once, reuses locally): `scripts/asset_cache.mjs`
+- Per-video inputs/artifacts (transcripts, matting outputs, notes): `projects/<project-id>/`
 
 ## Guidance
 
@@ -25,7 +26,7 @@ This repo is the Remotion workspace for building short, marketing-style videos a
 ## Reuse + Documentation Discipline
 
 - If you add a new reusable overlay/primitive, put it in `src/overlay_kit/` (not inside a one-off composition).
-- If you introduce or change a reusable contract (e.g. `project.json`, `storyboard.json`, new props),
+- If you introduce or change a reusable contract (e.g. `assets.js` exports, `storyboard.json`, new props),
   document it in the `$creating-video` skill references and keep the top-level contract minimal/stable.
 - If you discover a durable gotcha (fps mismatch, Studio playback artifacts, audio mixing surprises),
   add a short note here so an agent returning cold doesn't relearn it.
@@ -51,36 +52,29 @@ Remote MP4/WebM URLs are convenient, but can feel like they re-fetch on every St
 Use the project launcher which downloads assets once and serves them via `--public-dir`.
 
 - Start Studio with cached assets:
-  - `npm run studio:project -- projects/occlusion-demo/project.json --comp OcclusionDemo`
+  - (Optional / legacy) `npm run studio:project -- projects/occlusion-demo/project.json --comp OcclusionDemo`
 - Force re-download:
   - add `--refresh`
 - Cache location:
   - defaults to `~/.cache/win-remotion-assets`
   - override with `WIN_REMOTION_ASSET_CACHE=/tmp/win-remotion-assets`
 - What’s cached:
-  - `video_url` from `projects/<project-id>/project.json`
-  - optional `alpha_url` from `projects/<project-id>/matting.json`
+  - whichever URLs your composition uses (commonly `VIDEO_URL` + `ALPHA_URL` from `src/projects/<project-id>/assets.js`)
+  - (if you still use `scripts/*project.mjs`) it may read `projects/<project-id>/matting.json`
 
 ## Verification Loop (Keep Iterating Until It Looks Right)
 
-- Prefer `scripts/render_project.mjs` over raw Studio playback; it’s deterministic and uses the local cache.
-- Quick occlusion checks (renders MP4 + stills under `/tmp`):
-  - `node scripts/render_project.mjs projects/<project-id>/project.json --comp OcclusionDemo --out /tmp/<project-id>.mp4 --seconds 5 --fps 24`
-- If you need to force asset refresh:
-  - add `--refresh`
+- Prefer short renders + stills over raw Studio playback; it’s deterministic.
+- Quick check (renders MP4 under `/tmp`):
+  - `npm run render -- --comp <CompositionId> --preview --from 0 --to 5`
+- Stills (very fast feedback):
+  - `npx remotion still src/index.js <CompositionId> /tmp/<id>-f0048.png --frame 48 --overwrite`
 
 ## Creating Videos (Project Files)
 
-- Store per-video inputs under `projects/<project-id>/project.json`.
-- If you have word-level timings, place them at:
-  - `projects/<project-id>/transcript.json`
-  - `scripts/studio_project.mjs` and `scripts/render_project.mjs` auto-load it into props as `transcriptWords`.
-- Keep `project.json` minimal and stable. For this repo:
-  - required: `video_url` (source video)
-  - optional: `projects/<project-id>/matting.json` (contains `alpha_url` when occlusion is needed)
-- Example:
-  - `id`, `name`
-  - `video_url` (source video)
-- Close the loop with a short render + stills (preferred):
-  - `node scripts/render_project.mjs projects/<project-id>/project.json --comp OcclusionDemo --out /tmp/<project-id>.mp4 --seconds 5 --fps 24`
-  - Stills go to `/tmp/<project-id>-stills/`
+- Store per-video inputs/artifacts under `projects/<project-id>/`:
+  - `transcript.json`, `sentences.json`, `words.json`, storyboard notes, etc.
+- Prefer keeping “what the composition uses” in code:
+  - `src/projects/<project-id>/assets.js` for `VIDEO_URL`, `ALPHA_URL`, cut seconds, timing anchors.
+- If you generate occlusion mattes, keep the generated URL in `projects/<project-id>/matting.json` for reference,
+  but wire it into the composition explicitly (don’t depend on a “manifest contract” while iterating).
