@@ -10,7 +10,7 @@
     "render": "remotion render src/index.js ActiveSpeakerDetection",
     "render:occlusion": "remotion render src/index.js OcclusionDemo /tmp/occlusion-demo.mp4",
     "render:occlusion:hq": "remotion render src/index.js OcclusionDemo /tmp/occlusion-demo-hq.mp4 --image-format=png --crf=15 --x264-preset=slow",
-    "render:text-effects": "remotion render src/index.js TextEffects /tmp/text-effects.mp4"
+    "render:text-effects": "remotion render src/index.js TextEffects /tmp/text-effects.mp4 && open /tmp/text-effects.mp4"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
