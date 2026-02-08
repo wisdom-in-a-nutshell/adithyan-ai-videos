@@ -166,7 +166,7 @@ export const TextEffectsComp = (props) => {
     return interpolate(
       t,
       [punchInStart, punchInEnd, punchOutStart, punchOutEnd],
-      [1, 1.05, 1.05, 1],
+      [1, 1.08, 1.08, 1],
       {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
     );
   })();

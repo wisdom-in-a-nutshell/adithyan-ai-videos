@@ -11,8 +11,10 @@ const Pill = ({text}) => {
         borderRadius: 14,
         backgroundColor: 'rgba(255,255,255,0.92)',
         color: '#111827',
-        fontSize: 18,
-        fontWeight: 700,
+        // Match the general scale used by the top-left status pill.
+        fontSize: 20,
+        fontWeight: 600,
+        letterSpacing: 0.6,
         boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
         whiteSpace: 'nowrap',
       }}
