@@ -267,6 +267,17 @@ export const HeroStamp = ({
   const blinkBase =
     blinkSecondsList.length === 0 ? 0 : Math.min(1, blinkSecondsList.reduce((acc, s) => acc + pulseAt(s), 0));
   const blinkStrength = blinkBase * (layer === 'behind' ? 1.0 : 0.9);
+  const blinkGlowPx = Math.round(
+    interpolate(blinkStrength, [0, 1], [0, 22], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})
+  );
+  const blinkFilter =
+    blinkStrength <= 0
+      ? 'none'
+      : `drop-shadow(0 0 ${blinkGlowPx}px rgba(59,130,246,${(0.55 * blinkStrength).toFixed(
+          3
+        )})) drop-shadow(0 0 ${Math.round(blinkGlowPx * 0.6)}px rgba(255,255,255,${(
+          0.32 * blinkStrength
+        ).toFixed(3)}))`;
 
   // One shared style for all text in this stamp: same weight, same shadow, no faux-bold.
   // Add a subtle glow only during the blink window.
@@ -276,7 +287,7 @@ export const HeroStamp = ({
     MozOsxFontSmoothing: 'grayscale',
     // Use outline for "thickness" instead of fontWeight to avoid faux-bold artifacts.
     WebkitTextStroke: '3px rgba(0,0,0,0.52)',
-    textShadow: `0 16px 46px rgba(0,0,0,0.60), 0 0 16px rgba(255,255,255,${(0.12 * blinkStrength).toFixed(
+    textShadow: `0 16px 46px rgba(0,0,0,0.60), 0 0 22px rgba(255,255,255,${(0.22 * blinkStrength).toFixed(
       3
     )})`,
   };
@@ -284,7 +295,7 @@ export const HeroStamp = ({
   const percentTextStyle = {
     ...sharedTextStyle,
     // Blue halo makes "100%" read through partial occlusion.
-    textShadow: `${sharedTextStyle.textShadow}, 0 0 28px rgba(59,130,246,${(0.45 * blinkStrength).toFixed(
+    textShadow: `${sharedTextStyle.textShadow}, 0 0 44px rgba(59,130,246,${(0.65 * blinkStrength).toFixed(
       3
     )})`,
   };
