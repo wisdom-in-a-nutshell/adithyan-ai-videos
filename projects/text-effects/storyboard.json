@@ -3,8 +3,11 @@
   "project_id": "text-effects",
   "source": {
     "video_url": "https://descriptusercontent.com/published/1b6b1b12-e333-487f-a2e7-87b87d68ec26/original.mp4",
+    "proxy_video_url": "https://storage.aipodcast.ing/cache/fa7607d8-2aa5-4644-9a88-267e262ebcae.mp4",
     "transcript_file": "transcript.json",
-    "sentences_file": "sentences.json"
+    "sentences_file": "sentences.json",
+    "matting_file": "matting.json",
+    "alpha_url": "https://storage.aipodcast.ing/cache/matanyone/alpha/f9c7e34c-97f4-4698-aa82-beb74f737ca7.webm"
   },
   "beats": [
     {

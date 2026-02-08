@@ -48,6 +48,15 @@ If the user does not have a storyboard:
 - Confirm it with the user.
 - Then implement in Remotion and verify with short renders.
 
+## Proxies / Scaling (Optional)
+
+If iteration is slow (matting, Studio playback, remote fetch), it’s ok to work off a smaller proxy video.
+
+- Use WIN `transform.py` (`~/GitHub/win/scripts/tools/media/transform.py`) and discover flags via `--help`.
+- Persist the transform output JSON under the project folder (e.g. `projects/<project-id>/transform_720p.json`).
+- While iterating, set `projects/<project-id>/project.json` `video_url` to the transform `output_url`.
+- Keep the original source URL referenced in the transform JSON (`input_url`) for later “final” exports.
+
 ## Foreground Matting / Alpha (Optional)
 
 Don’t put `alpha_url` in `project.json`.
