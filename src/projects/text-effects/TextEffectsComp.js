@@ -71,14 +71,14 @@ import {RecapOverlay} from './RecapOverlay.js';
 import {DescriptionLinksOverlay} from './DescriptionLinksOverlay.js';
 import {TEXT_EFFECTS_UI_SCALE} from './ui.js';
 
-const resolveAssetSrc = (src) => {
+const resolveAssetSrc = (src, assetMap) => {
   if (!src || typeof src !== 'string') {
     return src;
   }
   // `studio:cached` and `render -- --cached` inject an `assetMap` prop that rewrites
   // remote URLs to `--public-dir` files (e.g. "https://.../video.mp4" -> "/<hash>.mp4").
-  if (props?.assetMap && typeof props.assetMap === 'object') {
-    const mapped = props.assetMap[src];
+  if (assetMap && typeof assetMap === 'object') {
+    const mapped = assetMap[src];
     if (typeof mapped === 'string' && mapped.length > 0) {
       return mapped;
     }
@@ -89,6 +89,7 @@ const resolveAssetSrc = (src) => {
 // Project-specific composition wrapper for `text-effects`.
 // Keep the cut short while iterating; extend later when we implement storyboard-driven beats.
 export const TextEffectsComp = (props) => {
+  const assetMap = props?.assetMap ?? null;
   const frame = useCurrentFrame();
   const {fps, durationInFrames} = useVideoConfig();
   const t = frame / Math.max(1, fps);
@@ -164,13 +165,13 @@ export const TextEffectsComp = (props) => {
           transformOrigin: '50% 50%',
         }}
       >
-        <Sequence name="[S01+] Background" from={0} durationInFrames={durationInFrames}>
-          <Video
-            src={resolveAssetSrc(TEXT_EFFECTS_VIDEO_URL)}
-            style={{
-              position: 'absolute',
-              inset: 0,
-              width: '100%',
+	        <Sequence name="[S01+] Background" from={0} durationInFrames={durationInFrames}>
+	          <Video
+	            src={resolveAssetSrc(TEXT_EFFECTS_VIDEO_URL, assetMap)}
+	            style={{
+	              position: 'absolute',
+	              inset: 0,
+	              width: '100%',
               height: '100%',
               objectFit: 'cover',
               zIndex: 0,
@@ -189,14 +190,14 @@ export const TextEffectsComp = (props) => {
           );
 
           return (
-            <Sequence name="[S07] Background Blur" from={from} durationInFrames={dur}>
-              <BackgroundBlurOverlay
-                src={resolveAssetSrc(TEXT_EFFECTS_VIDEO_URL)}
-                startFromFrame={from}
-                durationInFrames={dur}
-                blurPx={TEXT_EFFECTS_TOOL3_BLUR_BG_PX}
-              />
-            </Sequence>
+	            <Sequence name="[S07] Background Blur" from={from} durationInFrames={dur}>
+	              <BackgroundBlurOverlay
+	                src={resolveAssetSrc(TEXT_EFFECTS_VIDEO_URL, assetMap)}
+	                startFromFrame={from}
+	                durationInFrames={dur}
+	                blurPx={TEXT_EFFECTS_TOOL3_BLUR_BG_PX}
+	              />
+	            </Sequence>
           );
         })()}
 
@@ -260,13 +261,13 @@ export const TextEffectsComp = (props) => {
           ].join(' ');
 
           return (
-            <Sequence name="[T2] Matte Outline (Between Layers)" from={from} durationInFrames={dur}>
-              <Video
-                src={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL)}
-                muted
-                style={{
-                  position: 'absolute',
-                  inset: 0,
+	            <Sequence name="[T2] Matte Outline (Between Layers)" from={from} durationInFrames={dur}>
+	              <Video
+	                src={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL, assetMap)}
+	                muted
+	                style={{
+	                  position: 'absolute',
+	                  inset: 0,
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
@@ -607,12 +608,12 @@ export const TextEffectsComp = (props) => {
                 Math.ceil((TEXT_EFFECTS_TOOL1_SAM3_END_SECONDS - TEXT_EFFECTS_SAM3_MASK_SHOW_SECONDS) * fps)
               )}
             >
-              <Sam3StaticMaskOverlay
-                src={resolveAssetSrc(TEXT_EFFECTS_SAM3_STATIC_MASK_URL)}
-                startSeconds={TEXT_EFFECTS_SAM3_MASK_SHOW_SECONDS}
-                endSeconds={TEXT_EFFECTS_TOOL1_SAM3_END_SECONDS}
-                frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SAM3_MASK_SHOW_SECONDS * fps))}
-              />
+	              <Sam3StaticMaskOverlay
+	                src={resolveAssetSrc(TEXT_EFFECTS_SAM3_STATIC_MASK_URL, assetMap)}
+	                startSeconds={TEXT_EFFECTS_SAM3_MASK_SHOW_SECONDS}
+	                endSeconds={TEXT_EFFECTS_TOOL1_SAM3_END_SECONDS}
+	                frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SAM3_MASK_SHOW_SECONDS * fps))}
+	              />
             </Sequence>
           </>
         );
@@ -629,21 +630,21 @@ export const TextEffectsComp = (props) => {
         );
 
         return (
-          <Sequence name="[OUTRO] Recap Canvas" from={from} durationInFrames={dur}>
-            <RecapOverlay
+	          <Sequence name="[OUTRO] Recap Canvas" from={from} durationInFrames={dur}>
+	            <RecapOverlay
               durationInFrames={dur}
               frameOffset={from}
               startSeconds={TEXT_EFFECTS_RECAP_START_SECONDS}
               samSeconds={TEXT_EFFECTS_RECAP_SAM3_SECONDS}
               matAnyoneSeconds={TEXT_EFFECTS_RECAP_MATANYONE_SECONDS}
-              remotionSeconds={TEXT_EFFECTS_RECAP_REMOTION_SECONDS}
-              scale={TEXT_EFFECTS_UI_SCALE}
-              codexLogo={TEXT_EFFECTS_CODEX_LOGO_URL}
-              sam3Url="https://github.com/facebookresearch/sam3"
-              matAnyoneUrl="https://github.com/pq-yang/MatAnyone"
-              remotionUrl="https://www.remotion.dev/"
-            />
-          </Sequence>
+	              remotionSeconds={TEXT_EFFECTS_RECAP_REMOTION_SECONDS}
+	              scale={TEXT_EFFECTS_UI_SCALE}
+	              codexLogo={resolveAssetSrc(TEXT_EFFECTS_CODEX_LOGO_URL, assetMap)}
+	              sam3Url="https://github.com/facebookresearch/sam3"
+	              matAnyoneUrl="https://github.com/pq-yang/MatAnyone"
+	              remotionUrl="https://www.remotion.dev/"
+	            />
+	          </Sequence>
         );
       })()}
 
