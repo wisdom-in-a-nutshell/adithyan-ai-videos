@@ -355,21 +355,6 @@ export const HeroStamp = ({
     extrapolateRight: 'clamp',
   });
 
-  const spark = spring({
-    fps,
-    frame: frame - percentFrame,
-    config: {damping: 18, stiffness: 240, mass: 0.45},
-    durationInFrames: Math.round(0.7 * fps),
-  });
-  const sparkOpacity = percentOpacity * interpolate(spark, [0, 0.15, 0.45, 1], [0, 0.9, 0.55, 0], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
-  const sparkScale = interpolate(spark, [0, 1], [0.6, 1.05], {
-    extrapolateLeft: 'clamp',
-    extrapolateRight: 'clamp',
-  });
-
 			  return (
 	    <div
 	      style={{
@@ -445,49 +430,11 @@ export const HeroStamp = ({
 			          whiteSpace: 'nowrap',
 		          filter: 'none',
 		        }}
-		      >
-        {/* Spark / burst (behind subject) */}
-        <svg
-          viewBox="0 0 200 200"
-          style={{
-            position: 'absolute',
-            left: '50%',
-            top: '50%',
-            width: Math.round(percentFontSize * 1.2),
-            height: Math.round(percentFontSize * 1.2),
-            transform: `translate3d(-50%, -50%, 0) scale(${sparkScale})`,
-            opacity: sparkOpacity,
-            filter: 'drop-shadow(0 16px 40px rgba(0,0,0,0.35))',
-          }}
-        >
-          {Array.from({length: 12}).map((_, idx) => {
-            const angle = (idx / 12) * Math.PI * 2;
-            const x1 = 100 + Math.cos(angle) * 56;
-            const y1 = 100 + Math.sin(angle) * 56;
-            const x2 = 100 + Math.cos(angle) * 86;
-            const y2 = 100 + Math.sin(angle) * 86;
-            return (
-              <line
-                // eslint-disable-next-line react/no-array-index-key
-                key={idx}
-                x1={x1}
-                y1={y1}
-                x2={x2}
-                y2={y2}
-                stroke={accentColor}
-                strokeWidth="8"
-                strokeLinecap="round"
-                opacity={0.9}
-              />
-            );
-          })}
-          <circle cx="100" cy="100" r="82" fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth="2" />
-        </svg>
-
-	        <span style={{opacity: percentOpacity}}>
-	          <span
-	            style={{
-	              display: 'inline-block',
+			      >
+		        <span style={{opacity: percentOpacity}}>
+		          <span
+		            style={{
+		              display: 'inline-block',
 	              transform: `translate3d(0, 0, 0) scale(${percentScale}) scaleX(${percentStretchX})`,
 	              transformOrigin: '50% 50%',
 	            }}

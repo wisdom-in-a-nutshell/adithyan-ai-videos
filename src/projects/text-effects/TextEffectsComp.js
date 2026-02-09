@@ -177,6 +177,28 @@ export const TextEffectsComp = (props) => {
     );
   })();
 
+  const cameraTranslate = (() => {
+    if (!Number.isFinite(codexEndSeconds) || !Number.isFinite(letMeShowYouStartSeconds)) {
+      return {x: 0, y: 0};
+    }
+
+    const punchInStart = Math.max(0, codexEndSeconds + 0.06);
+    const punchInEnd = punchInStart + 0.22;
+    const punchOutStart = Math.max(punchInEnd + 0.12, letMeShowYouStartSeconds - 0.06);
+    const punchOutEnd = punchOutStart + 0.2;
+
+    // Nudge up/left during the punch so it feels like it "locks" on the face.
+    const x = interpolate(t, [punchInStart, punchInEnd, punchOutStart, punchOutEnd], [0, -14, -14, 0], {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+    });
+    const y = interpolate(t, [punchInStart, punchInEnd, punchOutStart, punchOutEnd], [0, -10, -10, 0], {
+      extrapolateLeft: 'clamp',
+      extrapolateRight: 'clamp',
+    });
+    return {x, y};
+  })();
+
   return (
     <div
       style={{
@@ -191,18 +213,20 @@ export const TextEffectsComp = (props) => {
         style={{
           position: 'absolute',
           inset: 0,
-          transform: `scale(${cameraScale})`,
+          transform: `translate3d(${Math.round(cameraTranslate.x)}px, ${Math.round(
+            cameraTranslate.y
+          )}px, 0) scale(${cameraScale})`,
           transformOrigin: '50% 50%',
         }}
       >
-        <Sequence name="Background" from={0} durationInFrames={durationInFrames}>
+        <Sequence name="[S01+] Background" from={0} durationInFrames={durationInFrames}>
           <Video
             src={resolveAssetSrc(TEXT_EFFECTS_VIDEO_URL)}
             style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}}
           />
         </Sequence>
 
-        <Sequence name="HeroStamp (Behind)" from={0} durationInFrames={holdFrames}>
+        <Sequence name="[S01] HeroStamp (Behind)" from={0} durationInFrames={holdFrames}>
           <HeroStamp
             layer="behind"
             transcriptWords={transcriptWords}
@@ -210,7 +234,7 @@ export const TextEffectsComp = (props) => {
           />
         </Sequence>
 
-        <Sequence name="Foreground Alpha" from={0} durationInFrames={durationInFrames}>
+        <Sequence name="[S01+] Foreground Alpha" from={0} durationInFrames={durationInFrames}>
           <Video
             src={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL)}
             muted
@@ -241,11 +265,11 @@ export const TextEffectsComp = (props) => {
 
 	          return (
 	            <>
-	              <Sequence name="Setup: RAW RECORDING (Front)" from={from} durationInFrames={dur}>
+	              <Sequence name="[S02] Setup: RAW RECORDING (Front)" from={from} durationInFrames={dur}>
 	                <LabelOverlay text="RAW RECORDING" durationInFrames={dur} scale={TEXT_EFFECTS_UI_SCALE} />
 	              </Sequence>
 
-	              <Sequence name="Setup: CODEX (Front)" from={codexFrom} durationInFrames={codexDur}>
+	              <Sequence name="[S02] Setup: CODEX (Front)" from={codexFrom} durationInFrames={codexDur}>
 	                <CodexCallout
 	                  text="CODEX"
 	                  logo={TEXT_EFFECTS_CODEX_LOGO_URL}
@@ -254,7 +278,7 @@ export const TextEffectsComp = (props) => {
 	                />
 	              </Sequence>
 
-	              <Sequence name="Setup: Disclaimer (Front)" from={from} durationInFrames={dur}>
+	              <Sequence name="[S02] Setup: Disclaimer (Front)" from={from} durationInFrames={dur}>
 	                <DisclaimerOverlay
 	                  text="Everything on-screen, including motion overlays, is rendered by Codex"
 	                  durationInFrames={dur}
@@ -272,12 +296,12 @@ export const TextEffectsComp = (props) => {
 
         return (
           <>
-            <Sequence name="Setup: ANIMATING (Front)" from={from} durationInFrames={dur}>
+            <Sequence name="[S03] Setup: ANIMATING (Front)" from={from} durationInFrames={dur}>
               <StatusLeftOverlay text="ANIMATING" durationInFrames={dur} scale={TEXT_EFFECTS_UI_SCALE} />
             </Sequence>
 
             <Sequence
-              name="Setup: Tools -> Digital Artifacts"
+              name="[S03A] Setup: Tools -> Digital Artifacts"
               from={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_TOOLS_SECONDS * fps))}
               durationInFrames={Math.max(
                 1,
@@ -304,7 +328,7 @@ export const TextEffectsComp = (props) => {
             </Sequence>
 
             <Sequence
-              name="Setup: Coding Tools -> Coding Artifacts"
+              name="[S03B] Setup: Coding Tools -> Coding Artifacts"
               from={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_CODING_TOOLS_SECONDS * fps))}
               durationInFrames={Math.max(
                 1,
@@ -328,7 +352,7 @@ export const TextEffectsComp = (props) => {
             </Sequence>
 
             <Sequence
-              name="Setup: Video Tools -> Video Artifacts"
+              name="[S03C] Setup: Video Tools -> Video Artifacts"
               from={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))}
               durationInFrames={Math.max(
                 1,
@@ -341,7 +365,7 @@ export const TextEffectsComp = (props) => {
                 toolsSeconds={TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS}
                 artifactsSeconds={TEXT_EFFECTS_SETUP_VIDEO_ARTIFACTS_SECONDS}
                 toolsText="Video tools"
-                artifactsText={null}
+                artifactsText="Video artifacts"
                 toolsEmoji="🛠"
                 artifactsEmoji="🎞️"
                 frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))}
@@ -352,7 +376,7 @@ export const TextEffectsComp = (props) => {
             </Sequence>
 
             <Sequence
-              name="Three Tools: SAM3 -> MatAnyone -> Remotion"
+              name="[S04] Three Tools: SAM3 -> MatAnyone -> Remotion"
               from={Math.max(0, Math.floor(TEXT_EFFECTS_THREE_TOOLS_START_SECONDS * fps))}
               durationInFrames={Math.max(
                 1,
@@ -372,7 +396,7 @@ export const TextEffectsComp = (props) => {
         );
       })()}
 
-        <Sequence name="HeroStamp (Front)" from={0} durationInFrames={holdFrames}>
+        <Sequence name="[S01] HeroStamp (Front)" from={0} durationInFrames={holdFrames}>
           <HeroStamp
             layer="front"
             transcriptWords={transcriptWords}

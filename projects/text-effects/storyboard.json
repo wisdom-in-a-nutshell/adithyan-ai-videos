@@ -11,6 +11,7 @@
   "beats": [
     {
       "id": "hook-100-edited",
+      "scene": "S01",
       "source_start": 0.08,
       "source_end": 9.12,
       "sentences": [
@@ -30,6 +31,7 @@
     },
     {
       "id": "setup-what-youll-see",
+      "scene": "S02",
       "source_start": 9.2,
       "source_end": 22.64,
       "sentences": [
@@ -47,8 +49,41 @@
     },
     {
       "id": "setup-what-codex-is",
+      "scene": "S03",
       "source_start": 22.64,
       "source_end": 50.96,
+      "scene_parts": [
+        {
+          "scene": "S03A",
+          "label": "Codex -> Tools -> Digital artifacts",
+          "source_start": 28.88,
+          "source_end": 39.4,
+          "icons": {
+            "tools": "🛠",
+            "artifacts": "🗂️"
+          }
+        },
+        {
+          "scene": "S03B",
+          "label": "Codex -> Coding tools -> Coding artifacts",
+          "source_start": 39.4,
+          "source_end": 47.2,
+          "icons": {
+            "tools": "🛠",
+            "artifacts": "💾"
+          }
+        },
+        {
+          "scene": "S03C",
+          "label": "Codex -> Video tools -> Video artifacts",
+          "source_start": 47.2,
+          "source_end": 50.96,
+          "icons": {
+            "tools": "🛠",
+            "artifacts": "🎞️"
+          }
+        }
+      ],
       "sentences": [],
       "transcript": [
         "Now, Codex is a really smart general-purpose agent or harness. Depending upon which tools you give it access to, it can interact with the digital world and produce some nice digital artifacts.",
@@ -59,11 +94,13 @@
         "Swap the top-left label from `RAW RECORDING` to `ANIMATING` for this segment (22.64s → 50.96s).",
         "Show a simple flow diagram to match the narration: `Codex` → `Tools` → `Artifacts` (keep it readable behind/around the subject).",
         "As you say 'coding tools/artifacts' vs 'video tools/artifacts', update the right-hand label accordingly (two-state or four-state swap is fine).",
-        "Use a small icon/logo for Codex and simple line/arrow connectors (don’t over-animate; clarity first)."
+        "Use a small icon/logo for Codex and simple line/arrow connectors (don’t over-animate; clarity first).",
+        "Icon picks (current): tools=🛠, digital artifacts=🗂️, coding artifacts=💾, video artifacts=🎞️."
       ]
     },
     {
       "id": "three-tools",
+      "scene": "S04",
       "source_start": 50.96,
       "source_end": 57.84,
       "sentences": [
@@ -79,6 +116,7 @@
     },
     {
       "id": "tool-1-sam3",
+      "scene": "S05",
       "source_start": 57.92,
       "source_end": 80,
       "sentences": [
@@ -108,6 +146,7 @@
     },
     {
       "id": "tool-2-matanyone",
+      "scene": "S06",
       "source_start": 80.08,
       "source_end": 129.52,
       "sentences": [
@@ -142,6 +181,7 @@
     },
     {
       "id": "tool-3-remotion",
+      "scene": "S07",
       "source_start": 129.52,
       "source_end": 180.16,
       "sentences": [
@@ -172,6 +212,7 @@
     },
     {
       "id": "bridge-open-source",
+      "scene": "S08",
       "source_start": 180.16,
       "source_end": 204.8,
       "sentences": [],
@@ -185,6 +226,7 @@
     },
     {
       "id": "recap",
+      "scene": "S09",
       "source_start": 204.8,
       "source_end": 230.4,
       "sentences": [
@@ -212,6 +254,7 @@
     },
     {
       "id": "close-all-codex",
+      "scene": "S10",
       "source_start": 230.48,
       "source_end": 241.76,
       "sentences": [
@@ -231,6 +274,7 @@
     },
     {
       "id": "bridge-links-github",
+      "scene": "S11",
       "source_start": 241.76,
       "source_end": 257.12,
       "sentences": [],
@@ -244,6 +288,7 @@
     },
     {
       "id": "tag-end",
+      "scene": "S12",
       "source_start": 257.12,
       "source_end": 258.4,
       "sentences": [

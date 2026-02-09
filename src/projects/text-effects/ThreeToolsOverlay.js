@@ -56,6 +56,10 @@ export const ThreeToolsOverlay = ({
   scale = 1,
   baseLeft = 32,
   baseTop = 142,
+  // Where the flow line should continue from:
+  // - "tools": directly below the existing Tools pill
+  // - "artifacts": directly below the existing Artifacts pill
+  anchor = 'tools',
   items = [
     {label: 'SAM3'},
     {label: 'MatAnyone'},
@@ -81,17 +85,21 @@ export const ThreeToolsOverlay = ({
   // That pill sits at `toolsY`, so we start our numbered list where the next
   // block would normally appear.
   const toolsY = gapY;
-  const lineStartY = toolsY + pillH;
-  const firstY = toolsY + pillH + gapY;
+  const artifactsY = toolsY + pillH + gapY;
+  const anchorY = anchor === 'artifacts' ? artifactsY : toolsY;
+  const lineStartY = anchorY + pillH;
+  const firstY = lineStartY + gapY;
 
   const lineX = 22;
   const lineColor = 'rgba(59,130,246,0.92)';
   const lineW = 2;
   const arrowSize = 7;
 
-  const rowAppearStep = 0.38;
   const rows = items.map((item, idx) => {
-    const rowStart = startSeconds + idx * rowAppearStep;
+    const rowStart =
+      Number.isFinite(Number(item?.startSeconds)) && item.startSeconds !== null
+        ? Number(item.startSeconds)
+        : startSeconds + idx * 0.38;
     const p = clamp01((t - rowStart) / 0.28);
     return {
       ...item,
