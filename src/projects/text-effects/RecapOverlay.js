@@ -216,7 +216,7 @@ export const RecapOverlay = ({
         startSeconds={samSeconds}
         endSeconds={matAnyoneSeconds - 0.08}
         label="SAM 3"
-        description="Create a static mask around the person."
+        description="Foundation model for promptable segmentation in images and videos."
       />
 
       <SingleToolCallout
