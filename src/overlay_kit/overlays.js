@@ -395,6 +395,7 @@ const LabelOverlay = ({text, durationInFrames, scale}) => {
         alignItems: 'center',
         gap: 10 * scale,
         position: 'absolute',
+        zIndex: 100,
       }}
     >
       <span
@@ -434,7 +435,7 @@ const CodexCallout = ({text, logo, durationInFrames, scale}) => {
         gap: 10 * scale,
         boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
         opacity,
-        zIndex: 20,
+        zIndex: 100,
       }}
     >
       {logo ? (
@@ -959,6 +960,7 @@ const DisclaimerOverlay = ({text, durationInFrames, scale}) => {
         fontSize: 26 * scale,
         color: '#fff',
         opacity,
+        zIndex: 100,
       }}
     >
       <span
@@ -1093,7 +1095,7 @@ const StatusLeftOverlay = ({text, durationInFrames, scale}) => {
         alignItems: 'center',
         gap: 10 * scale,
         textTransform: 'uppercase',
-        zIndex: 20,
+        zIndex: 100,
       }}
     >
       <span>{text}</span>

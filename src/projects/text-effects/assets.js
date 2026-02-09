@@ -46,6 +46,11 @@ export const TEXT_EFFECTS_SAM3_STATIC_MASK_URL =
 export const TEXT_EFFECTS_TOOL2_START_SECONDS = 80.08;
 export const TEXT_EFFECTS_TOOL2_END_SECONDS = 129.52;
 
+// tool-2-matanyone: green screen preview timing (hardcoded for this recording).
+// Starts at: "So if I do that," and ends at: "... the original video."
+export const TEXT_EFFECTS_TOOL2_GREEN_START_SECONDS = 95.28;
+export const TEXT_EFFECTS_TOOL2_GREEN_END_SECONDS = 116.72;
+
 // Storyboard beat: tool-3-remotion (S07)
 export const TEXT_EFFECTS_TOOL3_REMOTION_START_SECONDS = 129.52;
 export const TEXT_EFFECTS_TOOL3_REMOTION_END_SECONDS = 180.16;

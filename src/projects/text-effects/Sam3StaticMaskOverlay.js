@@ -31,8 +31,8 @@ export const Sam3StaticMaskOverlay = ({
       style={{
         position: 'absolute',
         inset: 0,
-        // Above video/alpha, below the top-left pills (zIndex 20).
-        zIndex: 12,
+        // Above other overlays; below the top-left pills (we pin those at zIndex 100).
+        zIndex: 90,
         opacity,
       }}
     >
@@ -49,4 +49,3 @@ export const Sam3StaticMaskOverlay = ({
     </div>
   );
 };
-

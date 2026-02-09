@@ -19,3 +19,4 @@
 - Use single-stroke rough lines if sketching boxes.
 - If sketching reduces clarity, revert to clean borders.
 - Keep overlay copy concise and readable.
+- If transcript timings are stable (same recording), prefer hardcoding key effect timestamps in `src/projects/<project-id>/assets.js` instead of writing code to re-find phrases on every run.

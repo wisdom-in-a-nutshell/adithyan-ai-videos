@@ -21,6 +21,8 @@ import {
   TEXT_EFFECTS_TOOL1_SAM3_END_SECONDS,
   TEXT_EFFECTS_SAM3_MASK_SHOW_SECONDS,
   TEXT_EFFECTS_SAM3_STATIC_MASK_URL,
+  TEXT_EFFECTS_TOOL2_GREEN_END_SECONDS,
+  TEXT_EFFECTS_TOOL2_GREEN_START_SECONDS,
   TEXT_EFFECTS_TOOL2_END_SECONDS,
   TEXT_EFFECTS_TOOL2_START_SECONDS,
   TEXT_EFFECTS_TOOL3_REMOTION_START_SECONDS,
@@ -150,31 +152,6 @@ const findFirstWordEndInRangeSeconds = (words, targets, startSeconds, endSeconds
   return null;
 };
 
-const findPhraseStartSeconds = (words, phraseTokens, startSeconds, endSeconds) => {
-  if (!Array.isArray(words) || !Array.isArray(phraseTokens) || phraseTokens.length === 0) {
-    return null;
-  }
-  const onlyWords = words.filter((w) => w?.type === 'word' && typeof w?.text === 'string');
-  if (onlyWords.length === 0) {
-    return null;
-  }
-  const phrase = phraseTokens.map((t) => normalizeWord(t));
-  for (let i = 0; i < onlyWords.length - phrase.length; i++) {
-    const t0 = Number(onlyWords[i]?.start);
-    if (!Number.isFinite(t0)) continue;
-    if (t0 < startSeconds || t0 > endSeconds) continue;
-    let ok = true;
-    for (let j = 0; j < phrase.length; j++) {
-      if (normalizeWord(onlyWords[i + j]?.text) !== phrase[j]) {
-        ok = false;
-        break;
-      }
-    }
-    if (ok) return t0;
-  }
-  return null;
-};
-
 // Project-specific composition wrapper for `text-effects`.
 // Keep the cut short while iterating; extend later when we implement storyboard-driven beats.
 export const TextEffectsComp = (props) => {
@@ -279,22 +256,9 @@ export const TextEffectsComp = (props) => {
           );
 
           // MatAnyone (scene 6): show a "green screen preview" by replacing the background with solid green.
-          // Triggered by transcript words timing: starts at "So if I do that," and ends at "That is nice ...".
-          const greenStartSeconds =
-            findPhraseStartSeconds(
-              transcriptWords,
-              ['so', 'if', 'i', 'do', 'that'],
-              TEXT_EFFECTS_TOOL2_START_SECONDS,
-              TEXT_EFFECTS_TOOL2_END_SECONDS
-            ) ?? TEXT_EFFECTS_TOOL2_START_SECONDS;
-
-          const greenEndSeconds =
-            findPhraseStartSeconds(
-              transcriptWords,
-              ['that', 'is', 'nice'],
-              greenStartSeconds,
-              TEXT_EFFECTS_TOOL2_END_SECONDS
-            ) ?? Math.min(TEXT_EFFECTS_TOOL2_END_SECONDS, greenStartSeconds + 12);
+          // Timing is hardcoded for this recording (transcript is stable).
+          const greenStartSeconds = TEXT_EFFECTS_TOOL2_GREEN_START_SECONDS;
+          const greenEndSeconds = TEXT_EFFECTS_TOOL2_GREEN_END_SECONDS;
 
           return (
             <Sequence name="[T2] Green Screen Preview" from={from} durationInFrames={dur}>
@@ -580,6 +544,22 @@ export const TextEffectsComp = (props) => {
                   {label: 'MatAnyone', startSeconds: TEXT_EFFECTS_TOOL2_START_SECONDS},
                   {label: 'Remotion', startSeconds: TEXT_EFFECTS_TOOL3_REMOTION_START_SECONDS},
                 ]}
+              />
+            </Sequence>
+
+            <Sequence
+              name="[S05] SAM3: Static Mask (Full Screen)"
+              from={Math.max(0, Math.floor(TEXT_EFFECTS_SAM3_MASK_SHOW_SECONDS * fps))}
+              durationInFrames={Math.max(
+                1,
+                Math.ceil((TEXT_EFFECTS_TOOL1_SAM3_END_SECONDS - TEXT_EFFECTS_SAM3_MASK_SHOW_SECONDS) * fps)
+              )}
+            >
+              <Sam3StaticMaskOverlay
+                src={resolveAssetSrc(TEXT_EFFECTS_SAM3_STATIC_MASK_URL)}
+                startSeconds={TEXT_EFFECTS_SAM3_MASK_SHOW_SECONDS}
+                endSeconds={TEXT_EFFECTS_TOOL1_SAM3_END_SECONDS}
+                frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SAM3_MASK_SHOW_SECONDS * fps))}
               />
             </Sequence>
           </>
