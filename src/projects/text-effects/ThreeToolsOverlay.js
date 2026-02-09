@@ -77,7 +77,12 @@ export const ThreeToolsOverlay = ({
   const pillH = 44;
   const gapY = 44 * 1.2;
   const rowGap = pillH + gapY;
-  const firstY = gapY;
+  // This overlay is meant to *continue* below an existing "Video tools" pill.
+  // That pill sits at `toolsY`, so we start our numbered list where the next
+  // block would normally appear.
+  const toolsY = gapY;
+  const lineStartY = toolsY + pillH;
+  const firstY = toolsY + pillH + gapY;
 
   const lineX = 22;
   const lineColor = 'rgba(59,130,246,0.92)';
@@ -108,7 +113,7 @@ export const ThreeToolsOverlay = ({
   const lineHeight =
     rows.length === 0
       ? 0
-      : Math.max(0, rows[lastVisibleIndex].y + pillH * 0.1);
+      : Math.max(0, rows[lastVisibleIndex].y + pillH * 0.1 - lineStartY);
   const lineProgress = clamp01((t - startSeconds) / 0.6);
 
   return (
@@ -125,12 +130,12 @@ export const ThreeToolsOverlay = ({
       }}
     >
       <div style={{position: 'relative', paddingLeft: 44}}>
-        {/* Line originates "from Codex" (Codex pill above this overlay). */}
+        {/* Line continues below the existing "Video tools" pill. */}
         <div
           style={{
             position: 'absolute',
             left: lineX,
-            top: 0,
+            top: lineStartY,
             width: lineW,
             height: lineHeight,
             backgroundColor: lineColor,
@@ -174,4 +179,3 @@ export const ThreeToolsOverlay = ({
     </div>
   );
 };
-

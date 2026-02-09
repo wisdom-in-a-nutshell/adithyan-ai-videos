@@ -71,6 +71,9 @@ export const CodexToolsArtifactsOverlay = ({
   const resolvedArtifactsSeconds =
     Number.isFinite(artifactsSeconds) ? artifactsSeconds : resolvedToolsSeconds + 0.4;
 
+  const hasArtifacts =
+    typeof artifactsText === 'string' && artifactsText.trim().length > 0;
+
   const showTools = clamp01((t - resolvedToolsSeconds) / 0.35);
   const showArtifacts = clamp01((t - resolvedArtifactsSeconds) / 0.35);
 
@@ -190,44 +193,48 @@ export const CodexToolsArtifactsOverlay = ({
           <Pill text={toolsText} emoji={toolsEmoji} />
         </div>
 
-        <div
-          style={{
-            position: 'absolute',
-            left: lineX,
-            top: toolsY + pillH,
-            width: lineW,
-            height: Math.max(0, artifactsY - (toolsY + pillH)),
-            backgroundColor: lineColor,
-            transformOrigin: 'top',
-            transform: `scaleY(${lineToArtifacts})`,
-          }}
-        />
-        <FlowDot y={dot2.y} opacity={dot2.o} />
-        <div
-          style={{
-            position: 'absolute',
-            left: lineX - arrowSize + 1,
-            top: artifactsY - 10,
-            width: 0,
-            height: 0,
-            borderLeft: `${arrowSize}px solid transparent`,
-            borderRight: `${arrowSize}px solid transparent`,
-            borderTop: `${arrowSize}px solid ${lineColor}`,
-            opacity: lineToArtifacts > 0.9 ? 1 : 0,
-          }}
-        />
+        {hasArtifacts ? (
+          <>
+            <div
+              style={{
+                position: 'absolute',
+                left: lineX,
+                top: toolsY + pillH,
+                width: lineW,
+                height: Math.max(0, artifactsY - (toolsY + pillH)),
+                backgroundColor: lineColor,
+                transformOrigin: 'top',
+                transform: `scaleY(${lineToArtifacts})`,
+              }}
+            />
+            <FlowDot y={dot2.y} opacity={dot2.o} />
+            <div
+              style={{
+                position: 'absolute',
+                left: lineX - arrowSize + 1,
+                top: artifactsY - 10,
+                width: 0,
+                height: 0,
+                borderLeft: `${arrowSize}px solid transparent`,
+                borderRight: `${arrowSize}px solid transparent`,
+                borderTop: `${arrowSize}px solid ${lineColor}`,
+                opacity: lineToArtifacts > 0.9 ? 1 : 0,
+              }}
+            />
 
-        <div
-          style={{
-            position: 'absolute',
-            left: colX,
-            top: artifactsY,
-            opacity: artifactsOpacity,
-            transform: `translateY(${artifactsSlide}px)`,
-          }}
-        >
-          <Pill text={artifactsText} emoji={artifactsEmoji} />
-        </div>
+            <div
+              style={{
+                position: 'absolute',
+                left: colX,
+                top: artifactsY,
+                opacity: artifactsOpacity,
+                transform: `translateY(${artifactsSlide}px)`,
+              }}
+            >
+              <Pill text={artifactsText} emoji={artifactsEmoji} />
+            </div>
+          </>
+        ) : null}
       </div>
     </div>
   );

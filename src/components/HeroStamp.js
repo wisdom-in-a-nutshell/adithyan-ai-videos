@@ -210,6 +210,16 @@ export const HeroStamp = ({
     extrapolateRight: 'clamp',
   });
 
+  // Center "100%" readability helpers.
+  // Keep these above the `layer === 'front'` early return so both layers share the same motion.
+  const percentStretchX = 1.12;
+  const percentSlideX = interpolate(
+    t,
+    [percentStart - 0.06, percentStart + 0.18],
+    [-120, 0],
+    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+  );
+
   const lift = interpolate(t, [timing.thisStart, timing.thisStart + 0.35], [18, 0], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
@@ -268,41 +278,74 @@ export const HeroStamp = ({
     return null;
   }
 
-	  if (layer === 'front') {
-	    if (editedOpacity <= 0 || baseOpacity <= 0) {
-	      return null;
-	    }
+  if (layer === 'front') {
+    // Front layer: add an outline-only duplicate of "100%" so the word stays readable
+    // even when the subject occludes the filled version behind.
+    const centerOutlineOpacity = percentOpacity * 0.55;
 
-	    return (
-	      <div
-	        style={{
-	          position: 'absolute',
-	          inset: 0,
-	          opacity: baseOpacity * editedOpacity,
-	          pointerEvents: 'none',
-	        }}
-	      >
-			        <div
-			          style={{
-			            position: 'absolute',
-			            left: '50%',
-			            bottom: Math.round(height * 0.11),
-			            transform: `translate3d(-50%, ${Math.round(editedLift)}px, 0)`,
-			            color: textColor,
-			            ...sharedTextStyle,
-			            fontSize: bottomFontSize,
-			            whiteSpace: 'nowrap',
-			          }}
-			        >
-	          {bottomPrefixText}{' '}
-	          <span
-	            style={{
-	              color: accentColor,
-	            }}
-	          >
-	            {bottomAccentText}
-	          </span>
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          opacity: baseOpacity,
+          pointerEvents: 'none',
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            transform: `translate3d(calc(-50% + ${Math.round(
+              percentSlideX
+            )}px), -52%, 0) rotate(${percentRotate}deg) scale(${settle * percentZoom})`,
+            fontSize: percentFontSize,
+            letterSpacing: -4,
+            lineHeight: 1,
+            whiteSpace: 'nowrap',
+            opacity: centerOutlineOpacity,
+            color: 'transparent',
+            WebkitTextStroke: '2px rgba(255,255,255,0.28)',
+            textShadow: '0 0 20px rgba(0,0,0,0.35)',
+            filter: 'none',
+          }}
+        >
+          <span
+            style={{
+              display: 'inline-block',
+              transform: `translate3d(0, 0, 0) scale(${percentScale}) scaleX(${percentStretchX})`,
+              transformOrigin: '50% 50%',
+            }}
+          >
+            {centerText}
+          </span>
         </div>
+
+        {editedOpacity > 0 ? (
+          <div
+            style={{
+              position: 'absolute',
+              left: '50%',
+              bottom: Math.round(height * 0.11),
+              transform: `translate3d(-50%, ${Math.round(editedLift)}px, 0)`,
+              color: textColor,
+              ...sharedTextStyle,
+              fontSize: bottomFontSize,
+              whiteSpace: 'nowrap',
+              opacity: editedOpacity,
+            }}
+          >
+            {bottomPrefixText}{' '}
+            <span
+              style={{
+                color: accentColor,
+              }}
+            >
+              {bottomAccentText}
+            </span>
+          </div>
+        ) : null}
       </div>
     );
   }
@@ -327,18 +370,7 @@ export const HeroStamp = ({
     extrapolateRight: 'clamp',
   });
 
-  // Make "100%" read better behind the subject by widening it (without changing font weight).
-  const percentStretchX = 1.12;
-
-  // Gentle slide-in from the left (avoid jumpy motion).
-  const percentSlideX = interpolate(
-    t,
-    [percentStart - 0.06, percentStart + 0.18],
-    [-120, 0],
-    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
-  );
-
-		  return (
+			  return (
 	    <div
 	      style={{
 	        position: 'absolute',

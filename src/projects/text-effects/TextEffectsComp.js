@@ -15,6 +15,8 @@ import {
   TEXT_EFFECTS_SETUP_CODEX_END_SECONDS,
   TEXT_EFFECTS_SETUP_CODEX_START_SECONDS,
   TEXT_EFFECTS_SETUP_START_SECONDS,
+  TEXT_EFFECTS_THREE_TOOLS_END_SECONDS,
+  TEXT_EFFECTS_THREE_TOOLS_START_SECONDS,
   TEXT_EFFECTS_VIDEO_URL,
 } from './assets.js';
 import {SKETCH_FONT_FAMILY} from '../../styles/sketch.js';
@@ -25,6 +27,7 @@ import {
   StatusLeftOverlay,
 } from '../../overlay_kit/overlays.js';
 import {CodexToolsArtifactsOverlay} from './CodexToolsArtifactsOverlay.js';
+import {ThreeToolsOverlay} from './ThreeToolsOverlay.js';
 import {TEXT_EFFECTS_UI_SCALE} from './ui.js';
 
 const resolveAssetSrc = (src) => {
@@ -329,7 +332,7 @@ export const TextEffectsComp = (props) => {
               from={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))}
               durationInFrames={Math.max(
                 1,
-                Math.ceil((TEXT_EFFECTS_SETUP_CODEX_END_SECONDS - TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS) * fps)
+                Math.ceil((TEXT_EFFECTS_THREE_TOOLS_END_SECONDS - TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS) * fps)
               )}
             >
               <CodexToolsArtifactsOverlay
@@ -338,13 +341,31 @@ export const TextEffectsComp = (props) => {
                 toolsSeconds={TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS}
                 artifactsSeconds={TEXT_EFFECTS_SETUP_VIDEO_ARTIFACTS_SECONDS}
                 toolsText="Video tools"
-                artifactsText="Video artifacts"
+                artifactsText={null}
                 toolsEmoji="🛠"
                 artifactsEmoji="🎞️"
                 frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))}
                 scale={TEXT_EFFECTS_UI_SCALE}
                 baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
                 baseTop={132 * TEXT_EFFECTS_UI_SCALE}
+              />
+            </Sequence>
+
+            <Sequence
+              name="Three Tools: SAM3 -> MatAnyone -> Remotion"
+              from={Math.max(0, Math.floor(TEXT_EFFECTS_THREE_TOOLS_START_SECONDS * fps))}
+              durationInFrames={Math.max(
+                1,
+                Math.ceil((TEXT_EFFECTS_THREE_TOOLS_END_SECONDS - TEXT_EFFECTS_THREE_TOOLS_START_SECONDS) * fps)
+              )}
+            >
+              <ThreeToolsOverlay
+                startSeconds={TEXT_EFFECTS_THREE_TOOLS_START_SECONDS}
+                frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_THREE_TOOLS_START_SECONDS * fps))}
+                scale={TEXT_EFFECTS_UI_SCALE}
+                baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
+                baseTop={132 * TEXT_EFFECTS_UI_SCALE}
+                items={[{label: 'SAM3'}, {label: 'MatAnyone'}, {label: 'Remotion'}]}
               />
             </Sequence>
           </>
