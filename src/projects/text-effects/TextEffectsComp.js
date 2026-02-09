@@ -359,20 +359,41 @@ export const TextEffectsComp = (props) => {
                 Math.ceil((TEXT_EFFECTS_THREE_TOOLS_END_SECONDS - TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS) * fps)
               )}
             >
-              <CodexToolsArtifactsOverlay
-                durationInFrames={dur}
-                startSeconds={TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS}
-                toolsSeconds={TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS}
-                artifactsSeconds={TEXT_EFFECTS_SETUP_VIDEO_ARTIFACTS_SECONDS}
-                toolsText="Video tools"
-                artifactsText="Video artifacts"
-                toolsEmoji="🛠"
-                artifactsEmoji="🎞️"
-                frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))}
-                scale={TEXT_EFFECTS_UI_SCALE}
-                baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
-                baseTop={132 * TEXT_EFFECTS_UI_SCALE}
-              />
+              {(() => {
+                const specificallySeconds =
+                  findFirstWordInRangeSeconds(
+                    transcriptWords,
+                    ['specifically'],
+                    TEXT_EFFECTS_THREE_TOOLS_START_SECONDS,
+                    TEXT_EFFECTS_THREE_TOOLS_END_SECONDS
+                  ) ?? TEXT_EFFECTS_THREE_TOOLS_START_SECONDS;
+
+                const samSeconds =
+                  findFirstWordInRangeSeconds(
+                    transcriptWords,
+                    ['sam', 'sam3'],
+                    specificallySeconds,
+                    specificallySeconds + 10
+                  ) ?? specificallySeconds + 1.4;
+
+                return (
+                  <CodexToolsArtifactsOverlay
+                    durationInFrames={dur}
+                    startSeconds={TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS}
+                    toolsSeconds={TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS}
+                    artifactsSeconds={TEXT_EFFECTS_SETUP_VIDEO_ARTIFACTS_SECONDS}
+                    artifactsHideSeconds={samSeconds}
+                    toolsText="Video tools"
+                    artifactsText="Video artifacts"
+                    toolsEmoji="🛠"
+                    artifactsEmoji="🎞️"
+                    frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))}
+                    scale={TEXT_EFFECTS_UI_SCALE}
+                    baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
+                    baseTop={132 * TEXT_EFFECTS_UI_SCALE}
+                  />
+                );
+              })()}
             </Sequence>
 
             <Sequence
@@ -383,14 +404,55 @@ export const TextEffectsComp = (props) => {
                 Math.ceil((TEXT_EFFECTS_THREE_TOOLS_END_SECONDS - TEXT_EFFECTS_THREE_TOOLS_START_SECONDS) * fps)
               )}
             >
-              <ThreeToolsOverlay
-                startSeconds={TEXT_EFFECTS_THREE_TOOLS_START_SECONDS}
-                frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_THREE_TOOLS_START_SECONDS * fps))}
-                scale={TEXT_EFFECTS_UI_SCALE}
-                baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
-                baseTop={132 * TEXT_EFFECTS_UI_SCALE}
-                items={[{label: 'SAM3'}, {label: 'MatAnyone'}, {label: 'Remotion'}]}
-              />
+              {(() => {
+                const specificallySeconds =
+                  findFirstWordInRangeSeconds(
+                    transcriptWords,
+                    ['specifically'],
+                    TEXT_EFFECTS_THREE_TOOLS_START_SECONDS,
+                    TEXT_EFFECTS_THREE_TOOLS_END_SECONDS
+                  ) ?? TEXT_EFFECTS_THREE_TOOLS_START_SECONDS;
+
+                const samSeconds =
+                  findFirstWordInRangeSeconds(
+                    transcriptWords,
+                    ['sam', 'sam3'],
+                    specificallySeconds,
+                    specificallySeconds + 10
+                  ) ?? specificallySeconds + 1.4;
+
+                const matAnyoneSeconds =
+                  findFirstWordInRangeSeconds(
+                    transcriptWords,
+                    ['mat', 'matt', 'map'],
+                    samSeconds + 0.01,
+                    samSeconds + 10
+                  ) ?? samSeconds + 0.8;
+
+                const remotionSeconds =
+                  findFirstWordInRangeSeconds(
+                    transcriptWords,
+                    ['remotion'],
+                    matAnyoneSeconds + 0.01,
+                    matAnyoneSeconds + 20
+                  ) ?? matAnyoneSeconds + 0.8;
+
+                return (
+                  <ThreeToolsOverlay
+                    startSeconds={specificallySeconds}
+                    frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_THREE_TOOLS_START_SECONDS * fps))}
+                    scale={TEXT_EFFECTS_UI_SCALE}
+                    baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
+                    baseTop={132 * TEXT_EFFECTS_UI_SCALE}
+                    anchor="artifacts"
+                    items={[
+                      {label: 'SAM3', startSeconds: samSeconds},
+                      {label: 'MatAnyone', startSeconds: matAnyoneSeconds},
+                      {label: 'Remotion', startSeconds: remotionSeconds},
+                    ]}
+                  />
+                );
+              })()}
             </Sequence>
           </>
         );
