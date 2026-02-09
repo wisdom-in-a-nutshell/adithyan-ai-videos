@@ -148,6 +148,8 @@ export const HeroStamp = ({
   bottomLogoSpinDurationSeconds = 0.55,
   // Start a bit early to compensate for fade-in so the motion is visible immediately.
   bottomLogoSpinStartOffsetSeconds = -0.08,
+  // Control when the logo animation cues relative to the spoken phrase timing.
+  bottomLogoCue = 'edited', // 'edited' | 'codexEnd'
   accentColor = '#3b82f6',
   textColor = '#f6f2ee',
   timingOffsetSeconds = 0,
@@ -203,10 +205,9 @@ export const HeroStamp = ({
   const percentOpacity = appearOpacity({t, startSeconds: percentStart});
   const editedOpacity = appearOpacity({t, startSeconds: timing.editedStart});
 
-  const logoSpinStartSeconds = Math.max(
-    0,
-    timing.editedStart + (Number(bottomLogoSpinStartOffsetSeconds) || 0)
-  );
+  const logoCueSeconds =
+    bottomLogoCue === 'codexEnd' ? Number(timing.codexEnd) : Number(timing.editedStart);
+  const logoSpinStartSeconds = Math.max(0, logoCueSeconds + (Number(bottomLogoSpinStartOffsetSeconds) || 0));
   const logoSpinStartFrame = Math.ceil(logoSpinStartSeconds * fps);
   const logoSpinFrames = Math.max(1, Math.round(Number(bottomLogoSpinDurationSeconds) * fps));
   const logoSpinProgress = spring({
@@ -219,6 +220,18 @@ export const HeroStamp = ({
     bottomLogoSpin ? logoSpinProgress : 0,
     [0, 1],
     [0, 360 * Math.max(0, Number(bottomLogoSpinTurns) || 0)],
+    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+  );
+  const logoInOpacity = interpolate(
+    t,
+    [logoSpinStartSeconds, logoSpinStartSeconds + 0.10],
+    [0, 1],
+    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+  );
+  const logoDropY = interpolate(
+    bottomLogoSpin ? logoSpinProgress : 1,
+    [0, 1],
+    [-18, 0],
     {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
   );
 
@@ -362,7 +375,8 @@ export const HeroStamp = ({
 		                display: 'inline-flex',
 		                alignItems: 'center',
 		                justifyContent: 'center',
-		                transform: `rotate(${logoRotateDeg}deg)`,
+		                opacity: logoInOpacity,
+		                transform: `translate3d(0, ${Math.round(logoDropY)}px, 0) rotate(${logoRotateDeg}deg)`,
 		                transformOrigin: '50% 50%',
 		                filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.30))',
 		              }}
