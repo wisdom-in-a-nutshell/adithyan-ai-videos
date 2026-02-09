@@ -34,7 +34,8 @@ export const TextPlacementDemoOverlay = ({
   // Horizontally center by video dimensions (not "avoid the left stack").
   // We'll art-direct vertical placement per variant.
   const anchorX = 50; // percent
-  const anchorY = variant === 'front' ? 76 : variant === 'behind' ? 54 : 34; // percent
+  // Keep consistent vertical gaps between the 3 stacked labels once they persist.
+  const anchorY = variant === 'front' ? 78 : variant === 'behind' ? 55 : 32; // percent
 
   const fancyT = variant === 'fancy' ? frame / Math.max(1, fps) : 0;
   const wiggleX = variant === 'fancy' ? Math.sin(fancyT * Math.PI * 1.6) * 7 : 0;

@@ -70,5 +70,6 @@ export const TEXT_EFFECTS_TOOL3_TEXT_BEHIND_END_SECONDS = 166.56;
 export const TEXT_EFFECTS_TOOL3_TEXT_FANCY_START_SECONDS = 163.36;
 export const TEXT_EFFECTS_TOOL3_TEXT_FANCY_END_SECONDS = 166.56;
 
-// Cut includes beat 1+2+3 and the toolchain walkthrough through Remotion.
-export const TEXT_EFFECTS_CUT_SECONDS = 181.0;
+// Full recording is ~258.4s. Keep the composition long so the whole timeline is visible in Studio,
+// even if we haven't added overlays for later beats yet.
+export const TEXT_EFFECTS_CUT_SECONDS = 258.4;

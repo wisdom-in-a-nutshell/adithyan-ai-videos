@@ -290,6 +290,8 @@ export const HeroStamp = ({
           position: 'absolute',
           inset: 0,
           opacity: baseOpacity * editedOpacity,
+          // Foreground matte uses a high zIndex; keep this tagline above it.
+          zIndex: 200,
           pointerEvents: 'none',
         }}
       >
