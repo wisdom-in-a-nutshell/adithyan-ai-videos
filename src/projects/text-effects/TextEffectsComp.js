@@ -276,22 +276,26 @@ export const TextEffectsComp = (props) => {
             `drop-shadow(0 0 6px rgba(34, 197, 94, 0.55))`,
           ].join(' ');
 
-          return (
-	            <Sequence name="[T2] Matte Outline (Between Layers)" from={from} durationInFrames={dur}>
-	              <Video
-	                src={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL, assetMap)}
-	                muted
-	                style={{
-	                  position: 'absolute',
-	                  inset: 0,
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  filter: outlineFilter,
-                }}
-              />
-            </Sequence>
-          );
+		          return (
+		            <Sequence name="[T2] Matte Outline (Between Layers)" from={from} durationInFrames={dur}>
+		              <Video
+		                src={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL, assetMap)}
+		                // Important: align the outline with the main foreground alpha layer.
+		                // Without `startFrom`, this Video would start at frame 0 at `from`, making it look like a 2nd person.
+		                startFrom={from}
+		                endAt={from + dur}
+		                muted
+		                style={{
+		                  position: 'absolute',
+		                  inset: 0,
+	                  width: '100%',
+	                  height: '100%',
+	                  objectFit: 'cover',
+	                  filter: outlineFilter,
+	                }}
+	              />
+	            </Sequence>
+		          );
         })()}
 
         {(() => {
