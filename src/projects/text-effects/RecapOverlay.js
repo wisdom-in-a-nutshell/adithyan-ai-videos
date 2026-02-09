@@ -4,7 +4,7 @@ import {CodexCallout, StatusLeftOverlay} from '../../overlay_kit/overlays.js';
 
 const clamp01 = (v) => Math.max(0, Math.min(1, v));
 
-const ToolPill = ({text, prefix, scale}) => {
+const ToolPill = ({text, scale, maxWidth}) => {
   return (
     <div
       style={{
@@ -19,28 +19,13 @@ const ToolPill = ({text, prefix, scale}) => {
         boxShadow: '0 10px 24px rgba(0,0,0,0.18)',
         whiteSpace: 'nowrap',
         boxSizing: 'border-box',
-        display: 'flex',
+        // Avoid stretching to the full width of any parent container.
+        display: 'inline-flex',
         alignItems: 'center',
-        gap: 12 * scale,
+        gap: 10 * scale,
+        maxWidth,
       }}
     >
-      <span
-        style={{
-          width: 26 * scale,
-          height: 26 * scale,
-          borderRadius: 999,
-          backgroundColor: '#111827',
-          color: '#fff',
-          fontSize: 14 * scale,
-          fontWeight: 700,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flex: '0 0 auto',
-        }}
-      >
-        {prefix}
-      </span>
       <span>{text}</span>
     </div>
   );
@@ -49,9 +34,9 @@ const ToolPill = ({text, prefix, scale}) => {
 const SingleToolCallout = ({
   globalSeconds,
   scale,
+  maxWidth,
   startSeconds,
   endSeconds,
-  prefix,
   label,
   description,
 }) => {
@@ -125,19 +110,22 @@ const SingleToolCallout = ({
           left: baseLeft,
           top: pillY,
           transform: `translate3d(0, ${Math.round(slide)}px, 0)`,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
         }}
       >
-        <ToolPill text={label} prefix={prefix} scale={scale} />
+        <ToolPill text={label} scale={scale} maxWidth={maxWidth} />
         <div
           style={{
-            marginLeft: 44 * scale,
-            marginTop: 10 * scale,
+            marginLeft: 8 * scale,
+            marginTop: 12 * scale,
             color: '#111827',
             fontSize: 21 * scale,
             fontWeight: 500,
             letterSpacing: 0.2,
             opacity: 0.92,
-            maxWidth: 860 * scale,
+            maxWidth,
           }}
         >
           {description}
@@ -156,6 +144,7 @@ export const RecapOverlay = ({
   samSeconds,
   matAnyoneSeconds,
   remotionSeconds,
+  sam3Url,
 }) => {
   const frame = useCurrentFrame();
   const {fps, width, height} = useVideoConfig();
@@ -173,10 +162,11 @@ export const RecapOverlay = ({
   const baseOpacity = in01 * out01;
 
   // A simple bottom pill reused across all 3 tools.
-  const linksText = 'Links + code: check description';
+  const linksText = sam3Url ? sam3Url : 'Links + code: check description';
   const linksPillW = Math.min(Math.round(width * 0.74), 980);
   const linksPillH = Math.round(46 * scale);
   const linksBottom = Math.round(height * 0.055);
+  const contentMaxW = Math.round(width * 0.56);
 
   return (
     <div
@@ -196,12 +186,12 @@ export const RecapOverlay = ({
       <SingleToolCallout
         globalSeconds={globalSeconds}
         scale={scale}
+        maxWidth={contentMaxW}
         startSeconds={samSeconds}
         // Hide once MatAnyone begins (we'll add MatAnyone next).
         endSeconds={matAnyoneSeconds - 0.08}
-        prefix="1"
-        label="SAM 3"
-        description="Create a segmentation mask around the person."
+        label="SAM 3: Segment Anything with Concepts"
+        description="Create a static mask around the person."
       />
 
       {/* Bottom hint pill */}

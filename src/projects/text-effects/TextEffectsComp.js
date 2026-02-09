@@ -191,7 +191,7 @@ export const TextEffectsComp = (props) => {
 		        <Sequence name="[S01] HeroStamp (Behind)" from={0} durationInFrames={holdFrames}>
 		          <HeroStamp
 		            layer="behind"
-		            accentColor="rgb(207, 187, 159)"
+		            accentColor="rgb(220, 200, 172)"
 		            transcriptWords={transcriptWords}
 		            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
 		            holdUntilSeconds={holdUntilSeconds}
@@ -624,6 +624,7 @@ export const TextEffectsComp = (props) => {
               remotionSeconds={TEXT_EFFECTS_RECAP_REMOTION_SECONDS}
               scale={TEXT_EFFECTS_UI_SCALE}
               codexLogo={TEXT_EFFECTS_CODEX_LOGO_URL}
+              sam3Url="https://github.com/facebookresearch/sam3"
             />
           </Sequence>
         );
@@ -649,7 +650,7 @@ export const TextEffectsComp = (props) => {
 	        <Sequence name="[S01] HeroStamp (Front)" from={0} durationInFrames={holdFrames}>
 	          <HeroStamp
 	            layer="front"
-	            accentColor="rgb(207, 187, 159)"
+	            accentColor="rgb(220, 200, 172)"
 	            transcriptWords={transcriptWords}
 	            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
 		            holdUntilSeconds={holdUntilSeconds}
