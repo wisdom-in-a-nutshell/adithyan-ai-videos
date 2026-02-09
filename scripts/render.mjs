@@ -3,7 +3,7 @@ import {spawnSync} from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {getDefaultCacheBaseDir, prepareAssetCache} from './asset_cache.mjs';
+import {getDefaultCacheBaseDir, prepareAssetCache, prepareMergedPublicDir} from './asset_cache.mjs';
 
 const stripAnsi = (input) =>
   String(input).replace(
@@ -157,6 +157,11 @@ if (useCache) {
     refresh: refreshCache,
   });
 
+  const mergedPublicDir = prepareMergedPublicDir({
+    projectCacheDir: cache.projectCacheDir,
+    repoPublicDir: path.resolve('public'),
+  });
+
   const propsPath = path.join(cache.projectCacheDir, 'render-props.json');
   fs.writeFileSync(
     propsPath,
@@ -173,6 +178,8 @@ if (useCache) {
   );
 
   renderArgs.push('--props', propsPath, '--public-dir', cache.projectCacheDir);
+  // Replace the public-dir with a merged view (repo public + cached assets).
+  renderArgs.splice(renderArgs.lastIndexOf('--public-dir'), 2, '--public-dir', mergedPublicDir);
 }
 
 if (fromSeconds !== null || toSeconds !== null) {

@@ -19,7 +19,7 @@ import {spawnSync} from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import {pathToFileURL} from 'node:url';
-import {getDefaultCacheBaseDir, prepareAssetCache} from './asset_cache.mjs';
+import {getDefaultCacheBaseDir, prepareAssetCache, prepareMergedPublicDir} from './asset_cache.mjs';
 
 const die = (msg) => {
   // eslint-disable-next-line no-console
@@ -71,6 +71,11 @@ const cache = await prepareAssetCache({
   refresh,
 });
 
+const mergedPublicDir = prepareMergedPublicDir({
+  projectCacheDir: cache.projectCacheDir,
+  repoPublicDir: path.resolve('public'),
+});
+
 const propsPath = path.join(cache.projectCacheDir, 'studio-props.json');
 fs.writeFileSync(
   propsPath,
@@ -97,7 +102,7 @@ const cmdArgs = [
   '--props',
   propsPath,
   '--public-dir',
-  cache.projectCacheDir,
+  mergedPublicDir,
 ];
 
 // eslint-disable-next-line no-console

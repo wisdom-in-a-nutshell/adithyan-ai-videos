@@ -128,3 +128,52 @@ export const prepareAssetCache = async ({
   };
 };
 
+const ensureSymlink = (src, dst) => {
+  try {
+    fs.symlinkSync(src, dst);
+  } catch (err) {
+    if (err && err.code === 'EEXIST') {
+      fs.unlinkSync(dst);
+      fs.symlinkSync(src, dst);
+      return;
+    }
+    throw err;
+  }
+};
+
+// Remotion serves `staticFile()` from `--public-dir`. If we point `--public-dir` to the
+// cache directory, we'd break any local files in repo `public/`. This merges both:
+// - repo `public/` contents (symlinked)
+// - cached hashed assets (symlinked at the root)
+export const prepareMergedPublicDir = ({projectCacheDir, repoPublicDir}) => {
+  const mergedPublicDir = path.join(projectCacheDir, 'public');
+  fs.rmSync(mergedPublicDir, {recursive: true, force: true});
+  fs.mkdirSync(mergedPublicDir, {recursive: true});
+
+  if (repoPublicDir && fs.existsSync(repoPublicDir)) {
+    const stack = [{src: repoPublicDir, dst: mergedPublicDir}];
+    while (stack.length > 0) {
+      const {src, dst} = stack.pop();
+      for (const ent of fs.readdirSync(src, {withFileTypes: true})) {
+        const srcPath = path.join(src, ent.name);
+        const dstPath = path.join(dst, ent.name);
+        if (ent.isDirectory()) {
+          fs.mkdirSync(dstPath, {recursive: true});
+          stack.push({src: srcPath, dst: dstPath});
+        } else if (ent.isFile() || ent.isSymbolicLink()) {
+          ensureSymlink(srcPath, dstPath);
+        }
+      }
+    }
+  }
+
+  for (const ent of fs.readdirSync(projectCacheDir, {withFileTypes: true})) {
+    if (!ent.isFile()) continue;
+    if (ent.name.endsWith('.json')) continue;
+    const srcPath = path.join(projectCacheDir, ent.name);
+    const dstPath = path.join(mergedPublicDir, ent.name);
+    ensureSymlink(srcPath, dstPath);
+  }
+
+  return mergedPublicDir;
+};
