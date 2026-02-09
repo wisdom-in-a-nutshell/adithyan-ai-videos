@@ -28,9 +28,27 @@ export const TEXT_EFFECTS_SETUP_VIDEO_ARTIFACTS_SECONDS = 49.6;
 export const TEXT_EFFECTS_THREE_TOOLS_START_SECONDS = 50.96;
 export const TEXT_EFFECTS_THREE_TOOLS_END_SECONDS = 57.84;
 
+// Storyboard beat: tool-1-sam3 (S05)
+export const TEXT_EFFECTS_TOOL1_SAM3_START_SECONDS = 57.92;
+export const TEXT_EFFECTS_TOOL1_SAM3_END_SECONDS = 80.0;
+
+// tool-1-sam3: key phrase anchors from transcript (seconds)
+// "Then it'll look something like this."
+export const TEXT_EFFECTS_SAM3_MASK_SHOW_SECONDS = 67.68;
+// "... static mask."
+export const TEXT_EFFECTS_SAM3_STATIC_MASK_SECONDS = 76.96;
+
+// Static mask PNG output from SAM3.
+export const TEXT_EFFECTS_SAM3_STATIC_MASK_URL =
+  'https://storage.aipodcast.ing/cache/sam3/masks/94496d1d-30e1-4c13-a632-ebbaa2d900d9.png';
+
 // Storyboard beat: tool-2-matanyone
 export const TEXT_EFFECTS_TOOL2_START_SECONDS = 80.08;
 export const TEXT_EFFECTS_TOOL2_END_SECONDS = 129.52;
 
-// Cut includes beat 1+2+3 and the start of the toolchain walkthrough (through MatAnyone).
-export const TEXT_EFFECTS_CUT_SECONDS = 130.0;
+// Storyboard beat: tool-3-remotion (S07)
+export const TEXT_EFFECTS_TOOL3_REMOTION_START_SECONDS = 129.52;
+export const TEXT_EFFECTS_TOOL3_REMOTION_END_SECONDS = 180.16;
+
+// Cut includes beat 1+2+3 and the toolchain walkthrough through Remotion.
+export const TEXT_EFFECTS_CUT_SECONDS = 181.0;

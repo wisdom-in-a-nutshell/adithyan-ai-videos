@@ -17,8 +17,13 @@ import {
   TEXT_EFFECTS_SETUP_START_SECONDS,
   TEXT_EFFECTS_THREE_TOOLS_END_SECONDS,
   TEXT_EFFECTS_THREE_TOOLS_START_SECONDS,
+  TEXT_EFFECTS_TOOL1_SAM3_START_SECONDS,
+  TEXT_EFFECTS_TOOL1_SAM3_END_SECONDS,
+  TEXT_EFFECTS_SAM3_MASK_SHOW_SECONDS,
+  TEXT_EFFECTS_SAM3_STATIC_MASK_URL,
   TEXT_EFFECTS_TOOL2_END_SECONDS,
   TEXT_EFFECTS_TOOL2_START_SECONDS,
+  TEXT_EFFECTS_TOOL3_REMOTION_START_SECONDS,
   TEXT_EFFECTS_VIDEO_URL,
 } from './assets.js';
 import {SKETCH_FONT_FAMILY} from '../../styles/sketch.js';
@@ -31,6 +36,7 @@ import {
 import {CodexToolsArtifactsOverlay} from './CodexToolsArtifactsOverlay.js';
 import {ThreeToolsOverlay} from './ThreeToolsOverlay.js';
 import {GreenScreenOverlay} from './GreenScreenOverlay.js';
+import {Sam3StaticMaskOverlay} from './Sam3StaticMaskOverlay.js';
 import {TEXT_EFFECTS_UI_SCALE} from './ui.js';
 
 const resolveAssetSrc = (src) => {
@@ -358,13 +364,48 @@ export const TextEffectsComp = (props) => {
 
         {(() => {
         const from = Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_CODEX_START_SECONDS * fps));
-        // Keep this status pill visible through the rest of the cut.
+        // We'll override this with tool-specific verbs later, so keep it only until tool-1 starts.
+        const tool1From = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL1_SAM3_START_SECONDS * fps));
+        const tool2From = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL2_START_SECONDS * fps));
+        const tool3From = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL3_REMOTION_START_SECONDS * fps));
         const dur = Math.max(1, durationInFrames - from);
+        const animDur = Math.max(1, Math.min(dur, tool1From - from));
+        const segDur = Math.max(1, Math.min(durationInFrames - tool1From, tool2From - tool1From));
+        const mattDur = Math.max(1, Math.min(durationInFrames - tool2From, tool3From - tool2From));
+        const compDur = Math.max(1, durationInFrames - tool3From);
 
         return (
           <>
-            <Sequence name="[S03] Setup: ANIMATING (Front)" from={from} durationInFrames={dur}>
-              <StatusLeftOverlay text="ANIMATING" durationInFrames={dur} scale={TEXT_EFFECTS_UI_SCALE} />
+            <Sequence name="[S03] Setup: ANIMATING (Front)" from={from} durationInFrames={animDur}>
+              <StatusLeftOverlay text="ANIMATING" durationInFrames={animDur} scale={TEXT_EFFECTS_UI_SCALE} />
+            </Sequence>
+
+            <Sequence
+              name="[S05] Status: SEGMENTING PERSON"
+              from={tool1From}
+              durationInFrames={segDur}
+            >
+              <StatusLeftOverlay
+                text="SEGMENTING PERSON"
+                durationInFrames={segDur}
+                scale={TEXT_EFFECTS_UI_SCALE}
+              />
+            </Sequence>
+
+            <Sequence
+              name="[S06] Status: MATTING"
+              from={tool2From}
+              durationInFrames={mattDur}
+            >
+              <StatusLeftOverlay text="MATTING" durationInFrames={mattDur} scale={TEXT_EFFECTS_UI_SCALE} />
+            </Sequence>
+
+            <Sequence
+              name="[S07] Status: COMPOSING"
+              from={tool3From}
+              durationInFrames={compDur}
+            >
+              <StatusLeftOverlay text="COMPOSING" durationInFrames={compDur} scale={TEXT_EFFECTS_UI_SCALE} />
             </Sequence>
 
             <Sequence
@@ -423,7 +464,7 @@ export const TextEffectsComp = (props) => {
               from={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))}
               durationInFrames={Math.max(
                 1,
-                Math.ceil((TEXT_EFFECTS_THREE_TOOLS_END_SECONDS - TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS) * fps)
+                durationInFrames - Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))
               )}
             >
               {(() => {
@@ -511,8 +552,6 @@ export const TextEffectsComp = (props) => {
                     scale={TEXT_EFFECTS_UI_SCALE}
                     baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
                     baseTop={132 * TEXT_EFFECTS_UI_SCALE}
-                    // The 1/2/3 list should originate from the "Video tools" pill (not from "Video artifacts").
-                    // "Video artifacts" fades out right as we start saying "SAM...".
                     anchor="tools"
                     items={[
                       {label: 'SAM3', startSeconds: samSeconds},
@@ -522,6 +561,26 @@ export const TextEffectsComp = (props) => {
                   />
                 );
               })()}
+            </Sequence>
+
+            <Sequence
+              name="[S05-07] Tool Stack: 1 SAM3, 2 MatAnyone, 3 Remotion"
+              from={tool1From}
+              durationInFrames={Math.max(1, durationInFrames - tool1From)}
+            >
+              <ThreeToolsOverlay
+                startSeconds={TEXT_EFFECTS_TOOL1_SAM3_START_SECONDS}
+                frameOffset={tool1From}
+                scale={TEXT_EFFECTS_UI_SCALE}
+                baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
+                baseTop={132 * TEXT_EFFECTS_UI_SCALE}
+                anchor="tools"
+                items={[
+                  {label: 'SAM3', startSeconds: TEXT_EFFECTS_TOOL1_SAM3_START_SECONDS},
+                  {label: 'MatAnyone', startSeconds: TEXT_EFFECTS_TOOL2_START_SECONDS},
+                  {label: 'Remotion', startSeconds: TEXT_EFFECTS_TOOL3_REMOTION_START_SECONDS},
+                ]}
+              />
             </Sequence>
           </>
         );
