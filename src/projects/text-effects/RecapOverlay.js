@@ -1,5 +1,5 @@
 import React from 'react';
-import {Video, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
+import {interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 import {CodexCallout, StatusLeftOverlay} from '../../overlay_kit/overlays.js';
 
 const clamp01 = (v) => Math.max(0, Math.min(1, v));
@@ -163,10 +163,9 @@ export const RecapOverlay = ({
   samSeconds,
   matAnyoneSeconds,
   remotionSeconds,
-  alphaSrc,
 }) => {
   const frame = useCurrentFrame();
-  const {fps, width} = useVideoConfig();
+  const {fps, width, height} = useVideoConfig();
 
   // `useCurrentFrame()` is composition-global.
   const globalSeconds = frame / Math.max(1, fps);
@@ -182,30 +181,24 @@ export const RecapOverlay = ({
   const out01 = clamp01((dur / Math.max(1, fps) - localSeconds) / fadeOut);
   const baseOpacity = in01 * out01;
 
-  const pipSize = Math.round(width * 0.27);
-  const pipMargin = Math.round(width * 0.032);
+  // A simple bottom pill reused across all 3 tools.
+  const linksText = 'Links + code: check description';
+  const linksPillW = Math.min(Math.round(width * 0.74), 980);
+  const linksPillH = Math.round(46 * scale);
+  const linksBottom = Math.round(height * 0.055);
 
   return (
     <div
       style={{
         position: 'absolute',
         inset: 0,
-        zIndex: 5000,
+        zIndex: 200,
         opacity: baseOpacity,
         pointerEvents: 'none',
       }}
     >
-      {/* White canvas takeover */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          backgroundColor: '#fbfbf7',
-        }}
-      />
-
       {/* Match existing project UI: status pill + Codex callout */}
-      <StatusLeftOverlay text="RECAP" durationInFrames={dur} scale={scale} />
+      <StatusLeftOverlay text="ANIMATING" durationInFrames={dur} scale={scale} />
       <CodexCallout text="CODEX" logo={codexLogo} durationInFrames={dur} scale={scale} />
 
       {/* 1/2/3 list (same pill style as the rest of the project) */}
@@ -243,41 +236,46 @@ export const RecapOverlay = ({
         />
       </div>
 
-      {/* Bottom-right PiP: keep it *synced* by offsetting the asset with `startFrom` */}
+      {/* Bottom hint pill */}
       <div
         style={{
           position: 'absolute',
-          width: pipSize,
-          height: pipSize,
-          right: pipMargin,
-          bottom: pipMargin,
-          borderRadius: 26,
-          overflow: 'hidden',
-          // No "dark/blurred" background; keep it clean on the recap canvas.
-          backgroundColor: 'transparent',
-          boxShadow: '0 18px 44px rgba(0,0,0,0.18)',
-          border: '2px solid rgba(15,23,42,0.10)',
+          left: '50%',
+          bottom: linksBottom,
+          transform: 'translate3d(-50%, 0, 0)',
+          height: linksPillH,
+          width: linksPillW,
+          padding: `0 ${16 * scale}px`,
+          borderRadius: 999,
+          backgroundColor: 'rgba(0,0,0,0.65)',
+          color: '#fff',
+          fontSize: 20 * scale,
+          fontWeight: 600,
+          letterSpacing: 0.6,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 12 * scale,
+          boxShadow: '0 12px 30px rgba(0,0,0,0.18)',
+          zIndex: 220,
         }}
       >
-        <Video
-          src={alphaSrc}
-          // IMPORTANT: align the alpha.webm to the composition timeline.
-          startFrom={Math.max(0, Math.floor(Number(frameOffset) || 0))}
-          muted
+        <span
           style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            transform: 'scale(1.55) translate3d(0, 18px, 0)',
-            transformOrigin: '50% 50%',
-            // Give the cutout a little separation on white.
-            filter: 'drop-shadow(0 14px 26px rgba(0,0,0,0.18))',
+            width: 26 * scale,
+            height: 26 * scale,
+            borderRadius: 999,
+            backgroundColor: 'rgba(255,255,255,0.16)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 18 * scale,
+            lineHeight: 1,
           }}
-        />
+        >
+          ↓
+        </span>
+        {linksText}
       </div>
     </div>
   );
 };
-
