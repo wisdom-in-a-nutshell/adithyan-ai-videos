@@ -34,8 +34,7 @@ export const TextPlacementDemoOverlay = ({
   // Horizontally center by video dimensions (not "avoid the left stack").
   // We'll art-direct vertical placement per variant.
   const anchorX = 50; // percent
-  const anchorY =
-    variant === 'front' ? 68 : variant === 'behind' ? 44 : 42; // percent
+  const anchorY = variant === 'front' ? 72 : variant === 'behind' ? 56 : 46; // percent
 
   const fancyT = variant === 'fancy' ? frame / Math.max(1, fps) : 0;
   const wiggleX = variant === 'fancy' ? Math.sin(fancyT * Math.PI * 1.6) * 7 : 0;
@@ -43,7 +42,7 @@ export const TextPlacementDemoOverlay = ({
   const fancyPulse = variant === 'fancy' ? 1 + Math.sin(fancyT * Math.PI * 1.25) * 0.02 : 1;
 
   // User feedback: remove big background "highlight cards" and keep only readable text.
-  const sizeScale = variant === 'fancy' ? 1.45 : 1.22;
+  const sizeScale = variant === 'front' ? 1.28 : variant === 'behind' ? 1.34 : 1.72;
   const bigSize = 72 * scale * sizeScale;
 
   const zIndex = variant === 'front' ? 80 : 10;
@@ -52,10 +51,7 @@ export const TextPlacementDemoOverlay = ({
     variant === 'front' ? 'TEXT IN FRONT' : variant === 'behind' ? 'TEXT BEHIND' : 'FANCY TEXT BEHIND';
 
   // Keep stroke thin enough that the inner fill stays visible, but thick enough to read on bright backgrounds.
-  const strokePx =
-    variant === 'fancy'
-      ? Math.max(4, Math.round(bigSize * 0.06))
-      : Math.max(3, Math.round(bigSize * 0.05));
+  const strokePx = Math.max(3, Math.min(6, Math.round(bigSize * 0.045)));
   const textStroke =
     variant === 'fancy'
       ? `${strokePx}px rgba(0,0,0,0.62)`

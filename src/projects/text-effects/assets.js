@@ -63,9 +63,10 @@ export const TEXT_EFFECTS_TOOL3_BLUR_BG_PX = 8;
 
 // tool-3-remotion: demo text placement timing (hardcoded for this recording).
 export const TEXT_EFFECTS_TOOL3_TEXT_FRONT_START_SECONDS = 156.72;
-export const TEXT_EFFECTS_TOOL3_TEXT_FRONT_END_SECONDS = 158.96;
+// Persist once it appears (we want all three labels to stay on-screen as we talk through them).
+export const TEXT_EFFECTS_TOOL3_TEXT_FRONT_END_SECONDS = 166.56;
 export const TEXT_EFFECTS_TOOL3_TEXT_BEHIND_START_SECONDS = 158.96;
-export const TEXT_EFFECTS_TOOL3_TEXT_BEHIND_END_SECONDS = 163.36;
+export const TEXT_EFFECTS_TOOL3_TEXT_BEHIND_END_SECONDS = 166.56;
 export const TEXT_EFFECTS_TOOL3_TEXT_FANCY_START_SECONDS = 163.36;
 export const TEXT_EFFECTS_TOOL3_TEXT_FANCY_END_SECONDS = 166.56;
 
