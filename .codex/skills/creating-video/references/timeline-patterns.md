@@ -34,6 +34,7 @@ and compute absolute time explicitly:
 ```js
 const frame = useCurrentFrame();
 const {fps} = useVideoConfig();
+// IMPORTANT: add the offset, never subtract it.
 const absoluteFrame = frame + frameOffset; // where frameOffset === Sequence `from`
 const tSeconds = absoluteFrame / fps;
 ```

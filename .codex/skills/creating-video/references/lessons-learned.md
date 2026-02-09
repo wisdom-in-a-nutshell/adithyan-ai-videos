@@ -19,6 +19,7 @@
 - Use single-stroke rough lines if sketching boxes.
 - If sketching reduces clarity, revert to clean borders.
 - Keep overlay copy concise and readable.
+- Prefer a single per-project baseline scale constant (e.g. `TEXT_EFFECTS_UI_SCALE`) to prevent font/spacing drift across overlays. Only change the baseline when you want the whole project to shift; use small local multipliers (e.g. `* 1.1`) for one-off beats.
 - If transcript timings are stable (same recording), prefer hardcoding key effect timestamps in `src/projects/<project-id>/assets.js` instead of writing code to re-find phrases on every run.
 - If Studio shows errors that don’t match the current source (stale bundle), restart `npm start` and hard-refresh the browser tab.
 - Reuse `src/overlay_kit/overlays.js` components for pills/callouts whenever possible (keeps fonts + sizing consistent).
