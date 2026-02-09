@@ -224,7 +224,7 @@ export const HeroStamp = ({
     ? interpolate(logoLocalFrame, [0, logoSpinFrames], [0, 1], {
         extrapolateLeft: 'clamp',
         extrapolateRight: 'clamp',
-        easing: Easing.out(Easing.cubic),
+        easing: Easing.inOut(Easing.cubic),
       })
     : 0;
   const logoRotateDeg =
@@ -242,6 +242,17 @@ export const HeroStamp = ({
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
+
+  // Subtle "premium" pop: small overshoot, then settle.
+  const popInFrames = Math.max(1, Math.round(0.16 * fps));
+  const popSettleFrames = Math.max(popInFrames + 1, Math.round(0.46 * fps));
+  const logoScale = bottomLogoSpin
+    ? interpolate(logoLocalFrame, [0, popInFrames, popSettleFrames], [0.96, 1.04, 1.0], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+        easing: Easing.out(Easing.cubic),
+      })
+    : 1;
 
   const logoInOpacity = bottomLogoSpin
     ? interpolate(logoLocalFrame, [0, Math.max(1, Math.round(0.10 * fps))], [0, 1], {
@@ -391,7 +402,7 @@ export const HeroStamp = ({
 		                alignItems: 'center',
 		                justifyContent: 'center',
 		                opacity: logoInOpacity,
-		                transform: `translate3d(0, ${Math.round(logoDropY)}px, 0) rotate(${logoRotateDeg}deg)`,
+		                transform: `translate3d(0, ${Math.round(logoDropY)}px, 0) rotate(${logoRotateDeg}deg) scale(${logoScale})`,
 		                transformOrigin: '50% 50%',
 		                filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.30))',
 		              }}
