@@ -25,6 +25,7 @@
 - Reuse `src/overlay_kit/overlays.js` components for pills/callouts whenever possible (keeps fonts + sizing consistent).
 - If a pill/box suddenly stretches too wide: use `display: inline-flex`, `width: fit-content`, `maxWidth`, and `textOverflow: ellipsis`.
 - If you render any extra `Video` layers for effects, always set `muted` and align time with `startFrom={SequenceFromFrame}` to avoid audio doubling + restart.
+- If you render the same `Video` source twice at different timeline offsets (e.g. alpha matte as a foreground layer and again as an outline), you must align the offset with `startFrom` (and usually `endAt`) or it will look like duplicated/unsynced footage.
 - If a layer "goes behind" the subject unexpectedly, it's almost always `zIndex` or ordering relative to the foreground alpha layer.
 - Multi-agent parallelism works fine if you avoid collisions:
   - Assign ownership by folder (one agent per `src/projects/<id>/`), and only coordinate on shared `src/overlay_kit/` primitives.

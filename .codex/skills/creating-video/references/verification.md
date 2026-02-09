@@ -33,6 +33,19 @@ Outputs:
 - Alpha `Video` layer is `muted` so it can’t affect audio.
 - Any extra `Video` layers used for effects are `muted` (avoid doubled audio).
 - If you mount a `Video` inside a later `<Sequence>`, set `startFrom={sequenceFromFrame}` so it doesn't restart at 0.
+  - This is the classic “two people” / “ghost layer” bug when you render the same footage twice (e.g. alpha matte once as the foreground, and again for an outline effect).
+  - Example:
+
+```jsx
+<Sequence from={from} durationInFrames={dur}>
+  <Video
+    src={...}
+    muted
+    startFrom={from}
+    endAt={from + dur}
+  />
+</Sequence>
+```
 - If something unexpectedly appears behind/over the foreground alpha, check explicit `zIndex` on every overlay root.
 - Moving text shimmer:
   - slow the movement first (`textSpeedPxPerSecond`)
