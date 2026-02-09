@@ -19,6 +19,7 @@ Use **code-first** by default:
 - Avoid `projects/<id>/project.json` / `scripts/*project*.mjs` workflows unless the user explicitly asks for them.
 - Wrap major overlays in named `<Sequence>` blocks so effects are visible in Studio’s timeline.
 - Keep transcript timing data in a JSON file (either under `src/projects/<id>/` or `projects/<id>/`) and import it.
+- For stable recordings, hardcode key effect timestamps in `src/projects/<id>/assets.js` (don’t re-find phrases at runtime). See `references/timeline-patterns.md`.
 
 1. If the user already has a storyboard:
    - implement overlays/animations from it, then verify with short renders.

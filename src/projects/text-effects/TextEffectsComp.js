@@ -75,6 +75,14 @@ const resolveAssetSrc = (src) => {
   if (!src || typeof src !== 'string') {
     return src;
   }
+  // `studio:cached` and `render -- --cached` inject an `assetMap` prop that rewrites
+  // remote URLs to `--public-dir` files (e.g. "https://.../video.mp4" -> "/<hash>.mp4").
+  if (props?.assetMap && typeof props.assetMap === 'object') {
+    const mapped = props.assetMap[src];
+    if (typeof mapped === 'string' && mapped.length > 0) {
+      return mapped;
+    }
+  }
   return src;
 };
 

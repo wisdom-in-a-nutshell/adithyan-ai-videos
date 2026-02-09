@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 import {spawnSync} from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {getDefaultCacheBaseDir, prepareAssetCache} from './asset_cache.mjs';
 
 const stripAnsi = (input) =>
   String(input).replace(
@@ -62,6 +66,10 @@ const comp = getArg('--comp') || 'TextEffects';
 const isHQ = hasFlag('--hq') || hasFlag('--full');
 const isPreview = !isHQ;
 const noOpen = hasFlag('--no-open');
+const useCache = hasFlag('--cached') || hasFlag('--cache');
+const refreshCache = hasFlag('--refresh');
+const cacheProject = getArg('--project') || null;
+const cacheBaseDir = getArg('--cache-dir') || getDefaultCacheBaseDir();
 const fromSeconds = toNumber(getArg('--from'));
 const toSeconds = toNumber(getArg('--to'));
 
@@ -118,6 +126,52 @@ if (!meta) {
 const renderArgs = ['remotion', 'render', entry, comp, out, '--overwrite'];
 if (scale !== null) renderArgs.push('--scale', String(scale));
 if (crf !== null) renderArgs.push('--crf', String(crf));
+
+// Optional code-first caching: cache URLs from `src/projects/<id>/assets.js` and pass an `assetMap` prop.
+if (useCache) {
+  const inferredProject = cacheProject || (comp === 'TextEffects' ? 'text-effects' : null);
+  if (!inferredProject) {
+    process.stderr.write(
+      `--cached requires --project <id> (or a known default for --comp ${comp})\n`
+    );
+    process.exit(1);
+  }
+
+  const assetsPath = path.resolve('src', 'projects', inferredProject, 'assets.js');
+  if (!fs.existsSync(assetsPath)) {
+    process.stderr.write(`Missing assets file for cache: ${assetsPath}\n`);
+    process.exit(1);
+  }
+
+  const assets = await import(pathToFileURL(assetsPath).href);
+  const urls = Object.values(assets).filter(
+    (v) => typeof v === 'string' && /^https?:\/\//i.test(v)
+  );
+
+  const cache = await prepareAssetCache({
+    cacheKey: inferredProject,
+    urls,
+    cacheBaseDir,
+    refresh: refreshCache,
+  });
+
+  const propsPath = path.join(cache.projectCacheDir, 'render-props.json');
+  fs.writeFileSync(
+    propsPath,
+    `${JSON.stringify(
+      {
+        assetMap: cache.assetMap,
+        cachedProject: inferredProject,
+        cachedAt: new Date().toISOString(),
+      },
+      null,
+      2
+    )}\n`,
+    'utf-8'
+  );
+
+  renderArgs.push('--props', propsPath, '--public-dir', cache.projectCacheDir);
+}
 
 if (fromSeconds !== null || toSeconds !== null) {
   const from = Math.max(0, fromSeconds ?? 0);
