@@ -128,13 +128,24 @@ export const prepareAssetCache = async ({
   };
 };
 
-const ensureSymlink = (src, dst) => {
+const ensureHardlinkOrCopy = (src, dst) => {
   try {
-    fs.symlinkSync(src, dst);
+    fs.linkSync(src, dst);
+    return;
   } catch (err) {
     if (err && err.code === 'EEXIST') {
-      fs.unlinkSync(dst);
-      fs.symlinkSync(src, dst);
+      fs.rmSync(dst, {force: true});
+      return ensureHardlinkOrCopy(src, dst);
+    }
+    // Hardlinks can fail across filesystems or for some special files.
+    // Fall back to copying bytes.
+    if (err && (err.code === 'EXDEV' || err.code === 'EPERM' || err.code === 'EISDIR')) {
+      fs.copyFileSync(src, dst);
+      return;
+    }
+    // If it's a symlink (repo public), copying is more robust than linking.
+    if (err && err.code === 'EINVAL') {
+      fs.copyFileSync(src, dst);
       return;
     }
     throw err;
@@ -143,8 +154,8 @@ const ensureSymlink = (src, dst) => {
 
 // Remotion serves `staticFile()` from `--public-dir`. If we point `--public-dir` to the
 // cache directory, we'd break any local files in repo `public/`. This merges both:
-// - repo `public/` contents (symlinked)
-// - cached hashed assets (symlinked at the root)
+// - repo `public/` contents (linked/copied)
+// - cached hashed assets (linked/copied at the root)
 export const prepareMergedPublicDir = ({projectCacheDir, repoPublicDir}) => {
   const mergedPublicDir = path.join(projectCacheDir, 'public');
   fs.rmSync(mergedPublicDir, {recursive: true, force: true});
@@ -160,8 +171,11 @@ export const prepareMergedPublicDir = ({projectCacheDir, repoPublicDir}) => {
         if (ent.isDirectory()) {
           fs.mkdirSync(dstPath, {recursive: true});
           stack.push({src: srcPath, dst: dstPath});
-        } else if (ent.isFile() || ent.isSymbolicLink()) {
-          ensureSymlink(srcPath, dstPath);
+        } else if (ent.isFile()) {
+          ensureHardlinkOrCopy(srcPath, dstPath);
+        } else if (ent.isSymbolicLink()) {
+          // Copy symlink target bytes (best-effort).
+          fs.copyFileSync(srcPath, dstPath);
         }
       }
     }
@@ -172,7 +186,7 @@ export const prepareMergedPublicDir = ({projectCacheDir, repoPublicDir}) => {
     if (ent.name.endsWith('.json')) continue;
     const srcPath = path.join(projectCacheDir, ent.name);
     const dstPath = path.join(mergedPublicDir, ent.name);
-    ensureSymlink(srcPath, dstPath);
+    ensureHardlinkOrCopy(srcPath, dstPath);
   }
 
   return mergedPublicDir;

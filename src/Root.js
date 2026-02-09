@@ -1,11 +1,9 @@
 import React from 'react';
 import {Composition} from 'remotion';
 import {MainVideo} from './MainVideo.js';
-import {ForegroundMatteComposite} from './components/ForegroundMatteComposite.js';
 import {TextEffectsComp} from './projects/text-effects/TextEffectsComp.js';
 import {TEXT_EFFECTS_CUT_SECONDS} from './projects/text-effects/assets.js';
 import {ACTIVE_SPEAKER_DETECTION_VIDEO_URL} from './projects/active-speaker-detection/assets.js';
-import {OCCLUSION_DEMO_ALPHA_URL, OCCLUSION_DEMO_VIDEO_URL} from './projects/occlusion-demo/assets.js';
 import storyboard from './data/timeline_storyboard_v1.json';
 import cropTimeline from './data/crop_timeline_1x1.json';
 
@@ -18,18 +16,6 @@ const DEFAULT_PROPS = {
   videoUrl: ACTIVE_SPEAKER_DETECTION_VIDEO_URL,
   storyboard,
   cropTimeline,
-};
-
-const OCCLUSION_DEFAULT_PROPS = {
-  videoUrl: OCCLUSION_DEMO_VIDEO_URL,
-  alphaUrl: OCCLUSION_DEMO_ALPHA_URL,
-  backgroundBlur: 0,
-  backgroundDim: 0,
-  // For this alpha.webm, feathering the RGB can amplify edge spill.
-  // Prefer a small shrink to hide the colored fringe.
-  featherPx: 0,
-  shrinkPx: 2,
-  heroStamp: true,
 };
 
 const TEXT_EFFECTS_DURATION = Math.ceil(TEXT_EFFECTS_CUT_SECONDS * OCCLUSION_FPS);
@@ -45,17 +31,6 @@ export const RemotionRoot = () => {
         width={1920}
         height={1080}
         defaultProps={DEFAULT_PROPS}
-      />
-      <Composition
-        id="OcclusionDemo"
-        component={ForegroundMatteComposite}
-        durationInFrames={OCCLUSION_FPS * 5}
-        fps={OCCLUSION_FPS}
-        // Keep the comp size aligned with the source + alpha assets while iterating.
-        // Upscaling (e.g. 720p -> 1080p) makes small edge artifacts + text aliasing more obvious.
-        width={1280}
-        height={720}
-        defaultProps={OCCLUSION_DEFAULT_PROPS}
       />
       <Composition
         id="TextEffects"
