@@ -4,6 +4,7 @@ import {MainVideo} from './MainVideo.js';
 import {ForegroundMatteComposite} from './components/ForegroundMatteComposite.js';
 import {TextEffectsComp} from './projects/text-effects/TextEffectsComp.js';
 import {TEXT_EFFECTS_CUT_SECONDS} from './projects/text-effects/assets.js';
+import {OCCLUSION_DEMO_ALPHA_URL, OCCLUSION_DEMO_VIDEO_URL} from './projects/occlusion-demo/assets.js';
 import storyboard from './data/timeline_storyboard_v1.json';
 import cropTimeline from './data/crop_timeline_1x1.json';
 
@@ -19,9 +20,8 @@ const DEFAULT_PROPS = {
 };
 
 const OCCLUSION_DEFAULT_PROPS = {
-  videoUrl: 'https://storage.aipodcast.ing/cache/3f076bc7-93f4-4f7b-9af1-15e35d72d092.mp4',
-  alphaUrl:
-    'https://storage.aipodcast.ing/cache/matanyone/alpha/c8c8a19d-3913-42e2-bedf-53e653cff4c6.webm',
+  videoUrl: OCCLUSION_DEMO_VIDEO_URL,
+  alphaUrl: OCCLUSION_DEMO_ALPHA_URL,
   backgroundBlur: 0,
   backgroundDim: 0,
   // For this alpha.webm, feathering the RGB can amplify edge spill.

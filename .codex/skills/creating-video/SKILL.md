@@ -16,10 +16,11 @@ Use **code-first** by default:
 - Put per-video code under `src/projects/<project-id>/`.
 - Register the composition in `src/Root.js`.
 - Keep URLs, cut length, and per-video constants in code (e.g. `assets.js`).
-- Avoid `projects/<id>/project.json` / `scripts/*project*.mjs` workflows unless the user explicitly asks for them.
+- Treat `projects/<id>/project.json` / `scripts/*project*.mjs` as legacy. Don’t use them unless the user explicitly asks.
 - Wrap major overlays in named `<Sequence>` blocks so effects are visible in Studio’s timeline.
-- Keep transcript timing data in a JSON file (either under `src/projects/<id>/` or `projects/<id>/`) and import it.
+- Keep transcript timing data as a JSON file committed with the project (prefer `src/projects/<id>/transcript_words.json` so the project is self-contained).
 - For stable recordings, hardcode key effect timestamps in `src/projects/<id>/assets.js` (don’t re-find phrases at runtime). See `references/timeline-patterns.md`.
+- Don’t depend on “manifest” files at runtime (e.g. `projects/<id>/matting.json`). If they exist, treat them as scratch notes only.
 
 1. If the user already has a storyboard:
    - implement overlays/animations from it, then verify with short renders.
@@ -43,7 +44,7 @@ References:
 - Remotion workspace repo: `wisdom-in-a-nutshell/adithyan-ai-videos` (local clone: `~/GitHub/adithyan-ai-videos`)
 - Per-video code: `~/GitHub/adithyan-ai-videos/src/projects/<project-id>/`
 - Composition registry: `~/GitHub/adithyan-ai-videos/src/Root.js`
-- Transcript timing data (recommended): `~/GitHub/adithyan-ai-videos/src/projects/<project-id>/transcript_words.json`
+- Transcript timing data (recommended): `~/GitHub/adithyan-ai-videos/src/projects/<project-id>/transcript_words.json` (keep it “thin”: words + timestamps)
 
 ## Golden Path (Code-First)
 

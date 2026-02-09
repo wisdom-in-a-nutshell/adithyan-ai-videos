@@ -66,9 +66,8 @@ const comp = getArg('--comp') || 'TextEffects';
 const isHQ = hasFlag('--hq') || hasFlag('--full');
 const isPreview = !isHQ;
 const noOpen = hasFlag('--no-open');
-const useCache = hasFlag('--cached') || hasFlag('--cache');
+const useCache = !hasFlag('--no-cache');
 const refreshCache = hasFlag('--refresh');
-const cacheProject = getArg('--project') || null;
 const cacheBaseDir = getArg('--cache-dir') || getDefaultCacheBaseDir();
 const fromSeconds = toNumber(getArg('--from'));
 const toSeconds = toNumber(getArg('--to'));
@@ -127,29 +126,30 @@ const renderArgs = ['remotion', 'render', entry, comp, out, '--overwrite'];
 if (scale !== null) renderArgs.push('--scale', String(scale));
 if (crf !== null) renderArgs.push('--crf', String(crf));
 
-// Optional code-first caching: cache URLs from `src/projects/<id>/assets.js` and pass an `assetMap` prop.
+// Code-first caching (default-on): cache URLs from `src/projects/*/assets.js` and pass an `assetMap` prop.
 if (useCache) {
-  const inferredProject = cacheProject || (comp === 'TextEffects' ? 'text-effects' : null);
-  if (!inferredProject) {
-    process.stderr.write(
-      `--cached requires --project <id> (or a known default for --comp ${comp})\n`
-    );
-    process.exit(1);
-  }
+  const projectsDir = path.resolve('src', 'projects');
+  const urls = [];
+  if (fs.existsSync(projectsDir)) {
+    const projectIds = fs
+      .readdirSync(projectsDir, {withFileTypes: true})
+      .filter((d) => d.isDirectory())
+      .map((d) => d.name);
 
-  const assetsPath = path.resolve('src', 'projects', inferredProject, 'assets.js');
-  if (!fs.existsSync(assetsPath)) {
-    process.stderr.write(`Missing assets file for cache: ${assetsPath}\n`);
-    process.exit(1);
+    for (const id of projectIds) {
+      const assetsPath = path.resolve(projectsDir, id, 'assets.js');
+      if (!fs.existsSync(assetsPath)) continue;
+      const assets = await import(pathToFileURL(assetsPath).href);
+      for (const v of Object.values(assets)) {
+        if (typeof v === 'string' && /^https?:\/\//i.test(v)) {
+          urls.push(v);
+        }
+      }
+    }
   }
-
-  const assets = await import(pathToFileURL(assetsPath).href);
-  const urls = Object.values(assets).filter(
-    (v) => typeof v === 'string' && /^https?:\/\//i.test(v)
-  );
 
   const cache = await prepareAssetCache({
-    cacheKey: inferredProject,
+    cacheKey: 'render',
     urls,
     cacheBaseDir,
     refresh: refreshCache,
@@ -161,7 +161,7 @@ if (useCache) {
     `${JSON.stringify(
       {
         assetMap: cache.assetMap,
-        cachedProject: inferredProject,
+        cachedProject: 'render',
         cachedAt: new Date().toISOString(),
       },
       null,

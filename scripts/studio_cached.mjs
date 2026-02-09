@@ -1,18 +1,16 @@
 #!/usr/bin/env node
 /**
- * Start Remotion Studio with a local asset cache (code-first).
+ * Start Remotion Studio with a local asset cache (code-first, default-on).
  *
- * This reads URLs directly from `src/projects/<project>/assets.js`, downloads them
- * once, and injects an `assetMap` prop so compositions can swap remote URLs for
- * `--public-dir` local files.
+ * By default, this scans `src/projects/*/assets.js`, downloads any exported
+ * remote URLs once (stable filename = sha1(url)), and injects an `assetMap` prop
+ * so compositions can transparently swap remote URLs for `--public-dir` files.
  *
  * Usage:
+ *   npm start
  *   npm run studio:cached
- *   npm run studio:cached -- --project text-effects --comp TextEffects
  *
  * Flags:
- *   --project <id>      (default: text-effects)
- *   --comp <CompId>     (default: TextEffects)
  *   --cache-dir <dir>   (default: WIN_REMOTION_ASSET_CACHE or ~/.cache/win-remotion-assets)
  *   --refresh           re-download even if cached
  */
@@ -41,21 +39,33 @@ const getArg = (name, fallback) => {
 
 const hasFlag = (name) => args.includes(`--${name}`);
 
-const project = getArg('project', 'text-effects');
-const comp = getArg('comp', 'TextEffects');
 const refresh = hasFlag('refresh');
 const cacheBaseDir = getArg('cache-dir', getDefaultCacheBaseDir());
 
-const assetsPath = path.resolve('src', 'projects', project, 'assets.js');
-if (!fs.existsSync(assetsPath)) {
-  die(`Missing assets file: ${assetsPath}`);
+const projectsDir = path.resolve('src', 'projects');
+if (!fs.existsSync(projectsDir)) {
+  die(`Missing projects dir: ${projectsDir}`);
 }
 
-const assets = await import(pathToFileURL(assetsPath).href);
-const urls = Object.values(assets).filter((v) => typeof v === 'string' && /^https?:\/\//i.test(v));
+const projectIds = fs
+  .readdirSync(projectsDir, {withFileTypes: true})
+  .filter((d) => d.isDirectory())
+  .map((d) => d.name);
+
+const urls = [];
+for (const id of projectIds) {
+  const assetsPath = path.resolve(projectsDir, id, 'assets.js');
+  if (!fs.existsSync(assetsPath)) continue;
+  const assets = await import(pathToFileURL(assetsPath).href);
+  for (const v of Object.values(assets)) {
+    if (typeof v === 'string' && /^https?:\/\//i.test(v)) {
+      urls.push(v);
+    }
+  }
+}
 
 const cache = await prepareAssetCache({
-  cacheKey: project,
+  cacheKey: 'studio',
   urls,
   cacheBaseDir,
   refresh,
@@ -65,19 +75,19 @@ const propsPath = path.join(cache.projectCacheDir, 'studio-props.json');
 fs.writeFileSync(
   propsPath,
   `${JSON.stringify(
-    {
-      assetMap: cache.assetMap,
-      cachedProject: project,
-      cachedAt: new Date().toISOString(),
-    },
-    null,
-    2
+      {
+        assetMap: cache.assetMap,
+        cachedProject: 'studio',
+        cachedAt: new Date().toISOString(),
+      },
+      null,
+      2
   )}\n`,
   'utf-8'
 );
 
 // eslint-disable-next-line no-console
-console.log(`[cache] project=${project} dir=${cache.projectCacheDir}`);
+console.log(`[cache] dir=${cache.projectCacheDir} urls=${urls.length}`);
 
 const entry = 'src/index.js';
 const cmdArgs = [
@@ -91,8 +101,7 @@ const cmdArgs = [
 ];
 
 // eslint-disable-next-line no-console
-console.log(`[studio] open and pick composition: ${comp}`);
+console.log('[studio] open and pick a composition');
 
 const res = spawnSync('npx', cmdArgs, {stdio: 'inherit'});
 process.exit(res.status ?? 1);
-

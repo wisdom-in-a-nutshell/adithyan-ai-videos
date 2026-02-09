@@ -31,7 +31,10 @@ Notes:
   - `words` (normalized word timings)
   - `sentences`
 - Channel should always be `ADITHYAN` for this workflow.
-- After transcription, generate thin derived artifacts for convenience:
+- For code-first Remotion projects, prefer committing a thin words-only artifact inside the project:
+  - `src/projects/<project-id>/transcript_words.json` (usually copied from `transcript.json.words`)
+
+Optional (convenience), generate thin derived artifacts:
 
 ```bash
 cd /Users/adi/GitHub/adithyan-ai-videos

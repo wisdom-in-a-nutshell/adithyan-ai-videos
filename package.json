@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "remotion studio",
+    "start": "node scripts/studio_cached.mjs",
     "studio:text-effects": "remotion studio",
     "studio:cached": "node scripts/studio_cached.mjs",
     "render": "node scripts/render.mjs"
