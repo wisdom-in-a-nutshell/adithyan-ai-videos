@@ -177,9 +177,7 @@ if (useCache) {
     'utf-8'
   );
 
-  renderArgs.push('--props', propsPath, '--public-dir', cache.projectCacheDir);
-  // Replace the public-dir with a merged view (repo public + cached assets).
-  renderArgs.splice(renderArgs.lastIndexOf('--public-dir'), 2, '--public-dir', mergedPublicDir);
+  renderArgs.push('--props', propsPath, '--public-dir', mergedPublicDir);
 }
 
 if (fromSeconds !== null || toSeconds !== null) {
