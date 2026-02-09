@@ -68,6 +68,7 @@ const modalBin = fs.existsSync(modalBinCandidate) ? modalBinCandidate : 'modal';
 const args = [
   'run',
   '-d',
+  '--timestamps',
   '-m',
   'src.functions.video.render_remotion_cloud',
   '--git-sha',
@@ -87,56 +88,42 @@ if (crf) args.push('--crf', crf);
 if (concurrency) args.push('--concurrency', concurrency);
 if (delayRenderTimeoutMs) args.push('--delay-render-timeout-ms', delayRenderTimeoutMs);
 
-const res = spawnSync(modalBin, args, {encoding: 'utf8', cwd: modalRepoDir});
-if (res.status !== 0) {
-  process.stderr.write(res.stderr || '');
-  process.stdout.write(res.stdout || '');
-  process.exit(res.status ?? 1);
-}
-
-const combined = `${res.stdout || ''}\n${res.stderr || ''}`;
-const appIdMatch = combined.match(/\bap-[A-Za-z0-9]+\b/);
-if (!appIdMatch) {
-  process.stderr.write(combined);
-  die('Could not determine Modal app id from output.');
-}
-
-const appId = appIdMatch[0];
-// eslint-disable-next-line no-console
-console.log(`Modal app: ${appId}`);
-// eslint-disable-next-line no-console
-console.log('Tailing logs until the final MP4 URL is printed...');
-
-const logsProc = spawn(modalBin, ['app', 'logs', appId, '--timestamps'], {
-  cwd: modalRepoDir,
-  stdio: ['ignore', 'pipe', 'pipe'],
-});
-
+let appId = null;
 let foundUrl = null;
+const appIdRe = /\bap-[A-Za-z0-9]+\b/;
 const urlRe = /(https?:\/\/\S+?\.mp4)\b/;
+
+const runProc = spawn(modalBin, args, {cwd: modalRepoDir, stdio: ['ignore', 'pipe', 'pipe']});
 
 const onChunk = (chunk) => {
   const text = String(chunk || '');
   process.stdout.write(text);
-  const m = text.match(urlRe);
-  if (m && m[1]) {
-    foundUrl = m[1];
-    // eslint-disable-next-line no-console
-    console.log(`\nFINAL_URL: ${foundUrl}\n`);
-    try {
-      logsProc.kill('SIGTERM');
-    } catch {
-      // ignore
+
+  if (!appId) {
+    const m = text.match(appIdRe);
+    if (m && m[0]) {
+      appId = m[0];
+      // eslint-disable-next-line no-console
+      console.log(`\nModal app: ${appId}\n`);
     }
-    process.exit(0);
+  }
+
+  if (!foundUrl) {
+    const m = text.match(urlRe);
+    if (m && m[1]) {
+      foundUrl = m[1];
+      // eslint-disable-next-line no-console
+      console.log(`\nFINAL_URL: ${foundUrl}\n`);
+    }
   }
 };
 
-logsProc.stdout.on('data', onChunk);
-logsProc.stderr.on('data', onChunk);
-logsProc.on('exit', (code) => {
-  if (foundUrl) return;
+runProc.stdout.on('data', onChunk);
+runProc.stderr.on('data', onChunk);
+runProc.on('exit', (code) => {
+  if (code === 0) process.exit(0);
   die(
-    `Stopped tailing logs (exit ${code ?? 'unknown'}) before URL was printed. Check the Modal dashboard for ${appId}.`
+    `Modal render exited with code ${code ?? 'unknown'}.` +
+      (appId ? ` App: ${appId}` : '')
   );
 });
