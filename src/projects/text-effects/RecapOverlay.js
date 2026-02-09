@@ -154,6 +154,8 @@ export const RecapOverlay = ({
   matAnyoneSeconds,
   remotionSeconds,
   sam3Url,
+  matAnyoneUrl,
+  remotionUrl,
 }) => {
   const frame = useCurrentFrame();
   const {fps, width, height} = useVideoConfig();
@@ -170,13 +172,23 @@ export const RecapOverlay = ({
   const out01 = clamp01((dur / Math.max(1, fps) - localSeconds) / fadeOut);
   const baseOpacity = in01 * out01;
 
+  const activeLink = (() => {
+    if (Number.isFinite(remotionSeconds) && globalSeconds >= remotionSeconds) {
+      return remotionUrl;
+    }
+    if (Number.isFinite(matAnyoneSeconds) && globalSeconds >= matAnyoneSeconds) {
+      return matAnyoneUrl;
+    }
+    return sam3Url;
+  })();
+
   // A simple bottom pill reused across all 3 tools.
-  const linksText = sam3Url ? sam3Url : 'Links + code: check description';
-  const linksPillW = Math.min(Math.round(width * 0.74), 980);
+  const linksText = activeLink ? activeLink : 'Links + code: check description';
   const linksPillH = Math.round(46 * scale);
   const linksBottom = Math.round(height * 0.055);
   // Keep the title pill reasonably narrow so it doesn't dominate the frame.
   const contentMaxW = Math.round(width * 0.48);
+  const linksMaxW = Math.round(width * 0.86);
 
   return (
     <div
@@ -198,10 +210,29 @@ export const RecapOverlay = ({
         scale={scale}
         maxWidth={contentMaxW}
         startSeconds={samSeconds}
-        // Hide once MatAnyone begins (we'll add MatAnyone next).
         endSeconds={matAnyoneSeconds - 0.08}
         label="SAM 3: Segment Anything with Concepts"
         description="Create a static mask around the person."
+      />
+
+      <SingleToolCallout
+        globalSeconds={globalSeconds}
+        scale={scale}
+        maxWidth={contentMaxW}
+        startSeconds={matAnyoneSeconds}
+        endSeconds={remotionSeconds - 0.08}
+        label="MatAnyone"
+        description="Stable matting with consistent video propagation."
+      />
+
+      <SingleToolCallout
+        globalSeconds={globalSeconds}
+        scale={scale}
+        maxWidth={contentMaxW}
+        startSeconds={remotionSeconds}
+        endSeconds={null}
+        label="Remotion"
+        description="Make videos programmatically. Create real MP4 videos with React."
       />
 
       {/* Bottom hint pill */}
@@ -212,7 +243,8 @@ export const RecapOverlay = ({
           bottom: linksBottom,
           transform: 'translate3d(-50%, 0, 0)',
           height: linksPillH,
-          width: linksPillW,
+          width: 'fit-content',
+          maxWidth: linksMaxW,
           padding: `0 ${16 * scale}px`,
           borderRadius: 999,
           backgroundColor: 'rgba(0,0,0,0.65)',
@@ -220,7 +252,7 @@ export const RecapOverlay = ({
           fontSize: 20 * scale,
           fontWeight: 600,
           letterSpacing: 0.6,
-          display: 'flex',
+          display: 'inline-flex',
           alignItems: 'center',
           justifyContent: 'center',
           boxShadow: '0 12px 30px rgba(0,0,0,0.18)',
