@@ -625,6 +625,8 @@ export const TextEffectsComp = (props) => {
               scale={TEXT_EFFECTS_UI_SCALE}
               codexLogo={TEXT_EFFECTS_CODEX_LOGO_URL}
               sam3Url="https://github.com/facebookresearch/sam3"
+              matAnyoneUrl="https://github.com/pq-yang/MatAnyone"
+              remotionUrl="https://www.remotion.dev/"
             />
           </Sequence>
         );
