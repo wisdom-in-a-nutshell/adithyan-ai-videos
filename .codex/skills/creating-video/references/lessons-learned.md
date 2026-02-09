@@ -20,3 +20,4 @@
 - If sketching reduces clarity, revert to clean borders.
 - Keep overlay copy concise and readable.
 - If transcript timings are stable (same recording), prefer hardcoding key effect timestamps in `src/projects/<project-id>/assets.js` instead of writing code to re-find phrases on every run.
+- If Studio shows errors that don’t match the current source (stale bundle), restart `npm start` and hard-refresh the browser tab.

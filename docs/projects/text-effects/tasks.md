@@ -26,7 +26,10 @@ Ship a clean, readable Remotion composition that:
 - Source assets currently used (hardcoded in `src/projects/text-effects/assets.js`):
   - `original.mp4`: `https://descriptusercontent.com/published/1b6b1b12-e333-487f-a2e7-87b87d68ec26/original.mp4`
   - `alpha.webm` (VP9 with alpha): `https://storage.aipodcast.ing/cache/matanyone/alpha/88efdd42-c664-4df2-8c7d-34824323e95c.webm`
-- Storyboard beats exist in `projects/text-effects/storyboard.json` (useful as “narrative truth”), but the current implementation is intentionally code-first (timings in `src/projects/text-effects/assets.js` + `src/projects/text-effects/transcript_words.json`).
+- Implementation is intentionally code-first:
+  - Timings are hardcoded in `src/projects/text-effects/assets.js`.
+  - Transcript words live at `src/projects/text-effects/transcript_words.json` (reference only, not a runtime “phrase finder” input).
+- Legacy folder `projects/text-effects/` still exists, but is not required for the `TextEffects` composition anymore.
 
 ## Decisions
 
@@ -43,9 +46,7 @@ Ship a clean, readable Remotion composition that:
 
 ## Open Questions
 
-- Do we want the `TextEffects` composition to stay as a short “first ~58s” cut for iteration, or do we want to extend it to the full storyboard?
-- Should we keep `projects/text-effects/storyboard.json` as the canonical narrative artifact, or treat it as optional notes and keep only code + transcript words?
-- What’s the “source of truth” transcript going forward: Descript export (`projects/text-effects/transcript.json`) or `src/projects/text-effects/transcript_words.json` (derived artifact)?
+- Should we delete `projects/text-effects/` (legacy manifests) once we’re confident we won’t use the old `scripts/*project*.mjs` workflow?
 
 ## Tasks
 
@@ -95,10 +96,13 @@ Ship a clean, readable Remotion composition that:
   - Using MatAnyone alpha (VP9 WebM with alpha) at `.../88efdd42-c664-4df2-8c7d-34824323e95c.webm`.
   - `TextEffects` composition is code-first with URLs + beat timings in `src/projects/text-effects/assets.js`.
   - Tools/Artifacts overlay component exists at `src/projects/text-effects/CodexToolsArtifactsOverlay.js` and is wired via named `<Sequence>` blocks.
+- 2026-02-09
+  - Hardcoded all key timestamp triggers (no runtime phrase finding) in `src/projects/text-effects/assets.js`.
+  - Added recap canvas + “check description” outro overlays.
+  - Extended the composition cut to the full recording (`~258.4s`) so the entire timeline is visible in Studio.
 
 ## Next 3 Actions
 
 1. Run `npm start` and confirm the `TextEffects` composition looks correct in Studio (timeline blocks present).
 2. Run `npm run render -- --comp TextEffects --from 20 --to 55` to validate the Codex -> Tools -> Artifacts beat in a deterministic render.
 3. Decide whether to implement a quick stills workflow via `scripts/render.mjs` (recommended) or via `npx remotion still`.
-
