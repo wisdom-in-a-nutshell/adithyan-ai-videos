@@ -195,6 +195,8 @@ export const TextEffectsComp = (props) => {
 		            transcriptWords={transcriptWords}
 		            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
 		            holdUntilSeconds={holdUntilSeconds}
+		            percentSweep
+		            percentSweepDurationSeconds={0.6}
 		          />
 		        </Sequence>
 

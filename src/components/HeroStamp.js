@@ -152,6 +152,8 @@ export const HeroStamp = ({
   bottomLogoDropPx = 18,
   // Control when the logo animation cues relative to the spoken phrase timing.
   bottomLogoCue = 'edited', // 'edited' | 'codexEnd'
+  percentSweep = false,
+  percentSweepDurationSeconds = 0.6,
   accentColor = '#3b82f6',
   textColor = '#f6f2ee',
   timingOffsetSeconds = 0,
@@ -260,6 +262,27 @@ export const HeroStamp = ({
         extrapolateRight: 'clamp',
       })
     : 1;
+
+  const sweepDurationSeconds = Math.max(0.1, Number(percentSweepDurationSeconds) || 0.6);
+  const sweepProgress = percentSweep
+    ? interpolate(t, [percentStart, percentStart + sweepDurationSeconds], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+        easing: Easing.inOut(Easing.cubic),
+      })
+    : 0;
+  const sweepAlpha = percentSweep
+    ? interpolate(sweepProgress, [0, 0.18, 0.82, 1], [0, 1, 1, 0], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+      })
+    : 0;
+  const sweepX = percentSweep
+    ? interpolate(sweepProgress, [0, 1], [-140, 140], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+      })
+    : 0;
 
   // Use ceil so the pop never starts earlier than the word timing (at most 1 frame late).
   const percentFrame = Math.ceil(percentStart * fps);
@@ -512,19 +535,46 @@ export const HeroStamp = ({
 			          whiteSpace: 'nowrap',
 		          filter: 'none',
 		        }}
-			      >
-		        <span style={{opacity: percentOpacity}}>
-		          <span
-		            style={{
-		              display: 'inline-block',
-	              transform: `translate3d(0, 0, 0) scale(${percentScale}) scaleX(${percentStretchX})`,
-	              transformOrigin: '50% 50%',
-	            }}
-	          >
-	            {centerText}
-	          </span>
-	        </span>
-      </div>
-    </div>
-  );
-};
+				      >
+			        <span style={{opacity: percentOpacity, position: 'relative', display: 'inline-block'}}>
+			          <span
+			            style={{
+			              display: 'inline-block',
+		              transform: `translate3d(0, 0, 0) scale(${percentScale}) scaleX(${percentStretchX})`,
+			              transformOrigin: '50% 50%',
+			            }}
+			          >
+			            {centerText}
+			          </span>
+			          {percentSweep ? (
+			            <span
+			              style={{
+			                position: 'absolute',
+			                inset: 0,
+			                display: 'inline-block',
+			                transform: `translate3d(0, 0, 0) scale(${percentScale}) scaleX(${percentStretchX})`,
+			                transformOrigin: '50% 50%',
+			                pointerEvents: 'none',
+			                // Gradient clipped to text gives a subtle highlight sweep.
+			                backgroundImage:
+			                  'linear-gradient(105deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 45%, rgba(255,255,255,0) 72%)',
+			                backgroundRepeat: 'no-repeat',
+			                backgroundSize: '240% 100%',
+			                backgroundPosition: `${sweepX}% 50%`,
+			                WebkitBackgroundClip: 'text',
+			                backgroundClip: 'text',
+			                color: 'transparent',
+			                WebkitTextStroke: '0px transparent',
+			                opacity: 0.30 * sweepAlpha,
+			                mixBlendMode: 'screen',
+			                filter: 'blur(0.2px)',
+			              }}
+			            >
+			              {centerText}
+			            </span>
+			          ) : null}
+			        </span>
+	      </div>
+	    </div>
+	  );
+	};
