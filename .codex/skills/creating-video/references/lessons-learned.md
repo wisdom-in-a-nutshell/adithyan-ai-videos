@@ -21,3 +21,7 @@
 - Keep overlay copy concise and readable.
 - If transcript timings are stable (same recording), prefer hardcoding key effect timestamps in `src/projects/<project-id>/assets.js` instead of writing code to re-find phrases on every run.
 - If Studio shows errors that don’t match the current source (stale bundle), restart `npm start` and hard-refresh the browser tab.
+- Reuse `src/overlay_kit/overlays.js` components for pills/callouts whenever possible (keeps fonts + sizing consistent).
+- If a pill/box suddenly stretches too wide: use `display: inline-flex`, `width: fit-content`, `maxWidth`, and `textOverflow: ellipsis`.
+- If you render any extra `Video` layers for effects, always set `muted` and align time with `startFrom={SequenceFromFrame}` to avoid audio doubling + restart.
+- If a layer "goes behind" the subject unexpectedly, it's almost always `zIndex` or ordering relative to the foreground alpha layer.
