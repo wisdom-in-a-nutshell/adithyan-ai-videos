@@ -46,14 +46,23 @@ export const TextPlacementDemoOverlay = ({
     extrapolateRight: 'clamp',
   });
 
-  // Place this near the subject so the occlusion difference is obvious.
-  // Keep it away from the left-side tool stack.
-  const baseX = Math.round(width * 0.44);
-  const baseY = Math.round(height * 0.36);
+  // Place these near the subject (centered), away from the left-side tool stack.
+  // - FRONT: centered on chest
+  // - BEHIND: behind head/neck
+  // - FANCY: bigger, behind head/neck
+  // Horizontally center by video dimensions (not "avoid the left stack").
+  // We'll art-direct vertical placement per variant.
+  const anchorX = 50; // percent
+  const anchorY =
+    variant === 'front' ? 60 : variant === 'behind' ? 40 : 38; // percent
 
-  const bigSize = 54 * scale;
-  const boxPadX = 18 * scale;
-  const boxPadY = 14 * scale;
+  // Keep FRONT and BEHIND the same style; occlusion makes the difference.
+  const baseCard = {
+    boxBg: 'rgba(255,255,255,0.92)',
+    border: '2px solid rgba(0,0,0,0.12)',
+    textColor: '#111827',
+    textShadow: '0 10px 24px rgba(0,0,0,0.18)',
+  };
 
   const conf =
     variant === 'fancy'
@@ -61,43 +70,35 @@ export const TextPlacementDemoOverlay = ({
           label: 'FANCY (BEHIND)',
           labelBg: 'rgba(17,24,39,0.92)',
           text: 'FANCY TEXT',
-          boxBg: 'rgba(255,255,255,0.10)',
+          boxBg: 'rgba(255,255,255,0.14)',
           border: '2px solid rgba(59,130,246,0.9)',
           textColor: 'transparent',
-          // Gradient fill for the fancy variant.
-          textBg: 'linear-gradient(90deg, #22c55e, #3b82f6, #f97316)',
-          textShadow: '0 14px 30px rgba(0,0,0,0.35)',
+          textBg: 'linear-gradient(90deg, #22c55e, #3b82f6, #f97316, #ec4899, #22c55e)',
+          textShadow: '0 18px 38px rgba(0,0,0,0.42)',
         }
       : variant === 'behind'
         ? {
             label: 'BEHIND SUBJECT',
-            labelBg: 'rgba(37,99,235,0.92)',
+            labelBg: 'rgba(0,0,0,0.72)',
             text: 'TEXT BEHIND',
-            boxBg: 'rgba(255,255,255,0.12)',
-            border: '2px dashed rgba(255,255,255,0.75)',
-            textColor: '#ffffff',
-            textBg: null,
-            textShadow: '0 12px 26px rgba(0,0,0,0.4)',
+            ...baseCard,
           }
         : {
             label: 'IN FRONT',
             labelBg: 'rgba(0,0,0,0.72)',
             text: 'TEXT IN FRONT',
-            boxBg: 'rgba(255,255,255,0.92)',
-            border: '2px solid rgba(0,0,0,0.12)',
-            textColor: '#111827',
-            textBg: null,
-            textShadow: '0 10px 24px rgba(0,0,0,0.18)',
+            ...baseCard,
           };
 
-  const fancyWiggle =
-    variant === 'fancy'
-      ? interpolate(frame, [0, dur - 1], [0, 1], {
-          extrapolateLeft: 'clamp',
-          extrapolateRight: 'clamp',
-        })
-      : 0;
-  const wiggleX = variant === 'fancy' ? Math.sin(fancyWiggle * Math.PI * 2) * 6 : 0;
+  const fancyT = variant === 'fancy' ? frame / Math.max(1, fps) : 0;
+  const wiggleX = variant === 'fancy' ? Math.sin(fancyT * Math.PI * 1.6) * 7 : 0;
+  const wiggleY = variant === 'fancy' ? Math.cos(fancyT * Math.PI * 1.2) * 4 : 0;
+  const fancyPulse = variant === 'fancy' ? 1 + Math.sin(fancyT * Math.PI * 1.25) * 0.02 : 1;
+
+  const sizeScale = variant === 'fancy' ? 1.22 : 1;
+  const bigSize = 54 * scale * sizeScale;
+  const boxPadX = 18 * scale * sizeScale;
+  const boxPadY = 14 * scale * sizeScale;
 
   const zIndex = variant === 'front' ? 80 : 10;
 
@@ -105,9 +106,9 @@ export const TextPlacementDemoOverlay = ({
     <div
       style={{
         position: 'absolute',
-        left: baseX,
-        top: baseY,
-        transform: `translate3d(${wiggleX}px, ${slide}px, 0)`,
+        left: `${anchorX}%`,
+        top: `${anchorY}%`,
+        transform: `translate3d(calc(-50% + ${wiggleX}px), calc(-50% + ${wiggleY}px + ${slide}px), 0) scale(${fancyPulse})`,
         opacity,
         zIndex,
         pointerEvents: 'none',
@@ -145,6 +146,10 @@ export const TextPlacementDemoOverlay = ({
               backgroundImage: conf.textBg ?? undefined,
               backgroundClip: conf.textBg ? 'text' : undefined,
               WebkitBackgroundClip: conf.textBg ? 'text' : undefined,
+              backgroundSize: conf.textBg ? '220% 100%' : undefined,
+              backgroundPosition: conf.textBg
+                ? `${Math.floor((fancyT * 120) % 220)}% 50%`
+                : undefined,
               textShadow: variant === 'front' ? '0 2px 0 rgba(255,255,255,0.35)' : undefined,
             }}
           >

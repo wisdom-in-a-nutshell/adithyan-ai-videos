@@ -469,6 +469,9 @@ export const TextEffectsComp = (props) => {
             )
           );
 
+          // We fade out the "CODEX" callout (and tool stack) when we reach the "blur the background" demo.
+          const blurFrom = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL3_BLUR_BG_START_SECONDS * fps));
+
           const codexSeconds =
             findFirstWordInRangeSeconds(
               transcriptWords,
@@ -477,8 +480,8 @@ export const TextEffectsComp = (props) => {
               TEXT_EFFECTS_SETUP_END_SECONDS
             ) ?? TEXT_EFFECTS_SETUP_START_SECONDS;
           const codexFrom = Math.max(0, Math.floor(codexSeconds * fps));
-          // Keep the Codex pill on-screen from first mention through the rest of the cut.
-          const codexDur = Math.max(1, durationInFrames - codexFrom);
+          // Keep the Codex pill on-screen from first mention until we hit the blur demo.
+          const codexDur = Math.max(1, Math.min(durationInFrames - codexFrom, blurFrom - codexFrom));
 
 	          return (
 	            <>
@@ -512,11 +515,12 @@ export const TextEffectsComp = (props) => {
         const tool1From = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL1_SAM3_START_SECONDS * fps));
         const tool2From = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL2_START_SECONDS * fps));
         const tool3From = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL3_REMOTION_START_SECONDS * fps));
+        const blurFrom = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL3_BLUR_BG_START_SECONDS * fps));
         const dur = Math.max(1, durationInFrames - from);
         const animDur = Math.max(1, Math.min(dur, tool1From - from));
         const segDur = Math.max(1, Math.min(durationInFrames - tool1From, tool2From - tool1From));
         const mattDur = Math.max(1, Math.min(durationInFrames - tool2From, tool3From - tool2From));
-        const compDur = Math.max(1, durationInFrames - tool3From);
+        const compDur = Math.max(1, Math.min(durationInFrames - tool3From, blurFrom - tool3From));
 
         return (
           <>
@@ -608,7 +612,7 @@ export const TextEffectsComp = (props) => {
               from={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))}
               durationInFrames={Math.max(
                 1,
-                durationInFrames - Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))
+                blurFrom - Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))
               )}
             >
               {(() => {
@@ -630,7 +634,10 @@ export const TextEffectsComp = (props) => {
 
                 return (
                   <CodexToolsArtifactsOverlay
-                    durationInFrames={dur}
+                    durationInFrames={Math.max(
+                      1,
+                      blurFrom - Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))
+                    )}
                     startSeconds={TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS}
                     toolsSeconds={TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS}
                     artifactsSeconds={TEXT_EFFECTS_SETUP_VIDEO_ARTIFACTS_SECONDS}
@@ -710,11 +717,12 @@ export const TextEffectsComp = (props) => {
             <Sequence
               name="[S05-07] Tool Stack: 1 SAM3, 2 MatAnyone, 3 Remotion"
               from={tool1From}
-              durationInFrames={Math.max(1, durationInFrames - tool1From)}
+              durationInFrames={Math.max(1, blurFrom - tool1From)}
             >
               <ThreeToolsOverlay
                 startSeconds={TEXT_EFFECTS_TOOL1_SAM3_START_SECONDS}
                 frameOffset={tool1From}
+                durationInFrames={Math.max(1, blurFrom - tool1From)}
                 scale={TEXT_EFFECTS_UI_SCALE}
                 baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
                 baseTop={132 * TEXT_EFFECTS_UI_SCALE}

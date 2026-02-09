@@ -65,8 +65,17 @@ export const CodexToolsArtifactsOverlay = ({
   const absoluteFrame = frame + (Number.isFinite(frameOffset) ? frameOffset : 0);
   const t = videoSeconds ?? absoluteFrame / fps;
 
+  const tailFade = (() => {
+    if (!Number.isFinite(durationInFrames)) {
+      return 1;
+    }
+    // Fade out over the last quarter-second of the Sequence.
+    const tailFrames = Math.max(1, Math.round(0.25 * fps));
+    return clamp01((durationInFrames - frame) / tailFrames);
+  })();
+
   const appear = clamp01((t - startSeconds) / 0.35);
-  const opacity = interpolate(appear, [0, 1], [0, 1]);
+  const opacity = interpolate(appear, [0, 1], [0, 1]) * tailFade;
   const slide = interpolate(appear, [0, 1], [10, 0]) * (Number.isFinite(scale) ? scale : 1);
 
   const resolvedToolsSeconds =
