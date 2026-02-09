@@ -7,6 +7,9 @@ const clamp01 = (v) => Math.max(0, Math.min(1, v));
 // Mount inside a <Sequence> that spans the blur interval.
 export const BackgroundBlurOverlay = ({
   src,
+  // Align the blurred duplicate to the composition timeline so it doesn't "restart" visually.
+  // Pass the parent <Sequence from> frame here.
+  startFromFrame = 0,
   durationInFrames,
   blurPx = 8,
   fadeSeconds = 0.25,
@@ -29,12 +32,15 @@ export const BackgroundBlurOverlay = ({
   return (
     <Video
       src={src}
+      startFrom={Math.max(0, Math.floor(Number(startFromFrame) || 0))}
+      muted
       style={{
         position: 'absolute',
         inset: 0,
         width: '100%',
         height: '100%',
         objectFit: 'cover',
+        zIndex: 1,
         filter: px > 0 ? `blur(${px}px)` : undefined,
         // Blur makes edge pixels transparent-ish; scale slightly to avoid dark borders.
         transform: px > 0 ? 'scale(1.03)' : undefined,

@@ -246,7 +246,14 @@ export const TextEffectsComp = (props) => {
         <Sequence name="[S01+] Background" from={0} durationInFrames={durationInFrames}>
           <Video
             src={resolveAssetSrc(TEXT_EFFECTS_VIDEO_URL)}
-            style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              zIndex: 0,
+            }}
           />
         </Sequence>
 
@@ -264,6 +271,7 @@ export const TextEffectsComp = (props) => {
             <Sequence name="[S07] Background Blur" from={from} durationInFrames={dur}>
               <BackgroundBlurOverlay
                 src={resolveAssetSrc(TEXT_EFFECTS_VIDEO_URL)}
+                startFromFrame={from}
                 durationInFrames={dur}
                 blurPx={TEXT_EFFECTS_TOOL3_BLUR_BG_PX}
               />
@@ -419,7 +427,14 @@ export const TextEffectsComp = (props) => {
           <Video
             src={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL)}
             muted
-            style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              zIndex: 50,
+            }}
           />
         </Sequence>
 

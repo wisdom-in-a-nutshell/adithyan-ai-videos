@@ -46,10 +46,12 @@ export const TextPlacementDemoOverlay = ({
     extrapolateRight: 'clamp',
   });
 
-  const baseX = Math.round(width * 0.56);
-  const baseY = Math.round(height * 0.28);
+  // Place this near the subject so the occlusion difference is obvious.
+  // Keep it away from the left-side tool stack.
+  const baseX = Math.round(width * 0.44);
+  const baseY = Math.round(height * 0.36);
 
-  const bigSize = 48 * scale;
+  const bigSize = 54 * scale;
   const boxPadX = 18 * scale;
   const boxPadY = 14 * scale;
 
@@ -97,6 +99,8 @@ export const TextPlacementDemoOverlay = ({
       : 0;
   const wiggleX = variant === 'fancy' ? Math.sin(fancyWiggle * Math.PI * 2) * 6 : 0;
 
+  const zIndex = variant === 'front' ? 80 : 10;
+
   return (
     <div
       style={{
@@ -105,7 +109,7 @@ export const TextPlacementDemoOverlay = ({
         top: baseY,
         transform: `translate3d(${wiggleX}px, ${slide}px, 0)`,
         opacity,
-        zIndex: 40,
+        zIndex,
         pointerEvents: 'none',
       }}
     >
@@ -151,4 +155,3 @@ export const TextPlacementDemoOverlay = ({
     </div>
   );
 };
-
