@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {Img, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
+import {Easing, Img, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 import {OpenAiIcon} from './OpenAiIcon.js';
 
 const normalizeWord = (value) => {
@@ -148,6 +148,8 @@ export const HeroStamp = ({
   bottomLogoSpinDurationSeconds = 0.55,
   // Start a bit early to compensate for fade-in so the motion is visible immediately.
   bottomLogoSpinStartOffsetSeconds = -0.08,
+  bottomLogoDropDurationSeconds = 0.55,
+  bottomLogoDropPx = 18,
   // Control when the logo animation cues relative to the spoken phrase timing.
   bottomLogoCue = 'edited', // 'edited' | 'codexEnd'
   accentColor = '#3b82f6',
@@ -207,33 +209,46 @@ export const HeroStamp = ({
 
   const logoCueSeconds =
     bottomLogoCue === 'codexEnd' ? Number(timing.codexEnd) : Number(timing.editedStart);
-  const logoSpinStartSeconds = Math.max(0, logoCueSeconds + (Number(bottomLogoSpinStartOffsetSeconds) || 0));
+  const logoSpinStartSeconds = Math.max(
+    0,
+    logoCueSeconds + (Number(bottomLogoSpinStartOffsetSeconds) || 0)
+  );
   const logoSpinStartFrame = Math.ceil(logoSpinStartSeconds * fps);
+
+  const logoLocalFrame = Math.max(0, frame - logoSpinStartFrame);
   const logoSpinFrames = Math.max(1, Math.round(Number(bottomLogoSpinDurationSeconds) * fps));
-  const logoSpinProgress = spring({
-    fps,
-    frame: Math.max(0, frame - logoSpinStartFrame),
-    config: {damping: 16, stiffness: 190, mass: 0.9},
-    durationInFrames: logoSpinFrames,
+  const logoDropFrames = Math.max(1, Math.round(Number(bottomLogoDropDurationSeconds) * fps));
+
+  // Avoid "twitch": rotation should start at 0 exactly and then progress smoothly.
+  const logoSpinProgress = bottomLogoSpin
+    ? interpolate(logoLocalFrame, [0, logoSpinFrames], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+        easing: Easing.out(Easing.cubic),
+      })
+    : 0;
+  const logoRotateDeg =
+    360 * Math.max(0, Number(bottomLogoSpinTurns) || 0) * (bottomLogoSpin ? logoSpinProgress : 0);
+
+  const logoDropProgress = bottomLogoSpin
+    ? interpolate(logoLocalFrame, [0, logoDropFrames], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+        easing: Easing.out(Easing.cubic),
+      })
+    : 1;
+  const dropPx = Math.max(0, Number(bottomLogoDropPx) || 0);
+  const logoDropY = interpolate(logoDropProgress, [0, 1], [-dropPx, 0], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
   });
-  const logoRotateDeg = interpolate(
-    bottomLogoSpin ? logoSpinProgress : 0,
-    [0, 1],
-    [0, 360 * Math.max(0, Number(bottomLogoSpinTurns) || 0)],
-    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
-  );
-  const logoInOpacity = interpolate(
-    t,
-    [logoSpinStartSeconds, logoSpinStartSeconds + 0.10],
-    [0, 1],
-    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
-  );
-  const logoDropY = interpolate(
-    bottomLogoSpin ? logoSpinProgress : 1,
-    [0, 1],
-    [-18, 0],
-    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
-  );
+
+  const logoInOpacity = bottomLogoSpin
+    ? interpolate(logoLocalFrame, [0, Math.max(1, Math.round(0.10 * fps))], [0, 1], {
+        extrapolateLeft: 'clamp',
+        extrapolateRight: 'clamp',
+      })
+    : 1;
 
   // Use ceil so the pop never starts earlier than the word timing (at most 1 frame late).
   const percentFrame = Math.ceil(percentStart * fps);

@@ -659,9 +659,12 @@ export const TextEffectsComp = (props) => {
 		            bottomLogoVariant="openai"
 		            bottomLogoSpin
 		            bottomLogoCue="codexEnd"
-		            bottomLogoSpinTurns={10}
-		            bottomLogoSpinDurationSeconds={2.0}
-		            bottomLogoSpinStartOffsetSeconds={-0.06}
+		            bottomLogoSpinTurns={30}
+		            bottomLogoSpinDurationSeconds={3.2}
+		            bottomLogoDropDurationSeconds={1.2}
+		            bottomLogoDropPx={28}
+		            // Start after the word "codex" completes (no early spin).
+		            bottomLogoSpinStartOffsetSeconds={0.06}
 		          />
 		        </Sequence>
       </div>
