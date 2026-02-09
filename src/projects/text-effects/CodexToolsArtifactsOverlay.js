@@ -34,9 +34,6 @@ const Pill = ({text, emoji = null}) => {
   );
 };
 
-const TOOLS_EMOJI = '🛠';
-const ARTIFACTS_EMOJI = '✨';
-
 // Project-scoped overlay:
 // A clean line coming "from Codex" and staging:
 // 1) Tools -> Digital artifacts
@@ -49,6 +46,8 @@ export const CodexToolsArtifactsOverlay = ({
   artifactsSeconds = null,
   toolsText = 'Tools',
   artifactsText = 'Digital artifacts',
+  toolsEmoji = '🛠',
+  artifactsEmoji = '✨',
   videoSeconds = null,
   // `useCurrentFrame()` is relative to the nearest <Sequence>.
   // Pass the sequence `from` frame to compute absolute (composition) time.
@@ -188,7 +187,7 @@ export const CodexToolsArtifactsOverlay = ({
             transform: `translateY(${toolsSlide}px)`,
           }}
         >
-          <Pill text={toolsText} emoji={TOOLS_EMOJI} />
+          <Pill text={toolsText} emoji={toolsEmoji} />
         </div>
 
         <div
@@ -227,7 +226,7 @@ export const CodexToolsArtifactsOverlay = ({
             transform: `translateY(${artifactsSlide}px)`,
           }}
         >
-          <Pill text={artifactsText} emoji={ARTIFACTS_EMOJI} />
+          <Pill text={artifactsText} emoji={artifactsEmoji} />
         </div>
       </div>
     </div>
