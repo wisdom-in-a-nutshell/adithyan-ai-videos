@@ -24,9 +24,18 @@ const ToolPill = ({text, scale, maxWidth}) => {
         alignItems: 'center',
         gap: 10 * scale,
         maxWidth,
+        overflow: 'hidden',
       }}
     >
-      <span>{text}</span>
+      <span
+        style={{
+          minWidth: 0,
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        }}
+      >
+        {text}
+      </span>
     </div>
   );
 };
@@ -166,7 +175,8 @@ export const RecapOverlay = ({
   const linksPillW = Math.min(Math.round(width * 0.74), 980);
   const linksPillH = Math.round(46 * scale);
   const linksBottom = Math.round(height * 0.055);
-  const contentMaxW = Math.round(width * 0.56);
+  // Keep the title pill reasonably narrow so it doesn't dominate the frame.
+  const contentMaxW = Math.round(width * 0.48);
 
   return (
     <div
@@ -212,27 +222,25 @@ export const RecapOverlay = ({
           letterSpacing: 0.6,
           display: 'flex',
           alignItems: 'center',
-          gap: 12 * scale,
+          justifyContent: 'center',
           boxShadow: '0 12px 30px rgba(0,0,0,0.18)',
           zIndex: 220,
         }}
       >
         <span
           style={{
-            width: 26 * scale,
-            height: 26 * scale,
-            borderRadius: 999,
-            backgroundColor: 'rgba(255,255,255,0.16)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: 18 * scale,
-            lineHeight: 1,
+            textAlign: 'center',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            textDecorationLine: 'underline',
+            textDecorationThickness: Math.max(2, Math.round(2 * scale)),
+            textUnderlineOffset: 6 * scale,
+            textDecorationColor: 'rgba(59,130,246,0.85)',
           }}
         >
-          ↓
+          {linksText}
         </span>
-        {linksText}
       </div>
     </div>
   );

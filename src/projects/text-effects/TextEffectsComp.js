@@ -191,7 +191,7 @@ export const TextEffectsComp = (props) => {
 		        <Sequence name="[S01] HeroStamp (Behind)" from={0} durationInFrames={holdFrames}>
 		          <HeroStamp
 		            layer="behind"
-		            accentColor="rgb(220, 200, 172)"
+		            accentColor="rgb(232, 213, 186)"
 		            transcriptWords={transcriptWords}
 		            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
 		            holdUntilSeconds={holdUntilSeconds}
@@ -650,7 +650,7 @@ export const TextEffectsComp = (props) => {
 	        <Sequence name="[S01] HeroStamp (Front)" from={0} durationInFrames={holdFrames}>
 	          <HeroStamp
 	            layer="front"
-	            accentColor="rgb(220, 200, 172)"
+	            accentColor="rgb(232, 213, 186)"
 	            transcriptWords={transcriptWords}
 	            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
 		            holdUntilSeconds={holdUntilSeconds}
