@@ -154,6 +154,7 @@ export const HeroStamp = ({
   bottomLogoCue = 'edited', // 'edited' | 'codexEnd'
   percentSweep = false,
   percentSweepDurationSeconds = 0.6,
+  fadeOutSeconds = 0.25,
   accentColor = '#3b82f6',
   textColor = '#f6f2ee',
   timingOffsetSeconds = 0,
@@ -194,7 +195,8 @@ export const HeroStamp = ({
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
-  const baseOut = interpolate(t, [holdEnd, holdEnd + 0.25], [1, 0], {
+  const fadeSeconds = Math.max(0.05, Number(fadeOutSeconds) || 0.25);
+  const baseOut = interpolate(t, [holdEnd, holdEnd + fadeSeconds], [1, 0], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });

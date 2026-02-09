@@ -86,7 +86,11 @@ export const TextEffectsComp = (props) => {
   const t = frame / Math.max(1, fps);
   const holdUntilSeconds = TEXT_EFFECTS_LET_ME_SHOW_YOU_HOW_END_SECONDS;
   const letMeShowYouStartSeconds = TEXT_EFFECTS_LET_ME_SHOW_YOU_HOW_START_SECONDS;
-  const holdFrames = Math.min(durationInFrames, Math.max(1, Math.ceil(holdUntilSeconds * fps)));
+  const heroFadeOutSeconds = 0.6;
+  const holdFrames = Math.min(
+    durationInFrames,
+    Math.max(1, Math.ceil((holdUntilSeconds + heroFadeOutSeconds) * fps))
+  );
 
   // Subtle camera punch-in during the pause after "... edited by codex",
   // then ease back out right as "let me show you how" starts.
@@ -195,6 +199,7 @@ export const TextEffectsComp = (props) => {
 		            transcriptWords={transcriptWords}
 		            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
 		            holdUntilSeconds={holdUntilSeconds}
+		            fadeOutSeconds={heroFadeOutSeconds}
 		            percentSweep
 		            percentSweepDurationSeconds={0.6}
 		          />
@@ -651,24 +656,25 @@ export const TextEffectsComp = (props) => {
         );
       })()}
 
-	        <Sequence name="[S01] HeroStamp (Front)" from={0} durationInFrames={holdFrames}>
-	          <HeroStamp
-	            layer="front"
-	            accentColor="rgb(232, 213, 186)"
-	            transcriptWords={transcriptWords}
-	            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
-		            holdUntilSeconds={holdUntilSeconds}
-		            bottomLogoVariant="openai"
-		            bottomLogoSpin
-		            bottomLogoCue="codexEnd"
-		            bottomLogoSpinTurns={4}
-		            bottomLogoSpinDurationSeconds={1.0}
-		            bottomLogoDropDurationSeconds={0.65}
-		            bottomLogoDropPx={22}
-		            // Start after the word "codex" completes (no early spin).
-		            bottomLogoSpinStartOffsetSeconds={0.06}
-		          />
-		        </Sequence>
+		        <Sequence name="[S01] HeroStamp (Front)" from={0} durationInFrames={holdFrames}>
+		          <HeroStamp
+		            layer="front"
+		            accentColor="rgb(232, 213, 186)"
+		            transcriptWords={transcriptWords}
+		            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
+			            holdUntilSeconds={holdUntilSeconds}
+			            fadeOutSeconds={heroFadeOutSeconds}
+			            bottomLogoVariant="openai"
+			            bottomLogoSpin
+			            bottomLogoCue="codexEnd"
+			            bottomLogoSpinTurns={4}
+			            bottomLogoSpinDurationSeconds={1.0}
+			            bottomLogoDropDurationSeconds={0.65}
+			            bottomLogoDropPx={22}
+			            // Start after the word "codex" completes (no early spin).
+			            bottomLogoSpinStartOffsetSeconds={0.06}
+			          />
+			        </Sequence>
       </div>
     </div>
   );
