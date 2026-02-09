@@ -289,7 +289,7 @@ export const TextEffectsComp = (props) => {
                 toolsText="Tools"
                 artifactsText="Digital artifacts"
                 toolsEmoji="🛠"
-                artifactsEmoji="📄"
+                artifactsEmoji="🗂️"
                 frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_TOOLS_SECONDS * fps))}
                 scale={TEXT_EFFECTS_UI_SCALE}
                 // Align to the bottom of the CODEX pill (CodexCallout: top 88, height 44).
@@ -316,7 +316,7 @@ export const TextEffectsComp = (props) => {
                 toolsText="Coding tools"
                 artifactsText="Coding artifacts"
                 toolsEmoji="🛠"
-                artifactsEmoji="📦"
+                artifactsEmoji="💾"
                 frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_CODING_TOOLS_SECONDS * fps))}
                 scale={TEXT_EFFECTS_UI_SCALE}
                 baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
