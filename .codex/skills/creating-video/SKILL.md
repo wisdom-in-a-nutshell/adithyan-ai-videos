@@ -35,6 +35,7 @@ References:
 - Overlay component catalog: `references/overlay-components.md`
 - Style tokens + readability rules: `references/style-tokens.md`
 - Lessons learned (condensed do/don't): `references/lessons-learned.md`
+- Asset caching (default-on): `references/asset-caching.md`
 - Quick checklist: `references/checklist.md`
 - Commands: `references/commands.md`
 - Also use `$remotion-best-practices` whenever you touch Remotion code.
