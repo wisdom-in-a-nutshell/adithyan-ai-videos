@@ -307,22 +307,12 @@ export const HeroStamp = ({
 	            fontSize: bottomFontSize,
 	            display: 'inline-flex',
 	            alignItems: 'center',
-	            gap: Math.round(bottomFontSize * 0.22),
+	            // Keep it tight: no visible "gap" between CODEX and the logo.
+	            gap: Math.round(bottomFontSize * 0.16),
 	            whiteSpace: 'nowrap',
 	          }}
 	        >
 	          <span>{bottomPrefixText}</span>
-	          {bottomLogoSrc ? (
-	            <Img
-	              src={bottomLogoSrc}
-	              style={{
-	                width: Math.round(bottomFontSize * 0.72),
-	                height: Math.round(bottomFontSize * 0.72),
-	                objectFit: 'contain',
-	                filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.30))',
-	              }}
-	            />
-	          ) : null}
 	          <span
 	            style={{
 	              color: accentColor,
@@ -330,6 +320,19 @@ export const HeroStamp = ({
 	          >
 	            {bottomAccentText}
 	          </span>
+	          {bottomLogoSrc ? (
+	            <Img
+	              src={bottomLogoSrc}
+	              style={{
+	                width: Math.round(bottomFontSize * 0.70),
+	                height: Math.round(bottomFontSize * 0.70),
+	                objectFit: 'contain',
+	                // Nudge left to visually remove any remaining gap (logo PNG padding varies).
+	                marginLeft: -Math.round(bottomFontSize * 0.10),
+	                filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.30))',
+	              }}
+	            />
+	          ) : null}
 	        </div>
 	      </div>
 	    );

@@ -188,14 +188,15 @@ export const TextEffectsComp = (props) => {
           );
         })()}
 
-	        <Sequence name="[S01] HeroStamp (Behind)" from={0} durationInFrames={holdFrames}>
-	          <HeroStamp
-	            layer="behind"
-	            transcriptWords={transcriptWords}
-	            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
-	            holdUntilSeconds={holdUntilSeconds}
-	          />
-	        </Sequence>
+		        <Sequence name="[S01] HeroStamp (Behind)" from={0} durationInFrames={holdFrames}>
+		          <HeroStamp
+		            layer="behind"
+		            accentColor="rgb(225, 180, 141)"
+		            transcriptWords={transcriptWords}
+		            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
+		            holdUntilSeconds={holdUntilSeconds}
+		          />
+		        </Sequence>
 
         {(() => {
           const from = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL2_START_SECONDS * fps));
@@ -618,10 +619,11 @@ export const TextEffectsComp = (props) => {
               durationInFrames={dur}
               frameOffset={from}
               startSeconds={TEXT_EFFECTS_RECAP_START_SECONDS}
-              endSeconds={TEXT_EFFECTS_RECAP_END_SECONDS}
               samSeconds={TEXT_EFFECTS_RECAP_SAM3_SECONDS}
               matAnyoneSeconds={TEXT_EFFECTS_RECAP_MATANYONE_SECONDS}
               remotionSeconds={TEXT_EFFECTS_RECAP_REMOTION_SECONDS}
+              scale={TEXT_EFFECTS_UI_SCALE}
+              codexLogo={TEXT_EFFECTS_CODEX_LOGO_URL}
               alphaSrc={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL)}
             />
           </Sequence>
@@ -645,15 +647,16 @@ export const TextEffectsComp = (props) => {
         );
       })()}
 
-        <Sequence name="[S01] HeroStamp (Front)" from={0} durationInFrames={holdFrames}>
-          <HeroStamp
-            layer="front"
-            transcriptWords={transcriptWords}
-            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
-	            holdUntilSeconds={holdUntilSeconds}
-	            bottomLogoSrc={TEXT_EFFECTS_CODEX_LOGO_URL}
-	          />
-	        </Sequence>
+	        <Sequence name="[S01] HeroStamp (Front)" from={0} durationInFrames={holdFrames}>
+	          <HeroStamp
+	            layer="front"
+	            accentColor="rgb(225, 180, 141)"
+	            transcriptWords={transcriptWords}
+	            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
+		            holdUntilSeconds={holdUntilSeconds}
+		            bottomLogoSrc={TEXT_EFFECTS_CODEX_LOGO_URL}
+		          />
+		        </Sequence>
       </div>
     </div>
   );
