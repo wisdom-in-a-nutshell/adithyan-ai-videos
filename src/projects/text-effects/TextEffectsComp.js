@@ -25,7 +25,17 @@ import {
   TEXT_EFFECTS_TOOL2_GREEN_START_SECONDS,
   TEXT_EFFECTS_TOOL2_END_SECONDS,
   TEXT_EFFECTS_TOOL2_START_SECONDS,
+  TEXT_EFFECTS_TOOL3_BLUR_BG_END_SECONDS,
+  TEXT_EFFECTS_TOOL3_BLUR_BG_PX,
+  TEXT_EFFECTS_TOOL3_BLUR_BG_START_SECONDS,
+  TEXT_EFFECTS_TOOL3_REMOTION_END_SECONDS,
   TEXT_EFFECTS_TOOL3_REMOTION_START_SECONDS,
+  TEXT_EFFECTS_TOOL3_TEXT_BEHIND_END_SECONDS,
+  TEXT_EFFECTS_TOOL3_TEXT_BEHIND_START_SECONDS,
+  TEXT_EFFECTS_TOOL3_TEXT_FANCY_END_SECONDS,
+  TEXT_EFFECTS_TOOL3_TEXT_FANCY_START_SECONDS,
+  TEXT_EFFECTS_TOOL3_TEXT_FRONT_END_SECONDS,
+  TEXT_EFFECTS_TOOL3_TEXT_FRONT_START_SECONDS,
   TEXT_EFFECTS_VIDEO_URL,
 } from './assets.js';
 import {SKETCH_FONT_FAMILY} from '../../styles/sketch.js';
@@ -38,7 +48,10 @@ import {
 import {CodexToolsArtifactsOverlay} from './CodexToolsArtifactsOverlay.js';
 import {ThreeToolsOverlay} from './ThreeToolsOverlay.js';
 import {GreenScreenOverlay} from './GreenScreenOverlay.js';
+import {BackgroundBlurOverlay} from './BackgroundBlurOverlay.js';
 import {Sam3StaticMaskOverlay} from './Sam3StaticMaskOverlay.js';
+import {LayersLegendOverlay} from './LayersLegendOverlay.js';
+import {TextPlacementDemoOverlay} from './TextPlacementDemoOverlay.js';
 import {TEXT_EFFECTS_UI_SCALE} from './ui.js';
 
 const resolveAssetSrc = (src) => {
@@ -237,6 +250,27 @@ export const TextEffectsComp = (props) => {
           />
         </Sequence>
 
+        {(() => {
+          const from = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL3_BLUR_BG_START_SECONDS * fps));
+          const dur = Math.max(
+            1,
+            Math.min(
+              durationInFrames - from,
+              Math.ceil((TEXT_EFFECTS_TOOL3_BLUR_BG_END_SECONDS - TEXT_EFFECTS_TOOL3_BLUR_BG_START_SECONDS) * fps)
+            )
+          );
+
+          return (
+            <Sequence name="[S07] Background Blur" from={from} durationInFrames={dur}>
+              <BackgroundBlurOverlay
+                src={resolveAssetSrc(TEXT_EFFECTS_VIDEO_URL)}
+                durationInFrames={dur}
+                blurPx={TEXT_EFFECTS_TOOL3_BLUR_BG_PX}
+              />
+            </Sequence>
+          );
+        })()}
+
         <Sequence name="[S01] HeroStamp (Behind)" from={0} durationInFrames={holdFrames}>
           <HeroStamp
             layer="behind"
@@ -271,6 +305,116 @@ export const TextEffectsComp = (props) => {
           );
         })()}
 
+        {(() => {
+          // After the green screen preview ends, outline the foreground matte to explain "two layers".
+          const startSeconds = TEXT_EFFECTS_TOOL2_GREEN_END_SECONDS;
+          const endSeconds = TEXT_EFFECTS_TOOL3_REMOTION_END_SECONDS;
+          const from = Math.max(0, Math.floor(startSeconds * fps));
+          const dur = Math.max(
+            1,
+            Math.min(durationInFrames - from, Math.ceil((endSeconds - startSeconds) * fps))
+          );
+
+          const outlineColor = 'rgba(34, 197, 94, 0.95)'; // green-500
+          const px = 2;
+          const outlineFilter = [
+            `drop-shadow(${px}px 0 0 ${outlineColor})`,
+            `drop-shadow(-${px}px 0 0 ${outlineColor})`,
+            `drop-shadow(0 ${px}px 0 ${outlineColor})`,
+            `drop-shadow(0 -${px}px 0 ${outlineColor})`,
+            `drop-shadow(0 0 6px rgba(34, 197, 94, 0.55))`,
+          ].join(' ');
+
+          return (
+            <Sequence name="[T2] Matte Outline (Between Layers)" from={from} durationInFrames={dur}>
+              <Video
+                src={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL)}
+                muted
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  filter: outlineFilter,
+                }}
+              />
+            </Sequence>
+          );
+        })()}
+
+        {(() => {
+          const startSeconds = TEXT_EFFECTS_TOOL2_GREEN_END_SECONDS;
+          const endSeconds = TEXT_EFFECTS_TOOL3_REMOTION_END_SECONDS;
+          const from = Math.max(0, Math.floor(startSeconds * fps));
+          const dur = Math.max(
+            1,
+            Math.min(durationInFrames - from, Math.ceil((endSeconds - startSeconds) * fps))
+          );
+
+          const borderColor = 'rgba(59, 130, 246, 0.92)'; // blue-500
+          return (
+            <Sequence name="[T2] Background Border (Layer 2)" from={from} durationInFrames={dur}>
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  boxShadow: `inset 0 0 0 4px ${borderColor}, inset 0 0 0 10px rgba(59, 130, 246, 0.2)`,
+                  zIndex: 8,
+                  pointerEvents: 'none',
+                }}
+              />
+            </Sequence>
+          );
+        })()}
+
+        {(() => {
+          const startSeconds = TEXT_EFFECTS_TOOL2_GREEN_END_SECONDS;
+          const endSeconds = TEXT_EFFECTS_TOOL3_REMOTION_END_SECONDS;
+          const from = Math.max(0, Math.floor(startSeconds * fps));
+          const dur = Math.max(
+            1,
+            Math.min(durationInFrames - from, Math.ceil((endSeconds - startSeconds) * fps))
+          );
+          return (
+            <Sequence name="[T2-7] Layers Legend" from={from} durationInFrames={dur}>
+              <LayersLegendOverlay durationInFrames={dur} scale={TEXT_EFFECTS_UI_SCALE} />
+            </Sequence>
+          );
+        })()}
+
+        {(() => {
+          const from = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL3_TEXT_BEHIND_START_SECONDS * fps));
+          const dur = Math.max(
+            1,
+            Math.min(
+              durationInFrames - from,
+              Math.ceil((TEXT_EFFECTS_TOOL3_TEXT_BEHIND_END_SECONDS - TEXT_EFFECTS_TOOL3_TEXT_BEHIND_START_SECONDS) * fps)
+            )
+          );
+          return (
+            <Sequence name="[S07] Text Behind Demo" from={from} durationInFrames={dur}>
+              <TextPlacementDemoOverlay durationInFrames={dur} scale={1} variant="behind" />
+            </Sequence>
+          );
+        })()}
+
+        {(() => {
+          const from = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL3_TEXT_FANCY_START_SECONDS * fps));
+          const dur = Math.max(
+            1,
+            Math.min(
+              durationInFrames - from,
+              Math.ceil((TEXT_EFFECTS_TOOL3_TEXT_FANCY_END_SECONDS - TEXT_EFFECTS_TOOL3_TEXT_FANCY_START_SECONDS) * fps)
+            )
+          );
+          return (
+            <Sequence name="[S07] Fancy Behind Demo" from={from} durationInFrames={dur}>
+              <TextPlacementDemoOverlay durationInFrames={dur} scale={1} variant="fancy" />
+            </Sequence>
+          );
+        })()}
+
         <Sequence name="[S01+] Foreground Alpha" from={0} durationInFrames={durationInFrames}>
           <Video
             src={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL)}
@@ -278,6 +422,22 @@ export const TextEffectsComp = (props) => {
             style={{position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover'}}
           />
         </Sequence>
+
+        {(() => {
+          const from = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL3_TEXT_FRONT_START_SECONDS * fps));
+          const dur = Math.max(
+            1,
+            Math.min(
+              durationInFrames - from,
+              Math.ceil((TEXT_EFFECTS_TOOL3_TEXT_FRONT_END_SECONDS - TEXT_EFFECTS_TOOL3_TEXT_FRONT_START_SECONDS) * fps)
+            )
+          );
+          return (
+            <Sequence name="[S07] Text Front Demo" from={from} durationInFrames={dur}>
+              <TextPlacementDemoOverlay durationInFrames={dur} scale={1} variant="front" />
+            </Sequence>
+          );
+        })()}
 
         {(() => {
           const from = Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_START_SECONDS * fps));

@@ -55,5 +55,18 @@ export const TEXT_EFFECTS_TOOL2_GREEN_END_SECONDS = 116.72;
 export const TEXT_EFFECTS_TOOL3_REMOTION_START_SECONDS = 129.52;
 export const TEXT_EFFECTS_TOOL3_REMOTION_END_SECONDS = 180.16;
 
+// tool-3-remotion: demo "blur the background" timing (hardcoded for this recording).
+export const TEXT_EFFECTS_TOOL3_BLUR_BG_START_SECONDS = 145.2;
+export const TEXT_EFFECTS_TOOL3_BLUR_BG_END_SECONDS = 154.96;
+export const TEXT_EFFECTS_TOOL3_BLUR_BG_PX = 8;
+
+// tool-3-remotion: demo text placement timing (hardcoded for this recording).
+export const TEXT_EFFECTS_TOOL3_TEXT_FRONT_START_SECONDS = 156.72;
+export const TEXT_EFFECTS_TOOL3_TEXT_FRONT_END_SECONDS = 158.96;
+export const TEXT_EFFECTS_TOOL3_TEXT_BEHIND_START_SECONDS = 158.96;
+export const TEXT_EFFECTS_TOOL3_TEXT_BEHIND_END_SECONDS = 163.36;
+export const TEXT_EFFECTS_TOOL3_TEXT_FANCY_START_SECONDS = 163.36;
+export const TEXT_EFFECTS_TOOL3_TEXT_FANCY_END_SECONDS = 166.56;
+
 // Cut includes beat 1+2+3 and the toolchain walkthrough through Remotion.
 export const TEXT_EFFECTS_CUT_SECONDS = 181.0;
