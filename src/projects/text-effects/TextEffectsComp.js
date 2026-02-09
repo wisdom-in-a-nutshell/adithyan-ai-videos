@@ -657,6 +657,10 @@ export const TextEffectsComp = (props) => {
 	            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
 		            holdUntilSeconds={holdUntilSeconds}
 		            bottomLogoVariant="openai"
+		            bottomLogoSpin
+		            bottomLogoSpinTurns={1.25}
+		            bottomLogoSpinDurationSeconds={1.0}
+		            bottomLogoSpinStartOffsetSeconds={-0.08}
 		          />
 		        </Sequence>
       </div>

@@ -44,6 +44,7 @@ const SingleToolCallout = ({
   globalSeconds,
   scale,
   maxWidth,
+  yOffset = 0,
   startSeconds,
   endSeconds,
   label,
@@ -65,7 +66,7 @@ const SingleToolCallout = ({
   });
 
   const baseLeft = 32 * scale;
-  const baseTop = 132 * scale;
+  const baseTop = 132 * scale + (Number.isFinite(yOffset) ? yOffset : 0);
   const lineX = baseLeft + 22 * scale;
   const lineColor = 'rgba(59,130,246,0.92)';
   const lineW = Math.max(2, Math.round(2 * scale));
@@ -187,8 +188,10 @@ export const RecapOverlay = ({
   const linksPillH = Math.round(46 * scale);
   const linksBottom = Math.round(height * 0.055);
   // Keep the title pill reasonably narrow so it doesn't dominate the frame.
-  const contentMaxW = Math.round(width * 0.48);
+  const contentMaxW = Math.round(width * 0.3);
   const linksMaxW = Math.round(width * 0.86);
+  // Extra breathing room for the recap section so the description doesn't collide with the background.
+  const calloutYOffset = 22 * scale;
 
   return (
     <div
@@ -209,9 +212,10 @@ export const RecapOverlay = ({
         globalSeconds={globalSeconds}
         scale={scale}
         maxWidth={contentMaxW}
+        yOffset={calloutYOffset}
         startSeconds={samSeconds}
         endSeconds={matAnyoneSeconds - 0.08}
-        label="SAM 3: Segment Anything with Concepts"
+        label="SAM 3"
         description="Create a static mask around the person."
       />
 
@@ -219,6 +223,7 @@ export const RecapOverlay = ({
         globalSeconds={globalSeconds}
         scale={scale}
         maxWidth={contentMaxW}
+        yOffset={calloutYOffset}
         startSeconds={matAnyoneSeconds}
         endSeconds={remotionSeconds - 0.08}
         label="MatAnyone"
@@ -229,6 +234,7 @@ export const RecapOverlay = ({
         globalSeconds={globalSeconds}
         scale={scale}
         maxWidth={contentMaxW}
+        yOffset={calloutYOffset}
         startSeconds={remotionSeconds}
         endSeconds={null}
         label="Remotion"

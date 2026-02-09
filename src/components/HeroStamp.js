@@ -143,6 +143,11 @@ export const HeroStamp = ({
   bottomLogoStroke = 'rgba(0,0,0,0.52)',
   // Calibrated for a ~78px icon (at 1280x720): 20 * 78/512 ~= 3.0px.
   bottomLogoStrokeWidth = 20,
+  bottomLogoSpin = false,
+  bottomLogoSpinTurns = 1,
+  bottomLogoSpinDurationSeconds = 0.55,
+  // Start a bit early to compensate for fade-in so the motion is visible immediately.
+  bottomLogoSpinStartOffsetSeconds = -0.08,
   accentColor = '#3b82f6',
   textColor = '#f6f2ee',
   timingOffsetSeconds = 0,
@@ -197,6 +202,25 @@ export const HeroStamp = ({
   const percentStart = Math.max(0, timing.percentStart - percentLeadSeconds);
   const percentOpacity = appearOpacity({t, startSeconds: percentStart});
   const editedOpacity = appearOpacity({t, startSeconds: timing.editedStart});
+
+  const logoSpinStartSeconds = Math.max(
+    0,
+    timing.editedStart + (Number(bottomLogoSpinStartOffsetSeconds) || 0)
+  );
+  const logoSpinStartFrame = Math.ceil(logoSpinStartSeconds * fps);
+  const logoSpinFrames = Math.max(1, Math.round(Number(bottomLogoSpinDurationSeconds) * fps));
+  const logoSpinProgress = spring({
+    fps,
+    frame: Math.max(0, frame - logoSpinStartFrame),
+    config: {damping: 16, stiffness: 190, mass: 0.9},
+    durationInFrames: logoSpinFrames,
+  });
+  const logoRotateDeg = interpolate(
+    bottomLogoSpin ? logoSpinProgress : 0,
+    [0, 1],
+    [0, 360 * Math.max(0, Number(bottomLogoSpinTurns) || 0)],
+    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+  );
 
   // Use ceil so the pop never starts earlier than the word timing (at most 1 frame late).
   const percentFrame = Math.ceil(percentStart * fps);
@@ -338,6 +362,8 @@ export const HeroStamp = ({
 		                display: 'inline-flex',
 		                alignItems: 'center',
 		                justifyContent: 'center',
+		                transform: `rotate(${logoRotateDeg}deg)`,
+		                transformOrigin: '50% 50%',
 		                filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.30))',
 		              }}
 		            >
