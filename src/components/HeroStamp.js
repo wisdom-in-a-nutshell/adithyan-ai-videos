@@ -137,9 +137,12 @@ export const HeroStamp = ({
   bottomAccentText = 'CODEX',
   bottomLogoSrc = null,
   bottomLogoVariant = null, // 'openai' | null
-  bottomLogoFill = 'none',
-  bottomLogoStroke = 'currentColor',
-  bottomLogoStrokeWidth = 26,
+  // Default: white fill with black outline (works well over video).
+  bottomLogoFill = '#ffffff',
+  // Match the text outline: `WebkitTextStroke: 3px rgba(0,0,0,0.52)`.
+  bottomLogoStroke = 'rgba(0,0,0,0.52)',
+  // Calibrated for a ~78px icon (at 1280x720): 20 * 78/512 ~= 3.0px.
+  bottomLogoStrokeWidth = 20,
   accentColor = '#3b82f6',
   textColor = '#f6f2ee',
   timingOffsetSeconds = 0,
@@ -332,7 +335,6 @@ export const HeroStamp = ({
 		                height: Math.round(bottomFontSize * 0.70),
 		                // Nudge left to visually remove any remaining gap.
 		                marginLeft: -Math.round(bottomFontSize * 0.10),
-		                color: accentColor,
 		                display: 'inline-flex',
 		                alignItems: 'center',
 		                justifyContent: 'center',

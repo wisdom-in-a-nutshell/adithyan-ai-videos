@@ -160,12 +160,10 @@ export const RecapOverlay = ({
   const frame = useCurrentFrame();
   const {fps, width, height} = useVideoConfig();
 
-  // `useCurrentFrame()` is composition-global.
-  const globalSeconds = frame / Math.max(1, fps);
-
-  // Sequence-local time for fade in/out (so it doesn't "snap" when scrubbing).
-  const localFrame = frame - Math.max(0, Math.floor(Number(frameOffset) || 0));
-  const localSeconds = localFrame / Math.max(1, fps);
+  // Inside a <Sequence from={...}>, `useCurrentFrame()` is already sequence-local.
+  // We compute global seconds by adding the Sequence's `from` frame.
+  const globalSeconds = (frame + Math.max(0, Math.floor(Number(frameOffset) || 0))) / Math.max(1, fps);
+  const localSeconds = frame / Math.max(1, fps);
   const dur = Math.max(1, Number(durationInFrames) || 1);
 
   const fadeIn = 0.35;

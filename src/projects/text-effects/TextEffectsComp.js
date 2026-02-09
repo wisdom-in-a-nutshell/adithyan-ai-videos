@@ -653,7 +653,7 @@ export const TextEffectsComp = (props) => {
 	            transcriptWords={transcriptWords}
 	            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
 		            holdUntilSeconds={holdUntilSeconds}
-		            bottomLogoSrc={TEXT_EFFECTS_CODEX_LOGO_URL}
+		            bottomLogoVariant="openai"
 		          />
 		        </Sequence>
       </div>
