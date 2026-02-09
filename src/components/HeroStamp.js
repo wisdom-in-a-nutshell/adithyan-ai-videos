@@ -279,16 +279,17 @@ export const HeroStamp = ({
   }
 
   if (layer === 'front') {
-    // Front layer: add an outline-only duplicate of "100%" so the word stays readable
-    // even when the subject occludes the filled version behind.
-    const centerOutlineOpacity = percentOpacity * 0.55;
+    if (editedOpacity <= 0 || baseOpacity <= 0) {
+      return null;
+    }
 
+    // Front layer: only the bottom tagline.
     return (
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          opacity: baseOpacity,
+          opacity: baseOpacity * editedOpacity,
           pointerEvents: 'none',
         }}
       >
@@ -296,56 +297,23 @@ export const HeroStamp = ({
           style={{
             position: 'absolute',
             left: '50%',
-            top: '50%',
-            transform: `translate3d(calc(-50% + ${Math.round(
-              percentSlideX
-            )}px), -52%, 0) rotate(${percentRotate}deg) scale(${settle * percentZoom})`,
-            fontSize: percentFontSize,
-            letterSpacing: -4,
-            lineHeight: 1,
+            bottom: Math.round(height * 0.11),
+            transform: `translate3d(-50%, ${Math.round(editedLift)}px, 0)`,
+            color: textColor,
+            ...sharedTextStyle,
+            fontSize: bottomFontSize,
             whiteSpace: 'nowrap',
-            opacity: centerOutlineOpacity,
-            color: 'transparent',
-            WebkitTextStroke: '2px rgba(255,255,255,0.28)',
-            textShadow: '0 0 20px rgba(0,0,0,0.35)',
-            filter: 'none',
           }}
         >
+          {bottomPrefixText}{' '}
           <span
             style={{
-              display: 'inline-block',
-              transform: `translate3d(0, 0, 0) scale(${percentScale}) scaleX(${percentStretchX})`,
-              transformOrigin: '50% 50%',
+              color: accentColor,
             }}
           >
-            {centerText}
+            {bottomAccentText}
           </span>
         </div>
-
-        {editedOpacity > 0 ? (
-          <div
-            style={{
-              position: 'absolute',
-              left: '50%',
-              bottom: Math.round(height * 0.11),
-              transform: `translate3d(-50%, ${Math.round(editedLift)}px, 0)`,
-              color: textColor,
-              ...sharedTextStyle,
-              fontSize: bottomFontSize,
-              whiteSpace: 'nowrap',
-              opacity: editedOpacity,
-            }}
-          >
-            {bottomPrefixText}{' '}
-            <span
-              style={{
-                color: accentColor,
-              }}
-            >
-              {bottomAccentText}
-            </span>
-          </div>
-        ) : null}
       </div>
     );
   }
