@@ -4,6 +4,16 @@ Keep storyboards as data you can iterate on. Prefer one file per project:
 
 - `~/GitHub/adithyan-ai-videos/projects/<project-id>/storyboard.json`
 
+## Scene Numbers (Recommended)
+
+Add a stable `scene` label per beat so you can reference the storyboard and the Remotion timeline with the same IDs.
+
+Convention:
+
+- Beats: `S01`, `S02`, `S03`, ...
+- Optional sub-beats: `S03A`, `S03B`, ...
+- If you embed sub-beats, use `scene_parts[]` with their own `scene` + `source_start`/`source_end`.
+
 ## Minimal Contract
 
 - `beats[]`: list of beats
@@ -17,6 +27,8 @@ Example:
 {
   "beats": [
     {
+      "id": "hook",
+      "scene": "S01",
       "source_start": 0.0,
       "source_end": 1.5,
       "sentences": [1, 2],
@@ -25,6 +37,8 @@ Example:
       "visual_notes": ["High-contrast hero text"]
     },
     {
+      "id": "demo",
+      "scene": "S02",
       "source_start": 1.5,
       "source_end": 5.0,
       "sentences": [3],

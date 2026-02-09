@@ -44,6 +44,9 @@ export const CodexToolsArtifactsOverlay = ({
   startSeconds = 0,
   toolsSeconds = null,
   artifactsSeconds = null,
+  // If set, fade out the artifacts pill + its connector at this absolute video second.
+  // Useful when we want to transition from "Tools -> Artifacts" into another overlay stack.
+  artifactsHideSeconds = null,
   toolsText = 'Tools',
   artifactsText = 'Digital artifacts',
   toolsEmoji = '🛠',
@@ -79,8 +82,13 @@ export const CodexToolsArtifactsOverlay = ({
 
   const toolsOpacity = interpolate(showTools, [0, 1], [0, 1]);
   const toolsSlide = interpolate(showTools, [0, 1], [10, 0]);
-  const artifactsOpacity = interpolate(showArtifacts, [0, 1], [0, 1]);
+  const artifactsOpacityBase = interpolate(showArtifacts, [0, 1], [0, 1]);
   const artifactsSlide = interpolate(showArtifacts, [0, 1], [12, 0]);
+  const artifactsHideMul =
+    Number.isFinite(artifactsHideSeconds) && artifactsHideSeconds !== null
+      ? 1 - clamp01((t - artifactsHideSeconds) / 0.2)
+      : 1;
+  const artifactsOpacity = artifactsOpacityBase * artifactsHideMul;
 
   const left = baseLeft;
   const top = baseTop;
@@ -193,7 +201,7 @@ export const CodexToolsArtifactsOverlay = ({
           <Pill text={toolsText} emoji={toolsEmoji} />
         </div>
 
-        {hasArtifacts ? (
+        {hasArtifacts && artifactsOpacity > 0.001 ? (
           <>
             <div
               style={{
@@ -205,9 +213,10 @@ export const CodexToolsArtifactsOverlay = ({
                 backgroundColor: lineColor,
                 transformOrigin: 'top',
                 transform: `scaleY(${lineToArtifacts})`,
+                opacity: artifactsHideMul,
               }}
             />
-            <FlowDot y={dot2.y} opacity={dot2.o} />
+            <FlowDot y={dot2.y} opacity={dot2.o * artifactsHideMul} />
             <div
               style={{
                 position: 'absolute',
@@ -218,7 +227,7 @@ export const CodexToolsArtifactsOverlay = ({
                 borderLeft: `${arrowSize}px solid transparent`,
                 borderRight: `${arrowSize}px solid transparent`,
                 borderTop: `${arrowSize}px solid ${lineColor}`,
-                opacity: lineToArtifacts > 0.9 ? 1 : 0,
+                opacity: (lineToArtifacts > 0.9 ? 1 : 0) * artifactsHideMul,
               }}
             />
 
