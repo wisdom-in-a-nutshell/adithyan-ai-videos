@@ -51,6 +51,13 @@ This repo is the Remotion workspace for building short, marketing-style videos a
 - Stills (very fast feedback):
   - `npx remotion still src/index.js <CompositionId> /tmp/<id>-f0048.png --frame 48 --overwrite`
 
+## Cloud Render (Modal)
+
+- Render a composition in Modal (renders by git SHA; working tree must be clean/pushed):
+  - `npm run render:cloud -- --comp TextEffects --hq`
+- Requires Modal secrets:
+  - `r2-secret` (for uploading the MP4 and returning a public URL)
+
 ## Creating Videos (Project Files)
 
 - Store per-video inputs/artifacts under `projects/<project-id>/`:

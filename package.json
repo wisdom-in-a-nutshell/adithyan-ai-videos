@@ -7,7 +7,8 @@
     "start": "node scripts/studio_cached.mjs",
     "studio:text-effects": "remotion studio",
     "studio:cached": "node scripts/studio_cached.mjs",
-    "render": "node scripts/render.mjs"
+    "render": "node scripts/render.mjs",
+    "render:cloud": "node scripts/render_cloud.mjs"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
