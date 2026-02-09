@@ -7,20 +7,23 @@ const resolveAssetSrc = (src, assetMap) => {
   if (!src || typeof src !== 'string') {
     return src;
   }
+  let resolved = src;
+
   // Optional: injected by `npm start` (cached studio) / `npm run render`.
   if (assetMap && typeof assetMap === 'object') {
-    const mapped = assetMap[src];
+    const mapped = assetMap[resolved];
     if (typeof mapped === 'string' && mapped.length > 0) {
-      return mapped;
+      resolved = mapped;
     }
   }
-  if (/^https?:\/\//i.test(src) || src.startsWith('data:')) {
-    return src;
+
+  if (/^https?:\/\//i.test(resolved) || resolved.startsWith('data:')) {
+    return resolved;
   }
-  if (src.startsWith('/')) {
-    return staticFile(src.slice(1));
+  if (resolved.startsWith('/')) {
+    return staticFile(resolved.slice(1));
   }
-  return staticFile(src);
+  return staticFile(resolved);
 };
 
 export const ForegroundMatteComposite = ({

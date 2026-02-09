@@ -1,5 +1,5 @@
 import React from 'react';
-import {Sequence, Video, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
+import {Sequence, Video, interpolate, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import {HeroStamp} from '../../components/HeroStamp.js';
 import transcriptWords from './transcript_words.json';
 import {
@@ -75,15 +75,24 @@ const resolveAssetSrc = (src, assetMap) => {
   if (!src || typeof src !== 'string') {
     return src;
   }
-  // `studio:cached` and `render -- --cached` inject an `assetMap` prop that rewrites
-  // remote URLs to `--public-dir` files (e.g. "https://.../video.mp4" -> "/<hash>.mp4").
+  let resolved = src;
+
+  // `npm start` / `npm run render` inject an `assetMap` prop that rewrites remote URLs
+  // to local public-dir files (e.g. "https://.../video.mp4" -> "/<hash>.mp4").
   if (assetMap && typeof assetMap === 'object') {
-    const mapped = assetMap[src];
+    const mapped = assetMap[resolved];
     if (typeof mapped === 'string' && mapped.length > 0) {
-      return mapped;
+      resolved = mapped;
     }
   }
-  return src;
+
+  if (/^https?:\/\//i.test(resolved) || resolved.startsWith('data:')) {
+    return resolved;
+  }
+  if (resolved.startsWith('/')) {
+    return staticFile(resolved.slice(1));
+  }
+  return staticFile(resolved);
 };
 
 // Project-specific composition wrapper for `text-effects`.
