@@ -316,7 +316,7 @@ export const TextEffectsComp = (props) => {
         {(() => {
           // After the green screen preview ends, outline the foreground matte to explain "two layers".
           const startSeconds = TEXT_EFFECTS_TOOL2_GREEN_END_SECONDS;
-          const endSeconds = TEXT_EFFECTS_TOOL3_REMOTION_END_SECONDS;
+          const endSeconds = TEXT_EFFECTS_TOOL3_BLUR_BG_START_SECONDS;
           const from = Math.max(0, Math.floor(startSeconds * fps));
           const dur = Math.max(
             1,
@@ -353,7 +353,7 @@ export const TextEffectsComp = (props) => {
 
         {(() => {
           const startSeconds = TEXT_EFFECTS_TOOL2_GREEN_END_SECONDS;
-          const endSeconds = TEXT_EFFECTS_TOOL3_REMOTION_END_SECONDS;
+          const endSeconds = TEXT_EFFECTS_TOOL3_BLUR_BG_START_SECONDS;
           const from = Math.max(0, Math.floor(startSeconds * fps));
           const dur = Math.max(
             1,
@@ -378,7 +378,7 @@ export const TextEffectsComp = (props) => {
 
         {(() => {
           const startSeconds = TEXT_EFFECTS_TOOL2_GREEN_END_SECONDS;
-          const endSeconds = TEXT_EFFECTS_TOOL3_REMOTION_END_SECONDS;
+          const endSeconds = TEXT_EFFECTS_TOOL3_BLUR_BG_START_SECONDS;
           const from = Math.max(0, Math.floor(startSeconds * fps));
           const dur = Math.max(
             1,
@@ -386,7 +386,12 @@ export const TextEffectsComp = (props) => {
           );
           return (
             <Sequence name="[T2-7] Layers Legend" from={from} durationInFrames={dur}>
-              <LayersLegendOverlay durationInFrames={dur} scale={TEXT_EFFECTS_UI_SCALE} />
+              <LayersLegendOverlay
+                durationInFrames={dur}
+                scale={TEXT_EFFECTS_UI_SCALE}
+                // Keep it solid until we hit "blur the background".
+                fadeOutSeconds={0}
+              />
             </Sequence>
           );
         })()}

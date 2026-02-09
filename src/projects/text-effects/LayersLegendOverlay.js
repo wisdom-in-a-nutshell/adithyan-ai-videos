@@ -46,14 +46,21 @@ const Pill = ({prefix, text, color}) => {
   );
 };
 
-export const LayersLegendOverlay = ({durationInFrames, scale = 1}) => {
+export const LayersLegendOverlay = ({
+  durationInFrames,
+  scale = 1,
+  fadeInSeconds = 0.25,
+  fadeOutSeconds = 0.25,
+}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const t = frame / Math.max(1, fps);
   const durSeconds = durationInFrames / Math.max(1, fps);
 
-  const fadeIn = clamp01(t / 0.25);
-  const fadeOut = clamp01((durSeconds - t) / 0.25);
+  const inS = Math.max(0.0001, Number(fadeInSeconds) || 0.25);
+  const outS = Math.max(0, Number(fadeOutSeconds) || 0);
+  const fadeIn = clamp01(t / inS);
+  const fadeOut = outS <= 0 ? 1 : clamp01((durSeconds - t) / outS);
   const opacity = fadeIn * fadeOut;
   const slide = interpolate(fadeIn, [0, 1], [10, 0]) * scale;
 
