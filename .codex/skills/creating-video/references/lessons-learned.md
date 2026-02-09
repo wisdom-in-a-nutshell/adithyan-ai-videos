@@ -25,3 +25,6 @@
 - If a pill/box suddenly stretches too wide: use `display: inline-flex`, `width: fit-content`, `maxWidth`, and `textOverflow: ellipsis`.
 - If you render any extra `Video` layers for effects, always set `muted` and align time with `startFrom={SequenceFromFrame}` to avoid audio doubling + restart.
 - If a layer "goes behind" the subject unexpectedly, it's almost always `zIndex` or ordering relative to the foreground alpha layer.
+- Multi-agent parallelism works fine if you avoid collisions:
+  - Assign ownership by folder (one agent per `src/projects/<id>/`), and only coordinate on shared `src/overlay_kit/` primitives.
+  - Keep per-beat overlays in separate files and mount them as named `<Sequence name="...">` blocks (clean diffs, easy to review).

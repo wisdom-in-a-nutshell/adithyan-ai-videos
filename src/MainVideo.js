@@ -29,9 +29,16 @@ const LEAD_OUT_START = 50.6;
 const LEAD_OUT_END = 51.4;
 const lerp = (a, b, t) => a + (b - a) * t;
 
-const resolveAssetSrc = (src) => {
+const resolveAssetSrc = (src, assetMap) => {
   if (!src || typeof src !== 'string') {
     return src;
+  }
+  // Optional: injected by `npm start` (cached studio) / `npm run render`.
+  if (assetMap && typeof assetMap === 'object') {
+    const mapped = assetMap[src];
+    if (typeof mapped === 'string' && mapped.length > 0) {
+      return mapped;
+    }
   }
   if (/^https?:\/\//i.test(src) || src.startsWith('data:')) {
     return src;
@@ -180,7 +187,7 @@ const getLayoutMode = (timeSeconds, sections) => {
   return layoutForSection(section.name);
 };
 
-const TalkingHeadOverlay = ({videoUrl, crop, resolution, muted, style}) => {
+const TalkingHeadOverlay = ({videoUrl, crop, resolution, muted, style, assetMap}) => {
   const {width: outputW, height: outputH} = useVideoConfig();
   const boxSize = Math.round(outputW * 0.28);
   const margin = 24;
@@ -212,7 +219,7 @@ const TalkingHeadOverlay = ({videoUrl, crop, resolution, muted, style}) => {
       }}
     >
       <Video
-        src={resolveAssetSrc(videoUrl)}
+        src={resolveAssetSrc(videoUrl, assetMap)}
         muted={muted}
         style={{
           width: resolution.width,
@@ -231,6 +238,7 @@ export const MainVideo = ({
   storyboard,
   cropTimeline,
   transcriptWords = defaultTranscriptWords,
+  assetMap,
 }) => {
   const frame = useCurrentFrame();
   const {fps, width: outputW, height: outputH} = useVideoConfig();
@@ -354,12 +362,12 @@ export const MainVideo = ({
       }}
     >
       <SketchDefs />
-      <div style={{position: 'absolute', inset: 0, opacity: fullVideoOpacity}}>
-        <Video
-          src={resolveAssetSrc(videoUrl)}
-          muted={fullVideoMuted}
-          style={{
-            width: resolution.width,
+	      <div style={{position: 'absolute', inset: 0, opacity: fullVideoOpacity}}>
+	        <Video
+	          src={resolveAssetSrc(videoUrl, assetMap)}
+	          muted={fullVideoMuted}
+	          style={{
+	            width: resolution.width,
             height: resolution.height,
             objectFit: 'cover',
           }}
@@ -391,14 +399,15 @@ export const MainVideo = ({
             />
           ) : null}
           {canvasOpacity > 0 ? <CanvasSketchFrame opacity={canvasOpacity} /> : null}
-          <TalkingHeadOverlay
-            videoUrl={videoUrl}
-            crop={crop}
-            resolution={resolution}
-            muted={talkingHeadMuted}
-            style={{
-              opacity: talkingHeadOpacity,
-              transform: `scale(${talkingHeadScale})`,
+	          <TalkingHeadOverlay
+	            videoUrl={videoUrl}
+	            crop={crop}
+	            resolution={resolution}
+	            muted={talkingHeadMuted}
+	            assetMap={assetMap}
+	            style={{
+	              opacity: talkingHeadOpacity,
+	              transform: `scale(${talkingHeadScale})`,
               transformOrigin: 'center center',
               zIndex: 10,
             }}

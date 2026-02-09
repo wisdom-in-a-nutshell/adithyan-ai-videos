@@ -355,13 +355,13 @@ export const TextEffectsComp = (props) => {
           );
         })()}
 
-        <Sequence name="[S01+] Foreground Alpha" from={0} durationInFrames={durationInFrames}>
-          <Video
-            src={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL)}
-            muted
-            style={{
-              position: 'absolute',
-              inset: 0,
+	        <Sequence name="[S01+] Foreground Alpha" from={0} durationInFrames={durationInFrames}>
+	          <Video
+	            src={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL, assetMap)}
+	            muted
+	            style={{
+	              position: 'absolute',
+	              inset: 0,
               width: '100%',
               height: '100%',
               objectFit: 'cover',

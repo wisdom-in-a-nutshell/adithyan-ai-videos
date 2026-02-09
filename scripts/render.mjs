@@ -38,12 +38,13 @@ const printHelp = () => {
 Usage:
   npm run render -- [--comp <Name>] [--from <sec>] [--to <sec>]
                  [--preview|--hq] [--scale <n>] [--crf <n>]
-                 [--out <path>] [--no-open]
+                 [--out <path>] [--no-open] [--no-cache] [--refresh]
 
 Defaults:
   --comp     TextEffects
   --preview  on (fast iteration)
   --out      /tmp/<comp>.mp4
+  caching    on (downloads remote URLs from src/projects/*/assets.js into ~/.cache)
 
 Preview preset:
   --preview  sets --scale 0.25 and --crf 28 (override with explicit --scale/--crf)
@@ -58,6 +59,7 @@ Examples:
   npm run render -- --preview --from 0 --to 6
   npm run render -- --comp OcclusionDemo --from 0 --to 3
   npm run render -- --comp ActiveSpeakerDetection --preview --from 10 --to 20
+  npm run render -- --no-cache # disable caching
 `.trim());
 };
 

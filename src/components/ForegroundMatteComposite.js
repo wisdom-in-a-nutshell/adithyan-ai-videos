@@ -3,9 +3,16 @@ import {Video, staticFile, interpolate, useCurrentFrame, useVideoConfig} from 'r
 import {SKETCH_FONT_FAMILY} from '../styles/sketch.js';
 import {HeroStamp} from './HeroStamp.js';
 
-const resolveAssetSrc = (src) => {
+const resolveAssetSrc = (src, assetMap) => {
   if (!src || typeof src !== 'string') {
     return src;
+  }
+  // Optional: injected by `npm start` (cached studio) / `npm run render`.
+  if (assetMap && typeof assetMap === 'object') {
+    const mapped = assetMap[src];
+    if (typeof mapped === 'string' && mapped.length > 0) {
+      return mapped;
+    }
   }
   if (/^https?:\/\//i.test(src) || src.startsWith('data:')) {
     return src;
@@ -20,6 +27,7 @@ export const ForegroundMatteComposite = ({
   videoUrl,
   alphaUrl,
   transcriptWords,
+  assetMap,
   textColor = '#f6f2ee',
   backgroundBlur = 0,
   backgroundDim = 0,
@@ -76,7 +84,7 @@ export const ForegroundMatteComposite = ({
         }}
       >
       <Video
-        src={resolveAssetSrc(videoUrl)}
+        src={resolveAssetSrc(videoUrl, assetMap)}
         style={{
           position: 'absolute',
           inset: 0,
@@ -112,7 +120,7 @@ export const ForegroundMatteComposite = ({
         <>
           {featherPx > 0 ? (
             <Video
-              src={resolveAssetSrc(alphaUrl)}
+              src={resolveAssetSrc(alphaUrl, assetMap)}
               muted
               style={{
                 position: 'absolute',
@@ -128,7 +136,7 @@ export const ForegroundMatteComposite = ({
             />
           ) : null}
           <Video
-            src={resolveAssetSrc(alphaUrl)}
+            src={resolveAssetSrc(alphaUrl, assetMap)}
             muted
             style={{
               position: 'absolute',

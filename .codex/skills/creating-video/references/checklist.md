@@ -8,4 +8,5 @@
 - [ ] Disclaimer text short + visible
 - [ ] Extra `Video` layers (if any) are `muted` and use `startFrom={SequenceFromFrame}` (no audio doubling / no restart)
 - [ ] Key overlays have explicit `zIndex` (especially if you have a foreground alpha layer)
+- [ ] Major effects are wrapped in named `<Sequence name="...">` blocks (so you can see them in the Studio timeline)
 - [ ] Preview in Remotion before render
