@@ -1,5 +1,6 @@
 import React, {useMemo} from 'react';
 import {Img, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
+import {OpenAiIcon} from './OpenAiIcon.js';
 
 const normalizeWord = (value) => {
   if (typeof value !== 'string') {
@@ -135,6 +136,10 @@ export const HeroStamp = ({
   bottomPrefixText = 'EDITED BY',
   bottomAccentText = 'CODEX',
   bottomLogoSrc = null,
+  bottomLogoVariant = null, // 'openai' | null
+  bottomLogoFill = 'none',
+  bottomLogoStroke = 'currentColor',
+  bottomLogoStrokeWidth = 26,
   accentColor = '#3b82f6',
   textColor = '#f6f2ee',
   timingOffsetSeconds = 0,
@@ -313,30 +318,51 @@ export const HeroStamp = ({
 	          }}
 	        >
 	          <span>{bottomPrefixText}</span>
-	          <span
-	            style={{
-	              color: accentColor,
-	            }}
-	          >
-	            {bottomAccentText}
-	          </span>
-	          {bottomLogoSrc ? (
-	            <Img
-	              src={bottomLogoSrc}
-	              style={{
-	                width: Math.round(bottomFontSize * 0.70),
-	                height: Math.round(bottomFontSize * 0.70),
-	                objectFit: 'contain',
-	                // Nudge left to visually remove any remaining gap (logo PNG padding varies).
-	                marginLeft: -Math.round(bottomFontSize * 0.10),
-	                filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.30))',
-	              }}
-	            />
-	          ) : null}
-	        </div>
-	      </div>
-	    );
-	  }
+		          <span
+		            style={{
+		              color: accentColor,
+		            }}
+		          >
+		            {bottomAccentText}
+		          </span>
+		          {bottomLogoVariant === 'openai' ? (
+		            <span
+		              style={{
+		                width: Math.round(bottomFontSize * 0.70),
+		                height: Math.round(bottomFontSize * 0.70),
+		                // Nudge left to visually remove any remaining gap.
+		                marginLeft: -Math.round(bottomFontSize * 0.10),
+		                color: accentColor,
+		                display: 'inline-flex',
+		                alignItems: 'center',
+		                justifyContent: 'center',
+		                filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.30))',
+		              }}
+		            >
+		              <OpenAiIcon
+		                style={{width: '100%', height: '100%', display: 'block'}}
+		                fill={bottomLogoFill}
+		                stroke={bottomLogoStroke}
+		                strokeWidth={bottomLogoStrokeWidth}
+		              />
+		            </span>
+		          ) : bottomLogoSrc ? (
+		            <Img
+		              src={bottomLogoSrc}
+		              style={{
+		                width: Math.round(bottomFontSize * 0.70),
+		                height: Math.round(bottomFontSize * 0.70),
+		                objectFit: 'contain',
+		                // Nudge left to visually remove any remaining gap (logo PNG padding varies).
+		                marginLeft: -Math.round(bottomFontSize * 0.10),
+		                filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.30))',
+		              }}
+		            />
+		          ) : null}
+		        </div>
+		      </div>
+		    );
+		  }
 
   const washOpacity = baseOpacity * interpolate(percentOpacity, [0, 1], [0.0, 1.0], {
     extrapolateLeft: 'clamp',

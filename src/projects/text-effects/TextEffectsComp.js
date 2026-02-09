@@ -624,7 +624,6 @@ export const TextEffectsComp = (props) => {
               remotionSeconds={TEXT_EFFECTS_RECAP_REMOTION_SECONDS}
               scale={TEXT_EFFECTS_UI_SCALE}
               codexLogo={TEXT_EFFECTS_CODEX_LOGO_URL}
-              alphaSrc={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL)}
             />
           </Sequence>
         );
@@ -642,7 +641,7 @@ export const TextEffectsComp = (props) => {
 
         return (
           <Sequence name="[OUTRO] Links: Check Description" from={from} durationInFrames={dur}>
-            <DescriptionLinksOverlay durationInFrames={dur} scale={TEXT_EFFECTS_UI_SCALE} />
+            <DescriptionLinksOverlay durationInFrames={dur} scale={TEXT_EFFECTS_UI_SCALE * 1.18} />
           </Sequence>
         );
       })()}

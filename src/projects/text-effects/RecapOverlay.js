@@ -46,52 +46,53 @@ const ToolPill = ({text, prefix, scale}) => {
   );
 };
 
-const RecapList = ({globalSeconds, items, scale}) => {
-  const pillH = 44 * scale;
-  const gapY = 44 * 1.2 * scale;
-  const rowGap = pillH + gapY;
+const SingleToolCallout = ({
+  globalSeconds,
+  scale,
+  startSeconds,
+  endSeconds,
+  prefix,
+  label,
+  description,
+}) => {
+  const appear = clamp01((globalSeconds - startSeconds) / 0.28);
+  const disappear =
+    Number.isFinite(endSeconds) && endSeconds !== null
+      ? 1 - clamp01((globalSeconds - endSeconds) / 0.22)
+      : 1;
 
-  const lineX = 22 * scale;
+  const opacity = interpolate(appear, [0, 1], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  }) * disappear;
+  const slide = interpolate(appear, [0, 1], [10 * scale, 0], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+
+  const baseLeft = 32 * scale;
+  const baseTop = 132 * scale;
+  const lineX = baseLeft + 22 * scale;
   const lineColor = 'rgba(59,130,246,0.92)';
   const lineW = Math.max(2, Math.round(2 * scale));
   const arrowSize = 7 * scale;
 
-  // Start below the Codex pill block (StatusLeftOverlay + CodexCallout).
-  const startY = 44 * 1.7 * scale;
+  const pillH = 44 * scale;
+  const gapY = 44 * 1.2 * scale;
+  const codexBottomY = 88 * scale + 44 * scale; // CodexCallout top + height
+  const lineStartY = codexBottomY + 10 * scale;
+  const pillY = baseTop + gapY;
+  const lineEndY = pillY - 10 * scale;
 
-  const rows = items.map((item, idx) => {
-    const start = Number(item.startSeconds);
-    const p = Number.isFinite(start) ? clamp01((globalSeconds - start) / 0.28) : 0;
-    return {
-      ...item,
-      idx,
-      p,
-      opacity: interpolate(p, [0, 1], [0, 1]),
-      translate: interpolate(p, [0, 1], [10 * scale, 0]),
-      y: startY + idx * rowGap,
-    };
-  });
+  const lineProgress = clamp01((globalSeconds - startSeconds) / 0.45);
+  const lineHeight = Math.max(0, lineEndY - lineStartY);
 
-  const lastVisibleIndex = (() => {
-    for (let i = rows.length - 1; i >= 0; i--) {
-      if (rows[i].p > 0.05) return i;
-    }
-    return 0;
-  })();
-
-  const lineStartY = startY + 12 * scale;
-  const lineHeight =
-    rows.length === 0
-      ? 0
-      : Math.max(0, rows[lastVisibleIndex].y + pillH * 0.1 - lineStartY);
-
-  const listStart = Number(items?.[0]?.listStartSeconds);
-  const lineProgress = Number.isFinite(listStart)
-    ? clamp01((globalSeconds - listStart) / 0.6)
-    : 1;
+  if (opacity <= 0.001) {
+    return null;
+  }
 
   return (
-    <div style={{position: 'relative', paddingLeft: 44 * scale}}>
+    <div style={{position: 'absolute', inset: 0, opacity, pointerEvents: 'none'}}>
       <div
         style={{
           position: 'absolute',
@@ -104,52 +105,44 @@ const RecapList = ({globalSeconds, items, scale}) => {
           transform: `scaleY(${lineProgress})`,
         }}
       />
+      <div
+        style={{
+          position: 'absolute',
+          left: lineX - arrowSize + 1,
+          top: pillY - 10 * scale,
+          width: 0,
+          height: 0,
+          borderLeft: `${arrowSize}px solid transparent`,
+          borderRight: `${arrowSize}px solid transparent`,
+          borderTop: `${arrowSize}px solid ${lineColor}`,
+          opacity: lineProgress > 0.9 ? 1 : 0,
+        }}
+      />
 
-      {rows.map((row) => {
-        const arrowOpacity = row.p > 0.92 ? 1 : 0;
-        return (
-          <React.Fragment key={`${row.idx}-${row.label}`}>
-            <div
-              style={{
-                position: 'absolute',
-                left: lineX - arrowSize + 1,
-                top: row.y - 10 * scale,
-                width: 0,
-                height: 0,
-                borderLeft: `${arrowSize}px solid transparent`,
-                borderRight: `${arrowSize}px solid transparent`,
-                borderTop: `${arrowSize}px solid ${lineColor}`,
-                opacity: arrowOpacity,
-              }}
-            />
-            <div
-              style={{
-                position: 'absolute',
-                left: 0,
-                top: row.y,
-                opacity: row.opacity,
-                transform: `translate3d(0, ${Math.round(row.translate)}px, 0)`,
-              }}
-            >
-              <ToolPill text={row.label} prefix={row.idx + 1} scale={scale} />
-              <div
-                style={{
-                  marginLeft: 44 * scale,
-                  marginTop: 10 * scale,
-                  color: '#111827',
-                  fontSize: 21 * scale,
-                  fontWeight: 500,
-                  letterSpacing: 0.2,
-                  opacity: 0.92,
-                  maxWidth: 780 * scale,
-                }}
-              >
-                {row.subtitle}
-              </div>
-            </div>
-          </React.Fragment>
-        );
-      })}
+      <div
+        style={{
+          position: 'absolute',
+          left: baseLeft,
+          top: pillY,
+          transform: `translate3d(0, ${Math.round(slide)}px, 0)`,
+        }}
+      >
+        <ToolPill text={label} prefix={prefix} scale={scale} />
+        <div
+          style={{
+            marginLeft: 44 * scale,
+            marginTop: 10 * scale,
+            color: '#111827',
+            fontSize: 21 * scale,
+            fontWeight: 500,
+            letterSpacing: 0.2,
+            opacity: 0.92,
+            maxWidth: 860 * scale,
+          }}
+        >
+          {description}
+        </div>
+      </div>
     </div>
   );
 };
@@ -201,40 +194,17 @@ export const RecapOverlay = ({
       <StatusLeftOverlay text="ANIMATING" durationInFrames={dur} scale={scale} />
       <CodexCallout text="CODEX" logo={codexLogo} durationInFrames={dur} scale={scale} />
 
-      {/* 1/2/3 list (same pill style as the rest of the project) */}
-      <div
-        style={{
-          position: 'absolute',
-          left: 32 * scale,
-          top: 132 * scale,
-          opacity: 1,
-        }}
-      >
-        <RecapList
-          globalSeconds={globalSeconds}
-          scale={scale}
-          items={[
-            {
-              label: 'SAM 3',
-              subtitle: 'Create a segmentation mask around the person.',
-              startSeconds: samSeconds,
-              listStartSeconds: startSeconds,
-            },
-            {
-              label: 'MatAnyone',
-              subtitle: 'Track that mask across the full video (a matte for every frame).',
-              startSeconds: matAnyoneSeconds,
-              listStartSeconds: startSeconds,
-            },
-            {
-              label: 'Remotion',
-              subtitle: 'Compose layers to create the final effects.',
-              startSeconds: remotionSeconds,
-              listStartSeconds: startSeconds,
-            },
-          ]}
-        />
-      </div>
+      {/* Simple recap: one tool at a time. For now: SAM3 only. */}
+      <SingleToolCallout
+        globalSeconds={globalSeconds}
+        scale={scale}
+        startSeconds={samSeconds}
+        // Hide once MatAnyone begins (we'll add MatAnyone next).
+        endSeconds={matAnyoneSeconds - 0.08}
+        prefix="1"
+        label="SAM 3"
+        description="Create a segmentation mask around the person."
+      />
 
       {/* Bottom hint pill */}
       <div
