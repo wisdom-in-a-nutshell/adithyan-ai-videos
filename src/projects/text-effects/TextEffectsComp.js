@@ -5,8 +5,12 @@ import transcriptWords from './transcript_words.json';
 import {
   TEXT_EFFECTS_ALPHA_URL,
   TEXT_EFFECTS_CODEX_LOGO_URL,
+  TEXT_EFFECTS_HERO_STAMP_TIMING,
+  TEXT_EFFECTS_LET_ME_SHOW_YOU_HOW_END_SECONDS,
+  TEXT_EFFECTS_LET_ME_SHOW_YOU_HOW_START_SECONDS,
   TEXT_EFFECTS_SETUP_CODING_ARTIFACTS_SECONDS,
   TEXT_EFFECTS_SETUP_CODING_TOOLS_SECONDS,
+  TEXT_EFFECTS_SETUP_CODEX_MENTION_SECONDS,
   TEXT_EFFECTS_SETUP_DIGITAL_ARTIFACTS_SECONDS,
   TEXT_EFFECTS_SETUP_TOOLS_SECONDS,
   TEXT_EFFECTS_SETUP_VIDEO_ARTIFACTS_SECONDS,
@@ -17,6 +21,10 @@ import {
   TEXT_EFFECTS_SETUP_START_SECONDS,
   TEXT_EFFECTS_THREE_TOOLS_END_SECONDS,
   TEXT_EFFECTS_THREE_TOOLS_START_SECONDS,
+  TEXT_EFFECTS_THREE_TOOLS_MATANYONE_SECONDS,
+  TEXT_EFFECTS_THREE_TOOLS_REMOTION_SECONDS,
+  TEXT_EFFECTS_THREE_TOOLS_SAM3_SECONDS,
+  TEXT_EFFECTS_THREE_TOOLS_SPECIFICALLY_SECONDS,
   TEXT_EFFECTS_TOOL1_SAM3_START_SECONDS,
   TEXT_EFFECTS_TOOL1_SAM3_END_SECONDS,
   TEXT_EFFECTS_SAM3_MASK_SHOW_SECONDS,
@@ -41,6 +49,8 @@ import {
   TEXT_EFFECTS_RECAP_REMOTION_SECONDS,
   TEXT_EFFECTS_RECAP_SAM3_SECONDS,
   TEXT_EFFECTS_RECAP_START_SECONDS,
+  TEXT_EFFECTS_LINKS_END_SECONDS,
+  TEXT_EFFECTS_LINKS_START_SECONDS,
   TEXT_EFFECTS_VIDEO_URL,
 } from './assets.js';
 import {SKETCH_FONT_FAMILY} from '../../styles/sketch.js';
@@ -58,6 +68,7 @@ import {Sam3StaticMaskOverlay} from './Sam3StaticMaskOverlay.js';
 import {LayersLegendOverlay} from './LayersLegendOverlay.js';
 import {TextPlacementDemoOverlay} from './TextPlacementDemoOverlay.js';
 import {RecapOverlay} from './RecapOverlay.js';
+import {DescriptionLinksOverlay} from './DescriptionLinksOverlay.js';
 import {TEXT_EFFECTS_UI_SCALE} from './ui.js';
 
 const resolveAssetSrc = (src) => {
@@ -67,127 +78,19 @@ const resolveAssetSrc = (src) => {
   return src;
 };
 
-const normalizeWord = (value) => {
-  if (typeof value !== 'string') {
-    return '';
-  }
-  return value.trim().toLowerCase().replace(/[^\w%]+/g, '');
-};
-
-const findLetMeShowYouHowEndSeconds = (words) => {
-  if (!Array.isArray(words)) {
-    return null;
-  }
-  const onlyWords = words.filter((w) => w?.type === 'word' && typeof w?.text === 'string');
-  if (onlyWords.length === 0) {
-    return null;
-  }
-
-  // Find "let me show you how" and return the end time of "how".
-  for (let i = 0; i < onlyWords.length - 4; i++) {
-    const w0 = normalizeWord(onlyWords[i].text);
-    const w1 = normalizeWord(onlyWords[i + 1].text);
-    const w2 = normalizeWord(onlyWords[i + 2].text);
-    const w3 = normalizeWord(onlyWords[i + 3].text);
-    const w4 = normalizeWord(onlyWords[i + 4].text);
-    if (w0 === 'let' && w1 === 'me' && w2 === 'show' && w3 === 'you' && w4 === 'how') {
-      const end = Number(onlyWords[i + 4].end);
-      return Number.isFinite(end) ? end : null;
-    }
-  }
-
-  return null;
-};
-
-const findLetMeShowYouHowStartSeconds = (words) => {
-  if (!Array.isArray(words)) {
-    return null;
-  }
-  const onlyWords = words.filter((w) => w?.type === 'word' && typeof w?.text === 'string');
-  if (onlyWords.length === 0) {
-    return null;
-  }
-
-  // Find "let me show you how" and return the start time of "let".
-  for (let i = 0; i < onlyWords.length - 4; i++) {
-    const w0 = normalizeWord(onlyWords[i].text);
-    const w1 = normalizeWord(onlyWords[i + 1].text);
-    const w2 = normalizeWord(onlyWords[i + 2].text);
-    const w3 = normalizeWord(onlyWords[i + 3].text);
-    const w4 = normalizeWord(onlyWords[i + 4].text);
-    if (w0 === 'let' && w1 === 'me' && w2 === 'show' && w3 === 'you' && w4 === 'how') {
-      const start = Number(onlyWords[i].start);
-      return Number.isFinite(start) ? start : null;
-    }
-  }
-
-  return null;
-};
-
-const findFirstWordInRangeSeconds = (words, targets, startSeconds, endSeconds) => {
-  if (!Array.isArray(words) || !Array.isArray(targets)) {
-    return null;
-  }
-  const targetSet = new Set(targets.map((t) => normalizeWord(t)));
-  for (const w of words) {
-    if (w?.type !== 'word' || typeof w?.text !== 'string') {
-      continue;
-    }
-    const start = Number(w.start);
-    if (!Number.isFinite(start)) {
-      continue;
-    }
-    if (start < startSeconds || start > endSeconds) {
-      continue;
-    }
-    if (targetSet.has(normalizeWord(w.text))) {
-      return start;
-    }
-  }
-  return null;
-};
-
-const findFirstWordEndInRangeSeconds = (words, targets, startSeconds, endSeconds) => {
-  if (!Array.isArray(words) || !Array.isArray(targets)) {
-    return null;
-  }
-  const targetSet = new Set(targets.map((t) => normalizeWord(t)));
-  for (const w of words) {
-    if (w?.type !== 'word' || typeof w?.text !== 'string') {
-      continue;
-    }
-    const start = Number(w.start);
-    const end = Number(w.end);
-    if (!Number.isFinite(start) || !Number.isFinite(end)) {
-      continue;
-    }
-    if (start < startSeconds || start > endSeconds) {
-      continue;
-    }
-    if (targetSet.has(normalizeWord(w.text))) {
-      return end;
-    }
-  }
-  return null;
-};
-
 // Project-specific composition wrapper for `text-effects`.
 // Keep the cut short while iterating; extend later when we implement storyboard-driven beats.
 export const TextEffectsComp = (props) => {
   const frame = useCurrentFrame();
   const {fps, durationInFrames} = useVideoConfig();
   const t = frame / Math.max(1, fps);
-  const holdUntilSeconds = findLetMeShowYouHowEndSeconds(transcriptWords);
-  const letMeShowYouStartSeconds = findLetMeShowYouHowStartSeconds(transcriptWords);
-  const holdFrames =
-    Number.isFinite(holdUntilSeconds) && holdUntilSeconds !== null
-      ? Math.min(durationInFrames, Math.max(1, Math.ceil(holdUntilSeconds * fps)))
-      : durationInFrames;
+  const holdUntilSeconds = TEXT_EFFECTS_LET_ME_SHOW_YOU_HOW_END_SECONDS;
+  const letMeShowYouStartSeconds = TEXT_EFFECTS_LET_ME_SHOW_YOU_HOW_START_SECONDS;
+  const holdFrames = Math.min(durationInFrames, Math.max(1, Math.ceil(holdUntilSeconds * fps)));
 
   // Subtle camera punch-in during the pause after "... edited by codex",
   // then ease back out right as "let me show you how" starts.
-  const codexEndSeconds =
-    findFirstWordEndInRangeSeconds(transcriptWords, ['codex', 'codec', 'codecs'], 0, 12) ?? null;
+  const codexEndSeconds = TEXT_EFFECTS_HERO_STAMP_TIMING.codexEnd;
 
   const cameraScale = (() => {
     if (!Number.isFinite(codexEndSeconds) || !Number.isFinite(letMeShowYouStartSeconds)) {
@@ -285,13 +188,14 @@ export const TextEffectsComp = (props) => {
           );
         })()}
 
-        <Sequence name="[S01] HeroStamp (Behind)" from={0} durationInFrames={holdFrames}>
-          <HeroStamp
-            layer="behind"
-            transcriptWords={transcriptWords}
-            holdUntilSeconds={holdUntilSeconds}
-          />
-        </Sequence>
+	        <Sequence name="[S01] HeroStamp (Behind)" from={0} durationInFrames={holdFrames}>
+	          <HeroStamp
+	            layer="behind"
+	            transcriptWords={transcriptWords}
+	            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
+	            holdUntilSeconds={holdUntilSeconds}
+	          />
+	        </Sequence>
 
         {(() => {
           const from = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL2_START_SECONDS * fps));
@@ -475,19 +379,13 @@ export const TextEffectsComp = (props) => {
             )
           );
 
-          // We fade out the "CODEX" callout (and tool stack) when we reach the "blur the background" demo.
-          const blurFrom = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL3_BLUR_BG_START_SECONDS * fps));
+	          // We fade out the "CODEX" callout (and tool stack) when we reach the "blur the background" demo.
+	          const blurFrom = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL3_BLUR_BG_START_SECONDS * fps));
 
-          const codexSeconds =
-            findFirstWordInRangeSeconds(
-              transcriptWords,
-              ['codex', 'codec', 'codecs'],
-              TEXT_EFFECTS_SETUP_START_SECONDS,
-              TEXT_EFFECTS_SETUP_END_SECONDS
-            ) ?? TEXT_EFFECTS_SETUP_START_SECONDS;
-          const codexFrom = Math.max(0, Math.floor(codexSeconds * fps));
-          // Keep the Codex pill on-screen from first mention until we hit the blur demo.
-          const codexDur = Math.max(1, Math.min(durationInFrames - codexFrom, blurFrom - codexFrom));
+	          const codexSeconds = TEXT_EFFECTS_SETUP_CODEX_MENTION_SECONDS;
+	          const codexFrom = Math.max(0, Math.floor(codexSeconds * fps));
+	          // Keep the Codex pill on-screen from first mention until we hit the blur demo.
+	          const codexDur = Math.max(1, Math.min(durationInFrames - codexFrom, blurFrom - codexFrom));
 
 	          return (
 	            <>
@@ -613,112 +511,56 @@ export const TextEffectsComp = (props) => {
               />
             </Sequence>
 
-            <Sequence
-              name="[S03C] Setup: Video Tools -> Video Artifacts"
-              from={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))}
-              durationInFrames={Math.max(
-                1,
-                blurFrom - Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))
-              )}
-            >
-              {(() => {
-                const specificallySeconds =
-                  findFirstWordInRangeSeconds(
-                    transcriptWords,
-                    ['specifically'],
-                    TEXT_EFFECTS_THREE_TOOLS_START_SECONDS,
-                    TEXT_EFFECTS_THREE_TOOLS_END_SECONDS
-                  ) ?? TEXT_EFFECTS_THREE_TOOLS_START_SECONDS;
+	            <Sequence
+	              name="[S03C] Setup: Video Tools -> Video Artifacts"
+	              from={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))}
+	              durationInFrames={Math.max(
+	                1,
+	                blurFrom - Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))
+	              )}
+	            >
+	              <CodexToolsArtifactsOverlay
+	                durationInFrames={Math.max(
+	                  1,
+	                  blurFrom - Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))
+	                )}
+	                startSeconds={TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS}
+	                toolsSeconds={TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS}
+	                artifactsSeconds={TEXT_EFFECTS_SETUP_VIDEO_ARTIFACTS_SECONDS}
+	                artifactsHideSeconds={TEXT_EFFECTS_THREE_TOOLS_SAM3_SECONDS}
+	                toolsText="Video tools"
+	                artifactsText="Video artifacts"
+	                toolsEmoji="🛠"
+	                artifactsEmoji="🎞️"
+	                frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))}
+	                scale={TEXT_EFFECTS_UI_SCALE}
+	                baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
+	                baseTop={132 * TEXT_EFFECTS_UI_SCALE}
+	              />
+	            </Sequence>
 
-                const samSeconds =
-                  findFirstWordInRangeSeconds(
-                    transcriptWords,
-                    ['sam', 'sam3'],
-                    specificallySeconds,
-                    specificallySeconds + 10
-                  ) ?? specificallySeconds + 1.4;
-
-                return (
-                  <CodexToolsArtifactsOverlay
-                    durationInFrames={Math.max(
-                      1,
-                      blurFrom - Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))
-                    )}
-                    startSeconds={TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS}
-                    toolsSeconds={TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS}
-                    artifactsSeconds={TEXT_EFFECTS_SETUP_VIDEO_ARTIFACTS_SECONDS}
-                    artifactsHideSeconds={samSeconds}
-                    toolsText="Video tools"
-                    artifactsText="Video artifacts"
-                    toolsEmoji="🛠"
-                    artifactsEmoji="🎞️"
-                    frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_SETUP_VIDEO_TOOLS_SECONDS * fps))}
-                    scale={TEXT_EFFECTS_UI_SCALE}
-                    baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
-                    baseTop={132 * TEXT_EFFECTS_UI_SCALE}
-                  />
-                );
-              })()}
-            </Sequence>
-
-            <Sequence
-              name="[S04] Three Tools: SAM3 -> MatAnyone -> Remotion"
-              from={Math.max(0, Math.floor(TEXT_EFFECTS_THREE_TOOLS_START_SECONDS * fps))}
-              durationInFrames={Math.max(
-                1,
-                Math.ceil((TEXT_EFFECTS_THREE_TOOLS_END_SECONDS - TEXT_EFFECTS_THREE_TOOLS_START_SECONDS) * fps)
-              )}
-            >
-              {(() => {
-                const specificallySeconds =
-                  findFirstWordInRangeSeconds(
-                    transcriptWords,
-                    ['specifically'],
-                    TEXT_EFFECTS_THREE_TOOLS_START_SECONDS,
-                    TEXT_EFFECTS_THREE_TOOLS_END_SECONDS
-                  ) ?? TEXT_EFFECTS_THREE_TOOLS_START_SECONDS;
-
-                const samSeconds =
-                  findFirstWordInRangeSeconds(
-                    transcriptWords,
-                    ['sam', 'sam3'],
-                    specificallySeconds,
-                    specificallySeconds + 10
-                  ) ?? specificallySeconds + 1.4;
-
-                const matAnyoneSeconds =
-                  findFirstWordInRangeSeconds(
-                    transcriptWords,
-                    ['mat', 'matt', 'map'],
-                    samSeconds + 0.01,
-                    samSeconds + 10
-                  ) ?? samSeconds + 0.8;
-
-                const remotionSeconds =
-                  findFirstWordInRangeSeconds(
-                    transcriptWords,
-                    ['remotion'],
-                    matAnyoneSeconds + 0.01,
-                    matAnyoneSeconds + 20
-                  ) ?? matAnyoneSeconds + 0.8;
-
-                return (
-                  <ThreeToolsOverlay
-                    startSeconds={specificallySeconds}
-                    frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_THREE_TOOLS_START_SECONDS * fps))}
-                    scale={TEXT_EFFECTS_UI_SCALE}
-                    baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
-                    baseTop={132 * TEXT_EFFECTS_UI_SCALE}
-                    anchor="tools"
-                    items={[
-                      {label: 'SAM3', startSeconds: samSeconds},
-                      {label: 'MatAnyone', startSeconds: matAnyoneSeconds},
-                      {label: 'Remotion', startSeconds: remotionSeconds},
-                    ]}
-                  />
-                );
-              })()}
-            </Sequence>
+	            <Sequence
+	              name="[S04] Three Tools: SAM3 -> MatAnyone -> Remotion"
+	              from={Math.max(0, Math.floor(TEXT_EFFECTS_THREE_TOOLS_START_SECONDS * fps))}
+	              durationInFrames={Math.max(
+	                1,
+	                Math.ceil((TEXT_EFFECTS_THREE_TOOLS_END_SECONDS - TEXT_EFFECTS_THREE_TOOLS_START_SECONDS) * fps)
+	              )}
+	            >
+	              <ThreeToolsOverlay
+	                startSeconds={TEXT_EFFECTS_THREE_TOOLS_SPECIFICALLY_SECONDS}
+	                frameOffset={Math.max(0, Math.floor(TEXT_EFFECTS_THREE_TOOLS_START_SECONDS * fps))}
+	                scale={TEXT_EFFECTS_UI_SCALE}
+	                baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
+	                baseTop={132 * TEXT_EFFECTS_UI_SCALE}
+	                anchor="tools"
+	                items={[
+	                  {label: 'SAM3', startSeconds: TEXT_EFFECTS_THREE_TOOLS_SAM3_SECONDS},
+	                  {label: 'MatAnyone', startSeconds: TEXT_EFFECTS_THREE_TOOLS_MATANYONE_SECONDS},
+	                  {label: 'Remotion', startSeconds: TEXT_EFFECTS_THREE_TOOLS_REMOTION_SECONDS},
+	                ]}
+	              />
+	            </Sequence>
 
             <Sequence
               name="[S05-07] Tool Stack: 1 SAM3, 2 MatAnyone, 3 Remotion"
@@ -786,14 +628,32 @@ export const TextEffectsComp = (props) => {
         );
       })()}
 
+      {(() => {
+        const from = Math.max(0, Math.floor(TEXT_EFFECTS_LINKS_START_SECONDS * fps));
+        const dur = Math.max(
+          1,
+          Math.min(
+            durationInFrames - from,
+            Math.ceil((TEXT_EFFECTS_LINKS_END_SECONDS - TEXT_EFFECTS_LINKS_START_SECONDS) * fps)
+          )
+        );
+
+        return (
+          <Sequence name="[OUTRO] Links: Check Description" from={from} durationInFrames={dur}>
+            <DescriptionLinksOverlay durationInFrames={dur} scale={TEXT_EFFECTS_UI_SCALE} />
+          </Sequence>
+        );
+      })()}
+
         <Sequence name="[S01] HeroStamp (Front)" from={0} durationInFrames={holdFrames}>
           <HeroStamp
             layer="front"
             transcriptWords={transcriptWords}
-            holdUntilSeconds={holdUntilSeconds}
-            bottomLogoSrc={TEXT_EFFECTS_CODEX_LOGO_URL}
-          />
-        </Sequence>
+            timing={TEXT_EFFECTS_HERO_STAMP_TIMING}
+	            holdUntilSeconds={holdUntilSeconds}
+	            bottomLogoSrc={TEXT_EFFECTS_CODEX_LOGO_URL}
+	          />
+	        </Sequence>
       </div>
     </div>
   );
