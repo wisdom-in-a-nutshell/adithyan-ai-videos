@@ -36,6 +36,11 @@ import {
   TEXT_EFFECTS_TOOL3_TEXT_FANCY_START_SECONDS,
   TEXT_EFFECTS_TOOL3_TEXT_FRONT_END_SECONDS,
   TEXT_EFFECTS_TOOL3_TEXT_FRONT_START_SECONDS,
+  TEXT_EFFECTS_RECAP_END_SECONDS,
+  TEXT_EFFECTS_RECAP_MATANYONE_SECONDS,
+  TEXT_EFFECTS_RECAP_REMOTION_SECONDS,
+  TEXT_EFFECTS_RECAP_SAM3_SECONDS,
+  TEXT_EFFECTS_RECAP_START_SECONDS,
   TEXT_EFFECTS_VIDEO_URL,
 } from './assets.js';
 import {SKETCH_FONT_FAMILY} from '../../styles/sketch.js';
@@ -52,6 +57,7 @@ import {BackgroundBlurOverlay} from './BackgroundBlurOverlay.js';
 import {Sam3StaticMaskOverlay} from './Sam3StaticMaskOverlay.js';
 import {LayersLegendOverlay} from './LayersLegendOverlay.js';
 import {TextPlacementDemoOverlay} from './TextPlacementDemoOverlay.js';
+import {RecapOverlay} from './RecapOverlay.js';
 import {TEXT_EFFECTS_UI_SCALE} from './ui.js';
 
 const resolveAssetSrc = (src) => {
@@ -754,11 +760,38 @@ export const TextEffectsComp = (props) => {
         );
       })()}
 
+      {(() => {
+        const from = Math.max(0, Math.floor(TEXT_EFFECTS_RECAP_START_SECONDS * fps));
+        const dur = Math.max(
+          1,
+          Math.min(
+            durationInFrames - from,
+            Math.ceil((TEXT_EFFECTS_RECAP_END_SECONDS - TEXT_EFFECTS_RECAP_START_SECONDS) * fps)
+          )
+        );
+
+        return (
+          <Sequence name="[OUTRO] Recap Canvas" from={from} durationInFrames={dur}>
+            <RecapOverlay
+              durationInFrames={dur}
+              frameOffset={from}
+              startSeconds={TEXT_EFFECTS_RECAP_START_SECONDS}
+              endSeconds={TEXT_EFFECTS_RECAP_END_SECONDS}
+              samSeconds={TEXT_EFFECTS_RECAP_SAM3_SECONDS}
+              matAnyoneSeconds={TEXT_EFFECTS_RECAP_MATANYONE_SECONDS}
+              remotionSeconds={TEXT_EFFECTS_RECAP_REMOTION_SECONDS}
+              alphaSrc={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL)}
+            />
+          </Sequence>
+        );
+      })()}
+
         <Sequence name="[S01] HeroStamp (Front)" from={0} durationInFrames={holdFrames}>
           <HeroStamp
             layer="front"
             transcriptWords={transcriptWords}
             holdUntilSeconds={holdUntilSeconds}
+            bottomLogoSrc={TEXT_EFFECTS_CODEX_LOGO_URL}
           />
         </Sequence>
       </div>

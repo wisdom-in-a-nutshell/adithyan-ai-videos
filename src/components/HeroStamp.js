@@ -1,5 +1,5 @@
 import React, {useMemo} from 'react';
-import {interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
+import {Img, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
 
 const normalizeWord = (value) => {
   if (typeof value !== 'string') {
@@ -134,6 +134,7 @@ export const HeroStamp = ({
   centerText = '100%',
   bottomPrefixText = 'EDITED BY',
   bottomAccentText = 'CODEX',
+  bottomLogoSrc = null,
   accentColor = '#3b82f6',
   textColor = '#f6f2ee',
   timingOffsetSeconds = 0,
@@ -284,41 +285,55 @@ export const HeroStamp = ({
     }
 
     // Front layer: only the bottom tagline.
-    return (
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          opacity: baseOpacity * editedOpacity,
-          // Foreground matte uses a high zIndex; keep this tagline above it.
-          zIndex: 200,
-          pointerEvents: 'none',
-        }}
-      >
-        <div
-          style={{
-            position: 'absolute',
-            left: '50%',
-            bottom: Math.round(height * 0.11),
-            transform: `translate3d(-50%, ${Math.round(editedLift)}px, 0)`,
-            color: textColor,
-            ...sharedTextStyle,
-            fontSize: bottomFontSize,
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {bottomPrefixText}{' '}
-          <span
-            style={{
-              color: accentColor,
-            }}
-          >
-            {bottomAccentText}
-          </span>
-        </div>
-      </div>
-    );
-  }
+	    return (
+	      <div
+	        style={{
+	          position: 'absolute',
+	          inset: 0,
+	          opacity: baseOpacity * editedOpacity,
+	          // Foreground matte uses a high zIndex; keep this tagline above it.
+	          zIndex: 200,
+	          pointerEvents: 'none',
+	        }}
+	      >
+	        <div
+	          style={{
+	            position: 'absolute',
+	            left: '50%',
+	            bottom: Math.round(height * 0.11),
+	            transform: `translate3d(-50%, ${Math.round(editedLift)}px, 0)`,
+	            color: textColor,
+	            ...sharedTextStyle,
+	            fontSize: bottomFontSize,
+	            display: 'inline-flex',
+	            alignItems: 'center',
+	            gap: Math.round(bottomFontSize * 0.22),
+	            whiteSpace: 'nowrap',
+	          }}
+	        >
+	          <span>{bottomPrefixText}</span>
+	          {bottomLogoSrc ? (
+	            <Img
+	              src={bottomLogoSrc}
+	              style={{
+	                width: Math.round(bottomFontSize * 0.72),
+	                height: Math.round(bottomFontSize * 0.72),
+	                objectFit: 'contain',
+	                filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.30))',
+	              }}
+	            />
+	          ) : null}
+	          <span
+	            style={{
+	              color: accentColor,
+	            }}
+	          >
+	            {bottomAccentText}
+	          </span>
+	        </div>
+	      </div>
+	    );
+	  }
 
   const washOpacity = baseOpacity * interpolate(percentOpacity, [0, 1], [0.0, 1.0], {
     extrapolateLeft: 'clamp',

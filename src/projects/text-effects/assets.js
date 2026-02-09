@@ -7,6 +7,23 @@ export const TEXT_EFFECTS_ALPHA_URL =
 export const TEXT_EFFECTS_CODEX_LOGO_URL =
   'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/ChatGPT-Logo.svg/2560px-ChatGPT-Logo.svg.png';
 
+// Hero stamp ("THIS VIDEO 100% EDITED BY CODEX") timing for this recording.
+// Hardcode these so the on-screen text hits exactly with the spoken words.
+export const TEXT_EFFECTS_HERO_STAMP_TIMING = {
+  thisStart: 0.08,
+  thisEnd: 0.4,
+  videoStart: 0.4,
+  videoEnd: 0.8,
+  percentStart: 1.96,
+  percentEnd: 2.0,
+  editedStart: 2.24,
+  codexEnd: 3.84,
+};
+
+// "Let me show you how" phrase timing (used to stop the hero stamp and ease out the camera punch).
+export const TEXT_EFFECTS_LET_ME_SHOW_YOU_HOW_START_SECONDS = 8.32;
+export const TEXT_EFFECTS_LET_ME_SHOW_YOU_HOW_END_SECONDS = 9.12;
+
 // Storyboard beat: setup-what-youll-see
 export const TEXT_EFFECTS_SETUP_START_SECONDS = 9.2;
 export const TEXT_EFFECTS_SETUP_END_SECONDS = 22.64;
@@ -14,6 +31,9 @@ export const TEXT_EFFECTS_SETUP_END_SECONDS = 22.64;
 // Storyboard beat: setup-what-codex-is
 export const TEXT_EFFECTS_SETUP_CODEX_START_SECONDS = 22.64;
 export const TEXT_EFFECTS_SETUP_CODEX_END_SECONDS = 50.96;
+
+// setup-what-youll-see: "Codex" mention timing (used for the CODEX pill).
+export const TEXT_EFFECTS_SETUP_CODEX_MENTION_SECONDS = 15.52;
 
 // setup-what-codex-is: key phrase anchors from transcript (seconds)
 export const TEXT_EFFECTS_SETUP_TOOLS_SECONDS = 28.88;
@@ -27,6 +47,13 @@ export const TEXT_EFFECTS_SETUP_VIDEO_ARTIFACTS_SECONDS = 49.6;
 
 export const TEXT_EFFECTS_THREE_TOOLS_START_SECONDS = 50.96;
 export const TEXT_EFFECTS_THREE_TOOLS_END_SECONDS = 57.84;
+
+// three-tools: key words (hardcoded; transcript is stable).
+export const TEXT_EFFECTS_THREE_TOOLS_SPECIFICALLY_SECONDS = 50.96;
+export const TEXT_EFFECTS_THREE_TOOLS_SAM3_SECONDS = 54.16;
+// Transcript words for MatAnyone were transcribed as "map anyone" in this recording.
+export const TEXT_EFFECTS_THREE_TOOLS_MATANYONE_SECONDS = 55.84;
+export const TEXT_EFFECTS_THREE_TOOLS_REMOTION_SECONDS = 57.2;
 
 // Storyboard beat: tool-1-sam3 (S05)
 export const TEXT_EFFECTS_TOOL1_SAM3_START_SECONDS = 57.92;
@@ -69,6 +96,17 @@ export const TEXT_EFFECTS_TOOL3_TEXT_BEHIND_START_SECONDS = 158.96;
 export const TEXT_EFFECTS_TOOL3_TEXT_BEHIND_END_SECONDS = 166.56;
 export const TEXT_EFFECTS_TOOL3_TEXT_FANCY_START_SECONDS = 163.36;
 export const TEXT_EFFECTS_TOOL3_TEXT_FANCY_END_SECONDS = 166.56;
+
+// Storyboard beat: recap
+export const TEXT_EFFECTS_RECAP_START_SECONDS = 204.8;
+export const TEXT_EFFECTS_RECAP_END_SECONDS = 230.4;
+export const TEXT_EFFECTS_RECAP_SAM3_SECONDS = 208.96;
+export const TEXT_EFFECTS_RECAP_MATANYONE_SECONDS = 218.32;
+export const TEXT_EFFECTS_RECAP_REMOTION_SECONDS = 227.76;
+
+// Storyboard beat: bridge-links-github
+export const TEXT_EFFECTS_LINKS_START_SECONDS = 241.76;
+export const TEXT_EFFECTS_LINKS_END_SECONDS = 257.12;
 
 // Full recording is ~258.4s. Keep the composition long so the whole timeline is visible in Studio,
 // even if we haven't added overlays for later beats yet.
