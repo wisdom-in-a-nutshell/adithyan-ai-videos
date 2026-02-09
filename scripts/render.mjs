@@ -57,7 +57,6 @@ Examples:
   npm run render               # preview by default
   npm run render -- --hq       # full quality
   npm run render -- --preview --from 0 --to 6
-  npm run render -- --comp OcclusionDemo --from 0 --to 3
   npm run render -- --comp ActiveSpeakerDetection --preview --from 10 --to 20
   npm run render -- --no-cache # disable caching
 `.trim());

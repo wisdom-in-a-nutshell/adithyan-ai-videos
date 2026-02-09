@@ -46,18 +46,18 @@ Ship a clean, readable Remotion composition that:
 
 ## Open Questions
 
-- Should we delete `projects/text-effects/` (legacy manifests) once we’re confident we won’t use the old `scripts/*project*.mjs` workflow?
+- (Resolved) We removed the legacy `projects/*/project.json` + `scripts/*project*.mjs` workflow in favor of code-first + default-on caching.
 
 ## Tasks
 
 - [ ] Confirm the simplest local loop is understood:
-  - Start Studio: `npm start` (opens `http://localhost:3000`)
+  - Start Studio: `npm start` (URL is printed in the terminal)
   - Render preview: `npm run render -- --comp TextEffects --from 0 --to 8`
 - [ ] Add a “stills” loop that’s as easy as the render loop:
   - Either extend `scripts/render.mjs` with an optional `--still <sec>` / `--stills <sec,sec,...>` flag, or document `npx remotion still ...`.
 - [ ] Matte artifact cleanup (green fringing / shimmer):
   - Identify whether the issue is from the alpha asset edges or from compositing settings.
-  - If needed, add a project-scoped knob (in `src/projects/text-effects/assets.js`) to set `shrinkPx`/`featherPx` when we use `ForegroundMatteComposite` patterns elsewhere.
+  - If needed, add a project-scoped knob (in `src/projects/text-effects/assets.js`) to set `shrinkPx`/`featherPx` on the alpha layer itself.
 - [ ] Fix timing alignment for “100%” / hero stamp:
   - Verify `src/projects/text-effects/transcript_words.json` matches the current `original.mp4`.
   - Adjust the effect triggers so “100” appears when the word “100” is spoken.

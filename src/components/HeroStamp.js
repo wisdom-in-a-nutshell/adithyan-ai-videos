@@ -119,12 +119,12 @@ const appearOpacity = ({t, startSeconds, fadeInSeconds = 0.12}) => {
 export const HeroStamp = ({
   layer = 'behind',
   transcriptWords,
-  /**
-   * Optional override to reuse this component for other phrases without
-   * introducing project.json config. If omitted, we infer from transcriptWords.
-   *
-   * Shape:
-   * {
+	  /**
+	   * Optional override to reuse this component for other phrases without
+	   * introducing external config files. If omitted, we infer from transcriptWords.
+	   *
+	   * Shape:
+	   * {
    *   thisStart, thisEnd, videoStart, videoEnd,
    *   percentStart, percentEnd, editedStart, codexEnd
    * }

@@ -16,7 +16,7 @@ Use **code-first** by default:
 - Put per-video code under `src/projects/<project-id>/`.
 - Register the composition in `src/Root.js`.
 - Keep URLs, cut length, and per-video constants in code (e.g. `assets.js`).
-- Treat `projects/<id>/project.json` / `scripts/*project*.mjs` as legacy. Don’t use them unless the user explicitly asks.
+- We removed `projects/<id>/project.json` / `scripts/*project*.mjs` workflows. Don’t reintroduce them unless the user explicitly asks.
 - Wrap major overlays in named `<Sequence>` blocks so effects are visible in Studio’s timeline.
 - Keep transcript timing data as a JSON file committed with the project (prefer `src/projects/<id>/transcript_words.json` so the project is self-contained).
 - For stable recordings, hardcode key effect timestamps in `src/projects/<id>/assets.js` (don’t re-find phrases at runtime). See `references/timeline-patterns.md`.

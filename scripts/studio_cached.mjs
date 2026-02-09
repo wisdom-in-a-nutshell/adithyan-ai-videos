@@ -2,7 +2,7 @@
 /**
  * Start Remotion Studio with a local asset cache (code-first, default-on).
  *
- * By default, this scans `src/projects/*/assets.js`, downloads any exported
+ * By default, this scans `src/projects/<project-id>/assets.js`, downloads any exported
  * remote URLs once (stable filename = sha1(url)), and injects an `assetMap` prop
  * so compositions can transparently swap remote URLs for `--public-dir` files.
  *
@@ -13,6 +13,7 @@
  * Flags:
  *   --cache-dir <dir>   (default: WIN_REMOTION_ASSET_CACHE or ~/.cache/win-remotion-assets)
  *   --refresh           re-download even if cached
+ *   --prepare-only      download + write props, don't start Studio
  */
 
 import {spawnSync} from 'node:child_process';
@@ -40,6 +41,7 @@ const getArg = (name, fallback) => {
 const hasFlag = (name) => args.includes(`--${name}`);
 
 const refresh = hasFlag('refresh');
+const prepareOnly = hasFlag('prepare-only');
 const cacheBaseDir = getArg('cache-dir', getDefaultCacheBaseDir());
 
 const projectsDir = path.resolve('src', 'projects');
@@ -90,6 +92,12 @@ fs.writeFileSync(
   )}\n`,
   'utf-8'
 );
+
+if (prepareOnly) {
+  // eslint-disable-next-line no-console
+  console.log(`[ok] prepared props: ${propsPath}`);
+  process.exit(0);
+}
 
 // eslint-disable-next-line no-console
 console.log(`[cache] dir=${cache.projectCacheDir} urls=${urls.length}`);

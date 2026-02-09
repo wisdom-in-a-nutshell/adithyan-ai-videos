@@ -33,5 +33,5 @@ npm run render -- --from 0 --to 6
 npm run render -- --hq
 
 # Pick a different composition
-npm run render -- --comp OcclusionDemo --from 0 --to 3
+npm run render -- --comp ActiveSpeakerDetection --from 0 --to 3
 ```

@@ -8,7 +8,6 @@ This repo is the Remotion workspace for building short, marketing-style videos a
 
 - Compositions: `src/Root.js`
 - Main overlay demo: `src/MainVideo.js` + `src/data/timeline.json`
-- Occlusion demo: `src/components/ForegroundMatteComposite.js`
 - Reusable overlay primitives: `src/overlay_kit/`
 - Per-video code (recommended for fast iteration): `src/projects/<project-id>/`
 - Per-video inputs/artifacts (transcripts, matting outputs, notes): `projects/<project-id>/`
