@@ -444,7 +444,9 @@ export const TextEffectsComp = (props) => {
                     scale={TEXT_EFFECTS_UI_SCALE}
                     baseLeft={32 * TEXT_EFFECTS_UI_SCALE}
                     baseTop={132 * TEXT_EFFECTS_UI_SCALE}
-                    anchor="artifacts"
+                    // The 1/2/3 list should originate from the "Video tools" pill (not from "Video artifacts").
+                    // "Video artifacts" fades out right as we start saying "SAM...".
+                    anchor="tools"
                     items={[
                       {label: 'SAM3', startSeconds: samSeconds},
                       {label: 'MatAnyone', startSeconds: matAnyoneSeconds},
