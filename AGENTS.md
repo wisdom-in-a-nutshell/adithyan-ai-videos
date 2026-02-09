@@ -11,8 +11,6 @@ This repo is the Remotion workspace for building short, marketing-style videos a
 - Occlusion demo: `src/components/ForegroundMatteComposite.js`
 - Reusable overlay primitives: `src/overlay_kit/`
 - Per-video code (recommended for fast iteration): `src/projects/<project-id>/`
-- Optional project launch + repeatable renders (legacy-ish, but still useful): `scripts/studio_project.mjs`, `scripts/render_project.mjs`
-- Optional remote asset cache (downloads once, reuses locally): `scripts/asset_cache.mjs`
 - Per-video inputs/artifacts (transcripts, matting outputs, notes): `projects/<project-id>/`
 
 ## Guidance
@@ -45,22 +43,6 @@ This repo is the Remotion workspace for building short, marketing-style videos a
   (large jumps per frame at 24fps make anti-aliasing + compression artifacts much more noticeable).
 - If the text still shimmers while moving, prefer adding a subtle `textBackdrop` (pill-shaped box)
   behind the text over trying to micro-tune feathering; it stabilizes edges and is easier to art-direct.
-
-## Local Asset Cache (Recommended)
-
-Remote MP4/WebM URLs are convenient, but can feel like they re-fetch on every Studio restart.
-Use the project launcher which downloads assets once and serves them via `--public-dir`.
-
-- Start Studio with cached assets:
-  - (Optional / legacy) `npm run studio:project -- projects/occlusion-demo/project.json --comp OcclusionDemo`
-- Force re-download:
-  - add `--refresh`
-- Cache location:
-  - defaults to `~/.cache/win-remotion-assets`
-  - override with `WIN_REMOTION_ASSET_CACHE=/tmp/win-remotion-assets`
-- What’s cached:
-  - whichever URLs your composition uses (commonly `VIDEO_URL` + `ALPHA_URL` from `src/projects/<project-id>/assets.js`)
-  - (if you still use `scripts/*project.mjs`) it may read `projects/<project-id>/matting.json`
 
 ## Verification Loop (Keep Iterating Until It Looks Right)
 

@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "start": "remotion studio",
-    "studio:project": "node scripts/studio_project.mjs",
     "studio:text-effects": "remotion studio",
     "render": "node scripts/render.mjs"
   },
