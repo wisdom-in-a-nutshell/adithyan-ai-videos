@@ -28,5 +28,9 @@ export const TEXT_EFFECTS_SETUP_VIDEO_ARTIFACTS_SECONDS = 49.6;
 export const TEXT_EFFECTS_THREE_TOOLS_START_SECONDS = 50.96;
 export const TEXT_EFFECTS_THREE_TOOLS_END_SECONDS = 57.84;
 
-// Cut includes beat 1 (hero stamp) + beat 2 (setup overlays) + beat 3 (three tools).
-export const TEXT_EFFECTS_CUT_SECONDS = 58.2;
+// Storyboard beat: tool-2-matanyone
+export const TEXT_EFFECTS_TOOL2_START_SECONDS = 80.08;
+export const TEXT_EFFECTS_TOOL2_END_SECONDS = 129.52;
+
+// Cut includes beat 1+2+3 and the start of the toolchain walkthrough (through MatAnyone).
+export const TEXT_EFFECTS_CUT_SECONDS = 130.0;

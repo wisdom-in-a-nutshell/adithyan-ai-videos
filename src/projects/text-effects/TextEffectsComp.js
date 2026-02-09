@@ -17,6 +17,8 @@ import {
   TEXT_EFFECTS_SETUP_START_SECONDS,
   TEXT_EFFECTS_THREE_TOOLS_END_SECONDS,
   TEXT_EFFECTS_THREE_TOOLS_START_SECONDS,
+  TEXT_EFFECTS_TOOL2_END_SECONDS,
+  TEXT_EFFECTS_TOOL2_START_SECONDS,
   TEXT_EFFECTS_VIDEO_URL,
 } from './assets.js';
 import {SKETCH_FONT_FAMILY} from '../../styles/sketch.js';
@@ -28,6 +30,7 @@ import {
 } from '../../overlay_kit/overlays.js';
 import {CodexToolsArtifactsOverlay} from './CodexToolsArtifactsOverlay.js';
 import {ThreeToolsOverlay} from './ThreeToolsOverlay.js';
+import {GreenScreenOverlay} from './GreenScreenOverlay.js';
 import {TEXT_EFFECTS_UI_SCALE} from './ui.js';
 
 const resolveAssetSrc = (src) => {
@@ -141,6 +144,31 @@ const findFirstWordEndInRangeSeconds = (words, targets, startSeconds, endSeconds
   return null;
 };
 
+const findPhraseStartSeconds = (words, phraseTokens, startSeconds, endSeconds) => {
+  if (!Array.isArray(words) || !Array.isArray(phraseTokens) || phraseTokens.length === 0) {
+    return null;
+  }
+  const onlyWords = words.filter((w) => w?.type === 'word' && typeof w?.text === 'string');
+  if (onlyWords.length === 0) {
+    return null;
+  }
+  const phrase = phraseTokens.map((t) => normalizeWord(t));
+  for (let i = 0; i < onlyWords.length - phrase.length; i++) {
+    const t0 = Number(onlyWords[i]?.start);
+    if (!Number.isFinite(t0)) continue;
+    if (t0 < startSeconds || t0 > endSeconds) continue;
+    let ok = true;
+    for (let j = 0; j < phrase.length; j++) {
+      if (normalizeWord(onlyWords[i + j]?.text) !== phrase[j]) {
+        ok = false;
+        break;
+      }
+    }
+    if (ok) return t0;
+  }
+  return null;
+};
+
 // Project-specific composition wrapper for `text-effects`.
 // Keep the cut short while iterating; extend later when we implement storyboard-driven beats.
 export const TextEffectsComp = (props) => {
@@ -233,6 +261,45 @@ export const TextEffectsComp = (props) => {
             holdUntilSeconds={holdUntilSeconds}
           />
         </Sequence>
+
+        {(() => {
+          const from = Math.max(0, Math.floor(TEXT_EFFECTS_TOOL2_START_SECONDS * fps));
+          const dur = Math.max(
+            1,
+            Math.min(
+              durationInFrames - from,
+              Math.ceil((TEXT_EFFECTS_TOOL2_END_SECONDS - TEXT_EFFECTS_TOOL2_START_SECONDS) * fps)
+            )
+          );
+
+          // MatAnyone (scene 6): show a "green screen preview" by replacing the background with solid green.
+          // Triggered by transcript words timing: starts at "So if I do that," and ends at "That is nice ...".
+          const greenStartSeconds =
+            findPhraseStartSeconds(
+              transcriptWords,
+              ['so', 'if', 'i', 'do', 'that'],
+              TEXT_EFFECTS_TOOL2_START_SECONDS,
+              TEXT_EFFECTS_TOOL2_END_SECONDS
+            ) ?? TEXT_EFFECTS_TOOL2_START_SECONDS;
+
+          const greenEndSeconds =
+            findPhraseStartSeconds(
+              transcriptWords,
+              ['that', 'is', 'nice'],
+              greenStartSeconds,
+              TEXT_EFFECTS_TOOL2_END_SECONDS
+            ) ?? Math.min(TEXT_EFFECTS_TOOL2_END_SECONDS, greenStartSeconds + 12);
+
+          return (
+            <Sequence name="[T2] Green Screen Preview" from={from} durationInFrames={dur}>
+              <GreenScreenOverlay
+                startSeconds={greenStartSeconds}
+                endSeconds={greenEndSeconds}
+                frameOffset={from}
+              />
+            </Sequence>
+          );
+        })()}
 
         <Sequence name="[S01+] Foreground Alpha" from={0} durationInFrames={durationInFrames}>
           <Video
