@@ -6,32 +6,25 @@ Remotion playground for producing short marketing-style videos (occlusion demos,
 
 ```bash
 npm ci
-npm run studio:project -- projects/occlusion-demo/project.json
+npm start
 ```
 
-Then open the Studio URL (usually `http://localhost:3000`) and pick the `OcclusionDemo` composition.
+Then open the Studio URL (shown in the terminal) and pick a composition.
 
-## Render (repeatable)
+## Render
 
 ```bash
-node scripts/render_project.mjs projects/occlusion-demo/project.json \
-  --comp OcclusionDemo \
-  --out /tmp/occlusion-demo.mp4 \
-  --seconds 5 \
-  --fps 24
+npm run render -- --comp TextEffects --preview --from 0 --to 5
+npm run render -- --comp TextEffects --hq --out /tmp/TextEffects-hq.mp4 --no-open
 ```
 
 ## Inputs
 
-- Minimal per-project config lives in `projects/<project-id>/project.json`.
-  - Required: `video_url`
-- Optional word-level timings:
-  - `projects/<project-id>/transcript.json`
+- Word-level timings / storyboard notes (when present) live under `projects/<project-id>/`.
 
 ## Environment knobs
 
-- `WIN_OCCLUSION_ALPHA_URL`: override the default alpha matte WebM URL.
-- `WIN_REMOTION_ASSET_CACHE`: override local cache dir for downloaded assets.
+- `WIN_OCCLUSION_ALPHA_URL`: override the default alpha matte WebM URL (some demos/scripts may read this).
 
 ## Rights / Footage
 
