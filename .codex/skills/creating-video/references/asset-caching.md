@@ -22,6 +22,7 @@ This repo uses a **code-first cache**:
 - No manual “refresh” needed when the URL changes: the hash changes, so the new URL auto-downloads.
 - Force re-download (even if already cached): `--refresh`
 - Disable caching for a one-off run: `--no-cache` (render only)
+- If a cached render ever fails (404s or media "format error"), rerun with `--refresh` or fall back to `--no-cache`.
 
 ## Composition Wiring (What Code Must Do)
 
@@ -32,4 +33,3 @@ If a composition uses remote assets, it should support `assetMap`:
 - Thread `assetMap` into `Video`/`Img` sources.
 
 This keeps the product code clean: callers don't pass flags; caching “just happens”.
-
