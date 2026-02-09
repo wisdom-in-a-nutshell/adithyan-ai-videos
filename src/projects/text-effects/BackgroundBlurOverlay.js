@@ -1,5 +1,5 @@
 import React from 'react';
-import {Video, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
+import {OffthreadVideo, interpolate, useCurrentFrame, useVideoConfig} from 'remotion';
 
 const clamp01 = (v) => Math.max(0, Math.min(1, v));
 
@@ -30,7 +30,7 @@ export const BackgroundBlurOverlay = ({
   const px = Math.max(0, Number(blurPx) || 0);
 
   return (
-    <Video
+    <OffthreadVideo
       src={src}
       startFrom={Math.max(0, Math.floor(Number(startFromFrame) || 0))}
       muted
