@@ -65,7 +65,7 @@ for (const id of projectIds) {
 }
 
 const cache = await prepareAssetCache({
-  cacheKey: 'studio',
+  cacheKey: 'assets',
   urls,
   cacheBaseDir,
   refresh,
@@ -77,7 +77,7 @@ fs.writeFileSync(
   `${JSON.stringify(
       {
         assetMap: cache.assetMap,
-        cachedProject: 'studio',
+        cachedProject: 'assets',
         cachedAt: new Date().toISOString(),
       },
       null,

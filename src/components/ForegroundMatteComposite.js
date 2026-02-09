@@ -20,6 +20,13 @@ const resolveAssetSrc = (src, assetMap) => {
   if (/^https?:\/\//i.test(resolved) || resolved.startsWith('data:')) {
     return resolved;
   }
+  // If the caller already passed a `staticFile()` result, don't wrap it again.
+  if (resolved.startsWith('/public/')) {
+    return resolved;
+  }
+  if (resolved.startsWith('public/')) {
+    return staticFile(resolved.slice('public/'.length));
+  }
   if (resolved.startsWith('/')) {
     return staticFile(resolved.slice(1));
   }

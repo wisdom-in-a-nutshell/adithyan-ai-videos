@@ -151,7 +151,7 @@ if (useCache) {
   }
 
   const cache = await prepareAssetCache({
-    cacheKey: 'render',
+    cacheKey: 'assets',
     urls,
     cacheBaseDir,
     refresh: refreshCache,
@@ -163,7 +163,7 @@ if (useCache) {
     `${JSON.stringify(
       {
         assetMap: cache.assetMap,
-        cachedProject: 'render',
+        cachedProject: 'assets',
         cachedAt: new Date().toISOString(),
       },
       null,
