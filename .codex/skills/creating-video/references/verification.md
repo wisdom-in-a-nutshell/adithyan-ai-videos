@@ -28,6 +28,9 @@ Outputs:
 - Composite looks correct in the rendered MP4 (not just Studio).
 - Source + alpha match in `fps` and resolution.
 - Alpha `Video` layer is `muted` so it can’t affect audio.
+- Any extra `Video` layers used for effects are `muted` (avoid doubled audio).
+- If you mount a `Video` inside a later `<Sequence>`, set `startFrom={sequenceFromFrame}` so it doesn't restart at 0.
+- If something unexpectedly appears behind/over the foreground alpha, check explicit `zIndex` on every overlay root.
 - Moving text shimmer:
   - slow the movement first (`textSpeedPxPerSecond`)
   - use a pill/backdrop behind text for stability
@@ -37,6 +40,7 @@ Outputs:
 - Studio playback can show temporal artifacts that disappear in render (or vice versa).
 - Mismatched `fps` between source and alpha causes “double image” / ghosting.
 - Upscaling 720p assets during iteration amplifies aliasing artifacts.
+- "Video restarts" when a `Video` is mounted inside an effect overlay: fix with `startFrom` or avoid the extra `Video` layer.
 - Green fringe/halo around subject edges:
   - usually comes from the RGBA `alpha.webm` having green-tinted RGB near partially-transparent edges
   - `feather` can amplify spill (it blurs edge colors outward)
