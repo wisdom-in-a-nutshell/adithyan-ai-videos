@@ -71,7 +71,7 @@ Ship a clean, readable Remotion composition that:
   - Keep every major overlay inside a named `<Sequence name="...">` block.
   - Keep per-beat code grouped in `TextEffectsComp` so a new beat is easy to add.
 - [ ] Skill/docs hygiene:
-  - Review `.codex/skills/creating-video/SKILL.md` and its `references/` for anything that no longer matches the current workflow (render command, “code-first” guidance).
+  - Review `.agents/skills/creating-video/SKILL.md` and its `references/` for anything that no longer matches the current workflow (render command, “code-first” guidance).
   - Add one short “gotcha” note if we find a repeatable cause of green fringing (premultiply, alpha edge quality, etc.).
 - [ ] `AGENTS.md` check:
   - Confirm no additional repo-local operational guidance is needed for the new “code-first only + single render script” approach.
