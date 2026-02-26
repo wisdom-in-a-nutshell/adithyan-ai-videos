@@ -32,6 +32,18 @@ Humans provide intent; agents implement and maintain code and docs.
   - repo doctor (`npm run doctor`)
   - broken Remotion composition registration (`npx remotion compositions src/index.js`)
 
+## CI Policy (Current)
+
+- CI is intentionally deferred for now.
+- This repo is solo and local-first; rely on local guardrails (`check:fast` + `doctor`).
+- Do not add CI unless one of the future triggers below happens.
+
+## Future TODO (If Needed)
+
+1. Add minimal CI only if "works on my machine" issues become frequent.
+2. Add CI if we need consistent checks across multiple machines.
+3. Add CI if we want a remote release gate before cloud render/publish.
+
 ## Commands
 
 - Start Studio: `npm start`
