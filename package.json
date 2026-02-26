@@ -8,7 +8,9 @@
     "studio:text-effects": "remotion studio",
     "studio:cached": "node scripts/studio_cached.mjs",
     "render": "node scripts/render.mjs",
-    "render:cloud": "node scripts/render_cloud.mjs"
+    "render:cloud": "node scripts/render_cloud.mjs",
+    "check:fast": "bash scripts/precommit-check.sh",
+    "prepare": "husky"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
@@ -18,5 +20,8 @@
     "react-dom": "^18.2.0",
     "remotion": "^4.0.0",
     "roughjs": "^4.6.6"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
   }
 }

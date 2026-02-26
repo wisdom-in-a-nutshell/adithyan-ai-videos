@@ -20,6 +20,15 @@ This repo is the Remotion workspace for building short, marketing-style videos a
 - For code-first iteration on a specific video, put the composition under `src/projects/<project-id>/` and register it in `src/Root.js`.
 - If you want effects to be visible as timeline blocks in Remotion Studio, wrap them in named `<Sequence>` components (instead of rendering everything inline).
 
+## Local Quality Gate
+
+- Use Husky pre-commit with `npm run check:fast`.
+- Keep `check:fast` non-rendering and fast; add checks only when a repeat failure justifies it.
+- Current baseline checks should catch:
+  - merge conflict markers in staged files
+  - invalid staged JSON
+  - broken Remotion composition registration (`npx remotion compositions src/index.js`)
+
 ## Reuse + Documentation Discipline
 
 - If you add a new reusable overlay/primitive, put it in `src/overlay_kit/` (not inside a one-off composition).
