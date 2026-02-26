@@ -1,77 +1,45 @@
 # Remotion Video Playground
 
-## Scope
+## Purpose
 
-This repo is the Remotion workspace for building short, marketing-style videos and effects (text overlays, occlusion, motion experiments). Keep it **project-driven** (`projects/<id>/...`) and avoid expanding the config surface area unless a real use-case demands it.
+Agent-first, solo Remotion workspace for repeatable video production.
+Humans provide intent; agents implement and maintain code and docs.
 
-## Repo Layout (What Matters)
+## Read Order
 
-- Compositions: `src/Root.js`
-- Main overlay demo: `src/MainVideo.js` + `src/data/timeline.json`
-- Reusable overlay primitives: `src/overlay_kit/`
-- Per-video code (recommended for fast iteration): `src/projects/<project-id>/`
-- Per-video inputs/artifacts (transcripts, matting outputs, notes): `projects/<project-id>/`
+1. `/Users/dobby/GitHub/AGENTS.md` (portfolio policy)
+2. `docs/architecture/video-project-model.md`
+3. `docs/references/project-contract.md`
+4. `docs/references/verification-loop.md`
+5. `docs/projects/<project>/tasks.md` (active execution state)
 
-## Guidance
+## Repo Rules
 
-- Keep reusable overlay/animation primitives in `src/overlay_kit/` (not inside one-off comps).
-- Keep timing data-driven (JSON) where possible; avoid hardcoding timings deep in components.
-- Don’t add new compositions/components unless explicitly asked for the current project.
-- For code-first iteration on a specific video, put the composition under `src/projects/<project-id>/` and register it in `src/Root.js`.
-- If you want effects to be visible as timeline blocks in Remotion Studio, wrap them in named `<Sequence>` components (instead of rendering everything inline).
+- Keep per-video runtime code in `src/projects/<project-id>/`.
+- Keep per-video source artifacts and notes in `projects/<project-id>/`.
+- Register compositions in `src/Root.js`.
+- Keep reusable primitives in `src/overlay_kit/`.
+- Wrap major effects in named `<Sequence>` blocks so timeline blocks are visible in Studio.
+- Do not depend on runtime manifest files; keep runtime inputs in code (`assets.js`).
 
-## Local Quality Gate
+## Quality Gate
 
-- Use Husky pre-commit with `npm run check:fast`.
-- Keep `check:fast` non-rendering and fast; add checks only when a repeat failure justifies it.
-- Current baseline checks should catch:
+- Husky pre-commit runs `npm run check:fast`.
+- `check:fast` must stay fast and non-rendering.
+- Current blocking checks:
   - merge conflict markers in staged files
   - invalid staged JSON
+  - repo doctor (`npm run doctor`)
   - broken Remotion composition registration (`npx remotion compositions src/index.js`)
 
-## Reuse + Documentation Discipline
+## Commands
 
-- If you add a new reusable overlay/primitive, put it in `src/overlay_kit/` (not inside a one-off composition).
-- If you introduce or change a reusable contract (e.g. `assets.js` exports, `storyboard.json`, new props),
-  document it in the `$creating-video` skill references and keep the top-level contract minimal/stable.
-- If you discover a durable gotcha (fps mismatch, Studio playback artifacts, audio mixing surprises),
-  add a short note here so an agent returning cold doesn't relearn it.
+- Start Studio: `npm start`
+- Fast render slice: `npm run render -- --comp <CompositionId> --from 0 --to 6`
+- Project scaffold: `npm run new:project -- --id <project-id> --title "My Video"`
+- Repo invariant check: `npm run doctor`
 
-## Alpha Compositing (Text Behind Subject)
+## References
 
-- Use the MatAnyone `alpha.webm` as the foreground layer in Remotion.
-- Background layer: original video with blur + slight dimming.
-- Text layer: render normally; place between background and foreground.
-- If edges look cut-out, apply a small alpha feather (1–2 px) or a 1 px shrink on the mask.
-- While iterating, keep the composition `width/height/fps` aligned with the source+alpha assets
-  (e.g. 1280x720 @ 24fps). Upscaling during iteration makes small edge artifacts and text aliasing
-  look much worse than they really are.
-- Always `muted` the `alpha.webm` `Video` layer so it can't interfere with audio mixing.
-- If you see a "gray flicker/shadow" behind fast-moving text, slow the text movement down first
-  (large jumps per frame at 24fps make anti-aliasing + compression artifacts much more noticeable).
-- If the text still shimmers while moving, prefer adding a subtle `textBackdrop` (pill-shaped box)
-  behind the text over trying to micro-tune feathering; it stabilizes edges and is easier to art-direct.
-
-## Verification Loop (Keep Iterating Until It Looks Right)
-
-- Prefer short renders + stills over raw Studio playback; it’s deterministic.
-- Quick check (renders MP4 under `/tmp`):
-  - `npm run render -- --comp <CompositionId> --preview --from 0 --to 5`
-- Stills (very fast feedback):
-  - `npx remotion still src/index.js <CompositionId> /tmp/<id>-f0048.png --frame 48 --overwrite`
-
-## Cloud Render (Modal)
-
-- Render a composition in Modal (renders by git SHA; working tree must be clean/pushed):
-  - `npm run render:cloud -- --comp TextEffects --hq`
-- Requires Modal secrets:
-  - `r2-secret` (for uploading the MP4 and returning a public URL)
-
-## Creating Videos (Project Files)
-
-- Store per-video inputs/artifacts under `projects/<project-id>/`:
-  - `transcript.json`, `sentences.json`, `words.json`, storyboard notes, etc.
-- Prefer keeping “what the composition uses” in code:
-  - `src/projects/<project-id>/assets.js` for `VIDEO_URL`, `ALPHA_URL`, cut seconds, timing anchors.
-- If you generate occlusion mattes, keep the generated URL in `projects/<project-id>/matting.json` for reference,
-  but wire it into the composition explicitly (don’t depend on a “manifest contract” while iterating).
+- Alpha compositing notes: `docs/references/alpha-compositing.md`
+- Cloud render setup: `docs/setup/cloud-render-modal.md`

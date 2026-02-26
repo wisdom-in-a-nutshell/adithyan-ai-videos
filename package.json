@@ -9,6 +9,8 @@
     "studio:cached": "node scripts/studio_cached.mjs",
     "render": "node scripts/render.mjs",
     "render:cloud": "node scripts/render_cloud.mjs",
+    "new:project": "node scripts/new_project.mjs",
+    "doctor": "node scripts/doctor.mjs",
     "check:fast": "bash scripts/precommit-check.sh",
     "prepare": "husky"
   },

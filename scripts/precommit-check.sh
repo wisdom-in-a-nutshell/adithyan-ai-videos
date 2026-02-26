@@ -35,6 +35,9 @@ if [ "$json_failed" -ne 0 ]; then
   exit 1
 fi
 
+echo "[precommit] running repo doctor"
+node scripts/doctor.mjs
+
 echo "[precommit] verifying Remotion compositions compile"
 npx remotion compositions src/index.js >/dev/null
 
