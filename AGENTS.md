@@ -17,7 +17,7 @@ Humans provide intent; agents implement and maintain code and docs.
 
 - Keep per-video runtime code in `src/projects/<project-id>/`.
 - Keep per-video source artifacts and notes in `projects/<project-id>/`.
-- Register compositions in `src/Root.js`.
+- Register compositions via `src/projects/registry.js` (consumed by `src/Root.js`).
 - Keep reusable primitives in `src/overlay_kit/`.
 - Wrap major effects in named `<Sequence>` blocks so timeline blocks are visible in Studio.
 - Do not depend on runtime manifest files; keep runtime inputs in code (`assets.js`).

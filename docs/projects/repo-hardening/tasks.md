@@ -10,6 +10,7 @@ Standardize this repo for repeated solo video creation with low setup friction a
 - Stable docs contract in place (`architecture`, `references`, `projects`).
 - One-command new project scaffold.
 - One-command repo doctor check.
+- Registry-based composition wiring for scalable project growth.
 - Fast pre-commit gate includes doctor + Remotion composition compile check.
 
 ## Tasks
@@ -25,15 +26,18 @@ Standardize this repo for repeated solo video creation with low setup friction a
 - [x] Add `scripts/doctor.mjs` invariant checks.
 - [x] Add npm scripts for `new:project` and `doctor`.
 - [x] Wire doctor into `check:fast` via `scripts/precommit-check.sh`.
-- [ ] Validate by creating one sample scaffold in a throwaway id (optional).
-- [ ] Start next project using `npm run new:project -- --id <id>`.
+- [x] Refactor composition wiring to `src/projects/registry.js` + per-project `composition.js`.
+- [x] Normalize `active-speaker-detection` to project contract (`*Comp.js`, transcript file, artifact folder).
+- [x] Validate scaffold with a throwaway id.
+- [ ] Start next real project using `npm run new:project -- --id <id>`.
 
 ## Progress Log
 
 - 2026-02-26: Added docs contract, router AGENTS, scaffold command, doctor command, and pre-commit integration.
+- 2026-02-26: Refactored to registry-based compositions and standardized legacy project layout.
 
 ## Next 3 Actions
 
-1. Run `npm run doctor`.
-2. Run `npm run new:project -- --id demo-next-video --title "Demo Next Video"` and verify folder outputs.
-3. Start real next video project with the same command using real project id.
+1. Run `npm run new:project -- --id <real-project-id> --title "<Title>"`.
+2. Open Studio and verify composition appears (`npm start`).
+3. Create/refresh `docs/projects/<real-project-id>/tasks.md` for execution tracking.

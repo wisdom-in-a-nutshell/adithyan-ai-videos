@@ -73,6 +73,8 @@ const asNumber = (raw, fallback, label) => {
 
 const title = opts.title ?? toTitleCase(projectId);
 const compName = opts.comp ?? `${toPascalCase(projectId)}Comp`;
+const compositionId = toPascalCase(projectId);
+const compositionConst = `${projectId.replace(/-/g, '_').toUpperCase()}_COMPOSITION`;
 const fps = asNumber(opts.fps, 30, '--fps');
 const width = asNumber(opts.width, 1920, '--width');
 const height = asNumber(opts.height, 1080, '--height');
@@ -151,6 +153,23 @@ export const ${compName} = () => {
 `,
 );
 
+writeFile(
+  path.join(srcProjectDir, 'composition.js'),
+  `import {${compName}} from './${compName}.js';
+import {DURATION_FRAMES, FPS, HEIGHT, WIDTH} from './assets.js';
+
+export const ${compositionConst} = {
+  id: '${compositionId}',
+  component: ${compName},
+  durationInFrames: DURATION_FRAMES,
+  fps: FPS,
+  width: WIDTH,
+  height: HEIGHT,
+  defaultProps: {},
+};
+`,
+);
+
 writeFile(path.join(srcProjectDir, 'transcript_words.json'), '[]\n');
 
 writeFile(
@@ -169,10 +188,33 @@ writeFile(
 `,
 );
 
+const registryPath = path.resolve('src', 'projects', 'registry.js');
+if (!fs.existsSync(registryPath)) {
+  die(`Missing registry file: ${registryPath}`);
+}
+const importLine = `import {${compositionConst}} from './${projectId}/composition.js';`;
+const entryLine = `  ${compositionConst},`;
+const importMarker = '// NEW_PROJECT_IMPORTS';
+const entryMarker = '// NEW_PROJECT_ENTRIES';
+let registryText = fs.readFileSync(registryPath, 'utf8');
+
+if (!registryText.includes(importMarker) || !registryText.includes(entryMarker)) {
+  die(`Registry is missing required markers: ${importMarker} / ${entryMarker}`);
+}
+
+if (!registryText.includes(importLine)) {
+  registryText = registryText.replace(importMarker, `${importLine}\n${importMarker}`);
+}
+if (!registryText.includes(entryLine)) {
+  registryText = registryText.replace(entryMarker, `${entryLine}\n  ${entryMarker}`);
+}
+fs.writeFileSync(registryPath, registryText, 'utf8');
+
 console.log(`[new-project] created src project: ${path.relative(process.cwd(), srcProjectDir)}`);
 console.log(`[new-project] created artifact project: ${path.relative(process.cwd(), artifactProjectDir)}`);
+console.log(`[new-project] updated registry: ${path.relative(process.cwd(), registryPath)}`);
 console.log('');
 console.log('Next steps:');
-console.log(`1. Register composition in src/Root.js (component: ${compName}).`);
-console.log(`2. Fill URLs and timing anchors in src/projects/${projectId}/assets.js.`);
-console.log(`3. Start Studio: npm start`);
+console.log(`1. Fill URLs and timing anchors in src/projects/${projectId}/assets.js.`);
+console.log(`2. Start Studio: npm start`);
+console.log(`3. Run doctor: npm run doctor`);

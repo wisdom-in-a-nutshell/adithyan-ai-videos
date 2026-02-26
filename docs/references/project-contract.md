@@ -12,7 +12,8 @@ For each project id `<id>`:
 Minimum expected files:
 
 - `assets.js`: exported constants for URLs, timing anchors, and duration values.
-- `<ProjectComp>.js`: composition component used by `src/Root.js`.
+- `<ProjectComp>.js`: composition component.
+- `composition.js`: exports one composition config object for registry use.
 
 Recommended files:
 
@@ -31,7 +32,12 @@ These files are useful for humans/agents but should not become runtime dependenc
 
 ## Composition Registration Contract
 
-Every active project composition should be registered in `src/Root.js` with:
+Every active project composition should be registered through:
+
+- `src/projects/registry.js` (imports + list entry)
+- `src/Root.js` mapping `PROJECT_COMPOSITIONS`
+
+Each composition config must include:
 
 - stable `id`
 - explicit `fps`

@@ -18,6 +18,18 @@ npm run render -- --comp TextEffects --preview --from 0 --to 5
 npm run render -- --comp TextEffects --hq --out /tmp/TextEffects-hq.mp4 --no-open
 ```
 
+## New Project Scaffold
+
+```bash
+npm run new:project -- --id my-next-video --title "My Next Video"
+```
+
+Then run:
+
+```bash
+npm run doctor
+```
+
 ## Inputs
 
 - Word-level timings / storyboard notes (when present) live under `projects/<project-id>/`.

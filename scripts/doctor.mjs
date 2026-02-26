@@ -22,17 +22,8 @@ if (!fs.existsSync(rootPath)) {
   rootText = fs.readFileSync(rootPath, 'utf8');
 }
 
-const compositionIds = [];
-const compositionRe = /<Composition[^>]*\bid=["']([^"']+)["'][^>]*>/g;
-for (const m of rootText.matchAll(compositionRe)) {
-  compositionIds.push(m[1]);
-}
-if (compositionIds.length === 0) {
-  errors.push('No <Composition id="..."> entries found in src/Root.js');
-}
-const dupIds = compositionIds.filter((id, i) => compositionIds.indexOf(id) !== i);
-if (dupIds.length > 0) {
-  errors.push(`Duplicate composition ids in src/Root.js: ${[...new Set(dupIds)].join(', ')}`);
+if (!rootText.includes('PROJECT_COMPOSITIONS')) {
+  errors.push('src/Root.js should register compositions from PROJECT_COMPOSITIONS');
 }
 
 const srcProjectsDir = path.resolve('src', 'projects');
@@ -45,14 +36,25 @@ const srcProjectIds =
         .sort()
     : [];
 
-const importProjectIds = new Set();
-for (const m of rootText.matchAll(/\.\/projects\/([^/]+)\//g)) {
-  importProjectIds.add(m[1]);
+const registryPath = path.resolve('src', 'projects', 'registry.js');
+let registryText = '';
+if (!fs.existsSync(registryPath)) {
+  errors.push('Missing src/projects/registry.js');
+} else {
+  registryText = fs.readFileSync(registryPath, 'utf8');
 }
 
-for (const id of importProjectIds) {
+const registeredProjectIds = new Set();
+for (const m of registryText.matchAll(/\.\/([^/]+)\/composition\.js/g)) {
+  registeredProjectIds.add(m[1]);
+}
+if (registeredProjectIds.size === 0) {
+  errors.push('No project composition imports found in src/projects/registry.js');
+}
+
+for (const id of registeredProjectIds) {
   if (!srcProjectIds.includes(id)) {
-    errors.push(`src/Root.js imports missing project directory: src/projects/${id}`);
+    errors.push(`Registry imports missing project directory: src/projects/${id}`);
   }
 }
 
@@ -61,6 +63,11 @@ for (const id of srcProjectIds) {
   const assetsPath = path.join(projectDir, 'assets.js');
   if (!fs.existsSync(assetsPath)) {
     errors.push(`Missing assets.js for project: src/projects/${id}`);
+  }
+
+  const compositionPath = path.join(projectDir, 'composition.js');
+  if (!fs.existsSync(compositionPath)) {
+    errors.push(`Missing composition.js for project: src/projects/${id}`);
   }
 
   const compFiles = fs
@@ -89,8 +96,8 @@ for (const id of srcProjectIds) {
 }
 
 for (const id of srcProjectIds) {
-  if (!importProjectIds.has(id)) {
-    warnings.push(`Project not imported in src/Root.js: src/projects/${id}`);
+  if (!registeredProjectIds.has(id)) {
+    errors.push(`Project missing registry import: src/projects/${id}/composition.js`);
   }
 }
 
