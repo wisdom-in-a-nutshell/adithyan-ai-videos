@@ -77,4 +77,4 @@ When you learn something that is likely to repeat (a reliable workflow, a recurr
 
 - Update this skill (prefer a short addition to `references/*` rather than bloating this file).
 - Update the nearest `AGENTS.md` if it is a repo-local operational rule for agents returning cold.
-- Prefer turning learnings into reusable artifacts: `storyboard.json` conventions, named `<Sequence>` patterns, and `src/overlay_kit/` primitives.
+- Prefer turning learnings into reusable artifacts: `storyboard.md` conventions (plus optional `storyboard.json` export), named `<Sequence>` patterns, and `src/overlay_kit/` primitives.

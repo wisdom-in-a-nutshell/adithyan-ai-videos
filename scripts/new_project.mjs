@@ -188,6 +188,25 @@ writeFile(
 `,
 );
 
+writeFile(
+  path.join(artifactProjectDir, 'storyboard.md'),
+  `---
+project_id: ${projectId}
+status: draft
+aspect: 16:9
+target_duration_sec: 30
+---
+
+# ${title} Storyboard
+
+## S01 | 0.00-5.00 | Hook
+Intent: Grab attention with the core claim.
+Audio: ""
+Visual: ""
+Edit cue: ""
+`,
+);
+
 const registryPath = path.resolve('src', 'projects', 'registry.js');
 if (!fs.existsSync(registryPath)) {
   die(`Missing registry file: ${registryPath}`);

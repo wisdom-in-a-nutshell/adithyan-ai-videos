@@ -57,8 +57,10 @@ Project folder (human-readable artifacts and planning):
   - Full transcript data (includes word timings).
 - `projects/text-effects/words.json`, `projects/text-effects/sentences.json`
   - Thin derived artifacts for easier indexing.
-- `projects/text-effects/storyboard.json`
+- `projects/text-effects/storyboard.md` (preferred editable format)
   - Beat-based plan for the whole video (scenes S01..).
+- `projects/text-effects/storyboard.json` (optional export)
+  - Machine-readable mirror when tooling needs JSON.
 - `projects/text-effects/matting.json`
   - Reference metadata for SAM3/MatAnyone outputs (URLs).
   - Important: not used as a runtime contract; used as notes/receipts.
@@ -91,7 +93,7 @@ We kept overlays modular:
 
 ## What We Implemented (By Beat)
 
-The storyboard lives in `projects/text-effects/storyboard.json`. The timings that actually drive the code are in `src/projects/text-effects/assets.js`.
+The storyboard source of truth can live in `projects/text-effects/storyboard.md` (or `storyboard.json` if needed for tooling). The timings that actually drive the code are in `src/projects/text-effects/assets.js`.
 
 Examples of beats/effects implemented:
 
@@ -165,7 +167,7 @@ npx remotion still src/index.js TextEffects /tmp/text-effects-f0048.png --frame 
 
 If you want a short "receipts" section (like the older blog post style):
 
-- Storyboard (beats + intent): `projects/text-effects/storyboard.json`
+- Storyboard (beats + intent): `projects/text-effects/storyboard.md` (or `storyboard.json` export)
 - Transcript + word timings:
   - full: `projects/text-effects/transcript.json`
   - thin: `src/projects/text-effects/transcript_words.json`
@@ -178,4 +180,3 @@ If you want a short "receipts" section (like the older blog post style):
 ## The "Philosophy" In One Paragraph (Good For The Blog)
 
 We treated video editing like software: capture a stable source recording, generate a word-level transcript, plan beats, then implement and iterate on effects in a single deterministic Remotion composition. Codex acted as the "editor" by writing and adjusting code, while we verified with short renders and stills. The result is a reproducible, inspectable edit pipeline: assets and timing live in code, and changes are reviewable like a normal codebase.
-

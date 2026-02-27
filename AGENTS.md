@@ -17,6 +17,7 @@ Humans provide intent; agents implement and maintain code and docs.
 
 - Keep per-video runtime code in `src/projects/<project-id>/`.
 - Keep per-video source artifacts and notes in `projects/<project-id>/`.
+- Prefer Markdown storyboards as the editable source of truth: `projects/<project-id>/storyboard.md` (optional `storyboard.json` export only when automation needs it).
 - Register compositions via `src/projects/registry.js` (consumed by `src/Root.js`).
 - Keep reusable primitives in `src/overlay_kit/`.
 - Wrap major effects in named `<Sequence>` blocks so timeline blocks are visible in Studio.

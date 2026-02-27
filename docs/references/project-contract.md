@@ -25,7 +25,8 @@ Recommended files:
 Reference-only source material and notes:
 
 - transcript exports
-- storyboard notes
+- storyboard notes (default editable file: `storyboard.md`)
+- optional machine export (`storyboard.json`) when automation/parsing is needed
 - generated intermediate artifacts (mask URLs, logs, etc.)
 
 These files are useful for humans/agents but should not become runtime dependencies.

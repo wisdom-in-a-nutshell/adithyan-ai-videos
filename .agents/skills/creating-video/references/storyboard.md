@@ -1,8 +1,12 @@
 # Storyboard Format
 
-Keep storyboards as data you can iterate on. Prefer one file per project:
+Keep storyboards as data you can iterate on. Prefer one editable file per project:
 
-- `~/GitHub/adithyan-ai-videos/projects/<project-id>/storyboard.json`
+- `~/GitHub/adithyan-ai-videos/projects/<project-id>/storyboard.md`
+
+Optional:
+
+- `~/GitHub/adithyan-ai-videos/projects/<project-id>/storyboard.json` (only when a downstream script needs machine parsing)
 
 ## Scene Numbers (Recommended)
 
@@ -12,14 +16,51 @@ Convention:
 
 - Beats: `S01`, `S02`, `S03`, ...
 - Optional sub-beats: `S03A`, `S03B`, ...
-- If you embed sub-beats, use `scene_parts[]` with their own `scene` + `source_start`/`source_end`.
+- If you embed sub-beats in Markdown, use subheadings (`### S03A`) with their own time ranges.
 
-## Minimal Contract
+## Markdown Contract (Default)
 
-- `beats[]`: list of beats
-- each beat has `start`, `end` (seconds), plus intent + overlay notes
-- optionally include `sentences[]` to reference `projects/<project-id>/sentences.json`
-- optionally include `transcript` to inline the exact transcript for that beat (usually derived from `sentences[]`)
+Use one `##` section per beat:
+
+- heading pattern: `## S01 | 0.00-6.00 | Hook`
+- required lines in each beat:
+  - `Intent: ...`
+  - `Audio: ...`
+  - `Visual: ...`
+  - `Edit cue: ...`
+- optional lines:
+  - `Sentences: 1, 2` (for `sentences.json` cross-reference)
+  - `Transcript: ...` (exact spoken line)
+
+Recommended frontmatter:
+
+- `project_id`
+- `aspect`
+- `target_duration_sec`
+- `audience`
+- `cta`
+
+Example:
+
+```md
+---
+project_id: stadia-macos-controller-demo
+aspect: 16:9
+target_duration_sec: 60
+audience: builders, ai-devs
+cta: check-repo
+---
+
+## S01 | 0.00-6.00 | Hook
+Intent: Dusty controller -> useful coding tool.
+Audio: "This old Stadia controller was collecting dust..."
+Visual: On camera with controller, then cut to screen share.
+Edit cue: Cut on "Let me show you."
+```
+
+## JSON Contract (Optional)
+
+If a script needs it, mirror the same beats into `storyboard.json`.
 
 Example:
 
@@ -52,7 +93,7 @@ Example:
 
 ## Notes
 
-- The schema can evolve; what matters is: beats + timing + intent.
-- Keep “implementation details” (exact props) out of the storyboard unless needed.
-- Use `source_start`/`source_end` (seconds in the original recording). We’ll map these into an edited timeline later.
+- The schema/format can evolve; what matters is: beats + timing + intent.
+- Keep implementation details (exact props) out of the storyboard unless needed.
+- Use explicit seconds in beat headers (Markdown) or `source_start`/`source_end` (JSON). We map these into the edited timeline later.
 - If an effect needs occlusion (text behind subject), note it on the beat (e.g. “text behind subject”) and ensure your composition uses an `alpha.webm` URL (VP9 with alpha) in `src/projects/<project-id>/assets.js`.
