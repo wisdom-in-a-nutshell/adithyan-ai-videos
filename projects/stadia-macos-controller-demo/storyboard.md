@@ -9,22 +9,22 @@ Repo: https://github.com/wisdom-in-a-nutshell/stadia-macos-controller
 
 ## S01 | 0:00-0:06 | Hook
 
-- **Intent:** Open with a concrete transformation (dusty gamepad -> useful coding controller).
-- **Audio:** "This old Stadia controller was just collecting dust. So I thought, okay, let me turn this into a controller for Codex."
+- **Intent:** Open with a high-claim promise and immediate novelty.
+- **Audio:** "In this video, I'm going to show you how I use my Stadia controller to control Codex, code with it, and even talk to it. And this bridge app itself was 100% written by Codex."
 - **Visual:** On-camera shot with controller in hand.
-- **Transition:** Hard cut to screen share on "Codex controller."
+- **Transition:** "Let me show you how" -> hard cut to screen share.
 
 ## S02 | 0:06-0:12 | One-Line Setup
 
-- **Intent:** Explain what you built without overexplaining.
-- **Audio:** "I built a tiny macOS bridge. Basically, button presses map to actions in my coding workflow."
+- **Intent:** Add personal context and why you built it.
+- **Audio:** "This controller was collecting dust. It's been a while since I built something just for fun, so I built this with Codex."
 - **Visual:** Screen share (terminal + Ghostty), brief mapping/log flash.
-- **Transition:** Use "Let me show you" as cut into live demo.
+- **Transition:** "I just prompted Codex and shipped it" into live demo actions.
 
 ## S03 | 0:12-0:30 | Live Demo Core
 
 - **Intent:** Prove utility with visible, repeatable actions.
-- **Audio:** "Let me show you what I mean. I can open the model picker, switch tabs, move across splits, and keep the flow going."
+- **Audio:** "Watch this. I can split tabs, switch tabs, move across splits, open the model picker, and run my normal terminal flow from the controller."
 - **Visual:** Screen share primary, joystick cut-ins exactly on button presses.
 - **Visual:** Show 3-4 clean actions that land immediately.
 - **Transition:** Short pause after last successful action.
@@ -32,14 +32,14 @@ Repo: https://github.com/wisdom-in-a-nutshell/stadia-macos-controller
 ## S04 | 0:30-0:42 | Ergonomic Payoff
 
 - **Intent:** Explain why this matters in deep-work sessions.
-- **Audio:** "Honestly, when I'm deep in a coding session, this feels more ergonomic than constantly jumping between keyboard shortcuts."
+- **Audio:** "I wrote it for fun, but after using it for one day, I think I might use this for 70 to 80% of my workflow. It's just ergonomically nicer in deep coding sessions."
 - **Visual:** Fast montage: button press -> terminal response -> next press.
 - **Transition:** Slow pace before architecture beat.
 
 ## S05 | 0:42-0:53 | How It Works (Simple)
 
-- **Intent:** Keep architecture legible in one pass.
-- **Audio:** "Super simple: controller input comes in, the local bridge checks the active app profile, then it fires the mapped actions."
+- **Intent:** Explain implementation and open-source angle.
+- **Audio:** "Super simple flow: controller input goes to a local macOS bridge, it checks the active app profile, and triggers mapped actions. Codex wrote this app, so I'll show you the codebase too."
 - **Visual:** Minimal 3-step overlay over screen share.
 - **Visual:** `Stadia Controller -> Bridge Service -> Ghostty/Codex Actions`.
 - **Transition:** Fade overlay out before close.
@@ -47,7 +47,7 @@ Repo: https://github.com/wisdom-in-a-nutshell/stadia-macos-controller
 ## S06 | 0:53-1:00 | Humble Close + CTA
 
 - **Intent:** End with credibility and low-pressure CTA.
-- **Audio:** "It's still early, but it's already useful for me. If you want to try it or fork it, check the repo."
+- **Audio:** "I'll link the open-source repo. If you want to boot it up, fork it, or use parts of it, check it out."
 - **Visual:** Return to on-camera shot, repo URL as lower-third.
 - **Transition:** Hold final frame for 0.8s.
 
