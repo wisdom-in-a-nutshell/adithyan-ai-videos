@@ -10,21 +10,21 @@ Repo: https://github.com/wisdom-in-a-nutshell/stadia-macos-controller
 ## S01 | 0:00-0:06 | Hook
 
 - **Intent:** Open with a high-claim promise and immediate novelty.
-- **Audio:** "In this video, I'm going to show you how I use my Stadia controller to control Codex, code with it, and even talk to it. And this bridge app itself was 100% written by Codex."
+- **Audio:** "In this video, I'll show you how I use a Stadia controller to control Codex, code with it, and even talk to it. Codex wrote this app."
 - **Visual:** On-camera shot with controller in hand.
 - **Transition:** "Let me show you how" -> hard cut to screen share.
 
 ## S02 | 0:06-0:12 | One-Line Setup
 
 - **Intent:** Add personal context and why you built it.
-- **Audio:** "This controller was collecting dust. It's been a while since I built something just for fun, so I built this with Codex."
+- **Audio:** "Quick context: Google discontinued Stadia, so this controller was collecting dust. I wanted to build something fun, so I prompted Codex back and forth for a few hours."
 - **Visual:** Screen share (terminal + Ghostty), brief mapping/log flash.
 - **Transition:** "I just prompted Codex and shipped it" into live demo actions.
 
 ## S03 | 0:12-0:30 | Live Demo Core
 
 - **Intent:** Prove utility with visible, repeatable actions.
-- **Audio:** "Watch this. I can split tabs, switch tabs, move across splits, open the model picker, and run my normal terminal flow from the controller."
+- **Audio:** "Let me show you a quick demo. I split tabs, switch tabs, move across splits, open model picker, and keep my terminal flow from the controller."
 - **Visual:** Screen share primary, joystick cut-ins exactly on button presses.
 - **Visual:** Show 3-4 clean actions that land immediately.
 - **Transition:** Short pause after last successful action.
@@ -32,14 +32,14 @@ Repo: https://github.com/wisdom-in-a-nutshell/stadia-macos-controller
 ## S04 | 0:30-0:42 | Ergonomic Payoff
 
 - **Intent:** Explain why this matters in deep-work sessions.
-- **Audio:** "I wrote it for fun, but after using it for one day, I think I might use this for 70 to 80% of my workflow. It's just ergonomically nicer in deep coding sessions."
+- **Audio:** "To my surprise, it actually worked, and it's more useful than I expected. After one day, I think this could replace 70 to 80% of repeated workflow patterns."
 - **Visual:** Fast montage: button press -> terminal response -> next press.
 - **Transition:** Slow pace before architecture beat.
 
 ## S05 | 0:42-0:53 | How It Works (Simple)
 
 - **Intent:** Explain implementation and open-source angle.
-- **Audio:** "Super simple flow: controller input goes to a local macOS bridge, it checks the active app profile, and triggers mapped actions. Codex wrote this app, so I'll show you the codebase too."
+- **Audio:** "Flow is simple: controller input goes to a local macOS bridge, it checks the active app profile, then triggers mapped actions. I'll show the code so you can fork and run it."
 - **Visual:** Minimal 3-step overlay over screen share.
 - **Visual:** `Stadia Controller -> Bridge Service -> Ghostty/Codex Actions`.
 - **Transition:** Fade overlay out before close.
@@ -47,7 +47,7 @@ Repo: https://github.com/wisdom-in-a-nutshell/stadia-macos-controller
 ## S06 | 0:53-1:00 | Humble Close + CTA
 
 - **Intent:** End with credibility and low-pressure CTA.
-- **Audio:** "I'll link the open-source repo. If you want to boot it up, fork it, or use parts of it, check it out."
+- **Audio:** "Repo is open source. If you want to try it, fork it, or reuse parts of it, check it out."
 - **Visual:** Return to on-camera shot, repo URL as lower-third.
 - **Transition:** Hold final frame for 0.8s.
 
