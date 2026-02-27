@@ -10,21 +10,21 @@ Repo: https://github.com/wisdom-in-a-nutshell/stadia-macos-controller
 ## S01 | 0:00-0:06 | Hook
 
 - **Intent:** Open with a concrete transformation (dusty gamepad -> useful coding controller).
-- **Audio:** "This old Stadia controller was collecting dust, so I turned it into a Codex controller."
+- **Audio:** "This old Stadia controller was just collecting dust. So I thought, okay, let me turn this into a controller for Codex."
 - **Visual:** On-camera shot with controller in hand.
 - **Transition:** Hard cut to screen share on "Codex controller."
 
 ## S02 | 0:06-0:12 | One-Line Setup
 
 - **Intent:** Explain what you built without overexplaining.
-- **Audio:** "I built a small macOS bridge that maps button presses to actions in my coding workflow."
+- **Audio:** "I built a tiny macOS bridge. Basically, button presses map to actions in my coding workflow."
 - **Visual:** Screen share (terminal + Ghostty), brief mapping/log flash.
 - **Transition:** Use "Let me show you" as cut into live demo.
 
 ## S03 | 0:12-0:30 | Live Demo Core
 
 - **Intent:** Prove utility with visible, repeatable actions.
-- **Audio:** "I can open the model picker, switch tabs, move across splits, and stay in flow."
+- **Audio:** "Let me show you what I mean. I can open the model picker, switch tabs, move across splits, and keep the flow going."
 - **Visual:** Screen share primary, joystick cut-ins exactly on button presses.
 - **Visual:** Show 3-4 clean actions that land immediately.
 - **Transition:** Short pause after last successful action.
@@ -32,14 +32,14 @@ Repo: https://github.com/wisdom-in-a-nutshell/stadia-macos-controller
 ## S04 | 0:30-0:42 | Ergonomic Payoff
 
 - **Intent:** Explain why this matters in deep-work sessions.
-- **Audio:** "In deep coding sessions, this is just more ergonomic than constant keyboard context switching."
+- **Audio:** "Honestly, when I'm deep in a coding session, this feels more ergonomic than constantly jumping between keyboard shortcuts."
 - **Visual:** Fast montage: button press -> terminal response -> next press.
 - **Transition:** Slow pace before architecture beat.
 
 ## S05 | 0:42-0:53 | How It Works (Simple)
 
 - **Intent:** Keep architecture legible in one pass.
-- **Audio:** "Controller input goes to a local macOS bridge, it resolves the active app profile, then triggers mapped actions."
+- **Audio:** "Super simple: controller input comes in, the local bridge checks the active app profile, then it fires the mapped actions."
 - **Visual:** Minimal 3-step overlay over screen share.
 - **Visual:** `Stadia Controller -> Bridge Service -> Ghostty/Codex Actions`.
 - **Transition:** Fade overlay out before close.
@@ -47,7 +47,7 @@ Repo: https://github.com/wisdom-in-a-nutshell/stadia-macos-controller
 ## S06 | 0:53-1:00 | Humble Close + CTA
 
 - **Intent:** End with credibility and low-pressure CTA.
-- **Audio:** "Still early, but already useful. If you want to try or fork it, check the repo."
+- **Audio:** "It's still early, but it's already useful for me. If you want to try it or fork it, check the repo."
 - **Visual:** Return to on-camera shot, repo URL as lower-third.
 - **Transition:** Hold final frame for 0.8s.
 
