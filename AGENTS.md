@@ -8,10 +8,11 @@ Humans provide intent; agents implement and maintain code and docs.
 ## Read Order
 
 1. `/Users/dobby/GitHub/AGENTS.md` (portfolio policy)
-2. `docs/architecture/video-project-model.md`
-3. `docs/references/project-contract.md`
-4. `docs/references/verification-loop.md`
-5. `docs/projects/<project>/tasks.md` (active execution state)
+2. `docs/AGENTS.md` (docs router)
+3. `docs/architecture/video-project-model.md`
+4. `docs/references/project-contract.md`
+5. `docs/references/verification-loop.md`
+6. `docs/projects/<project>/tasks.md` (active execution state)
 
 ## Repo Rules
 
