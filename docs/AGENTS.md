@@ -21,7 +21,7 @@
 <!-- PORTFOLIO_DOCS_CONTRACT_V1 -->
 
 - `docs/architecture/`: quick human overview first, then details. Prefer visual-first Markdown (Mermaid) with short helper text in plain English.
-- `docs/references/`: durable implementation facts, command snippets, and operational lookup material specifically for agents.
+- `docs/references/`: durable implementation facts, command snippets, and operational lookup material for humans and agents.
 
 ### Portfolio Docs Rules (Enforced)
 
