@@ -12,3 +12,9 @@ public/
 
 # Codex (legacy local skills path; use .agents/skills instead)
 .codex/skills/
+
+# Local env files
+.env*
+!.envrc
+!.env.example
+!*.env.example
