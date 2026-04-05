@@ -1,36 +1,76 @@
 # Video Project Model
 
-## Goal
+This repo separates editable source artifacts from runtime Remotion code. Each
+video project keeps reference material under `projects/<id>/`, runtime code
+under `src/projects/<id>/`, and a central registry wires those compositions
+into Studio and render entrypoints.
 
-Make new videos cheap to start, safe to iterate, and easy for a cold agent to resume.
+```mermaid
+flowchart TD
+    Storyboard[projects/<id>/storyboard.md]
+    Artifacts[projects/<id>/* source artifacts]
+    Assets[src/projects/<id>/assets.js]
+    ProjectCode[src/projects/<id>/<ProjectComp>.js + composition.js]
+    OverlayKit[src/overlay_kit/*]
+    Registry[src/projects/registry.js]
+    Entry[src/Root.js + src/index.js]
+    Local[npm start / npm run render]
+    Cloud[npm run render:cloud]
 
-## Core Shape
+    Storyboard --> Assets
+    Artifacts --> Assets
+    Artifacts --> ProjectCode
+    Assets --> ProjectCode
+    OverlayKit --> ProjectCode
+    ProjectCode --> Registry
+    Registry --> Entry
+    Entry --> Local
+    Entry --> Cloud
+```
 
-- Composition registry: `src/Root.js`
-- Project registry source: `src/projects/registry.js`
-- Per-video runtime code: `src/projects/<project-id>/`
-- Per-video source artifacts: `projects/<project-id>/`
-- Reusable visual primitives: `src/overlay_kit/`
-- Fast local loops: `scripts/studio_cached.mjs`, `scripts/render.mjs`
+## Main Parts
+
+- `projects/<id>/`: reference-only source material and notes such as storyboards,
+  transcripts, masks, and handoff docs.
+- `src/projects/<id>/`: runtime composition code. `assets.js` holds durable
+  inputs, `<ProjectComp>.js` wires scenes, and `composition.js` exports the
+  composition config.
+- `src/overlay_kit/`: reusable overlays and drawing primitives shared across
+  projects.
+- `src/projects/registry.js` plus `src/Root.js`: the only path that turns a
+  project into an active Remotion composition.
+- `scripts/*.mjs`: local entrypoints for Studio, render slices, scaffolding, and
+  repo validation.
+
+## Main Flow
+
+1. Capture editable notes and source artifacts in `projects/<id>/`.
+2. Translate the runtime inputs into `src/projects/<id>/assets.js` and
+   composition code.
+3. Register the project in `src/projects/registry.js`; `src/Root.js` renders
+   every registered composition.
+4. Run `npm start` or `npm run render -- ...` through the cached local scripts.
+   Those scripts scan `assets.js`, prepare local cache data, and launch Remotion
+   with the resolved props and public dir.
+5. Use cloud rendering only after the local loop is stable.
 
 ## Boundaries
 
-1. Runtime inputs for a composition live in code (`assets.js`) under `src/projects/<id>/`.
-2. Scratch manifests (for example `projects/<id>/matting.json`) are reference-only, not runtime dependencies.
-3. Every project exports a composition config from `src/projects/<id>/composition.js`.
-4. `src/projects/registry.js` is the source-of-truth list of active compositions.
-5. Reusable overlays belong in `src/overlay_kit/`; one-off scene wiring stays in project folders.
-6. Each major visual beat should be wrapped in a named `<Sequence>` for Studio timeline legibility.
-7. Active execution state belongs in `docs/projects/<project>/tasks.md`.
+- Runtime inputs for a composition live in code under `src/projects/<id>/`;
+  scratch manifests in `projects/<id>/` stay reference-only.
+- Every project exports one composition config from
+  `src/projects/<id>/composition.js`.
+- `src/projects/registry.js` remains the source of truth for active
+  compositions, and `src/Root.js` must keep rendering `PROJECT_COMPOSITIONS`.
+- Reusable overlays belong in `src/overlay_kit/`; one-off scene wiring stays in
+  project folders.
+- Major visual beats should be wrapped in named `<Sequence>` blocks for Studio
+  timeline legibility.
+- Active execution state belongs in `docs/projects/<project>/tasks.md`, not in
+  source folders.
 
-## Why This Model
+## Related References
 
-- Agents can discover project intent and wiring from predictable paths.
-- Project setup has low overhead and avoids metadata sprawl.
-- Render iteration stays fast through URL caching and short render slices.
-
-## Operational Invariants
-
-- `check:fast` remains non-rendering and fast.
-- New project scaffolds follow the same folder contract.
-- Repo doctor validates basic shape and composition wiring before push.
+- `docs/references/project-contract.md`
+- `docs/references/repo-operations.md`
+- `docs/references/verification-loop.md`

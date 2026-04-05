@@ -1,11 +1,14 @@
 # Project Contract
 
-## Required Structure
+## File Map
 
-For each project id `<id>`:
-
-- Runtime folder: `src/projects/<id>/`
-- Artifact folder: `projects/<id>/`
+- `src/projects/<id>/`: runtime composition code for one video.
+- `projects/<id>/`: reference-only source artifacts and notes for that video.
+- `src/projects/registry.js`: source-of-truth list of active compositions.
+- `src/Root.js`: maps `PROJECT_COMPOSITIONS` into Remotion `<Composition>`
+  entries.
+- `src/overlay_kit/`: reusable overlays and drawing helpers shared across
+  projects.
 
 ## Runtime Folder Contract (`src/projects/<id>/`)
 
@@ -45,8 +48,19 @@ Each composition config must include:
 - explicit `width` and `height`
 - explicit `durationInFrames`
 
-## Overlay Contract
+## Runtime Rules
 
+- Keep runtime inputs in `assets.js`; do not make runtime code depend on scratch
+  manifests under `projects/<id>/`.
 - Use named `<Sequence name="...">` blocks for major beats.
-- Ensure key overlay layers use clear z-order (`zIndex`) when foreground alpha is present.
-- Keep reusable primitives in `src/overlay_kit/`.
+- Ensure key overlay layers use clear `zIndex` ordering when foreground alpha
+  is present.
+- Keep reusable primitives in `src/overlay_kit/`; keep one-off scene wiring in
+  the project folder.
+
+## Scaffold Notes
+
+- `npm run new:project -- --id <project-id> ...` creates both project folders,
+  seeds `notes.md` and `storyboard.md`, and updates `src/projects/registry.js`.
+- `src/projects/registry.js` must preserve `// NEW_PROJECT_IMPORTS` and
+  `// NEW_PROJECT_ENTRIES` because the scaffold script depends on those markers.
