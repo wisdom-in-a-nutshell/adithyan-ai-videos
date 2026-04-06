@@ -62,6 +62,8 @@ flowchart TD
   `src/projects/<id>/composition.js`.
 - `src/projects/registry.js` remains the source of truth for active
   compositions, and `src/Root.js` must keep rendering `PROJECT_COMPOSITIONS`.
+- Older project code can remain imported in the registry with `enabled: false`
+  so it stays available in-repo without appearing in Studio.
 - Reusable overlays belong in `src/overlay_kit/`; one-off scene wiring stays in
   project folders.
 - Major visual beats should be wrapped in named `<Sequence>` blocks for Studio

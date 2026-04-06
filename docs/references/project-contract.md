@@ -41,6 +41,10 @@ Every active project composition should be registered through:
 - `src/projects/registry.js` (imports + list entry)
 - `src/Root.js` mapping `PROJECT_COMPOSITIONS`
 
+Projects can stay imported in `src/projects/registry.js` with `enabled: false`
+when you want to keep the code in-repo for inspiration or later reuse without
+showing the composition in Studio.
+
 Each composition config must include:
 
 - stable `id`
@@ -64,3 +68,5 @@ Each composition config must include:
   seeds `notes.md` and `storyboard.md`, and updates `src/projects/registry.js`.
 - `src/projects/registry.js` must preserve `// NEW_PROJECT_IMPORTS` and
   `// NEW_PROJECT_ENTRIES` because the scaffold script depends on those markers.
+- New scaffolded projects should default to `enabled: true`; older projects can
+  be hidden later by flipping their registry entry to `enabled: false`.
