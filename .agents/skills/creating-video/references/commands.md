@@ -1,5 +1,17 @@
 # Local Preview Commands (Repo)
 
+## Scaffold A New Video
+
+```bash
+cd ~/GitHub/adithyan-ai-videos
+npm run new:project -- --id <project-id> --title "My Video"
+```
+
+Notes:
+- This creates both `src/projects/<project-id>/` and `projects/<project-id>/`.
+- It updates `src/projects/registry.js`; do not hand-wire new projects directly in `src/Root.js`.
+- If the work will span sessions, add `docs/projects/<project-id>/tasks.md` as the resume point.
+
 ```bash
 cd ~/GitHub/adithyan-ai-videos
 npm start
