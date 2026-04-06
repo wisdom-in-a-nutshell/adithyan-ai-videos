@@ -104,6 +104,7 @@ export const prepareAssetCache = async ({
   const assetMap = {};
   const downloaded = [];
   const skipped = [];
+  const failed = [];
 
   for (const url of urls) {
     if (!isHttpUrl(url)) continue;
@@ -111,12 +112,19 @@ export const prepareAssetCache = async ({
     const filename = `${sha1(url)}${ext}`;
     const outPath = path.join(projectCacheDir, filename);
 
-    const res = await downloadToFile({url, outPath, refresh});
-    if (res.downloaded) downloaded.push(filename);
-    else skipped.push(filename);
+    try {
+      const res = await downloadToFile({url, outPath, refresh});
+      if (res.downloaded) downloaded.push(filename);
+      else skipped.push(filename);
 
-    // When served via `--public-dir`, files resolve from the root as `/filename`.
-    assetMap[url] = `/${filename}`;
+      // When served via `--public-dir`, files resolve from the root as `/filename`.
+      assetMap[url] = `/${filename}`;
+    } catch (error) {
+      failed.push({
+        url,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
   }
 
   return {
@@ -125,6 +133,7 @@ export const prepareAssetCache = async ({
     assetMap,
     downloaded,
     skipped,
+    failed,
   };
 };
 

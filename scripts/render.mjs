@@ -156,6 +156,13 @@ if (useCache) {
     refresh: refreshCache,
   });
 
+  if (cache.failed.length > 0) {
+    console.warn(`[cache] skipped ${cache.failed.length} asset download failure(s):`);
+    for (const failure of cache.failed) {
+      console.warn(`  - ${failure.error}`);
+    }
+  }
+
   const mergedPublicDir = prepareMergedPublicDir({
     projectCacheDir: cache.projectCacheDir,
     repoPublicDir: path.resolve('public'),
