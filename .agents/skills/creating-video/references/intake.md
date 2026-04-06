@@ -18,10 +18,10 @@ Default ingestion/transcription channel for this workflow: `ADITHYAN`.
 Command:
 
 ```bash
-cd /Users/adi/GitHub/win
+cd /Users/dobby/GitHub/win
 venv/bin/python scripts/tools/media/transcribe.py "<video-url>" \
   --channel ADITHYAN \
-  --out /Users/adi/GitHub/adithyan-ai-videos/projects/<project-id>/transcript.json
+  --out /Users/dobby/GitHub/adithyan-ai-videos/projects/<project-id>/transcript.json
 ```
 
 Notes:
@@ -31,6 +31,9 @@ Notes:
   - `words` (normalized word timings)
   - `sentences`
 - Channel should always be `ADITHYAN` for this workflow.
+- For local source media imported into this repo, serve `public/` locally first and
+  transcribe the local URL (for example
+  `http://127.0.0.1:8030/imports/<project-id>/source.mp4`).
 - For code-first Remotion projects, prefer committing a thin words-only artifact inside the project:
   - `src/projects/<project-id>/transcript_words.json` (usually copied from `transcript.json.words`)
 
