@@ -1,0 +1,48 @@
+{
+  "command": "media-toolkit transform",
+  "data": {
+    "input": {
+      "media_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d39c133f5796cebd2d0949785dc94935256fd4af98d7a84dc08f06c4dfe9562f/C0040.MP4",
+      "used_upload": false
+    },
+    "job": {
+      "cached": false,
+      "endpoint": "/media/transform",
+      "job_id": "VIDEO_TRANSFORM_8b804af5d5fd22d1",
+      "status": "completed"
+    },
+    "result": {
+      "input_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d39c133f5796cebd2d0949785dc94935256fd4af98d7a84dc08f06c4dfe9562f/C0040.MP4",
+      "output_url": "https://storage.aipodcast.ing/cache/b04441fe-0564-4376-ae48-7476217def43.mp4",
+      "params": {
+        "crop": {
+          "height": 2148,
+          "width": 3816,
+          "x": 24,
+          "y": 0
+        },
+        "scale": {
+          "height": 1080,
+          "width": 1920
+        },
+        "storage_prefix": "cache",
+        "trim": {
+          "end_seconds": 177.68,
+          "start_seconds": 20.98
+        },
+        "trim_profile": "standardized"
+      },
+      "source_id": "369aa219163",
+      "success": true
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 79582,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0040/transform_trimmed.json",
+    "request_id": "74bc6b5a871c48b4b80420d92c023cee",
+    "timestamp_utc": "2026-04-07T12:25:49.392091+00:00"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}
