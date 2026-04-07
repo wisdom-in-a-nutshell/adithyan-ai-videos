@@ -7,7 +7,7 @@
     },
     "result": null,
     "upload": {
-      "cached": false,
+      "cached": true,
       "content_sha256": "8f57fc124ac04a19a970dd677f7b113fa40b7c8225c3d67c7570653948abdb82",
       "destination_path": "agent-media-toolkit/by-hash/8f57fc124ac04a19a970dd677f7b113fa40b7c8225c3d67c7570653948abdb82/working-v2.mp4",
       "file_name": "working-v2.mp4",
@@ -18,10 +18,10 @@
   },
   "error": null,
   "meta": {
-    "duration_ms": 82982,
+    "duration_ms": 949,
     "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0040/upload_working_v2.json",
-    "request_id": "5248818fdb604883af9c70421961455a",
-    "timestamp_utc": "2026-04-07T13:10:28.502562+00:00"
+    "request_id": "9147d358d8a74cc2b46ab66e078b2940",
+    "timestamp_utc": "2026-04-07T13:22:53.529773+00:00"
   },
   "schema_version": "1.0",
   "status": "ok"
