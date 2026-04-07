@@ -22,19 +22,21 @@ The clip is the correct latest source file for the next video. If the repo does 
 - Source clip selected by the user: `/Users/dobby/Desktop/C0040.MP4`
 - Imported runtime source path: `public/imports/c0040/source.mp4`
 - Source metadata from `ffprobe`: 3840x2160, 25 fps, 178.56s, ~1.23 GB
+- Working edit asset: `public/imports/c0040/working-v2.mp4`
+- Working edit transform: trim `20.98s` to `177.68s`, crop to `3792x2133` at `x=40, y=0`, then scale to `1920x1080`
 - `public/` and `*.mp4` are gitignored in this repo, so local media can be used without pushing binaries.
 - The active project is `src/projects/c0040/` with notes in `projects/c0040/`.
-- `src/projects/c0040/transcript_words.json` is still the empty scaffold placeholder and needs to be replaced with real timings.
+- Transcript artifacts now match the transformed working clip, not the original raw source timeline.
 
 ## Done When
-- [ ] `C0040` is selectable in Studio and renders the imported source clip.
+- [x] `C0040` is selectable in Studio and renders the working edit clip.
 - [ ] The project notes/tracker capture the source file and the next editing step.
-- [ ] `projects/c0040/transcript.json` exists and `src/projects/c0040/transcript_words.json` contains real word timings.
+- [x] `projects/c0040/transcript.json` exists and `src/projects/c0040/transcript_words.json` contains real word timings.
 - [ ] We have reviewed the footage enough to replace the placeholder storyboard with real edit beats.
 
 ## Milestones
-- [ ] Milestone 1 — Baseline source import and project wiring. Acceptance: `C0040` is registered, points at the imported clip, and repo checks pass. Validate: `npm run doctor` and `npx remotion compositions src/index.js`.
-- [ ] Milestone 2 — Transcript ingestion and thin artifact sync. Acceptance: `projects/c0040/transcript.json` is generated from the imported source and `src/projects/c0040/transcript_words.json` is populated from it. Validate: `node -e "const p=require('./projects/c0040/transcript.json'); const w=require('./src/projects/c0040/transcript_words.json'); console.log(p.words.length, w.length)"`.
+- [x] Milestone 1 — Baseline source import and project wiring. Acceptance: `C0040` is registered, points at the imported clip, and repo checks pass. Validate: `npm run doctor` and `npx remotion compositions src/index.js`.
+- [x] Milestone 2 — Transcript ingestion and thin artifact sync. Acceptance: `projects/c0040/transcript.json` is generated from the imported source and `src/projects/c0040/transcript_words.json` is populated from it. Validate: `node -e "const p=require('./projects/c0040/transcript.json'); const w=require('./src/projects/c0040/transcript_words.json'); console.log(p.words.length, w.length)"`.
 - [ ] Milestone 3 — First editorial pass. Acceptance: storyboard beats reflect the actual footage and the composition begins to diverge from raw source playback. Validate: `npm run render -- --comp C0040 --from <start> --to <end>`.
 
 ## Execution Rules
@@ -50,8 +52,8 @@ The clip is the correct latest source file for the next video. If the repo does 
 ## Decisions
 - Use `c0040` as the project id so the repo matches the source clip name.
 - Keep the large source clip in `public/imports/c0040/source.mp4` because that path is local-runtime-only and ignored by git.
-- Start with a raw source playback composition so the next edit pass can happen in Studio immediately.
-- Use the WIN transcription CLI against a locally served `public/imports/c0040/source.mp4` URL so the large local source clip can flow through the existing transcript pipeline.
+- Keep the imported source clip as the local raw backup, but use a transformed working asset in the composition for faster iteration.
+- Align transcript artifacts to the transformed working clip so word timings match what Studio renders.
 
 ## Open Questions / Blockers
 - What is the intended story or output cut for this clip?
@@ -60,13 +62,13 @@ The clip is the correct latest source file for the next video. If the repo does 
 ## Current Batch
 | Status | Work Item | Role | Resource |
 | --- | --- | --- | --- |
-| in_progress | Generate `C0040` transcript artifacts and replace the scaffold placeholder words file. | parent |  |
+| done | Generate `C0040` transcript artifacts and replace the scaffold placeholder words file. | parent |  |
 | todo | Review the source clip and replace the placeholder storyboard with real beats. | parent |  |
 
 ## Backlog / Remaining Work
 - [ ] Run repo validation for the new project wiring.
-- [ ] Generate `projects/c0040/transcript.json`.
-- [ ] Copy `transcript.json.words` into `src/projects/c0040/transcript_words.json`.
+- [x] Generate `projects/c0040/transcript.json`.
+- [x] Copy `transcript.json.words` into `src/projects/c0040/transcript_words.json`.
 - [ ] Review the footage and capture concrete story beats in `projects/c0040/storyboard.md`.
 - [ ] Decide the target output duration and structure.
 - [ ] Implement the first real editorial/overlay pass.
@@ -76,10 +78,11 @@ The clip is the correct latest source file for the next video. If the repo does 
 ## Validation / Test Plan
 - `npm run doctor`
 - `npx remotion compositions src/index.js`
-- `/Users/dobby/GitHub/win/venv/bin/python /Users/dobby/GitHub/win/scripts/tools/media/transcribe.py "http://127.0.0.1:8030/imports/c0040/source.mp4" --channel ADITHYAN --out /Users/dobby/GitHub/adithyan-ai-videos/projects/c0040/transcript.json`
+- `.agents/skills/media-toolkit/scripts/media_toolkit.sh transcribe --url "<working-edit-url>" --output projects/c0040/transcript_transformed.json`
 - `node -e "const fs=require('fs'); const p=JSON.parse(fs.readFileSync('projects/c0040/transcript.json','utf8')); fs.writeFileSync('src/projects/c0040/transcript_words.json', JSON.stringify(p.words ?? [], null, 2) + '\n')"`
 - `npm run render -- --comp C0040 --from 0 --to 6 --no-open`
 
 ## Progress Log
 - 2026-04-06: [IN-PROGRESS] Created `c0040` project tracker and imported the correct source clip into local runtime storage.
-- 2026-04-06: [IN-PROGRESS] Confirmed the working transcription path: local `public/` HTTP server -> WIN `transcribe.py` -> `projects/c0040/transcript.json` -> `src/projects/c0040/transcript_words.json`.
+- 2026-04-07: [DONE] Created a local transformed working edit asset for `C0040` with trim, tighter bottom-left crop cleanup, and `1920x1080` scale.
+- 2026-04-07: [DONE] Re-transcribed the transformed working clip and synced `projects/c0040/transcript.json` plus `src/projects/c0040/transcript_words.json` to the edited timeline.

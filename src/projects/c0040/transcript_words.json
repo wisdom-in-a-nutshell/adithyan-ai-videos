@@ -1,2930 +1,2850 @@
 [
   {
     "characters": null,
-    "end": 24.38,
-    "speaker_id": "speaker_0",
-    "start": 23.98,
-    "text": "hi",
+    "end": 3.44,
+    "speaker_id": null,
+    "start": 3.04,
+    "text": "Hi,",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 24.94,
-    "speaker_id": "speaker_0",
-    "start": 24.5,
+    "end": 4,
+    "speaker_id": null,
+    "start": 3.52,
     "text": "everything",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 25.86,
-    "speaker_id": "speaker_0",
-    "start": 25.5,
-    "text": "hi",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 26.34,
-    "speaker_id": "speaker_0",
-    "start": 25.98,
-    "text": "everything",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 26.54,
-    "speaker_id": "speaker_0",
-    "start": 26.34,
+    "end": 5.6,
+    "speaker_id": null,
+    "start": 4.6,
     "text": "that",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 26.619999999999997,
-    "speaker_id": "speaker_0",
-    "start": 26.54,
+    "end": 5.68,
+    "speaker_id": null,
+    "start": 5.6,
     "text": "you",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 26.7,
-    "speaker_id": "speaker_0",
-    "start": 26.62,
+    "end": 5.84,
+    "speaker_id": null,
+    "start": 5.68,
     "text": "are",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 27.06,
-    "speaker_id": "speaker_0",
-    "start": 26.7,
+    "end": 6.12,
+    "speaker_id": null,
+    "start": 5.84,
     "text": "about",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 27.22,
-    "speaker_id": "speaker_0",
-    "start": 27.06,
+    "end": 6.24,
+    "speaker_id": null,
+    "start": 6.12,
     "text": "to",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 27.419999999999998,
-    "speaker_id": "speaker_0",
-    "start": 27.22,
+    "end": 6.48,
+    "speaker_id": null,
+    "start": 6.24,
     "text": "see",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 27.5,
-    "speaker_id": "speaker_0",
-    "start": 27.42,
+    "end": 6.56,
+    "speaker_id": null,
+    "start": 6.48,
     "text": "in",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 27.66,
-    "speaker_id": "speaker_0",
-    "start": 27.5,
+    "end": 6.68,
+    "speaker_id": null,
+    "start": 6.56,
     "text": "this",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 28.06,
-    "speaker_id": "speaker_0",
-    "start": 27.66,
+    "end": 7.12,
+    "speaker_id": null,
+    "start": 6.68,
     "text": "video",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 28.86,
-    "speaker_id": "speaker_0",
-    "start": 28.14,
+    "end": 7.92,
+    "speaker_id": null,
+    "start": 7.68,
     "text": "is",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 29.099999999999998,
-    "speaker_id": "speaker_0",
-    "start": 28.86,
-    "text": "one",
+    "end": 8.04,
+    "speaker_id": null,
+    "start": 8,
+    "text": "100%",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 29.380000000000003,
-    "speaker_id": "speaker_0",
-    "start": 29.1,
-    "text": "hundred",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 29.779999999999998,
-    "speaker_id": "speaker_0",
-    "start": 29.38,
-    "text": "percent",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 30.22,
-    "speaker_id": "speaker_0",
-    "start": 29.82,
+    "end": 9.28,
+    "speaker_id": null,
+    "start": 8.16,
     "text": "edited",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 30.38,
-    "speaker_id": "speaker_0",
-    "start": 30.22,
+    "end": 9.44,
+    "speaker_id": null,
+    "start": 9.28,
     "text": "by",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 31.06,
-    "speaker_id": "speaker_0",
-    "start": 30.38,
-    "text": "codex",
+    "end": 10.16,
+    "speaker_id": null,
+    "start": 9.44,
+    "text": "Codex,",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 31.14,
-    "speaker_id": "speaker_0",
-    "start": 31.1,
+    "end": 10.2,
+    "speaker_id": null,
+    "start": 10.16,
     "text": "a",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 31.66,
-    "speaker_id": "speaker_0",
-    "start": 31.14,
+    "end": 10.72,
+    "speaker_id": null,
+    "start": 10.2,
     "text": "coding",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 32.22,
-    "speaker_id": "speaker_0",
-    "start": 31.66,
+    "end": 11.28,
+    "speaker_id": null,
+    "start": 10.72,
     "text": "agent.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 33.46,
-    "speaker_id": "speaker_0",
-    "start": 32.62,
-    "text": "so",
+    "end": 12.48,
+    "speaker_id": null,
+    "start": 11.68,
+    "text": "So",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 33.58,
-    "speaker_id": "speaker_0",
-    "start": 33.46,
-    "text": "i",
+    "end": 12.52,
+    "speaker_id": null,
+    "start": 12.48,
+    "text": "I",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 33.699999999999996,
-    "speaker_id": "speaker_0",
-    "start": 33.58,
+    "end": 12.68,
+    "speaker_id": null,
+    "start": 12.52,
     "text": "have",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 33.74,
-    "speaker_id": "speaker_0",
-    "start": 33.7,
+    "end": 12.72,
+    "speaker_id": null,
+    "start": 12.68,
     "text": "a",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 34.06,
-    "speaker_id": "speaker_0",
-    "start": 33.74,
+    "end": 13.12,
+    "speaker_id": null,
+    "start": 12.72,
     "text": "black",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 34.300000000000004,
-    "speaker_id": "speaker_0",
-    "start": 34.06,
+    "end": 13.36,
+    "speaker_id": null,
+    "start": 13.12,
     "text": "ball",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 34.58,
-    "speaker_id": "speaker_0",
-    "start": 34.3,
+    "end": 13.6,
+    "speaker_id": null,
+    "start": 13.36,
     "text": "here",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 34.739999999999995,
-    "speaker_id": "speaker_0",
-    "start": 34.62,
+    "end": 13.76,
+    "speaker_id": null,
+    "start": 13.6,
     "text": "in",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 34.86,
-    "speaker_id": "speaker_0",
-    "start": 34.74,
+    "end": 13.92,
+    "speaker_id": null,
+    "start": 13.76,
     "text": "my",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 35.18,
-    "speaker_id": "speaker_0",
-    "start": 34.86,
+    "end": 14.24,
+    "speaker_id": null,
+    "start": 13.92,
     "text": "hand",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 35.379999999999995,
-    "speaker_id": "speaker_0",
-    "start": 35.26,
+    "end": 14.44,
+    "speaker_id": null,
+    "start": 14.28,
     "text": "and",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 35.46,
-    "speaker_id": "speaker_0",
-    "start": 35.38,
-    "text": "i'm",
+    "end": 14.52,
+    "speaker_id": null,
+    "start": 14.44,
+    "text": "I'm",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 35.660000000000004,
-    "speaker_id": "speaker_0",
-    "start": 35.46,
+    "end": 14.68,
+    "speaker_id": null,
+    "start": 14.52,
     "text": "going",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 35.779999999999994,
-    "speaker_id": "speaker_0",
-    "start": 35.66,
+    "end": 14.8,
+    "speaker_id": null,
+    "start": 14.68,
     "text": "to",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 36.02,
-    "speaker_id": "speaker_0",
-    "start": 35.78,
+    "end": 15.08,
+    "speaker_id": null,
+    "start": 14.88,
     "text": "ask",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 36.580000000000005,
-    "speaker_id": "speaker_0",
-    "start": 36.02,
-    "text": "codex",
+    "end": 15.6,
+    "speaker_id": null,
+    "start": 15.08,
+    "text": "Codex",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 37.06,
-    "speaker_id": "speaker_0",
-    "start": 37.02,
-    "text": "uh",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 37.34,
-    "speaker_id": "speaker_0",
-    "start": 37.06,
+    "end": 16.4,
+    "speaker_id": null,
+    "start": 16.08,
     "text": "to",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 37.74,
-    "speaker_id": "speaker_0",
-    "start": 37.38,
+    "end": 16.76,
+    "speaker_id": null,
+    "start": 16.4,
     "text": "start",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 38.34,
-    "speaker_id": "speaker_0",
-    "start": 37.74,
+    "end": 17.36,
+    "speaker_id": null,
+    "start": 16.76,
     "text": "tracking",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 38.5,
-    "speaker_id": "speaker_0",
-    "start": 38.34,
+    "end": 17.52,
+    "speaker_id": null,
+    "start": 17.36,
     "text": "this",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 38.82,
-    "speaker_id": "speaker_0",
-    "start": 38.5,
+    "end": 17.84,
+    "speaker_id": null,
+    "start": 17.52,
     "text": "black",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 39.18,
-    "speaker_id": "speaker_0",
-    "start": 38.82,
+    "end": 18.16,
+    "speaker_id": null,
+    "start": 17.84,
     "text": "ball.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 40.24,
-    "speaker_id": "speaker_0",
-    "start": 39.84,
-    "text": "so",
+    "end": 19.36,
+    "speaker_id": null,
+    "start": 18.88,
+    "text": "So",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 40.64,
-    "speaker_id": "speaker_0",
-    "start": 40.24,
+    "end": 19.68,
+    "speaker_id": null,
+    "start": 19.36,
     "text": "once",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 40.76,
-    "speaker_id": "speaker_0",
-    "start": 40.64,
+    "end": 19.84,
+    "speaker_id": null,
+    "start": 19.68,
     "text": "it",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 41.239999999999995,
-    "speaker_id": "speaker_0",
-    "start": 40.76,
+    "end": 20.32,
+    "speaker_id": null,
+    "start": 19.84,
     "text": "starts",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 41.68,
-    "speaker_id": "speaker_0",
-    "start": 41.24,
+    "end": 20.76,
+    "speaker_id": null,
+    "start": 20.32,
     "text": "tracking",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 41.76,
-    "speaker_id": "speaker_0",
-    "start": 41.68,
+    "end": 20.84,
+    "speaker_id": null,
+    "start": 20.76,
     "text": "the",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 42.04,
-    "speaker_id": "speaker_0",
-    "start": 41.76,
+    "end": 21.12,
+    "speaker_id": null,
+    "start": 20.84,
     "text": "black",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 42.36,
-    "speaker_id": "speaker_0",
-    "start": 42.04,
-    "text": "ball",
+    "end": 21.36,
+    "speaker_id": null,
+    "start": 21.16,
+    "text": "ball,",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 42.559999999999995,
-    "speaker_id": "speaker_0",
-    "start": 42.4,
-    "text": "i'm",
+    "end": 21.6,
+    "speaker_id": null,
+    "start": 21.44,
+    "text": "I'm",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 42.800000000000004,
-    "speaker_id": "speaker_0",
-    "start": 42.56,
+    "end": 21.84,
+    "speaker_id": null,
+    "start": 21.6,
     "text": "going",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 43.32,
-    "speaker_id": "speaker_0",
-    "start": 42.8,
+    "end": 22.48,
+    "speaker_id": null,
+    "start": 21.84,
     "text": "to",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 44.48,
-    "speaker_id": "speaker_0",
-    "start": 44.4,
-    "text": "i'm",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 45.120000000000005,
-    "speaker_id": "speaker_0",
-    "start": 44.92,
-    "text": "going",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 45.199999999999996,
-    "speaker_id": "speaker_0",
-    "start": 45.12,
-    "text": "to",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 45.36,
-    "speaker_id": "speaker_0",
-    "start": 45.2,
+    "end": 24.4,
+    "speaker_id": null,
+    "start": 24.16,
     "text": "throw",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 45.56,
-    "speaker_id": "speaker_0",
-    "start": 45.36,
+    "end": 24.64,
+    "speaker_id": null,
+    "start": 24.4,
     "text": "this",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 45.760000000000005,
-    "speaker_id": "speaker_0",
-    "start": 45.56,
+    "end": 24.8,
+    "speaker_id": null,
+    "start": 24.64,
     "text": "up",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 45.879999999999995,
-    "speaker_id": "speaker_0",
-    "start": 45.76,
+    "end": 24.92,
+    "speaker_id": null,
+    "start": 24.8,
     "text": "and",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 46.32,
-    "speaker_id": "speaker_0",
-    "start": 45.88,
+    "end": 25.36,
+    "speaker_id": null,
+    "start": 24.92,
     "text": "down",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 47.72,
-    "speaker_id": "speaker_0",
-    "start": 47.04,
+    "end": 26.76,
+    "speaker_id": null,
+    "start": 26.16,
     "text": "and",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 47.8,
-    "speaker_id": "speaker_0",
-    "start": 47.72,
-    "text": "i'm",
+    "end": 26.88,
+    "speaker_id": null,
+    "start": 26.76,
+    "text": "I'm",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 48.04,
-    "speaker_id": "speaker_0",
-    "start": 47.8,
+    "end": 27.12,
+    "speaker_id": null,
+    "start": 26.88,
     "text": "going",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 48.16,
-    "speaker_id": "speaker_0",
-    "start": 48.04,
+    "end": 27.28,
+    "speaker_id": null,
+    "start": 27.12,
     "text": "to",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 48.440000000000005,
-    "speaker_id": "speaker_0",
-    "start": 48.24,
+    "end": 27.56,
+    "speaker_id": null,
+    "start": 27.32,
     "text": "ask",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 49.36,
-    "speaker_id": "speaker_0",
-    "start": 48.44,
-    "text": "codecs",
+    "end": 28.4,
+    "speaker_id": null,
+    "start": 27.56,
+    "text": "Codex",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 51.800000000000004,
-    "speaker_id": "speaker_0",
-    "start": 51.28,
+    "end": 30.88,
+    "speaker_id": null,
+    "start": 30.32,
     "text": "to",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 52.16,
-    "speaker_id": "speaker_0",
-    "start": 51.8,
+    "end": 31.24,
+    "speaker_id": null,
+    "start": 30.88,
     "text": "change",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 52.279999999999994,
-    "speaker_id": "speaker_0",
-    "start": 52.16,
+    "end": 31.36,
+    "speaker_id": null,
+    "start": 31.28,
     "text": "the",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 52.56,
-    "speaker_id": "speaker_0",
-    "start": 52.28,
+    "end": 31.64,
+    "speaker_id": null,
+    "start": 31.36,
     "text": "color",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 52.64,
-    "speaker_id": "speaker_0",
-    "start": 52.56,
+    "end": 31.72,
+    "speaker_id": null,
+    "start": 31.64,
     "text": "of",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 52.72,
-    "speaker_id": "speaker_0",
-    "start": 52.64,
+    "end": 31.8,
+    "speaker_id": null,
+    "start": 31.72,
     "text": "the",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 53,
-    "speaker_id": "speaker_0",
-    "start": 52.72,
+    "end": 32.04,
+    "speaker_id": null,
+    "start": 31.8,
     "text": "ball.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 53.32,
-    "speaker_id": "speaker_0",
-    "start": 53,
-    "text": "let's",
+    "end": 32.36,
+    "speaker_id": null,
+    "start": 32.04,
+    "text": "Let's",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 53.4,
-    "speaker_id": "speaker_0",
-    "start": 53.32,
+    "end": 32.44,
+    "speaker_id": null,
+    "start": 32.36,
     "text": "see",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 53.48,
-    "speaker_id": "speaker_0",
-    "start": 53.4,
+    "end": 32.52,
+    "speaker_id": null,
+    "start": 32.44,
     "text": "if",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 53.559999999999995,
-    "speaker_id": "speaker_0",
-    "start": 53.48,
+    "end": 32.6,
+    "speaker_id": null,
+    "start": 32.52,
     "text": "it",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 53.92,
-    "speaker_id": "speaker_0",
-    "start": 53.56,
+    "end": 33.04,
+    "speaker_id": null,
+    "start": 32.6,
     "text": "works.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 55.440000000000005,
-    "speaker_id": "speaker_0",
-    "start": 55.2,
-    "text": "please",
+    "end": 34.52,
+    "speaker_id": null,
+    "start": 34.24,
+    "text": "Please",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 55.68,
-    "speaker_id": "speaker_0",
-    "start": 55.44,
+    "end": 34.76,
+    "speaker_id": null,
+    "start": 34.52,
     "text": "change",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 55.96,
-    "speaker_id": "speaker_0",
-    "start": 55.68,
+    "end": 35.04,
+    "speaker_id": null,
+    "start": 34.8,
     "text": "this",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 56.08,
-    "speaker_id": "speaker_0",
-    "start": 55.96,
+    "end": 35.12,
+    "speaker_id": null,
+    "start": 35.04,
     "text": "to",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 56.879999999999995,
-    "speaker_id": "speaker_0",
-    "start": 56.08,
+    "end": 35.92,
+    "speaker_id": null,
+    "start": 35.12,
     "text": "blue.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 59.36,
-    "speaker_id": "speaker_0",
-    "start": 58.92,
-    "text": "OK",
+    "end": 38.4,
+    "speaker_id": null,
+    "start": 37.96,
+    "text": "Okay,",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 60.32,
-    "speaker_id": "speaker_0",
-    "start": 60.04,
+    "end": 39.4,
+    "speaker_id": null,
+    "start": 39.12,
     "text": "change",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 60.44,
-    "speaker_id": "speaker_0",
-    "start": 60.32,
+    "end": 39.48,
+    "speaker_id": null,
+    "start": 39.4,
     "text": "it",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 60.559999999999995,
-    "speaker_id": "speaker_0",
-    "start": 60.44,
+    "end": 39.6,
+    "speaker_id": null,
+    "start": 39.48,
     "text": "to",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 61.120000000000005,
-    "speaker_id": "speaker_0",
-    "start": 60.56,
+    "end": 40.24,
+    "speaker_id": null,
+    "start": 39.6,
     "text": "red.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 64.2,
-    "speaker_id": "speaker_0",
-    "start": 63.68,
-    "text": "OK",
+    "end": 43.28,
+    "speaker_id": null,
+    "start": 42.72,
+    "text": "Okay,",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 64.6,
-    "speaker_id": "speaker_0",
-    "start": 64.32,
+    "end": 43.68,
+    "speaker_id": null,
+    "start": 43.44,
     "text": "now",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 65.03999999999999,
-    "speaker_id": "speaker_0",
-    "start": 64.6,
+    "end": 44.16,
+    "speaker_id": null,
+    "start": 43.68,
     "text": "yellow.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 67.44,
-    "speaker_id": "speaker_0",
-    "start": 66.92,
-    "text": "OK",
+    "end": 46.56,
+    "speaker_id": null,
+    "start": 46,
+    "text": "Okay,",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 68.24,
-    "speaker_id": "speaker_0",
-    "start": 68.03999999999999,
+    "end": 47.36,
+    "speaker_id": null,
+    "start": 47.12,
     "text": "let's",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 68.44,
-    "speaker_id": "speaker_0",
-    "start": 68.24,
+    "end": 47.52,
+    "speaker_id": null,
+    "start": 47.36,
     "text": "try",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 68.8,
-    "speaker_id": "speaker_0",
-    "start": 68.44,
+    "end": 47.84,
+    "speaker_id": null,
+    "start": 47.52,
     "text": "something",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 69.24,
-    "speaker_id": "speaker_0",
-    "start": 68.8,
+    "end": 48.32,
+    "speaker_id": null,
+    "start": 47.84,
     "text": "funny.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 70.36,
-    "speaker_id": "speaker_0",
-    "start": 70.12,
-    "text": "can",
+    "end": 49.36,
+    "speaker_id": null,
+    "start": 49.12,
+    "text": "Can",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 70.52,
-    "speaker_id": "speaker_0",
-    "start": 70.36,
+    "end": 49.6,
+    "speaker_id": null,
+    "start": 49.36,
     "text": "you",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 71,
-    "speaker_id": "speaker_0",
-    "start": 70.64,
+    "end": 50,
+    "speaker_id": null,
+    "start": 49.68,
     "text": "change",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 71.27999999999999,
-    "speaker_id": "speaker_0",
-    "start": 71.03999999999999,
+    "end": 50.32,
+    "speaker_id": null,
+    "start": 50.08,
     "text": "this",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 71.76,
-    "speaker_id": "speaker_0",
-    "start": 71.28,
+    "end": 50.8,
+    "speaker_id": null,
+    "start": 50.32,
     "text": "to",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 71.92,
-    "speaker_id": "speaker_0",
-    "start": 71.76,
+    "end": 50.96,
+    "speaker_id": null,
+    "start": 50.8,
     "text": "an",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 72.48,
-    "speaker_id": "speaker_0",
-    "start": 71.92,
+    "end": 51.52,
+    "speaker_id": null,
+    "start": 50.96,
     "text": "apple?",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 75.44,
-    "speaker_id": "speaker_0",
-    "start": 75.12,
-    "text": "OK",
+    "end": 54.48,
+    "speaker_id": null,
+    "start": 54.16,
+    "text": "Okay,",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 75.52,
-    "speaker_id": "speaker_0",
-    "start": 75.44,
-    "text": "i",
+    "end": 54.56,
+    "speaker_id": null,
+    "start": 54.48,
+    "text": "it",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 75.72,
-    "speaker_id": "speaker_0",
-    "start": 75.52,
+    "end": 54.8,
+    "speaker_id": null,
+    "start": 54.56,
     "text": "could",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 75.84,
-    "speaker_id": "speaker_0",
-    "start": 75.72,
+    "end": 54.92,
+    "speaker_id": null,
+    "start": 54.8,
     "text": "have",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 75.96000000000001,
-    "speaker_id": "speaker_0",
-    "start": 75.84,
+    "end": 55.04,
+    "speaker_id": null,
+    "start": 54.92,
     "text": "been",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 76.32,
-    "speaker_id": "speaker_0",
-    "start": 76,
-    "text": "better",
+    "end": 55.36,
+    "speaker_id": null,
+    "start": 55.04,
+    "text": "better,",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 76.44,
-    "speaker_id": "speaker_0",
-    "start": 76.32,
+    "end": 55.52,
+    "speaker_id": null,
+    "start": 55.4,
     "text": "but",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 76.64,
-    "speaker_id": "speaker_0",
-    "start": 76.44,
+    "end": 55.64,
+    "speaker_id": null,
+    "start": 55.52,
     "text": "not",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 76.72,
-    "speaker_id": "speaker_0",
-    "start": 76.64,
-    "text": "so",
+    "end": 55.76,
+    "speaker_id": null,
+    "start": 55.64,
+    "text": "too",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 77,
-    "speaker_id": "speaker_0",
-    "start": 76.72,
+    "end": 56,
+    "speaker_id": null,
+    "start": 55.76,
     "text": "bad.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 78.8,
-    "speaker_id": "speaker_0",
-    "start": 78.48,
-    "text": "yeah.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 79.68,
-    "speaker_id": "speaker_0",
-    "start": 78.92,
+    "end": 58.64,
+    "speaker_id": null,
+    "start": 57.92,
     "text": "so",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 79.92,
-    "speaker_id": "speaker_0",
-    "start": 79.68,
+    "end": 58.88,
+    "speaker_id": null,
+    "start": 58.64,
     "text": "it's",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 80.08,
-    "speaker_id": "speaker_0",
-    "start": 79.92,
+    "end": 59.08,
+    "speaker_id": null,
+    "start": 58.88,
     "text": "just",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 80.12,
-    "speaker_id": "speaker_0",
-    "start": 80.08,
+    "end": 59.12,
+    "speaker_id": null,
+    "start": 59.08,
     "text": "a",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 80.32000000000001,
-    "speaker_id": "speaker_0",
-    "start": 80.12,
+    "end": 59.28,
+    "speaker_id": null,
+    "start": 59.12,
     "text": "fun",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 80.91999999999999,
-    "speaker_id": "speaker_0",
-    "start": 80.32,
+    "end": 59.92,
+    "speaker_id": null,
+    "start": 59.28,
     "text": "experiment.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 81.08,
-    "speaker_id": "speaker_0",
-    "start": 80.92,
-    "text": "so",
+    "end": 60.04,
+    "speaker_id": null,
+    "start": 59.92,
+    "text": "So",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 81.48,
-    "speaker_id": "speaker_0",
-    "start": 81.2,
+    "end": 60.48,
+    "speaker_id": null,
+    "start": 60.16,
     "text": "this",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 81.64,
-    "speaker_id": "speaker_0",
-    "start": 81.48,
+    "end": 60.6,
+    "speaker_id": null,
+    "start": 60.48,
     "text": "is",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 81.76,
-    "speaker_id": "speaker_0",
-    "start": 81.64,
+    "end": 60.72,
+    "speaker_id": null,
+    "start": 60.6,
     "text": "an",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 82.24000000000001,
-    "speaker_id": "speaker_0",
-    "start": 81.76,
+    "end": 61.24,
+    "speaker_id": null,
+    "start": 60.72,
     "text": "object.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 82.52000000000001,
-    "speaker_id": "speaker_0",
-    "start": 82.4,
-    "text": "i",
+    "end": 61.52,
+    "speaker_id": null,
+    "start": 61.36,
+    "text": "I",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 83,
-    "speaker_id": "speaker_0",
-    "start": 82.52,
+    "end": 61.96,
+    "speaker_id": null,
+    "start": 61.52,
     "text": "myself",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 83.12,
-    "speaker_id": "speaker_0",
-    "start": 83,
-    "text": "have",
+    "end": 62.08,
+    "speaker_id": null,
+    "start": 61.96,
+    "text": "am",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 83.24000000000001,
-    "speaker_id": "speaker_0",
-    "start": 83.12,
+    "end": 62.24,
+    "speaker_id": null,
+    "start": 62.08,
     "text": "an",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 83.72,
-    "speaker_id": "speaker_0",
-    "start": 83.24,
+    "end": 62.76,
+    "speaker_id": null,
+    "start": 62.24,
     "text": "object",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 84,
-    "speaker_id": "speaker_0",
-    "start": 83.72,
-    "text": "here",
+    "end": 62.96,
+    "speaker_id": null,
+    "start": 62.76,
+    "text": "here.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 84.72,
-    "speaker_id": "speaker_0",
-    "start": 84.32,
-    "text": "so",
+    "end": 63.68,
+    "speaker_id": null,
+    "start": 63.36,
+    "text": "So",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 84.84,
-    "speaker_id": "speaker_0",
-    "start": 84.72,
-    "text": "i",
+    "end": 63.84,
+    "speaker_id": null,
+    "start": 63.68,
+    "text": "I",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 85.08,
-    "speaker_id": "speaker_0",
-    "start": 84.84,
+    "end": 64.04,
+    "speaker_id": null,
+    "start": 63.84,
     "text": "could",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 85.44,
-    "speaker_id": "speaker_0",
-    "start": 85.08,
+    "end": 64.44,
+    "speaker_id": null,
+    "start": 64.24,
     "text": "ask",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 86.03999999999999,
-    "speaker_id": "speaker_0",
-    "start": 85.44,
-    "text": "codex",
+    "end": 65.04,
+    "speaker_id": null,
+    "start": 64.44,
+    "text": "Codex",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 86.39999999999999,
-    "speaker_id": "speaker_0",
-    "start": 86.03999999999999,
+    "end": 65.24,
+    "speaker_id": null,
+    "start": 65.04,
     "text": "to",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 86.72,
-    "speaker_id": "speaker_0",
-    "start": 86.48,
+    "end": 65.68,
+    "speaker_id": null,
+    "start": 65.36,
     "text": "pick",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 86.96,
-    "speaker_id": "speaker_0",
-    "start": 86.72,
+    "end": 65.92,
+    "speaker_id": null,
+    "start": 65.68,
     "text": "me",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 87.36000000000001,
-    "speaker_id": "speaker_0",
-    "start": 86.96000000000001,
-    "text": "out",
+    "end": 66.32,
+    "speaker_id": null,
+    "start": 66.12,
+    "text": "out.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 89.4,
-    "speaker_id": "speaker_0",
-    "start": 89,
-    "text": "and",
+    "end": 68.8,
+    "speaker_id": null,
+    "start": 68,
+    "text": "And",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 90.16000000000001,
-    "speaker_id": "speaker_0",
-    "start": 89.4,
+    "end": 69.12,
+    "speaker_id": null,
+    "start": 68.96,
     "text": "then",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 90.72,
-    "speaker_id": "speaker_0",
-    "start": 90.16,
+    "end": 69.68,
+    "speaker_id": null,
+    "start": 69.12,
     "text": "also",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 90.96,
-    "speaker_id": "speaker_0",
-    "start": 90.72,
+    "end": 70,
+    "speaker_id": null,
+    "start": 69.68,
     "text": "then",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 91.32000000000001,
-    "speaker_id": "speaker_0",
-    "start": 90.96000000000001,
+    "end": 70.32,
+    "speaker_id": null,
+    "start": 70,
     "text": "start",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 92.03999999999999,
-    "speaker_id": "speaker_0",
-    "start": 91.32,
+    "end": 71.04,
+    "speaker_id": null,
+    "start": 70.32,
     "text": "replacing",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 92.32,
-    "speaker_id": "speaker_0",
-    "start": 92.03999999999999,
+    "end": 71.16,
+    "speaker_id": null,
+    "start": 71.04,
     "text": "the",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 93.28,
-    "speaker_id": "speaker_0",
-    "start": 92.36,
-    "text": "backgrounds",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 94.12,
-    "speaker_id": "speaker_0",
-    "start": 93.92,
-    "text": "it",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 94.60000000000001,
-    "speaker_id": "speaker_0",
-    "start": 94.12,
-    "text": "sees.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 95.8,
-    "speaker_id": "speaker_0",
-    "start": 95.72,
-    "text": "i",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 96,
-    "speaker_id": "speaker_0",
-    "start": 95.8,
-    "text": "could",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 96.2,
-    "speaker_id": "speaker_0",
-    "start": 96,
-    "text": "put",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 96.76,
-    "speaker_id": "speaker_0",
-    "start": 96.2,
-    "text": "interesting",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 97.35999999999999,
-    "speaker_id": "speaker_0",
-    "start": 96.75999999999999,
+    "end": 72.24,
+    "speaker_id": null,
+    "start": 71.28,
     "text": "backgrounds.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 99.6,
-    "speaker_id": "speaker_0",
-    "start": 99.28,
-    "text": "awesome.",
+    "end": 72.64,
+    "speaker_id": null,
+    "start": 72.56,
+    "text": "It",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 100.39999999999999,
-    "speaker_id": "speaker_0",
-    "start": 99.88,
-    "text": "so",
+    "end": 73.6,
+    "speaker_id": null,
+    "start": 73.04,
+    "text": "sees.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 100.60000000000001,
-    "speaker_id": "speaker_0",
-    "start": 100.4,
-    "text": "yeah",
+    "end": 74.8,
+    "speaker_id": null,
+    "start": 74.72,
+    "text": "I",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 100.8,
-    "speaker_id": "speaker_0",
-    "start": 100.6,
-    "text": "that's",
+    "end": 75,
+    "speaker_id": null,
+    "start": 74.8,
+    "text": "could",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 101.03999999999999,
-    "speaker_id": "speaker_0",
-    "start": 100.8,
-    "text": "just",
+    "end": 75.2,
+    "speaker_id": null,
+    "start": 75,
+    "text": "put",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 101.08,
-    "speaker_id": "speaker_0",
-    "start": 101.03999999999999,
-    "text": "a",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 101.28,
-    "speaker_id": "speaker_0",
-    "start": 101.08,
-    "text": "fun",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 102.04,
-    "speaker_id": "speaker_0",
-    "start": 101.28,
-    "text": "experiment.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 103.68,
-    "speaker_id": "speaker_0",
-    "start": 103.4,
-    "text": "what's",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 104.16000000000001,
-    "speaker_id": "speaker_0",
-    "start": 103.68,
-    "text": "happening",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 104.56,
-    "speaker_id": "speaker_0",
-    "start": 104.16,
-    "text": "is",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 105.27999999999999,
-    "speaker_id": "speaker_0",
-    "start": 105.03999999999999,
-    "text": "first",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 105.6,
-    "speaker_id": "speaker_0",
-    "start": 105.28,
-    "text": "codec",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 106.04,
-    "speaker_id": "speaker_0",
-    "start": 105.64,
-    "text": "takes",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 107.03999999999999,
-    "speaker_id": "speaker_0",
-    "start": 106.03999999999999,
-    "text": "my",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 107.84,
-    "speaker_id": "speaker_0",
-    "start": 107.24000000000001,
-    "text": "audio",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 108.96,
-    "speaker_id": "speaker_0",
-    "start": 108.16,
-    "text": "transcribes",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 109.24000000000001,
-    "speaker_id": "speaker_0",
-    "start": 108.96000000000001,
-    "text": "it",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 109.92000000000002,
-    "speaker_id": "speaker_0",
-    "start": 109.52000000000001,
-    "text": "and",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 110.84,
-    "speaker_id": "speaker_0",
-    "start": 110.64,
-    "text": "with",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 110.92,
-    "speaker_id": "speaker_0",
-    "start": 110.84,
-    "text": "the",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 111.68,
-    "speaker_id": "speaker_0",
-    "start": 110.92,
-    "text": "transcriptions",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 111.80000000000001,
-    "speaker_id": "speaker_0",
-    "start": 111.68,
-    "text": "you",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 112,
-    "speaker_id": "speaker_0",
-    "start": 111.8,
-    "text": "can",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 112.24,
-    "speaker_id": "speaker_0",
-    "start": 112,
-    "text": "get",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 112.56,
-    "speaker_id": "speaker_0",
-    "start": 112.24000000000001,
-    "text": "word",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 112.84,
-    "speaker_id": "speaker_0",
-    "start": 112.56,
-    "text": "level",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 113.16,
-    "speaker_id": "speaker_0",
-    "start": 112.84,
-    "text": "time",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 113.67999999999999,
-    "speaker_id": "speaker_0",
-    "start": 113.16,
-    "text": "stamps",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 116.32000000000001,
-    "speaker_id": "speaker_0",
-    "start": 115.24000000000001,
-    "text": "and",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 117.24,
-    "speaker_id": "speaker_0",
-    "start": 117,
-    "text": "yeah",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 117.36000000000001,
-    "speaker_id": "speaker_0",
-    "start": 117.24000000000001,
-    "text": "so",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 117.67999999999999,
-    "speaker_id": "speaker_0",
-    "start": 117.36,
-    "text": "there",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 117.84,
-    "speaker_id": "speaker_0",
-    "start": 117.68,
-    "text": "it",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 118.16,
-    "speaker_id": "speaker_0",
-    "start": 117.84,
-    "text": "knows",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 118.44,
-    "speaker_id": "speaker_0",
-    "start": 118.16,
-    "text": "that",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 118.6,
-    "speaker_id": "speaker_0",
-    "start": 118.44,
-    "text": "to",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 118.88,
-    "speaker_id": "speaker_0",
-    "start": 118.6,
-    "text": "kind",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 119.08,
-    "speaker_id": "speaker_0",
-    "start": 118.88,
-    "text": "of",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 119.48,
-    "speaker_id": "speaker_0",
-    "start": 119.08,
-    "text": "cut",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 120.35999999999999,
-    "speaker_id": "speaker_0",
-    "start": 119.47999999999999,
-    "text": "exactly.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 122.08,
-    "speaker_id": "speaker_0",
-    "start": 121.72,
-    "text": "and",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 122.72,
-    "speaker_id": "speaker_0",
-    "start": 122.08,
-    "text": "then",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 122.96,
-    "speaker_id": "speaker_0",
-    "start": 122.72,
-    "text": "it",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 123.39999999999999,
-    "speaker_id": "speaker_0",
-    "start": 122.96,
-    "text": "uses",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 123.44000000000001,
-    "speaker_id": "speaker_0",
-    "start": 123.4,
-    "text": "a",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 123.8,
-    "speaker_id": "speaker_0",
-    "start": 123.44,
-    "text": "bunch",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 123.88,
-    "speaker_id": "speaker_0",
-    "start": 123.8,
-    "text": "of",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 124.47999999999999,
-    "speaker_id": "speaker_0",
-    "start": 123.88,
-    "text": "tools",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 124.75999999999999,
-    "speaker_id": "speaker_0",
-    "start": 124.6,
-    "text": "that",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 124.84,
-    "speaker_id": "speaker_0",
-    "start": 124.76,
-    "text": "are",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 125.48,
-    "speaker_id": "speaker_0",
-    "start": 124.84,
-    "text": "packaged",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 125.56,
-    "speaker_id": "speaker_0",
-    "start": 125.48,
-    "text": "as",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 126.28,
-    "speaker_id": "speaker_0",
-    "start": 125.56,
-    "text": "skills",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 127.47999999999999,
-    "speaker_id": "speaker_0",
-    "start": 127.24,
-    "text": "like",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 128.24,
-    "speaker_id": "speaker_0",
-    "start": 127.48,
-    "text": "segmenting",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 128.4,
-    "speaker_id": "speaker_0",
-    "start": 128.24,
-    "text": "the",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 129.08,
-    "speaker_id": "speaker_0",
-    "start": 128.4,
-    "text": "object",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 129.64000000000001,
-    "speaker_id": "speaker_0",
-    "start": 129.4,
-    "text": "and",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 130.23999999999998,
-    "speaker_id": "speaker_0",
-    "start": 129.64,
-    "text": "then",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 131.08,
-    "speaker_id": "speaker_0",
-    "start": 130.8,
-    "text": "taking",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 131.16000000000003,
-    "speaker_id": "speaker_0",
-    "start": 131.08,
-    "text": "the",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 131.6,
-    "speaker_id": "speaker_0",
-    "start": 131.16,
-    "text": "segmented",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 132.07999999999998,
-    "speaker_id": "speaker_0",
-    "start": 131.6,
-    "text": "object",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 132.20000000000002,
-    "speaker_id": "speaker_0",
-    "start": 132.08,
-    "text": "and",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 132.48,
-    "speaker_id": "speaker_0",
-    "start": 132.2,
-    "text": "adding",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 132.84,
-    "speaker_id": "speaker_0",
-    "start": 132.48,
-    "text": "color",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 133,
-    "speaker_id": "speaker_0",
-    "start": 132.84,
-    "text": "to",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 133.28,
-    "speaker_id": "speaker_0",
-    "start": 133,
-    "text": "it.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 135.56,
-    "speaker_id": "speaker_0",
-    "start": 135.32,
-    "text": "and",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 135.64000000000001,
-    "speaker_id": "speaker_0",
-    "start": 135.56,
-    "text": "of",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 135.92,
-    "speaker_id": "speaker_0",
-    "start": 135.64,
-    "text": "course",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 136.07999999999998,
-    "speaker_id": "speaker_0",
-    "start": 135.92,
-    "text": "all",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 136.16,
-    "speaker_id": "speaker_0",
-    "start": 136.07999999999998,
-    "text": "of",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 136.32,
-    "speaker_id": "speaker_0",
-    "start": 136.16,
-    "text": "this",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 136.44,
-    "speaker_id": "speaker_0",
-    "start": 136.32,
-    "text": "is",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 136.72,
-    "speaker_id": "speaker_0",
-    "start": 136.44,
-    "text": "not",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 137.2,
-    "speaker_id": "speaker_0",
-    "start": 136.72,
-    "text": "happening",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 137.39999999999998,
-    "speaker_id": "speaker_0",
-    "start": 137.2,
-    "text": "in",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 137.64000000000001,
-    "speaker_id": "speaker_0",
-    "start": 137.4,
-    "text": "real",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 137.95999999999998,
-    "speaker_id": "speaker_0",
-    "start": 137.64,
-    "text": "time.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 138.44,
-    "speaker_id": "speaker_0",
-    "start": 138.28,
-    "text": "so",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 138.52,
-    "speaker_id": "speaker_0",
-    "start": 138.44,
-    "text": "i've",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 139.04000000000002,
-    "speaker_id": "speaker_0",
-    "start": 138.52,
-    "text": "recorded",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 139.2,
-    "speaker_id": "speaker_0",
-    "start": 139.04,
-    "text": "this",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 139.6,
-    "speaker_id": "speaker_0",
-    "start": 139.2,
-    "text": "video",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 139.8,
-    "speaker_id": "speaker_0",
-    "start": 139.68,
-    "text": "and",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 140,
-    "speaker_id": "speaker_0",
-    "start": 139.8,
-    "text": "then",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 140.36,
-    "speaker_id": "speaker_0",
-    "start": 140,
-    "text": "i",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 140.92000000000002,
-    "speaker_id": "speaker_0",
-    "start": 140.56,
-    "text": "boot",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 141.04000000000002,
-    "speaker_id": "speaker_0",
-    "start": 140.92000000000002,
-    "text": "up",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 141.48,
-    "speaker_id": "speaker_0",
-    "start": 141.04,
-    "text": "codecs",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 141.56,
-    "speaker_id": "speaker_0",
-    "start": 141.48,
-    "text": "in",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 141.64000000000001,
-    "speaker_id": "speaker_0",
-    "start": 141.56,
-    "text": "my",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 142.23999999999998,
-    "speaker_id": "speaker_0",
-    "start": 141.64,
-    "text": "terminal",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 142.60000000000002,
-    "speaker_id": "speaker_0",
-    "start": 142.24,
-    "text": "provide",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 142.68,
-    "speaker_id": "speaker_0",
-    "start": 142.6,
-    "text": "the",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 143.32,
-    "speaker_id": "speaker_0",
-    "start": 142.68,
-    "text": "video",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 144.07999999999998,
-    "speaker_id": "speaker_0",
-    "start": 143.44,
-    "text": "and",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 144.28,
-    "speaker_id": "speaker_0",
-    "start": 144.12,
-    "text": "i",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 144.52,
-    "speaker_id": "speaker_0",
-    "start": 144.28,
-    "text": "already",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 144.64000000000001,
-    "speaker_id": "speaker_0",
-    "start": 144.52,
-    "text": "have",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 144.67999999999998,
-    "speaker_id": "speaker_0",
-    "start": 144.64,
-    "text": "a",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 144.92000000000002,
-    "speaker_id": "speaker_0",
-    "start": 144.68,
-    "text": "bunch",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 145.00000000000003,
-    "speaker_id": "speaker_0",
-    "start": 144.92000000000002,
-    "text": "of",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 145.4,
-    "speaker_id": "speaker_0",
-    "start": 145,
-    "text": "tools",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 145.56,
-    "speaker_id": "speaker_0",
-    "start": 145.4,
-    "text": "and",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 146,
-    "speaker_id": "speaker_0",
-    "start": 145.56,
-    "text": "skills",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 146.16,
-    "speaker_id": "speaker_0",
-    "start": 146,
-    "text": "and",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 146.24,
-    "speaker_id": "speaker_0",
-    "start": 146.16,
-    "text": "i",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 146.68,
-    "speaker_id": "speaker_0",
-    "start": 146.24,
-    "text": "just",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 147.28,
-    "speaker_id": "speaker_0",
-    "start": 146.96,
-    "text": "provide",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 147.48,
-    "speaker_id": "speaker_0",
-    "start": 147.28,
-    "text": "them",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 147.72,
-    "speaker_id": "speaker_0",
-    "start": 147.48,
-    "text": "all",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 148.12,
-    "speaker_id": "speaker_0",
-    "start": 147.72,
-    "text": "to",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 148.36,
-    "speaker_id": "speaker_0",
-    "start": 148.12,
-    "text": "it.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 148.52,
-    "speaker_id": "speaker_0",
-    "start": 148.36,
-    "text": "and",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 148.60000000000002,
-    "speaker_id": "speaker_0",
-    "start": 148.52,
-    "text": "i",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 148.88,
-    "speaker_id": "speaker_0",
-    "start": 148.6,
-    "text": "kind",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 149,
-    "speaker_id": "speaker_0",
-    "start": 148.88,
-    "text": "of",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 149.32,
-    "speaker_id": "speaker_0",
-    "start": 149,
-    "text": "tell",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 149.6,
-    "speaker_id": "speaker_0",
-    "start": 149.4,
-    "text": "the",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 149.92,
-    "speaker_id": "speaker_0",
-    "start": 149.64,
-    "text": "idea",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 150.08,
-    "speaker_id": "speaker_0",
-    "start": 149.92000000000002,
-    "text": "that",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 150.11999999999998,
-    "speaker_id": "speaker_0",
-    "start": 150.07999999999998,
-    "text": "i",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 150.32,
-    "speaker_id": "speaker_0",
-    "start": 150.12,
-    "text": "have",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 150.4,
-    "speaker_id": "speaker_0",
-    "start": 150.32,
-    "text": "in",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 150.52,
-    "speaker_id": "speaker_0",
-    "start": 150.4,
-    "text": "my",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 150.76000000000002,
-    "speaker_id": "speaker_0",
-    "start": 150.52,
-    "text": "head",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 151.07999999999998,
-    "speaker_id": "speaker_0",
-    "start": 150.76,
-    "text": "and",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 152,
-    "speaker_id": "speaker_0",
-    "start": 151.8,
-    "text": "then",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 152.16,
-    "speaker_id": "speaker_0",
-    "start": 152,
-    "text": "it",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 152.51999999999998,
-    "speaker_id": "speaker_0",
-    "start": 152.2,
-    "text": "edits",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 152.72,
-    "speaker_id": "speaker_0",
-    "start": 152.52,
-    "text": "this",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 152.84,
-    "speaker_id": "speaker_0",
-    "start": 152.72,
-    "text": "and",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 153.04,
-    "speaker_id": "speaker_0",
-    "start": 152.84,
-    "text": "gives",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 153.2,
-    "speaker_id": "speaker_0",
-    "start": 153.04,
-    "text": "me",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 153.28,
-    "speaker_id": "speaker_0",
-    "start": 153.2,
-    "text": "the",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 153.6,
-    "speaker_id": "speaker_0",
-    "start": 153.28,
-    "text": "final",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 154.12,
-    "speaker_id": "speaker_0",
-    "start": 153.6,
-    "text": "packaged",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 154.52,
-    "speaker_id": "speaker_0",
-    "start": 154.12,
-    "text": "video.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 156.27999999999997,
-    "speaker_id": "speaker_0",
-    "start": 156.07999999999998,
-    "text": "yeah",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 156.36,
-    "speaker_id": "speaker_0",
-    "start": 156.28,
-    "text": "of",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 156.56,
-    "speaker_id": "speaker_0",
-    "start": 156.36,
-    "text": "course",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 156.68,
-    "speaker_id": "speaker_0",
-    "start": 156.56,
-    "text": "it's",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 156.88,
-    "speaker_id": "speaker_0",
-    "start": 156.68,
-    "text": "not",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 157.32,
-    "speaker_id": "speaker_0",
-    "start": 156.88,
-    "text": "working",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 157.51999999999998,
-    "speaker_id": "speaker_0",
-    "start": 157.32,
-    "text": "in",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 157.8,
-    "speaker_id": "speaker_0",
-    "start": 157.52,
-    "text": "real",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 158.28,
-    "speaker_id": "speaker_0",
-    "start": 157.8,
-    "text": "time.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 159.48,
-    "speaker_id": "speaker_0",
-    "start": 159.32,
-    "text": "yeah.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 159.56,
-    "speaker_id": "speaker_0",
-    "start": 159.48,
-    "text": "if",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 159.68,
-    "speaker_id": "speaker_0",
-    "start": 159.56,
-    "text": "you're",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 160.04000000000002,
-    "speaker_id": "speaker_0",
-    "start": 159.68,
-    "text": "seeing",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 160.32,
-    "speaker_id": "speaker_0",
-    "start": 160.04,
-    "text": "this",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 160.51999999999998,
-    "speaker_id": "speaker_0",
-    "start": 160.32,
-    "text": "that",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 160.92000000000002,
-    "speaker_id": "speaker_0",
-    "start": 160.52,
-    "text": "means",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 161.16,
-    "speaker_id": "speaker_0",
-    "start": 161,
-    "text": "all",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 161.24,
-    "speaker_id": "speaker_0",
-    "start": 161.16,
-    "text": "of",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 161.36,
-    "speaker_id": "speaker_0",
-    "start": 161.24,
-    "text": "this",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 161.8,
-    "speaker_id": "speaker_0",
-    "start": 161.36,
-    "text": "worked.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 162.04000000000002,
-    "speaker_id": "speaker_0",
-    "start": 161.8,
-    "text": "and",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 162.12,
-    "speaker_id": "speaker_0",
-    "start": 162.04,
-    "text": "i",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 162.52,
-    "speaker_id": "speaker_0",
-    "start": 162.12,
-    "text": "actually",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 162.84,
-    "speaker_id": "speaker_0",
-    "start": 162.52,
-    "text": "published",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 162.92000000000002,
-    "speaker_id": "speaker_0",
-    "start": 162.84,
-    "text": "the",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 163.32000000000002,
-    "speaker_id": "speaker_0",
-    "start": 162.92000000000002,
-    "text": "video",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 163.84,
-    "speaker_id": "speaker_0",
-    "start": 163.48,
-    "text": "south",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 164.04,
-    "speaker_id": "speaker_0",
-    "start": 163.84,
-    "text": "the",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 164.67999999999998,
-    "speaker_id": "speaker_0",
-    "start": 164.04,
-    "text": "original.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 164.76000000000002,
-    "speaker_id": "speaker_0",
-    "start": 164.68,
-    "text": "i",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 164.88,
-    "speaker_id": "speaker_0",
-    "start": 164.76,
-    "text": "will",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 165.12,
-    "speaker_id": "speaker_0",
-    "start": 164.88,
-    "text": "link",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 165.24,
-    "speaker_id": "speaker_0",
-    "start": 165.12,
-    "text": "it",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 165.36,
-    "speaker_id": "speaker_0",
-    "start": 165.24,
-    "text": "in",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 165.56,
-    "speaker_id": "speaker_0",
-    "start": 165.36,
-    "text": "the",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 166.24,
-    "speaker_id": "speaker_0",
-    "start": 165.56,
-    "text": "description.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 166.32000000000002,
-    "speaker_id": "speaker_0",
-    "start": 166.24,
-    "text": "so",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 166.44,
-    "speaker_id": "speaker_0",
-    "start": 166.32,
-    "text": "it's",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 166.68,
-    "speaker_id": "speaker_0",
-    "start": 166.44,
-    "text": "just",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 166.96,
-    "speaker_id": "speaker_0",
-    "start": 166.68,
-    "text": "me",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 167.4,
-    "speaker_id": "speaker_0",
-    "start": 166.96,
-    "text": "talking",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 167.68,
-    "speaker_id": "speaker_0",
-    "start": 167.4,
-    "text": "over",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 167.72,
-    "speaker_id": "speaker_0",
-    "start": 167.68,
-    "text": "a",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 168.16,
-    "speaker_id": "speaker_0",
-    "start": 167.72,
-    "text": "green",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 168.6,
-    "speaker_id": "speaker_0",
-    "start": 168.16,
-    "text": "screen.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 168.72,
-    "speaker_id": "speaker_0",
-    "start": 168.6,
-    "text": "you",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 168.84,
-    "speaker_id": "speaker_0",
-    "start": 168.72,
-    "text": "will",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 169.04,
-    "speaker_id": "speaker_0",
-    "start": 168.84,
-    "text": "see",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 169.2,
-    "speaker_id": "speaker_0",
-    "start": 169.04,
-    "text": "that",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 169.51999999999998,
-    "speaker_id": "speaker_0",
-    "start": 169.2,
-    "text": "there.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 171.28000000000003,
-    "speaker_id": "speaker_0",
-    "start": 170.92000000000002,
-    "text": "yeah.",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 171.32,
-    "speaker_id": "speaker_0",
-    "start": 171.28,
-    "text": "i",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 171.48,
-    "speaker_id": "speaker_0",
-    "start": 171.32,
-    "text": "thought",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 171.67999999999998,
-    "speaker_id": "speaker_0",
-    "start": 171.48,
-    "text": "it",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 171.8,
-    "speaker_id": "speaker_0",
-    "start": 171.68,
-    "text": "would",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 172.12,
-    "speaker_id": "speaker_0",
-    "start": 171.8,
-    "text": "be",
-    "type": "word"
-  },
-  {
-    "characters": null,
-    "end": 172.76,
-    "speaker_id": "speaker_0",
-    "start": 172.12,
+    "end": 75.76,
+    "speaker_id": null,
+    "start": 75.2,
     "text": "interesting",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 172.88,
-    "speaker_id": "speaker_0",
-    "start": 172.76,
-    "text": "to",
+    "end": 76.32,
+    "speaker_id": null,
+    "start": 75.76,
+    "text": "backgrounds.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 173.12,
-    "speaker_id": "speaker_0",
-    "start": 172.88,
-    "text": "share",
+    "end": 78.64,
+    "speaker_id": null,
+    "start": 78.24,
+    "text": "Awesome.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 173.28,
-    "speaker_id": "speaker_0",
-    "start": 173.12,
+    "end": 79.44,
+    "speaker_id": null,
+    "start": 78.88,
+    "text": "So",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 79.64,
+    "speaker_id": null,
+    "start": 79.44,
+    "text": "yeah,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 79.72,
+    "speaker_id": null,
+    "start": 79.64,
+    "text": "it",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 79.84,
+    "speaker_id": null,
+    "start": 79.72,
+    "text": "was",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 80.04,
+    "speaker_id": null,
+    "start": 79.84,
     "text": "just",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 174.12,
-    "speaker_id": "speaker_0",
-    "start": 174,
-    "text": "for",
+    "end": 80.08,
+    "speaker_id": null,
+    "start": 80.04,
+    "text": "a",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 174.8,
-    "speaker_id": "speaker_0",
-    "start": 174.12,
-    "text": "inspiration.",
+    "end": 80.24,
+    "speaker_id": null,
+    "start": 80.08,
+    "text": "fun",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 175.04,
-    "speaker_id": "speaker_0",
-    "start": 174.84,
-    "text": "that's",
+    "end": 81.04,
+    "speaker_id": null,
+    "start": 80.24,
+    "text": "experiment.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 175.12,
-    "speaker_id": "speaker_0",
-    "start": 175.04,
+    "end": 82.72,
+    "speaker_id": null,
+    "start": 82.4,
+    "text": "What's",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 83.2,
+    "speaker_id": null,
+    "start": 82.72,
+    "text": "happening",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 83.6,
+    "speaker_id": null,
+    "start": 83.2,
+    "text": "is",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 84.32,
+    "speaker_id": null,
+    "start": 84.08,
+    "text": "First",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 84.72,
+    "speaker_id": null,
+    "start": 84.32,
+    "text": "Codex",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 85.04,
+    "speaker_id": null,
+    "start": 84.72,
+    "text": "takes",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 85.44,
+    "speaker_id": null,
+    "start": 85.04,
+    "text": "my",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 86.88,
+    "speaker_id": null,
+    "start": 86.24,
+    "text": "audio,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 88,
+    "speaker_id": null,
+    "start": 87.2,
+    "text": "transcribes",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 88.24,
+    "speaker_id": null,
+    "start": 88.04,
+    "text": "it,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 89,
+    "speaker_id": null,
+    "start": 88.56,
+    "text": "and",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 89.88,
+    "speaker_id": null,
+    "start": 89.72,
+    "text": "with",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 89.96,
+    "speaker_id": null,
+    "start": 89.88,
+    "text": "the",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 90.72,
+    "speaker_id": null,
+    "start": 89.96,
+    "text": "transcriptions,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 90.84,
+    "speaker_id": null,
+    "start": 90.72,
+    "text": "you",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 91.04,
+    "speaker_id": null,
+    "start": 90.84,
+    "text": "can",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 91.2,
+    "speaker_id": null,
+    "start": 91.04,
+    "text": "get",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 91.88,
+    "speaker_id": null,
+    "start": 91.28,
+    "text": "word-level",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 92.72,
+    "speaker_id": null,
+    "start": 91.88,
+    "text": "timestamps.",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 95.44,
+    "speaker_id": null,
+    "start": 94.32,
+    "text": "And",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 96.24,
+    "speaker_id": null,
+    "start": 96,
+    "text": "yeah,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 96.4,
+    "speaker_id": null,
+    "start": 96.24,
+    "text": "so",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 96.72,
+    "speaker_id": null,
+    "start": 96.4,
+    "text": "there",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 96.88,
+    "speaker_id": null,
+    "start": 96.72,
+    "text": "it",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 97.12,
+    "speaker_id": null,
+    "start": 96.88,
+    "text": "knows",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 97.48,
+    "speaker_id": null,
+    "start": 97.12,
+    "text": "about",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 97.64,
+    "speaker_id": null,
+    "start": 97.48,
+    "text": "to",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 97.96,
+    "speaker_id": null,
+    "start": 97.64,
+    "text": "kind",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 98.08,
+    "speaker_id": null,
+    "start": 97.96,
+    "text": "of",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 98.48,
+    "speaker_id": null,
+    "start": 98.08,
+    "text": "cut",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 99.36,
+    "speaker_id": null,
+    "start": 98.48,
+    "text": "exactly.",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 101.08,
+    "speaker_id": null,
+    "start": 100.72,
+    "text": "And",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 101.76,
+    "speaker_id": null,
+    "start": 101.08,
+    "text": "then",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 102,
+    "speaker_id": null,
+    "start": 101.76,
+    "text": "it",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 102.4,
+    "speaker_id": null,
+    "start": 102,
+    "text": "uses",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 102.48,
+    "speaker_id": null,
+    "start": 102.4,
+    "text": "a",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 102.8,
+    "speaker_id": null,
+    "start": 102.48,
+    "text": "bunch",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 102.88,
+    "speaker_id": null,
+    "start": 102.8,
+    "text": "of",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 103.52,
+    "speaker_id": null,
+    "start": 102.88,
+    "text": "tools",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 103.76,
+    "speaker_id": null,
+    "start": 103.6,
+    "text": "that",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 103.84,
+    "speaker_id": null,
+    "start": 103.76,
+    "text": "are",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 104.36,
+    "speaker_id": null,
+    "start": 103.84,
+    "text": "packaged",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 104.44,
+    "speaker_id": null,
+    "start": 104.36,
+    "text": "as",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 105.36,
+    "speaker_id": null,
+    "start": 104.44,
+    "text": "skills,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 106.56,
+    "speaker_id": null,
+    "start": 106.24,
+    "text": "like",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 107.28,
+    "speaker_id": null,
+    "start": 106.56,
+    "text": "segmenting",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 107.4,
+    "speaker_id": null,
+    "start": 107.28,
+    "text": "the",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 108.08,
+    "speaker_id": null,
+    "start": 107.4,
+    "text": "object",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 108.68,
+    "speaker_id": null,
+    "start": 108.4,
+    "text": "and",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 109.28,
+    "speaker_id": null,
+    "start": 108.68,
+    "text": "then",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 110.08,
+    "speaker_id": null,
+    "start": 109.84,
+    "text": "taking",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 110.2,
+    "speaker_id": null,
+    "start": 110.08,
+    "text": "the",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 110.64,
+    "speaker_id": null,
+    "start": 110.2,
+    "text": "segmented",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 111.08,
+    "speaker_id": null,
+    "start": 110.64,
+    "text": "object",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 111.24,
+    "speaker_id": null,
+    "start": 111.08,
+    "text": "and",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 111.52,
+    "speaker_id": null,
+    "start": 111.24,
+    "text": "adding",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 111.84,
+    "speaker_id": null,
+    "start": 111.52,
+    "text": "color",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 112.04,
+    "speaker_id": null,
+    "start": 111.84,
+    "text": "to",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 112.32,
+    "speaker_id": null,
+    "start": 112.04,
     "text": "it.",
     "type": "word"
   },
   {
     "characters": null,
-    "end": 175.68,
-    "speaker_id": "speaker_0",
-    "start": 175.12,
-    "text": "thanks.",
+    "end": 114.6,
+    "speaker_id": null,
+    "start": 114.32,
+    "text": "And",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 114.68,
+    "speaker_id": null,
+    "start": 114.6,
+    "text": "of",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 115,
+    "speaker_id": null,
+    "start": 114.68,
+    "text": "course,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 115.12,
+    "speaker_id": null,
+    "start": 115,
+    "text": "all",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 115.2,
+    "speaker_id": null,
+    "start": 115.12,
+    "text": "of",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 115.36,
+    "speaker_id": null,
+    "start": 115.2,
+    "text": "this",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 115.52,
+    "speaker_id": null,
+    "start": 115.36,
+    "text": "is",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 115.76,
+    "speaker_id": null,
+    "start": 115.52,
+    "text": "not",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 116.24,
+    "speaker_id": null,
+    "start": 115.76,
+    "text": "happening",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 116.4,
+    "speaker_id": null,
+    "start": 116.24,
+    "text": "in",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 116.72,
+    "speaker_id": null,
+    "start": 116.4,
+    "text": "real",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 117.04,
+    "speaker_id": null,
+    "start": 116.72,
+    "text": "time.",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 117.48,
+    "speaker_id": null,
+    "start": 117.28,
+    "text": "So",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 117.6,
+    "speaker_id": null,
+    "start": 117.48,
+    "text": "I've",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 118.08,
+    "speaker_id": null,
+    "start": 117.6,
+    "text": "recorded",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 118.2,
+    "speaker_id": null,
+    "start": 118.08,
+    "text": "this",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 118.64,
+    "speaker_id": null,
+    "start": 118.2,
+    "text": "video,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 118.8,
+    "speaker_id": null,
+    "start": 118.64,
+    "text": "and",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 119.04,
+    "speaker_id": null,
+    "start": 118.8,
+    "text": "then",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 119.36,
+    "speaker_id": null,
+    "start": 119.04,
+    "text": "I",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 119.92,
+    "speaker_id": null,
+    "start": 119.6,
+    "text": "boot",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 120.08,
+    "speaker_id": null,
+    "start": 119.92,
+    "text": "up",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 120.52,
+    "speaker_id": null,
+    "start": 120.08,
+    "text": "Codex",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 120.6,
+    "speaker_id": null,
+    "start": 120.52,
+    "text": "in",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 120.68,
+    "speaker_id": null,
+    "start": 120.6,
+    "text": "my",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 121.28,
+    "speaker_id": null,
+    "start": 120.68,
+    "text": "terminal,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 121.64,
+    "speaker_id": null,
+    "start": 121.28,
+    "text": "provide",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 121.76,
+    "speaker_id": null,
+    "start": 121.64,
+    "text": "the",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 122.32,
+    "speaker_id": null,
+    "start": 121.76,
+    "text": "video,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 123.12,
+    "speaker_id": null,
+    "start": 122.48,
+    "text": "and",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 123.28,
+    "speaker_id": null,
+    "start": 123.12,
+    "text": "I",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 123.6,
+    "speaker_id": null,
+    "start": 123.28,
+    "text": "already",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 123.72,
+    "speaker_id": null,
+    "start": 123.6,
+    "text": "have",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 123.76,
+    "speaker_id": null,
+    "start": 123.72,
+    "text": "a",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 123.92,
+    "speaker_id": null,
+    "start": 123.76,
+    "text": "bunch",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 124,
+    "speaker_id": null,
+    "start": 123.92,
+    "text": "of",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 124.44,
+    "speaker_id": null,
+    "start": 124,
+    "text": "tools",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 124.56,
+    "speaker_id": null,
+    "start": 124.44,
+    "text": "and",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 125.04,
+    "speaker_id": null,
+    "start": 124.56,
+    "text": "skills,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 125.24,
+    "speaker_id": null,
+    "start": 125.04,
+    "text": "and",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 125.28,
+    "speaker_id": null,
+    "start": 125.24,
+    "text": "I",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 125.68,
+    "speaker_id": null,
+    "start": 125.28,
+    "text": "just",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 126.28,
+    "speaker_id": null,
+    "start": 126,
+    "text": "provide",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 126.48,
+    "speaker_id": null,
+    "start": 126.28,
+    "text": "them",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 126.8,
+    "speaker_id": null,
+    "start": 126.48,
+    "text": "all",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 127.16,
+    "speaker_id": null,
+    "start": 126.96,
+    "text": "to",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 127.36,
+    "speaker_id": null,
+    "start": 127.16,
+    "text": "it,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 127.56,
+    "speaker_id": null,
+    "start": 127.36,
+    "text": "and",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 127.6,
+    "speaker_id": null,
+    "start": 127.56,
+    "text": "I",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 127.88,
+    "speaker_id": null,
+    "start": 127.6,
+    "text": "kind",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 128,
+    "speaker_id": null,
+    "start": 127.88,
+    "text": "of",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 128.32,
+    "speaker_id": null,
+    "start": 128,
+    "text": "tell",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 128.64,
+    "speaker_id": null,
+    "start": 128.48,
+    "text": "the",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 129,
+    "speaker_id": null,
+    "start": 128.64,
+    "text": "idea",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 129.12,
+    "speaker_id": null,
+    "start": 129,
+    "text": "that",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 129.16,
+    "speaker_id": null,
+    "start": 129.12,
+    "text": "I",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 129.32,
+    "speaker_id": null,
+    "start": 129.16,
+    "text": "have",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 129.44,
+    "speaker_id": null,
+    "start": 129.32,
+    "text": "in",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 129.52,
+    "speaker_id": null,
+    "start": 129.44,
+    "text": "my",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 129.8,
+    "speaker_id": null,
+    "start": 129.52,
+    "text": "head,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 130.08,
+    "speaker_id": null,
+    "start": 129.8,
+    "text": "and",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 131.04,
+    "speaker_id": null,
+    "start": 130.8,
+    "text": "then",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 131.2,
+    "speaker_id": null,
+    "start": 131.04,
+    "text": "it",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 131.6,
+    "speaker_id": null,
+    "start": 131.2,
+    "text": "edits",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 131.72,
+    "speaker_id": null,
+    "start": 131.6,
+    "text": "this",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 131.84,
+    "speaker_id": null,
+    "start": 131.72,
+    "text": "and",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 132.04,
+    "speaker_id": null,
+    "start": 131.84,
+    "text": "gives",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 132.24,
+    "speaker_id": null,
+    "start": 132.04,
+    "text": "me",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 132.32,
+    "speaker_id": null,
+    "start": 132.24,
+    "text": "the",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 132.64,
+    "speaker_id": null,
+    "start": 132.32,
+    "text": "final",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 133.12,
+    "speaker_id": null,
+    "start": 132.64,
+    "text": "packaged",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 133.6,
+    "speaker_id": null,
+    "start": 133.12,
+    "text": "video.",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 135.28,
+    "speaker_id": null,
+    "start": 135.12,
+    "text": "Yeah,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 135.36,
+    "speaker_id": null,
+    "start": 135.28,
+    "text": "of",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 135.6,
+    "speaker_id": null,
+    "start": 135.36,
+    "text": "course,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 135.72,
+    "speaker_id": null,
+    "start": 135.6,
+    "text": "it's",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 135.92,
+    "speaker_id": null,
+    "start": 135.72,
+    "text": "not",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 136.32,
+    "speaker_id": null,
+    "start": 135.92,
+    "text": "working",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 136.56,
+    "speaker_id": null,
+    "start": 136.32,
+    "text": "in",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 136.8,
+    "speaker_id": null,
+    "start": 136.56,
+    "text": "real",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 137.28,
+    "speaker_id": null,
+    "start": 136.8,
+    "text": "time.",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 138.52,
+    "speaker_id": null,
+    "start": 138.4,
+    "text": "Yeah,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 138.6,
+    "speaker_id": null,
+    "start": 138.52,
+    "text": "if",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 138.72,
+    "speaker_id": null,
+    "start": 138.6,
+    "text": "you're",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 139.12,
+    "speaker_id": null,
+    "start": 138.72,
+    "text": "seeing",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 139.36,
+    "speaker_id": null,
+    "start": 139.12,
+    "text": "this,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 139.52,
+    "speaker_id": null,
+    "start": 139.36,
+    "text": "that",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 140,
+    "speaker_id": null,
+    "start": 139.52,
+    "text": "means",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 140.16,
+    "speaker_id": null,
+    "start": 140,
+    "text": "all",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 140.24,
+    "speaker_id": null,
+    "start": 140.16,
+    "text": "of",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 140.44,
+    "speaker_id": null,
+    "start": 140.24,
+    "text": "this",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 140.88,
+    "speaker_id": null,
+    "start": 140.44,
+    "text": "worked",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 141.08,
+    "speaker_id": null,
+    "start": 140.88,
+    "text": "and",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 141.12,
+    "speaker_id": null,
+    "start": 141.08,
+    "text": "I",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 141.52,
+    "speaker_id": null,
+    "start": 141.12,
+    "text": "actually",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 142,
+    "speaker_id": null,
+    "start": 141.52,
+    "text": "published",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 142.08,
+    "speaker_id": null,
+    "start": 142,
+    "text": "the",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 142.4,
+    "speaker_id": null,
+    "start": 142.08,
+    "text": "video.",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 142.72,
+    "speaker_id": null,
+    "start": 142.56,
+    "text": "So",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 143,
+    "speaker_id": null,
+    "start": 142.88,
+    "text": "the",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 143.76,
+    "speaker_id": null,
+    "start": 143,
+    "text": "original,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 143.8,
+    "speaker_id": null,
+    "start": 143.76,
+    "text": "I",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 143.92,
+    "speaker_id": null,
+    "start": 143.8,
+    "text": "will",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 144.16,
+    "speaker_id": null,
+    "start": 143.92,
+    "text": "link",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 144.28,
+    "speaker_id": null,
+    "start": 144.16,
+    "text": "it",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 144.4,
+    "speaker_id": null,
+    "start": 144.28,
+    "text": "in",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 144.64,
+    "speaker_id": null,
+    "start": 144.4,
+    "text": "the",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 145.28,
+    "speaker_id": null,
+    "start": 144.64,
+    "text": "description.",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 145.4,
+    "speaker_id": null,
+    "start": 145.28,
+    "text": "So",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 145.52,
+    "speaker_id": null,
+    "start": 145.4,
+    "text": "it's",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 145.72,
+    "speaker_id": null,
+    "start": 145.52,
+    "text": "just",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 146,
+    "speaker_id": null,
+    "start": 145.72,
+    "text": "me",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 146.48,
+    "speaker_id": null,
+    "start": 146,
+    "text": "talking",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 146.76,
+    "speaker_id": null,
+    "start": 146.48,
+    "text": "over",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 146.8,
+    "speaker_id": null,
+    "start": 146.76,
+    "text": "a",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 147.2,
+    "speaker_id": null,
+    "start": 146.8,
+    "text": "green",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 147.6,
+    "speaker_id": null,
+    "start": 147.2,
+    "text": "screen.",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 147.76,
+    "speaker_id": null,
+    "start": 147.6,
+    "text": "You",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 147.92,
+    "speaker_id": null,
+    "start": 147.76,
+    "text": "will",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 148.08,
+    "speaker_id": null,
+    "start": 147.92,
+    "text": "see",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 148.52,
+    "speaker_id": null,
+    "start": 148.08,
+    "text": "that",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 148.64,
+    "speaker_id": null,
+    "start": 148.52,
+    "text": "there.",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 150.2,
+    "speaker_id": null,
+    "start": 150,
+    "text": "Yeah,",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 150.24,
+    "speaker_id": null,
+    "start": 150.2,
+    "text": "I",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 150.4,
+    "speaker_id": null,
+    "start": 150.24,
+    "text": "thought",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 150.76,
+    "speaker_id": null,
+    "start": 150.4,
+    "text": "it",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 150.88,
+    "speaker_id": null,
+    "start": 150.76,
+    "text": "would",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 151.12,
+    "speaker_id": null,
+    "start": 150.88,
+    "text": "be",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 151.84,
+    "speaker_id": null,
+    "start": 151.12,
+    "text": "interesting",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 151.92,
+    "speaker_id": null,
+    "start": 151.84,
+    "text": "to",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 152.2,
+    "speaker_id": null,
+    "start": 151.92,
+    "text": "share",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 153.08,
+    "speaker_id": null,
+    "start": 152.88,
+    "text": "just",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 153.2,
+    "speaker_id": null,
+    "start": 153.08,
+    "text": "for",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 153.84,
+    "speaker_id": null,
+    "start": 153.2,
+    "text": "inspiration.",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 154.08,
+    "speaker_id": null,
+    "start": 153.88,
+    "text": "That's",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 154.24,
+    "speaker_id": null,
+    "start": 154.08,
+    "text": "it.",
+    "type": "word"
+  },
+  {
+    "characters": null,
+    "end": 154.72,
+    "speaker_id": null,
+    "start": 154.32,
+    "text": "Thanks.",
     "type": "word"
   }
 ]
