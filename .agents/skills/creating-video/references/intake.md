@@ -18,9 +18,9 @@ First check `$media-toolkit` for media-processing work in this repo. It should u
 Command:
 
 ```bash
-cd /Users/dobby/GitHub/adithyan-ai-videos
+cd <repo-root>
 .agents/skills/media-toolkit/scripts/media_toolkit.sh transcribe --url "<video-url>" \
-  --out /Users/dobby/GitHub/adithyan-ai-videos/projects/<project-id>/transcript.json
+  --out projects/<project-id>/transcript.json
 ```
 
 Notes:
@@ -36,7 +36,7 @@ Notes:
 Optional (convenience), generate thin derived artifacts:
 
 ```bash
-cd /Users/dobby/GitHub/adithyan-ai-videos
+cd <repo-root>
 node scripts/extract_transcript_artifacts.mjs projects/<project-id>
 ```
 
