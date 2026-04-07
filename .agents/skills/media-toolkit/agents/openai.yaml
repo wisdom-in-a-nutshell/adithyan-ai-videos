@@ -1,4 +1,0 @@
-interface:
-  display_name: "Media Toolkit"
-  short_description: "Run media tools from this repo"
-  default_prompt: "Use $media-toolkit to run transcription, transform, matting, or job status checks from a local file, media URL, or job_id."
