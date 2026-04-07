@@ -63,13 +63,13 @@ The clip is the correct latest source file for the next video. If the repo does 
 | Status | Work Item | Role | Resource |
 | --- | --- | --- | --- |
 | done | Generate `C0040` transcript artifacts and replace the scaffold placeholder words file. | parent |  |
-| todo | Review the source clip and replace the placeholder storyboard with real beats. | parent |  |
+| done | Review the source clip and replace the placeholder storyboard with real beats. | parent |  |
 
 ## Backlog / Remaining Work
 - [ ] Run repo validation for the new project wiring.
 - [x] Generate `projects/c0040/transcript.json`.
 - [x] Copy `transcript.json.words` into `src/projects/c0040/transcript_words.json`.
-- [ ] Review the footage and capture concrete story beats in `projects/c0040/storyboard.md`.
+- [x] Review the footage and capture concrete story beats in `projects/c0040/storyboard.md`.
 - [ ] Decide the target output duration and structure.
 - [ ] Implement the first real editorial/overlay pass.
 - [ ] Render a short `C0040` slice for review.
