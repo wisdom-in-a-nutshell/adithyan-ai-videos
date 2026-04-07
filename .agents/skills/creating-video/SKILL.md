@@ -16,6 +16,7 @@ Use **code-first** by default:
 - Put per-video code under `src/projects/<project-id>/`.
 - Register the composition through `src/projects/registry.js`; `src/Root.js` should continue rendering `PROJECT_COMPOSITIONS`.
 - Keep URLs, cut length, and per-video constants in code (e.g. `assets.js`).
+- For media-processing steps, first check `$media-toolkit` for a suitable command surface (for example transcription, transform, matting, or job status). If it fits the task, prefer it over lower-level WIN script paths.
 - We removed `projects/<id>/project.json` / `scripts/*project*.mjs` workflows. Don’t reintroduce them unless the user explicitly asks.
 - Wrap major overlays in named `<Sequence>` blocks so effects are visible in Studio’s timeline.
 - Keep transcript timing data as a JSON file committed with the project (prefer `src/projects/<id>/transcript_words.json` so the project is self-contained).

@@ -13,14 +13,13 @@ Use these questions (keep it short; don’t interrogate):
 
 ## Transcription (Default)
 
-Default ingestion/transcription channel for this workflow: `ADITHYAN`.
+First check `$media-toolkit` for media-processing work in this repo. It should usually be the default surface for transcription and other media jobs when it supports what you need.
 
 Command:
 
 ```bash
-cd /Users/dobby/GitHub/win
-venv/bin/python scripts/tools/media/transcribe.py "<video-url>" \
-  --channel ADITHYAN \
+cd /Users/dobby/GitHub/adithyan-ai-videos
+.agents/skills/media-toolkit/scripts/media_toolkit.sh transcribe --url "<video-url>" \
   --out /Users/dobby/GitHub/adithyan-ai-videos/projects/<project-id>/transcript.json
 ```
 
@@ -30,17 +29,14 @@ Notes:
   - `text`
   - `words` (normalized word timings)
   - `sentences`
-- Channel should always be `ADITHYAN` for this workflow.
-- For local source media imported into this repo, serve `public/` locally first and
-  transcribe the local URL (for example
-  `http://127.0.0.1:8030/imports/<project-id>/source.mp4`).
+- For local source media, first check whether `$media-toolkit` supports the direct file path you have.
 - For code-first Remotion projects, prefer committing a thin words-only artifact inside the project:
   - `src/projects/<project-id>/transcript_words.json` (usually copied from `transcript.json.words`)
 
 Optional (convenience), generate thin derived artifacts:
 
 ```bash
-cd /Users/adi/GitHub/adithyan-ai-videos
+cd /Users/dobby/GitHub/adithyan-ai-videos
 node scripts/extract_transcript_artifacts.mjs projects/<project-id>
 ```
 
@@ -58,7 +54,7 @@ If the user does not have a storyboard:
 
 If iteration is slow (matting, Studio playback, remote fetch), it’s ok to work off a smaller proxy video.
 
-- Use WIN `transform.py` (`~/GitHub/win/scripts/tools/media/transform.py`) and discover flags via `--help`.
+- First check `$media-toolkit` for transform support before reaching for lower-level WIN internals.
 - Persist the transform output JSON under the project folder (e.g. `projects/<project-id>/transform_720p.json`).
 - While iterating, point your composition’s `VIDEO_URL` (usually in `src/projects/<project-id>/assets.js`) to the transform `output_url`.
 - Keep the original source URL referenced in the transform JSON (`input_url`) for later “final” exports.
@@ -69,7 +65,7 @@ If/when occlusion is needed, you want a **real alpha asset** (typically `alpha.w
 
 Workflow:
 
-- Generate an `alpha.webm` via your preferred pipeline (WIN/Modal/etc).
+- First check `$media-toolkit` for a matting path. If it does not cover the case, then drop lower into the backend-specific workflow.
 - Paste the resulting `alpha.webm` URL into `src/projects/<project-id>/assets.js` (code-first).
 
 Notes:
@@ -79,4 +75,4 @@ Notes:
 
 ## Other Tools
 
-See `references/tools.md` for the inventory of available WIN scripts (and use `--help` to discover flags).
+Use `$media-toolkit` as the first place to look for media operations from this repo. Only reach for lower-level WIN paths when the toolkit does not cover the task.

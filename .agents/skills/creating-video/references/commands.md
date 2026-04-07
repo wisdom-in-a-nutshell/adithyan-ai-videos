@@ -59,3 +59,13 @@ Notes:
 - Pick `--from/--to` by looking at the project timestamps in `src/projects/<project-id>/assets.js`.
 - `--scale 0.5` means 50% width and 50% height (fast). `--scale 1` is full resolution.
 - Lower `--crf` means higher quality (and slower / larger file). For iteration, `--crf 28` is fine.
+
+## Media Operations
+
+For media-processing work in this repo, first check `$media-toolkit`. If it covers the task, use it instead of lower-level WIN script paths.
+
+```bash
+cd ~/GitHub/adithyan-ai-videos
+.agents/skills/media-toolkit/scripts/media_toolkit.sh --help
+.agents/skills/media-toolkit/scripts/media_toolkit.sh transcribe --help
+```

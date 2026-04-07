@@ -15,6 +15,8 @@ Use this skill when work in `adithyan-ai-videos` needs:
 - foreground matting
 - job status inspection
 
+In repo workflow terms, this is the first place to look for media operations. If the toolkit covers the task, use it. If it does not, then inspect the lower-level WIN implementation.
+
 ## Workflow
 
 1. Run the wrapper script in this repo:
@@ -40,5 +42,6 @@ Use this skill when work in `adithyan-ai-videos` needs:
 ## Rules
 
 - Treat this repo-local skill as a thin bootstrap wrapper over WIN.
+- Prefer this wrapper as the default operator surface from `adithyan-ai-videos`, but let the agent drop lower when the toolkit does not cover the needed case.
 - Do not duplicate the WIN media client logic here.
 - Read [references/dependency.md](references/dependency.md) when you need to know where the real implementation lives.
