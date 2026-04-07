@@ -1,13 +1,13 @@
 ---
 name: media-toolkit
-description: Use when an agent in adithyan-ai-videos needs WIN media processing from a local file, media URL, or job_id. This skill wraps the canonical WIN media-toolkit so this repo can submit transcription, transform, matting, and job-status commands without re-implementing the client.
+description: Use when an agent in adithyan-ai-videos needs media processing from a local file, media URL, or job_id. This skill wraps the canonical media toolkit so this repo can submit transcription, transform, matting, and job-status commands without re-implementing the client.
 ---
 
 # Media Toolkit
 
 ## Overview
 
-This repo does not own the media-processing implementation. It delegates to the canonical WIN toolkit and API surface.
+This repo does not own the media-processing implementation. It delegates to the canonical toolkit and API surface.
 
 Use this skill when work in `adithyan-ai-videos` needs:
 - transcription
@@ -15,7 +15,7 @@ Use this skill when work in `adithyan-ai-videos` needs:
 - foreground matting
 - job status inspection
 
-In repo workflow terms, this is the first place to look for media operations. If the toolkit covers the task, use it. If it does not, then inspect the lower-level WIN implementation.
+In repo workflow terms, this is the first place to look for media operations. If the toolkit covers the task, use it. If it does not, then inspect the lower-level implementation.
 
 ## Workflow
 
@@ -41,7 +41,7 @@ In repo workflow terms, this is the first place to look for media operations. If
 
 ## Rules
 
-- Treat this repo-local skill as a thin bootstrap wrapper over WIN.
+- Treat this repo-local skill as a thin bootstrap wrapper over the canonical backend implementation.
 - Prefer this wrapper as the default operator surface from `adithyan-ai-videos`, but let the agent drop lower when the toolkit does not cover the needed case.
-- Do not duplicate the WIN media client logic here.
+- Do not duplicate the backend media client logic here.
 - Read [references/dependency.md](references/dependency.md) when you need to know where the real implementation lives.

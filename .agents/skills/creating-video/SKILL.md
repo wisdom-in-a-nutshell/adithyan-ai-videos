@@ -16,7 +16,7 @@ Use **code-first** by default:
 - Put per-video code under `src/projects/<project-id>/`.
 - Register the composition through `src/projects/registry.js`; `src/Root.js` should continue rendering `PROJECT_COMPOSITIONS`.
 - Keep URLs, cut length, and per-video constants in code (e.g. `assets.js`).
-- For media-processing steps, first check `$media-toolkit` for a suitable command surface (for example transcription, transform, matting, or job status). If it fits the task, prefer it over lower-level WIN script paths.
+- For media-processing steps, first check `$media-toolkit` for a suitable command surface (for example transcription, transform, matting, or job status). If it fits the task, prefer it over lower-level backend-specific paths.
 - We removed `projects/<id>/project.json` / `scripts/*project*.mjs` workflows. Don’t reintroduce them unless the user explicitly asks.
 - Wrap major overlays in named `<Sequence>` blocks so effects are visible in Studio’s timeline.
 - Keep transcript timing data as a JSON file committed with the project (prefer `src/projects/<id>/transcript_words.json` so the project is self-contained).
@@ -44,12 +44,11 @@ References:
 
 ## Where Things Live
 
-- Remotion workspace repo: `wisdom-in-a-nutshell/adithyan-ai-videos` (local clone: `~/GitHub/adithyan-ai-videos`)
-- Per-video code: `~/GitHub/adithyan-ai-videos/src/projects/<project-id>/`
-- Artifact folder: `~/GitHub/adithyan-ai-videos/projects/<project-id>/`
-- Composition registry: `~/GitHub/adithyan-ai-videos/src/projects/registry.js`
-- Transcript timing data (recommended): `~/GitHub/adithyan-ai-videos/src/projects/<project-id>/transcript_words.json` (keep it “thin”: words + timestamps)
-- Active execution state: `~/GitHub/adithyan-ai-videos/docs/projects/<project-id>/tasks.md`
+- Per-video code: `<repo-root>/src/projects/<project-id>/`
+- Artifact folder: `<repo-root>/projects/<project-id>/`
+- Composition registry: `<repo-root>/src/projects/registry.js`
+- Transcript timing data (recommended): `<repo-root>/src/projects/<project-id>/transcript_words.json` (keep it “thin”: words + timestamps)
+- Active execution state: `<repo-root>/docs/projects/<project-id>/tasks.md`
 
 ## Golden Path (Code-First)
 
@@ -65,11 +64,11 @@ References:
 
 For a new video project, the “done” state is:
 
-- `~/GitHub/adithyan-ai-videos/src/projects/<project-id>/` (composition + assets/constants + transcript data)
-- `~/GitHub/adithyan-ai-videos/projects/<project-id>/` (storyboard, notes, scratch artifacts)
-- `~/GitHub/adithyan-ai-videos/src/projects/registry.js` registration
+- `<repo-root>/src/projects/<project-id>/` (composition + assets/constants + transcript data)
+- `<repo-root>/projects/<project-id>/` (storyboard, notes, scratch artifacts)
+- `<repo-root>/src/projects/registry.js` registration
 - Remotion code changes (new overlay primitives or a per-project composition wiring), as needed
-- `~/GitHub/adithyan-ai-videos/docs/projects/<project-id>/tasks.md` when the work needs a durable resume point
+- `<repo-root>/docs/projects/<project-id>/tasks.md` when the work needs a durable resume point
 - A verification render + stills under `/tmp` (see `references/verification.md`)
 
 ## Workflow (Close The Loop)

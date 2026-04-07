@@ -54,7 +54,7 @@ If the user does not have a storyboard:
 
 If iteration is slow (matting, Studio playback, remote fetch), it’s ok to work off a smaller proxy video.
 
-- First check `$media-toolkit` for transform support before reaching for lower-level WIN internals.
+- First check `$media-toolkit` for transform support before reaching for lower-level backend internals.
 - Persist the transform output JSON under the project folder (e.g. `projects/<project-id>/transform_720p.json`).
 - While iterating, point your composition’s `VIDEO_URL` (usually in `src/projects/<project-id>/assets.js`) to the transform `output_url`.
 - Keep the original source URL referenced in the transform JSON (`input_url`) for later “final” exports.
@@ -75,4 +75,4 @@ Notes:
 
 ## Other Tools
 
-Use `$media-toolkit` as the first place to look for media operations from this repo. Only reach for lower-level WIN paths when the toolkit does not cover the task.
+Use `$media-toolkit` as the first place to look for media operations from this repo. Only reach for lower-level backend paths when the toolkit does not cover the task.

@@ -3,7 +3,7 @@
 ## Scaffold A New Video
 
 ```bash
-cd ~/GitHub/adithyan-ai-videos
+cd <repo-root>
 npm run new:project -- --id <project-id> --title "My Video"
 ```
 
@@ -13,7 +13,7 @@ Notes:
 - If the work will span sessions, add `docs/projects/<project-id>/tasks.md` as the resume point.
 
 ```bash
-cd ~/GitHub/adithyan-ai-videos
+cd <repo-root>
 npm start
 ```
 
@@ -25,7 +25,7 @@ Notes:
 ## Render (Code-First)
 
 ```bash
-cd ~/GitHub/adithyan-ai-videos
+cd <repo-root>
 npm run render
 ```
 
@@ -62,10 +62,10 @@ Notes:
 
 ## Media Operations
 
-For media-processing work in this repo, first check `$media-toolkit`. If it covers the task, use it instead of lower-level WIN script paths.
+For media-processing work in this repo, first check `$media-toolkit`. If it covers the task, use it instead of lower-level backend-specific script paths.
 
 ```bash
-cd ~/GitHub/adithyan-ai-videos
+cd <repo-root>
 .agents/skills/media-toolkit/scripts/media_toolkit.sh --help
 .agents/skills/media-toolkit/scripts/media_toolkit.sh transcribe --help
 ```
