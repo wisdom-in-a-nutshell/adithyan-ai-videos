@@ -170,8 +170,9 @@ throw.
 **Visual**
 - **[S04] Apple swap** — at 53.88s, the tinted ball treatment is replaced by an
   apple image composited at the alpha centroid.
-  - Source image: local transparent apple asset
-    (`public/imports/c0046/apple.svg`).
+  - Current implementation: built-in vector-style apple shape inside
+    `C0046Comp.js`, sized from the tracked ball position to guarantee full
+    coverage in the swap beat.
   - The apple follows the ball alpha's centroid from 53.88 → 58.0s. From
     58.0 → 60.16 the apple is held at its last position (or fades out),
     since the SAM window ends at 58.0.
@@ -226,8 +227,8 @@ preview render. Narration-only for now; current timestamps from v1:
 export const BALL_ALPHA_URL = 'https://storage.aipodcast.ing/cache/sam3/alpha/f1782de5-6237-4646-8dd7-b4870fa37b6b.webm';
 export const BALL_ALPHA_WINDOW = {start: 12.0, end: 58.0, anchor: 14.0};
 
-// Apple image
-export const APPLE_IMAGE_URL = 'public/imports/c0046/apple.svg';
+// Apple swap is currently implemented as a built-in vector-style shape in
+// C0046Comp.js rather than a separate runtime asset.
 
 // Effect anchors (seconds) — derived from transcript, hardcoded per skill guidance
 export const TIMING = {

@@ -528,7 +528,7 @@ export const C0046Comp = (props) => {
               zIndex: 245,
             }}
           >
-            <AppleOverlay trackPoint={ballTrackPoint} assetMap={assetMap} />
+            <AppleOverlay trackPoint={ballTrackPoint} />
           </AbsoluteFill>
         </Sequence>
       ) : null}
