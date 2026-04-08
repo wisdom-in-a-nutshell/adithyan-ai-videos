@@ -198,16 +198,136 @@ throw.
 
 ---
 
-## S05 — S09 | To be visualized later
+## S05 | 60.24–89.68 | Expand to subject editing
 
-User will decide the visuals for the back half after seeing the S01–S04
-preview render. Narration-only for now; current timestamps from v1:
+**Transcript (key lines)**
+- 60.24 "This black ball is an object. I myself am an object too."
+- 63s   "I could ask it to detect me. And then once it detects me, crop me out."
+- 67s   "It could start adding interesting backgrounds behind me."
+- 75s   "I could also add like a text in between me and the background."
 
-- S05 60.24–89.68  Expand to subject editing
-- S06 89.84–144.76 Why this works (harness)
-- S07 144.88–191.68 Toolchain breakdown
-- S08 192.32–247.28 Workflow reality
-- S09 247.68–267.04 Close
+**Visual concept — depth compositing demo**
+
+Layer order (bottom → top):
+1. **Background replacement** — swap the green screen for a dark dot-grid
+   (`background: #0d0d0d` + `radial-gradient` dots 48px). Fades in at 60.24s
+   over ~18 frames.
+2. **Depth text layer** — floating label text (e.g. "BACKGROUND LAYER") sits
+   BETWEEN the background and Adi's silhouette. Uses the person matte as a
+   clipping mask on the text so it reads as genuinely behind him.
+3. **Person matte** (`person-matte-alpha-full.webm`) — composites Adi on top.
+4. **UI overlays** on top as usual.
+
+**Beat breakdown**
+- **60.24s** "I myself am an object" → same sketch-outline circle from S02,
+  but drawn around Adi's full body silhouette (body track, not ball track).
+  Shows the detection moment.
+- **63s** "crop me out" → the person matte border pulses / glows briefly
+  (subtle outline around Adi's silhouette to show the mask edge).
+- **67s** "interesting backgrounds" → background replacement kicks in (dark
+  dot grid fades in behind him). Keep it minimal — one clean dark background,
+  not a busy scene.
+- **75s** "text in between" → a floating pill or label appears BEHIND Adi
+  using depth compositing. Suggested text: `DEPTH LAYER`. This is the exact
+  same technique from the text-effects project.
+
+**Overlay copy (top-left)**
+- Status pill: `DETECTING`  → 60.24s–63s
+- Status pill: `MATTING`    → 63s–67s
+- Status pill: `COMPOSITING`→ 67s–89.68s
+- Support callouts follow transcript beats (use CodexCallout, same pattern as S02–S04)
+
+**Implementation notes**
+- Background layer: put INSIDE the z180 wrapper after the source clip, as a
+  `<Sequence from={foregroundMatteStart}>`. DOM order puts it above the source
+  video but below overlay pills.
+- Person matte: already wired at z220 outside z180 wrapper. The matte's alpha
+  channel composites Adi on top of whatever is in z180.
+- Depth text: render a text div BETWEEN the background sequence and the person
+  matte sequence in DOM order. The matte will naturally composite Adi in front.
+- Body outline: needs a separate SAM or bounding-box track for Adi's body.
+  If not available, approximate with a full-frame sketch oval drawn at the
+  known person centroid. Decision deferred.
+
+---
+
+## S06 | 89.84–144.76 | Why this works (harness)
+
+**Transcript (key lines)**
+- ~90s  "Now I'm going to just briefly talk about how all of this works."
+- ~92s  "So we use Codex to completely edit…"
+- ~100s Explains the harness/toolchain
+
+**Visual concept — flow diagram (CodexToolsArtifactsOverlay pattern)**
+
+Reuse the `CodexToolsArtifactsOverlay` component from text-effects verbatim
+or with minor copy changes. The flow reads:
+
+```
+CODEX
+  ↓
+  🛠  Video tools
+  ↓
+  ✨  Video artifacts
+```
+
+The pills drop in one by one as Adi names each part. Top-left position,
+below the status pill. Same blue connector line + arrow animation.
+
+**Overlay copy**
+- Status pill: `HOW IT WORKS`
+- Flow items (timed to transcript):
+  - `Video tools` (emoji 🛠) → ~92s
+  - `Video artifacts` (emoji ✨) → ~95s
+
+---
+
+## S07 | 144.88–191.68 | Toolchain breakdown
+
+**Visual concept — ThreeToolsOverlay pattern**
+
+Reuse `ThreeToolsOverlay` from text-effects. Three numbered pills drop in
+below the status pill as Adi names each tool:
+
+1. SAM3          → segmentation / tracking
+2. MatAnyone     → person matting
+3. Remotion      → compositing + rendering
+
+**Overlay copy**
+- Status pill: `THE STACK`
+- Numbered pills timed to when Adi mentions each tool name.
+
+---
+
+## S08 | 192.32–247.28 | Workflow reality
+
+**Transcript theme** — Adi explains the practical workflow (prompting Codex,
+iterating, the human-in-the-loop role).
+
+**Visual concept — minimal callout pills**
+
+No complex flow diagram. Just the status + support callout pattern from S02–S04:
+- Status pill changes per sub-beat (`PROMPTING`, `ITERATING`, `REVIEWING`)
+- One support callout per beat reinforcing the spoken word
+
+Keep it clean — by this point the viewer has seen the technique; visual
+complexity should decrease, not increase.
+
+---
+
+## S09 | 247.68–267.04 | Close
+
+**Transcript theme** — wrap-up, call to action.
+
+**Visual concept — outro card**
+
+Simple centred card (using `TitleOverlay` or a custom outro) with:
+- "100% edited by Codex" as the headline (echoing the opener)
+- Fade to black
+
+Timing: card enters at ~250s, holds, fades to black by 267s.
+
+---
 
 ---
 

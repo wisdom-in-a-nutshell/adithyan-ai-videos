@@ -4,6 +4,7 @@ import {
   Img,
   OffthreadVideo,
   Sequence,
+  interpolate,
   staticFile,
   useCurrentFrame,
 } from 'remotion';
@@ -23,6 +24,8 @@ import {
   OPENER_UI,
   OVERLAY_VIEW,
   PERSON_MATTE_ALPHA_URL,
+  S05_BACKGROUND_COMPOSITE_URL,
+  S05_DEPTH_COMPOSITE_URL,
   TIMING,
   VIDEO_URL,
 } from './assets.js';
@@ -277,6 +280,64 @@ const AppleOverlay = ({trackPoint, assetMap}) => {
   );
 };
 
+const getFadeWindowOpacity = (timeInSeconds, start, end, fadeSeconds = 0.32) => {
+  if (timeInSeconds < start || timeInSeconds > end) {
+    return 0;
+  }
+
+  const fadeInEnd = Math.min(end, start + fadeSeconds);
+  const fadeOutStart = Math.max(start, end - fadeSeconds);
+
+  return interpolate(
+    timeInSeconds,
+    [start, fadeInEnd, fadeOutStart, end],
+    [0, 1, 1, 0],
+    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+  );
+};
+
+const BodyDetectOverlay = ({opacity = 1, mode = 'detect'}) => {
+  const stroke = mode === 'matte' ? '#9cf3ff' : '#ffffff';
+  const strokeWidth = mode === 'matte' ? 5.5 : 4.8;
+
+  return (
+    <svg
+      viewBox="0 0 1920 1080"
+      style={{
+        position: 'absolute',
+        inset: 0,
+        width: '100%',
+        height: '100%',
+        opacity,
+        overflow: 'visible',
+      }}
+    >
+      <ellipse
+        cx="1220"
+        cy="595"
+        rx="255"
+        ry="420"
+        fill="none"
+        stroke={stroke}
+        strokeWidth={strokeWidth}
+        filter="url(#pencil-stroke)"
+        opacity="0.98"
+      />
+      <ellipse
+        cx="1212"
+        cy="587"
+        rx="270"
+        ry="436"
+        fill="none"
+        stroke={stroke}
+        strokeWidth={mode === 'matte' ? 2.5 : 2.2}
+        filter="url(#pencil-stroke)"
+        opacity={mode === 'matte' ? 0.5 : 0.42}
+      />
+    </svg>
+  );
+};
+
 export const C0046Comp = (props) => {
   const assetMap = props?.assetMap ?? null;
   const frame = useCurrentFrame();
@@ -290,6 +351,18 @@ export const C0046Comp = (props) => {
   const appleHoldFrame = secondsToFrames(TIMING.ballWindowEnd);
   const trackFrame = timeInSeconds >= TIMING.appleSwap ? Math.min(frame, appleHoldFrame) : frame;
   const ballTrackPoint = getTrackPointForFrame(ballTrack, trackFrame);
+  const mattePulseOpacity = getFadeWindowOpacity(
+    timeInSeconds,
+    TIMING.selfMatteStart,
+    TIMING.selfMatteEnd,
+    0.24
+  );
+  const detectOutlineOpacity = getFadeWindowOpacity(
+    timeInSeconds,
+    TIMING.selfDetectStart,
+    TIMING.selfMatteEnd,
+    0.3
+  );
 
   return (
     <AbsoluteFill
@@ -308,6 +381,39 @@ export const C0046Comp = (props) => {
         <Sequence name="[S01] Source Clip" from={0}>
           <OffthreadVideo
             src={resolveAssetSrc(VIDEO_URL, assetMap)}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S13] Background Replacement"
+          from={secondsToFrames(TIMING.backgroundReplaceStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.backgroundReplaceStart,
+            TIMING.depthTextStart
+          )}
+        >
+          <OffthreadVideo
+            src={resolveAssetSrc(S05_BACKGROUND_COMPOSITE_URL, assetMap)}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+            }}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S14] Depth Text"
+          from={secondsToFrames(TIMING.depthTextStart)}
+          durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
+        >
+          <OffthreadVideo
+            src={resolveAssetSrc(S05_DEPTH_COMPOSITE_URL, assetMap)}
             style={{
               width: '100%',
               height: '100%',
@@ -468,6 +574,128 @@ export const C0046Comp = (props) => {
             leftPx={DEMO_UI.leftPx}
           />
         </Sequence>
+
+        <Sequence
+          name="[S15] Status: DETECTING"
+          from={secondsToFrames(TIMING.selfDetectStart)}
+          durationInFrames={beatDurationInFrames(TIMING.selfDetectStart, TIMING.selfMatteStart)}
+        >
+          <StatusLeftOverlay
+            text="DETECTING"
+            durationInFrames={beatDurationInFrames(TIMING.selfDetectStart, TIMING.selfMatteStart)}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S16] Callout: I'm detecting myself."
+          from={secondsToFrames(TIMING.selfDetectStart)}
+          durationInFrames={beatDurationInFrames(TIMING.selfDetectStart, TIMING.selfMatteStart)}
+        >
+          <CodexCallout
+            text="I'm detecting myself."
+            durationInFrames={beatDurationInFrames(TIMING.selfDetectStart, TIMING.selfMatteStart)}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S17] Status: MATTING"
+          from={secondsToFrames(TIMING.selfMatteStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.selfMatteStart,
+            TIMING.backgroundReplaceStart
+          )}
+        >
+          <StatusLeftOverlay
+            text="MATTING"
+            durationInFrames={beatDurationInFrames(
+              TIMING.selfMatteStart,
+              TIMING.backgroundReplaceStart
+            )}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S18] Callout: I'm cropping myself out."
+          from={secondsToFrames(TIMING.selfMatteStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.selfMatteStart,
+            TIMING.backgroundReplaceStart
+          )}
+        >
+          <CodexCallout
+            text="I'm cropping myself out."
+            durationInFrames={beatDurationInFrames(
+              TIMING.selfMatteStart,
+              TIMING.backgroundReplaceStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S19] Status: COMPOSITING"
+          from={secondsToFrames(TIMING.backgroundReplaceStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.backgroundReplaceStart,
+            TIMING.explainStart
+          )}
+        >
+          <StatusLeftOverlay
+            text="COMPOSITING"
+            durationInFrames={beatDurationInFrames(
+              TIMING.backgroundReplaceStart,
+              TIMING.explainStart
+            )}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S20] Callout: I'm changing the background."
+          from={secondsToFrames(TIMING.backgroundReplaceStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.backgroundReplaceStart,
+            TIMING.depthTextStart
+          )}
+        >
+          <CodexCallout
+            text="I'm changing the background."
+            durationInFrames={beatDurationInFrames(
+              TIMING.backgroundReplaceStart,
+              TIMING.depthTextStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S21] Callout: I'm placing text behind me."
+          from={secondsToFrames(TIMING.depthTextStart)}
+          durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
+        >
+          <CodexCallout
+            text="I'm placing text behind me."
+            durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
       </AbsoluteFill>
 
       {OVERLAY_VIEW.showBallTrackingMask && ballTreatment ? (
@@ -497,12 +725,28 @@ export const C0046Comp = (props) => {
         </Sequence>
       ) : null}
 
-      {OVERLAY_VIEW.showForegroundMatte ? (
-        <Sequence name="[FX02] Foreground Matte" from={0}>
+      {timeInSeconds >= TIMING.selfDetectStart && timeInSeconds <= TIMING.selfMatteEnd ? (
+        <Sequence name="[FX04] Body Detect Outline" from={secondsToFrames(TIMING.selfDetectStart)}>
           <AbsoluteFill
             style={{
               pointerEvents: 'none',
-              opacity: timeInSeconds >= TIMING.foregroundMatteStart ? 1 : 0,
+              zIndex: 239,
+            }}
+          >
+            <BodyDetectOverlay
+              opacity={Math.max(detectOutlineOpacity, mattePulseOpacity * 0.9)}
+              mode={timeInSeconds >= TIMING.selfMatteStart ? 'matte' : 'detect'}
+            />
+          </AbsoluteFill>
+        </Sequence>
+      ) : null}
+
+      {OVERLAY_VIEW.showForegroundMatte ? (
+        <Sequence name="[FX02] Foreground Matte" from={secondsToFrames(TIMING.explainStart)}>
+          <AbsoluteFill
+            style={{
+              pointerEvents: 'none',
+              opacity: timeInSeconds >= TIMING.explainStart ? 1 : 0,
               zIndex: 220,
             }}
           >

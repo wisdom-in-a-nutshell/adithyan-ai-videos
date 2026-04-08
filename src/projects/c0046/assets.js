@@ -7,6 +7,9 @@ export const BALL_SEGMENT_MASK_URL = 'public/imports/c0046/artifacts/ball-segmen
 export const PERSON_MATTE_MASK_URL = 'public/imports/c0046/artifacts/person-matte-mask-full.mp4';
 export const PERSON_MATTE_ALPHA_URL = 'public/imports/c0046/artifacts/person-matte-alpha-full.webm';
 export const APPLE_IMAGE_URL = 'public/imports/c0046/apple.svg';
+export const SUBJECT_KEYED_S05_URL = 'public/imports/c0046/subject-keyed-s05.webm';
+export const S05_BACKGROUND_COMPOSITE_URL = 'public/imports/c0046/s05-background-composite.mp4';
+export const S05_DEPTH_COMPOSITE_URL = 'public/imports/c0046/s05-depth-composite.mp4';
 
 export const FPS = 25;
 export const WIDTH = 1920;
@@ -31,6 +34,15 @@ export const TIMING = {
   appleSwap: 53.88,
   appleReactionEnd: 60.16,
   foregroundMatteStart: 60.24,
+  selfDetectStart: 63.36,
+  selfDetectEnd: 71.52,
+  selfMatteStart: 71.52,
+  selfMatteEnd: 75.68,
+  backgroundReplaceStart: 75.68,
+  backgroundReplaceFadeEnd: 76.4,
+  depthTextStart: 82.88,
+  depthTextEnd: 89.68,
+  explainStart: 89.84,
 };
 
 export const HERO_STAMP_TIMING = {
