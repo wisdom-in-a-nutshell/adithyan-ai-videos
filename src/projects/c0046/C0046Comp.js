@@ -339,6 +339,7 @@ export const C0046Comp = (props) => {
             style={{
               opacity: inBallWindow ? ballTreatment.opacity : 0,
               pointerEvents: 'none',
+              zIndex: 240,
             }}
           >
             <TrackedBallOverlay trackPoint={ballTrackPoint} treatment={ballTreatment} />
@@ -348,7 +349,13 @@ export const C0046Comp = (props) => {
 
       {OVERLAY_VIEW.showForegroundMatte ? (
         <Sequence name="[FX02] Foreground Matte" from={0}>
-          <AbsoluteFill style={{pointerEvents: 'none'}}>
+          <AbsoluteFill
+            style={{
+              pointerEvents: 'none',
+              opacity: timeInSeconds >= TIMING.foregroundMatteStart ? 1 : 0,
+              zIndex: 220,
+            }}
+          >
             <OffthreadVideo
               src={resolveAssetSrc(PERSON_MATTE_ALPHA_URL, assetMap)}
               style={{

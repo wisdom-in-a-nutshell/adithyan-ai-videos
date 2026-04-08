@@ -28,6 +28,7 @@ export const TIMING = {
   recolorYellow: 42.32,
   appleSwap: 53.44,
   appleReactionEnd: 60.16,
+  foregroundMatteStart: 60.24,
 };
 
 export const HERO_STAMP_TIMING = {
