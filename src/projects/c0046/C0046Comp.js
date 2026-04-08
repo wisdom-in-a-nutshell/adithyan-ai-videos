@@ -171,32 +171,22 @@ const TrackedBallOverlay = ({trackPoint, treatment}) => {
           <circle
             cx={size / 2}
             cy={size / 2}
-            r={size * 0.44}
+            r={size * 0.425}
             fill="none"
             stroke={treatment.color}
-            strokeWidth={4}
+            strokeWidth={4.6}
             filter="url(#pencil-stroke)"
             opacity={0.98}
           />
           <circle
-            cx={size / 2 + 3}
-            cy={size / 2 - 2}
-            r={size * 0.405}
+            cx={size / 2 + 2}
+            cy={size / 2 - 1}
+            r={size * 0.435}
             fill="none"
             stroke={treatment.color}
-            strokeWidth={2.4}
+            strokeWidth={1.8}
             filter="url(#pencil-stroke)"
-            opacity={0.78}
-          />
-          <circle
-            cx={size / 2}
-            cy={size / 2}
-            r={size * 0.455}
-            fill="none"
-            stroke={treatment.color}
-            strokeWidth={1.6}
-            strokeDasharray={`${size * 0.07} ${size * 0.045}`}
-            opacity={0.5}
+            opacity={0.45}
           />
         </svg>
       ) : (
