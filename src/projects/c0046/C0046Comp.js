@@ -222,9 +222,9 @@ const AppleOverlay = ({trackPoint}) => {
     return null;
   }
 
-  const size = Math.max(176, Math.round(trackPoint.r * 2.34));
-  const left = Math.round(trackPoint.cx - size / 2) - Math.round(size * 0.05);
-  const top = Math.round(trackPoint.cy - size / 2) - Math.round(size * 0.2);
+  const size = Math.max(194, Math.round(trackPoint.r * 2.62));
+  const left = Math.round(trackPoint.cx - size / 2) - Math.round(size * 0.045);
+  const top = Math.round(trackPoint.cy - size / 2) - Math.round(size * 0.135);
 
   return (
     <div
@@ -240,10 +240,10 @@ const AppleOverlay = ({trackPoint}) => {
       <div
         style={{
           position: 'absolute',
-          left: `${size * 0.14}px`,
-          top: `${size * 0.18}px`,
-          width: `${size * 0.42}px`,
-          height: `${size * 0.42}px`,
+          left: `${size * 0.19}px`,
+          top: `${size * 0.12}px`,
+          width: `${size * 0.31}px`,
+          height: `${size * 0.31}px`,
           borderRadius: '50%',
           backgroundColor: '#ef4538',
         }}
@@ -251,10 +251,10 @@ const AppleOverlay = ({trackPoint}) => {
       <div
         style={{
           position: 'absolute',
-          right: `${size * 0.14}px`,
-          top: `${size * 0.18}px`,
-          width: `${size * 0.42}px`,
-          height: `${size * 0.42}px`,
+          right: `${size * 0.19}px`,
+          top: `${size * 0.12}px`,
+          width: `${size * 0.31}px`,
+          height: `${size * 0.31}px`,
           borderRadius: '50%',
           backgroundColor: '#e23b2f',
         }}
@@ -263,18 +263,18 @@ const AppleOverlay = ({trackPoint}) => {
         style={{
           position: 'absolute',
           left: '50%',
-          bottom: `${size * 0.07}px`,
-          width: `${size * 0.72}px`,
-          height: `${size * 0.48}px`,
+          bottom: `${size * 0.02}px`,
+          width: `${size * 0.82}px`,
+          height: `${size * 0.74}px`,
           transform: 'translateX(-50%)',
-          borderRadius: '999px',
+          borderRadius: '48% 48% 52% 52%',
           backgroundColor: '#d93628',
         }}
       />
       <div
         style={{
           position: 'absolute',
-          left: `${size * 0.46}px`,
+          left: `${size * 0.47}px`,
           top: `${size * 0.03}px`,
           width: `${size * 0.07}px`,
           height: `${size * 0.16}px`,
@@ -300,10 +300,10 @@ const AppleOverlay = ({trackPoint}) => {
       <div
         style={{
           position: 'absolute',
-          left: `${size * 0.27}px`,
-          top: `${size * 0.24}px`,
-          width: `${size * 0.16}px`,
-          height: `${size * 0.08}px`,
+          left: `${size * 0.3}px`,
+          top: `${size * 0.22}px`,
+          width: `${size * 0.14}px`,
+          height: `${size * 0.07}px`,
           borderRadius: '999px',
           backgroundColor: 'rgba(255, 255, 255, 0.2)',
           transform: 'rotate(-24deg)',
