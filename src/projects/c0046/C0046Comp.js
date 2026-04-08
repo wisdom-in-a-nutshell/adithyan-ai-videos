@@ -313,10 +313,10 @@ const BodyDetectOverlay = ({opacity = 1, mode = 'detect'}) => {
       }}
     >
       <ellipse
-        cx="1220"
-        cy="595"
-        rx="255"
-        ry="420"
+        cx="1238"
+        cy="592"
+        rx="214"
+        ry="372"
         fill="none"
         stroke={stroke}
         strokeWidth={strokeWidth}
@@ -324,10 +324,10 @@ const BodyDetectOverlay = ({opacity = 1, mode = 'detect'}) => {
         opacity="0.98"
       />
       <ellipse
-        cx="1212"
-        cy="587"
-        rx="270"
-        ry="436"
+        cx="1228"
+        cy="586"
+        rx="228"
+        ry="388"
         fill="none"
         stroke={stroke}
         strokeWidth={mode === 'matte' ? 2.5 : 2.2}
@@ -648,14 +648,14 @@ export const C0046Comp = (props) => {
           from={secondsToFrames(TIMING.backgroundReplaceStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.backgroundReplaceStart,
-            TIMING.explainStart
+            TIMING.depthTextStart
           )}
         >
           <StatusLeftOverlay
             text="COMPOSITING"
             durationInFrames={beatDurationInFrames(
               TIMING.backgroundReplaceStart,
-              TIMING.explainStart
+              TIMING.depthTextStart
             )}
             scale={DEMO_UI.statusScale}
             topPx={DEMO_UI.statusTopPx}
@@ -664,7 +664,21 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
-          name="[S20] Callout: I'm changing the background."
+          name="[S20] Status: DEPTH"
+          from={secondsToFrames(TIMING.depthTextStart)}
+          durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
+        >
+          <StatusLeftOverlay
+            text="DEPTH"
+            durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S21] Callout: I'm changing the background."
           from={secondsToFrames(TIMING.backgroundReplaceStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.backgroundReplaceStart,
@@ -684,7 +698,7 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
-          name="[S21] Callout: I'm placing text behind me."
+          name="[S22] Callout: I'm placing text behind me."
           from={secondsToFrames(TIMING.depthTextStart)}
           durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
         >
