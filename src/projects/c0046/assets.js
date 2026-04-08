@@ -18,9 +18,20 @@ export const DURATION_FRAMES = Math.ceil(DURATION_SECONDS * FPS);
 export const TIMING = {
   introStart: 0,
   introEnd: 10.24,
-  coldOpenEnd: 3.6,
+  heroHoldEnd: 8.72,
   ballWindowStart: 12,
   ballWindowEnd: 58,
+};
+
+export const HERO_STAMP_TIMING = {
+  thisStart: 2.4,
+  thisEnd: 2.52,
+  videoStart: 2.52,
+  videoEnd: 2.96,
+  percentStart: 3.2,
+  percentEnd: 3.24,
+  editedStart: 3.36,
+  codexEnd: 5.2,
 };
 
 export const OVERLAY_VIEW = {
