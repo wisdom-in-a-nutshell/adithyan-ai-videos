@@ -22,11 +22,12 @@ export const TIMING = {
   heroHoldEnd: 8.72,
   ballWindowStart: 12,
   ballWindowEnd: 58,
-  trackStart: 15.32,
-  recolorBlue: 33.72,
-  recolorRed: 37.52,
-  recolorYellow: 42.32,
-  appleSwap: 53.44,
+  // Trigger beats two frames after the spoken keyword ends at 25fps.
+  trackStart: 15.84,
+  recolorBlue: 34.32,
+  recolorRed: 38.24,
+  recolorYellow: 42.88,
+  appleSwap: 53.88,
   appleReactionEnd: 60.16,
   foregroundMatteStart: 60.24,
 };

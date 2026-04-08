@@ -91,8 +91,9 @@ const getBallTreatment = (timeInSeconds, timing) => {
   if (timeInSeconds >= timing.trackStart && timeInSeconds < timing.recolorBlue) {
     return {
       color: '#ffffff',
-      opacity: 0.72,
-      sizeScale: 0.98,
+      opacity: 0.92,
+      sizeScale: 1.18,
+      mode: 'outline',
     };
   }
 
@@ -141,6 +142,7 @@ const TrackedBallOverlay = ({trackPoint, treatment}) => {
   const coverShiftX = Math.round(size * (treatment.coverShiftX ?? 0));
   const coverShiftY = Math.round(size * (treatment.coverShiftY ?? 0));
   const coverScale = treatment.coverScale ?? 1;
+  const isOutline = treatment.mode === 'outline';
 
   return (
     <div
@@ -155,26 +157,72 @@ const TrackedBallOverlay = ({trackPoint, treatment}) => {
         pointerEvents: 'none',
       }}
     >
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          transform: `translate(${coverShiftX}px, ${coverShiftY}px) scale(${coverScale})`,
-          transformOrigin: 'center center',
-          borderRadius: '50%',
-          backgroundColor: treatment.color,
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          borderRadius: '50%',
-          backgroundColor: treatment.color,
-          boxShadow: `0 0 8px ${glow}, 0 0 18px ${glow}`,
-          border: 'none',
-        }}
-      />
+      {isOutline ? (
+        <svg
+          width={size}
+          height={size}
+          viewBox={`0 0 ${size} ${size}`}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            overflow: 'visible',
+          }}
+        >
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={size * 0.44}
+            fill="none"
+            stroke={treatment.color}
+            strokeWidth={4}
+            filter="url(#pencil-stroke)"
+            opacity={0.98}
+          />
+          <circle
+            cx={size / 2 + 3}
+            cy={size / 2 - 2}
+            r={size * 0.405}
+            fill="none"
+            stroke={treatment.color}
+            strokeWidth={2.4}
+            filter="url(#pencil-stroke)"
+            opacity={0.78}
+          />
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={size * 0.455}
+            fill="none"
+            stroke={treatment.color}
+            strokeWidth={1.6}
+            strokeDasharray={`${size * 0.07} ${size * 0.045}`}
+            opacity={0.5}
+          />
+        </svg>
+      ) : (
+        <>
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              transform: `translate(${coverShiftX}px, ${coverShiftY}px) scale(${coverScale})`,
+              transformOrigin: 'center center',
+              borderRadius: '50%',
+              backgroundColor: treatment.color,
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              borderRadius: '50%',
+              backgroundColor: treatment.color,
+              boxShadow: `0 0 8px ${glow}, 0 0 18px ${glow}`,
+              border: 'none',
+            }}
+          />
+        </>
+      )}
     </div>
   );
 };
