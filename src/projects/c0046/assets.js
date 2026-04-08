@@ -38,7 +38,7 @@ export const OPENER_UI = {
   labelScale: 1.56,
   codexScale: 1.8,
   disclaimerScale: 1.56,
-  disclaimerBottomPx: 176,
+  disclaimerBottomPx: 220,
   leftPx: 56,
   labelTopPx: 56,
   codexTopPx: 132,
