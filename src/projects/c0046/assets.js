@@ -58,6 +58,12 @@ export const DEMO_UI = {
   calloutTopPx: 132,
 };
 
+export const BALL_RECOLOR = {
+  blue: '#3b82f6',
+  red: '#ef4444',
+  yellow: '#facc15',
+};
+
 export const OVERLAY_VIEW = {
   showBallTrackingMask: true,
   showForegroundMatte: true,

@@ -15,6 +15,7 @@ import {
 import {SKETCH_FONT_FAMILY, SketchDefs} from '../../styles/sketch.js';
 import {
   BALL_ALPHA_URL,
+  BALL_RECOLOR,
   DEMO_UI,
   FPS,
   OPENER_UI,
@@ -53,6 +54,25 @@ const resolveAssetSrc = (src, assetMap) => {
   return staticFile(resolved);
 };
 
+const BallTintDefs = () => {
+  const makeTint = (id, color) => (
+    <filter id={id} key={id} colorInterpolationFilters="sRGB">
+      <feFlood floodColor={color} result="flood" />
+      <feComposite in="flood" in2="SourceAlpha" operator="in" />
+    </filter>
+  );
+
+  return (
+    <svg width="0" height="0" style={{position: 'absolute'}}>
+      <defs>
+        {makeTint('ball-tint-blue', BALL_RECOLOR.blue)}
+        {makeTint('ball-tint-red', BALL_RECOLOR.red)}
+        {makeTint('ball-tint-yellow', BALL_RECOLOR.yellow)}
+      </defs>
+    </svg>
+  );
+};
+
 export const C0046Comp = (props) => {
   const assetMap = props?.assetMap ?? null;
   const frame = useCurrentFrame();
@@ -62,6 +82,18 @@ export const C0046Comp = (props) => {
   const secondsToFrames = (seconds) => Math.max(0, Math.floor(seconds * FPS));
   const beatDurationInFrames = (startSeconds, endSeconds) =>
     Math.max(1, secondsToFrames(endSeconds) - secondsToFrames(startSeconds));
+  const activeBallTintFilter = (() => {
+    if (timeInSeconds >= TIMING.recolorYellow && timeInSeconds < TIMING.appleSwap) {
+      return 'url(#ball-tint-yellow)';
+    }
+    if (timeInSeconds >= TIMING.recolorRed && timeInSeconds < TIMING.recolorYellow) {
+      return 'url(#ball-tint-red)';
+    }
+    if (timeInSeconds >= TIMING.recolorBlue && timeInSeconds < TIMING.recolorRed) {
+      return 'url(#ball-tint-blue)';
+    }
+    return null;
+  })();
 
   return (
     <AbsoluteFill
@@ -71,6 +103,7 @@ export const C0046Comp = (props) => {
       }}
     >
       <SketchDefs />
+      <BallTintDefs />
 
       <AbsoluteFill
         style={{
@@ -256,6 +289,7 @@ export const C0046Comp = (props) => {
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
+                filter: activeBallTintFilter ?? undefined,
               }}
             />
           </AbsoluteFill>
