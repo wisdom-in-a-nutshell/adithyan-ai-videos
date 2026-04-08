@@ -10,10 +10,12 @@ import {
   CodexCallout,
   DisclaimerOverlay,
   LabelOverlay,
+  StatusLeftOverlay,
 } from '../../overlay_kit/overlays.js';
 import {SKETCH_FONT_FAMILY, SketchDefs} from '../../styles/sketch.js';
 import {
   BALL_SEGMENT_MASK_URL,
+  DEMO_UI,
   FPS,
   OPENER_UI,
   OVERLAY_VIEW,
@@ -56,7 +58,10 @@ export const C0046Comp = (props) => {
   const frame = useCurrentFrame();
   const timeInSeconds = frame / FPS;
   const inBallWindow =
-    timeInSeconds >= TIMING.ballWindowStart && timeInSeconds <= TIMING.ballWindowEnd;
+    timeInSeconds >= TIMING.trackStart && timeInSeconds <= TIMING.ballWindowEnd;
+  const secondsToFrames = (seconds) => Math.max(0, Math.floor(seconds * FPS));
+  const beatDurationInFrames = (startSeconds, endSeconds) =>
+    Math.max(1, secondsToFrames(endSeconds) - secondsToFrames(startSeconds));
 
   return (
     <AbsoluteFill
@@ -121,6 +126,118 @@ export const C0046Comp = (props) => {
             durationInFrames={Math.max(1, Math.floor((TIMING.introEnd - TIMING.introStart) * FPS))}
             scale={OPENER_UI.disclaimerScale}
             bottomPx={OPENER_UI.disclaimerBottomPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S05] Status: TRACKING"
+          from={secondsToFrames(TIMING.trackStart)}
+          durationInFrames={beatDurationInFrames(TIMING.trackStart, TIMING.recolorBlue)}
+        >
+          <StatusLeftOverlay
+            text="TRACKING"
+            durationInFrames={beatDurationInFrames(TIMING.trackStart, TIMING.recolorBlue)}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S06] Callout: Black ball tracked"
+          from={secondsToFrames(TIMING.trackStart)}
+          durationInFrames={beatDurationInFrames(TIMING.trackStart, TIMING.recolorBlue)}
+        >
+          <CodexCallout
+            text="Black ball tracked"
+            durationInFrames={beatDurationInFrames(TIMING.trackStart, TIMING.recolorBlue)}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S07] Status: RECOLORING"
+          from={secondsToFrames(TIMING.recolorBlue)}
+          durationInFrames={beatDurationInFrames(TIMING.recolorBlue, TIMING.appleSwap)}
+        >
+          <StatusLeftOverlay
+            text="RECOLORING"
+            durationInFrames={beatDurationInFrames(TIMING.recolorBlue, TIMING.appleSwap)}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S08] Callout: Only the ball changes"
+          from={secondsToFrames(TIMING.recolorBlue)}
+          durationInFrames={beatDurationInFrames(TIMING.recolorBlue, TIMING.recolorRed)}
+        >
+          <CodexCallout
+            text="Only the ball changes"
+            durationInFrames={beatDurationInFrames(TIMING.recolorBlue, TIMING.recolorRed)}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S09] Callout: Tracked region updated"
+          from={secondsToFrames(TIMING.recolorRed)}
+          durationInFrames={beatDurationInFrames(TIMING.recolorRed, TIMING.recolorYellow)}
+        >
+          <CodexCallout
+            text="Tracked region updated"
+            durationInFrames={beatDurationInFrames(TIMING.recolorRed, TIMING.recolorYellow)}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S10] Callout: Mask stays stable"
+          from={secondsToFrames(TIMING.recolorYellow)}
+          durationInFrames={beatDurationInFrames(TIMING.recolorYellow, TIMING.appleSwap)}
+        >
+          <CodexCallout
+            text="Mask stays stable"
+            durationInFrames={beatDurationInFrames(TIMING.recolorYellow, TIMING.appleSwap)}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S11] Status: SWAPPING"
+          from={secondsToFrames(TIMING.appleSwap)}
+          durationInFrames={beatDurationInFrames(TIMING.appleSwap, TIMING.appleReactionEnd)}
+        >
+          <StatusLeftOverlay
+            text="SWAPPING"
+            durationInFrames={beatDurationInFrames(TIMING.appleSwap, TIMING.appleReactionEnd)}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S12] Callout: Object replaced"
+          from={secondsToFrames(TIMING.appleSwap)}
+          durationInFrames={beatDurationInFrames(TIMING.appleSwap, TIMING.appleReactionEnd)}
+        >
+          <CodexCallout
+            text="Object replaced"
+            durationInFrames={beatDurationInFrames(TIMING.appleSwap, TIMING.appleReactionEnd)}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
           />
         </Sequence>
       </AbsoluteFill>

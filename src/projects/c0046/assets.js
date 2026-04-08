@@ -21,6 +21,12 @@ export const TIMING = {
   heroHoldEnd: 8.72,
   ballWindowStart: 12,
   ballWindowEnd: 58,
+  trackStart: 15.32,
+  recolorBlue: 33.72,
+  recolorRed: 37.52,
+  recolorYellow: 42.32,
+  appleSwap: 53.44,
+  appleReactionEnd: 60.16,
 };
 
 export const HERO_STAMP_TIMING = {
@@ -42,6 +48,14 @@ export const OPENER_UI = {
   leftPx: 56,
   labelTopPx: 56,
   codexTopPx: 132,
+};
+
+export const DEMO_UI = {
+  statusScale: 1.46,
+  calloutScale: 1.52,
+  leftPx: 56,
+  statusTopPx: 56,
+  calloutTopPx: 130,
 };
 
 export const OVERLAY_VIEW = {

@@ -93,6 +93,7 @@ throw.
 **Overlay copy**
 - **Top-left state pill**: `TRACKING`
 - **Support callout**: `Black ball tracked`
+- **Exact overlay timing**: 15.32s → 33.72s
 
 **Sequence**
 - `[S02A] Status Pill: TRACKING`
@@ -135,6 +136,11 @@ throw.
   - Blue beat: `Only the ball changes`
   - Red beat: `Tracked region updated`
   - Yellow beat: `Mask stays stable`
+- **Exact overlay timings**
+  - `RECOLORING` state pill: 33.72s → 53.44s
+  - `Only the ball changes`: 33.72s → 37.52s
+  - `Tracked region updated`: 37.52s → 42.32s
+  - `Mask stays stable`: 42.32s → 53.44s
 
 **Edit cue** — trim the pause between each prompt and the color change.
 **Sequences**
@@ -176,6 +182,7 @@ throw.
 **Overlay copy**
 - **Top-left state pill**: `SWAPPING`
 - **Support callout**: `Object replaced`
+- **Exact overlay timing**: 53.44s → 60.16s
 
 **Edit cue** — keep "okay that worked" and "could have been better", trim
 "not bad" if the beat runs long.

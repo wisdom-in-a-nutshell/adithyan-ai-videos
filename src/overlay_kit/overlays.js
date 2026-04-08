@@ -1072,7 +1072,7 @@ const ProcessingOverlay = ({text, durationInFrames, scale}) => {
   );
 };
 
-const StatusLeftOverlay = ({text, durationInFrames, scale}) => {
+const StatusLeftOverlay = ({text, durationInFrames, scale, topPx, leftPx}) => {
   const opacity = useFadeOpacity(durationInFrames);
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
@@ -1081,8 +1081,8 @@ const StatusLeftOverlay = ({text, durationInFrames, scale}) => {
     <div
       style={{
         position: 'absolute',
-        top: 32 * scale,
-        left: 32 * scale,
+        top: topPx ?? 32 * scale,
+        left: leftPx ?? 32 * scale,
         padding: `${10 * scale}px ${16 * scale}px`,
         borderRadius: 999,
         backgroundColor: 'rgba(0,0,0,0.65)',
