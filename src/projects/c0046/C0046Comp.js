@@ -1,5 +1,8 @@
 import React from 'react';
 import {AbsoluteFill, OffthreadVideo, Sequence, staticFile, useCurrentFrame} from 'remotion';
+import {ColdOpenSequence} from '../../components/ColdOpenSequence.js';
+import {DisclaimerOverlay} from '../../overlay_kit/overlays.js';
+import {SketchDefs} from '../../styles/sketch.js';
 import {
   BALL_SEGMENT_MASK_URL,
   FPS,
@@ -47,6 +50,8 @@ export const C0046Comp = (props) => {
 
   return (
     <AbsoluteFill style={{backgroundColor: '#000'}}>
+      <SketchDefs />
+
       <Sequence name="[S01] Source Clip" from={0}>
         <OffthreadVideo
           src={resolveAssetSrc(VIDEO_URL, assetMap)}
@@ -55,6 +60,30 @@ export const C0046Comp = (props) => {
             height: '100%',
             objectFit: 'cover',
           }}
+        />
+      </Sequence>
+
+      <Sequence
+        name="[S02] Cold Open: 100% Edited By Codex"
+        from={Math.max(0, Math.floor(TIMING.introStart * FPS))}
+        durationInFrames={Math.max(1, Math.floor((TIMING.coldOpenEnd - TIMING.introStart) * FPS))}
+      >
+        <ColdOpenSequence
+          durationInFrames={Math.max(1, Math.floor((TIMING.coldOpenEnd - TIMING.introStart) * FPS))}
+          currentTime={timeInSeconds}
+          scale={1}
+        />
+      </Sequence>
+
+      <Sequence
+        name="[S03] Disclaimer: Rendered By Codex"
+        from={Math.max(0, Math.floor(TIMING.introStart * FPS))}
+        durationInFrames={Math.max(1, Math.floor((TIMING.introEnd - TIMING.introStart) * FPS))}
+      >
+        <DisclaimerOverlay
+          text="Everything you're seeing in this video is rendered by Codex"
+          durationInFrames={Math.max(1, Math.floor((TIMING.introEnd - TIMING.introStart) * FPS))}
+          scale={1.18}
         />
       </Sequence>
 

@@ -17,7 +17,8 @@ export const DURATION_FRAMES = Math.ceil(DURATION_SECONDS * FPS);
 // Hardcode timing anchors once transcript is stable.
 export const TIMING = {
   introStart: 0,
-  introEnd: 4,
+  introEnd: 10.24,
+  coldOpenEnd: 3.6,
   ballWindowStart: 12,
   ballWindowEnd: 58,
 };
