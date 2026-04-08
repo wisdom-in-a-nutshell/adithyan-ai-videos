@@ -15,7 +15,6 @@ import {
 import {SKETCH_FONT_FAMILY, SketchDefs} from '../../styles/sketch.js';
 import {
   BALL_ALPHA_URL,
-  BALL_RECOLOR,
   DEMO_UI,
   FPS,
   OPENER_UI,
@@ -54,23 +53,43 @@ const resolveAssetSrc = (src, assetMap) => {
   return staticFile(resolved);
 };
 
-const BallTintDefs = () => {
-  const makeTint = (id, color) => (
-    <filter id={id} key={id} colorInterpolationFilters="sRGB">
-      <feFlood floodColor={color} result="flood" />
-      <feComposite in="flood" in2="SourceAlpha" operator="in" />
-    </filter>
-  );
+const getBallTreatment = (timeInSeconds, timing) => {
+  if (timeInSeconds >= timing.recolorYellow && timeInSeconds < timing.appleSwap) {
+    return {
+      glow: 'rgba(250, 204, 21, 0.95)',
+      filter:
+        'brightness(1.95) sepia(1) saturate(9) hue-rotate(0deg) contrast(1.2)',
+      opacity: 0.98,
+    };
+  }
 
-  return (
-    <svg width="0" height="0" style={{position: 'absolute'}}>
-      <defs>
-        {makeTint('ball-tint-blue', BALL_RECOLOR.blue)}
-        {makeTint('ball-tint-red', BALL_RECOLOR.red)}
-        {makeTint('ball-tint-yellow', BALL_RECOLOR.yellow)}
-      </defs>
-    </svg>
-  );
+  if (timeInSeconds >= timing.recolorRed && timeInSeconds < timing.recolorYellow) {
+    return {
+      glow: 'rgba(239, 68, 68, 0.95)',
+      filter:
+        'brightness(1.75) sepia(1) saturate(8) hue-rotate(312deg) contrast(1.22)',
+      opacity: 0.98,
+    };
+  }
+
+  if (timeInSeconds >= timing.recolorBlue && timeInSeconds < timing.recolorRed) {
+    return {
+      glow: 'rgba(59, 130, 246, 0.95)',
+      filter:
+        'brightness(1.82) sepia(1) saturate(8) hue-rotate(168deg) contrast(1.18)',
+      opacity: 0.98,
+    };
+  }
+
+  if (timeInSeconds >= timing.trackStart && timeInSeconds < timing.recolorBlue) {
+    return {
+      glow: 'rgba(255, 255, 255, 0.65)',
+      filter: 'brightness(1.18) contrast(1.12)',
+      opacity: 0.55,
+    };
+  }
+
+  return null;
 };
 
 export const C0046Comp = (props) => {
@@ -82,18 +101,7 @@ export const C0046Comp = (props) => {
   const secondsToFrames = (seconds) => Math.max(0, Math.floor(seconds * FPS));
   const beatDurationInFrames = (startSeconds, endSeconds) =>
     Math.max(1, secondsToFrames(endSeconds) - secondsToFrames(startSeconds));
-  const activeBallTintFilter = (() => {
-    if (timeInSeconds >= TIMING.recolorYellow && timeInSeconds < TIMING.appleSwap) {
-      return 'url(#ball-tint-yellow)';
-    }
-    if (timeInSeconds >= TIMING.recolorRed && timeInSeconds < TIMING.recolorYellow) {
-      return 'url(#ball-tint-red)';
-    }
-    if (timeInSeconds >= TIMING.recolorBlue && timeInSeconds < TIMING.recolorRed) {
-      return 'url(#ball-tint-blue)';
-    }
-    return null;
-  })();
+  const ballTreatment = getBallTreatment(timeInSeconds, TIMING);
 
   return (
     <AbsoluteFill
@@ -103,7 +111,6 @@ export const C0046Comp = (props) => {
       }}
     >
       <SketchDefs />
-      <BallTintDefs />
 
       <AbsoluteFill
         style={{
@@ -286,10 +293,27 @@ export const C0046Comp = (props) => {
             <OffthreadVideo
               src={resolveAssetSrc(BALL_ALPHA_URL, assetMap)}
               style={{
+                position: 'absolute',
+                inset: 0,
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
-                filter: activeBallTintFilter ?? undefined,
+                opacity: ballTreatment ? 0.4 : 0,
+              }}
+            />
+            <OffthreadVideo
+              src={resolveAssetSrc(BALL_ALPHA_URL, assetMap)}
+              style={{
+                position: 'absolute',
+                inset: 0,
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                opacity: ballTreatment?.opacity ?? 0,
+                mixBlendMode: 'screen',
+                filter: ballTreatment
+                  ? `${ballTreatment.filter} drop-shadow(0 0 10px ${ballTreatment.glow}) drop-shadow(0 0 22px ${ballTreatment.glow})`
+                  : undefined,
               }}
             />
           </AbsoluteFill>
