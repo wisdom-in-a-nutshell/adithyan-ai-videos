@@ -226,7 +226,7 @@ const AppleOverlay = ({trackPoint, assetMap}) => {
 
   const size = Math.max(176, Math.round(trackPoint.r * 2.34));
   const left = Math.round(trackPoint.cx - size / 2) - Math.round(size * 0.05);
-  const top = Math.round(trackPoint.cy - size / 2) - Math.round(size * 0.17);
+  const top = Math.round(trackPoint.cy - size / 2) - Math.round(size * 0.19);
 
   return (
     <div
@@ -243,9 +243,9 @@ const AppleOverlay = ({trackPoint, assetMap}) => {
         style={{
           position: 'absolute',
           left: '50%',
-          top: '56%',
-          width: `${size * 0.82}px`,
-          height: `${size * 0.8}px`,
+          top: '58%',
+          width: `${size * 0.86}px`,
+          height: `${size * 0.86}px`,
           transform: 'translate(-50%, -50%)',
           borderRadius: '46% 46% 52% 52%',
           backgroundColor: '#d93628',
