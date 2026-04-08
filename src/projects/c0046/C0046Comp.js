@@ -14,7 +14,7 @@ import {
 } from '../../overlay_kit/overlays.js';
 import {SKETCH_FONT_FAMILY, SketchDefs} from '../../styles/sketch.js';
 import {
-  BALL_SEGMENT_MASK_URL,
+  BALL_ALPHA_URL,
   BALL_RECOLOR,
   DEMO_UI,
   FPS,
@@ -276,29 +276,30 @@ export const C0046Comp = (props) => {
         </Sequence>
       </AbsoluteFill>
 
-      {OVERLAY_VIEW.showBallTrackingMask ? (
+      {OVERLAY_VIEW.showBallTrackingMask && ballTreatment ? (
         <Sequence name="[FX01] Ball Tracking Recolor" from={0}>
           <AbsoluteFill
             style={{
-              opacity: inBallWindow ? 1 : 0,
+              opacity: inBallWindow ? ballTreatment.opacity : 0,
               pointerEvents: 'none',
             }}
           >
-            <OffthreadVideo
-              src={resolveAssetSrc(BALL_SEGMENT_MASK_URL, assetMap)}
-              style={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                opacity: ballTreatment ? Math.min(1, ballTreatment.opacity * 0.9) : 0,
-                mixBlendMode: 'screen',
-                filter: ballTreatment
-                  ? `brightness(3.4) saturate(0) contrast(2.1) drop-shadow(0 0 10px ${ballTreatment.color}) drop-shadow(0 0 24px ${ballTreatment.color})`
-                  : undefined,
-              }}
-            />
+            {/* isolate so destination-in only clips the color fill below,
+                not the source video underneath this AbsoluteFill */}
+            <AbsoluteFill style={{isolation: 'isolate'}}>
+              <AbsoluteFill style={{backgroundColor: ballTreatment.color}} />
+              <OffthreadVideo
+                src={resolveAssetSrc(BALL_ALPHA_URL, assetMap)}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  mixBlendMode: 'destination-in',
+                }}
+              />
+            </AbsoluteFill>
           </AbsoluteFill>
         </Sequence>
       ) : null}
