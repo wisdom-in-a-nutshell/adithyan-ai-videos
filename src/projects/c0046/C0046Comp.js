@@ -265,9 +265,9 @@ const AppleOverlay = ({trackPoint, assetMap}) => {
         style={{
           position: 'absolute',
           left: '50%',
-          bottom: `${size * 0.08}px`,
-          width: `${size * 0.58}px`,
-          height: `${size * 0.26}px`,
+          bottom: `${size * 0.03}px`,
+          width: `${size * 0.72}px`,
+          height: `${size * 0.34}px`,
           transform: 'translateX(-50%)',
           borderRadius: '999px',
           backgroundColor: '#d93628',
