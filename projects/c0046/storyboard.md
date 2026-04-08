@@ -72,6 +72,11 @@ compositing, and timing effects to the transcript.
 - "throwing it up and down" 20.80–21.88
 
 **Visual**
+- **Overlay pattern for S02–S04** — reuse the existing `text-effects` language.
+  - Keep the top-left system alive through the demo beats.
+  - **Top-left state pill** = short process verb (`TRACKING`, `RECOLORING`, `SWAPPING`).
+  - **Support callout** = one short proof line under the state pill, not a long subtitle.
+  - Avoid a large top title / long bottom title system for every beat; that is not how the earlier video read.
 - **[S02] Ball alpha layer** — the SAM alpha asset, mounted as a foreground
   layer over the source video.
   - **Enters at 15.32s** (on the word "tracking"). Before this it is hidden.
@@ -85,7 +90,14 @@ compositing, and timing effects to the transcript.
 **Edit cue** — trim the pause between "start tracking it now" and the first
 throw.
 
-**Sequence** — `[S02] Ball Tracking Mask` (spans 15.32 → 53.44)
+**Overlay copy**
+- **Top-left state pill**: `TRACKING`
+- **Support callout**: `Black ball tracked`
+
+**Sequence**
+- `[S02A] Status Pill: TRACKING`
+- `[S02B] Support Callout: Black ball tracked`
+- `[S02C] Ball Tracking Mask` (spans 15.32 → 53.44)
 
 ---
 
@@ -117,8 +129,22 @@ throw.
 - No prompt chips in this beat — the color change IS the proof. Keep the
   frame clean.
 
+**Overlay copy**
+- **Top-left state pill**: `RECOLORING`
+- **Support callouts**
+  - Blue beat: `Only the ball changes`
+  - Red beat: `Tracked region updated`
+  - Yellow beat: `Mask stays stable`
+
 **Edit cue** — trim the pause between each prompt and the color change.
-**Sequences** — `[S03A] Recolor Blue`, `[S03B] Recolor Red`, `[S03C] Recolor Yellow`
+**Sequences**
+- `[S03A] Status Pill: RECOLORING`
+- `[S03B] Support Callout: Only the ball changes`
+- `[S03C] Recolor Blue`
+- `[S03D] Support Callout: Tracked region updated`
+- `[S03E] Recolor Red`
+- `[S03F] Support Callout: Mask stays stable`
+- `[S03G] Recolor Yellow`
 
 ---
 
@@ -145,12 +171,19 @@ throw.
   - The apple follows the ball alpha's centroid from 53.44 → 58.0s. From
     58.0 → 60.16 the apple is held at its last position (or fades out),
     since the SAM window ends at 58.0.
-  - One reaction beat held, chatter after trimmed.
+- One reaction beat held, chatter after trimmed.
+
+**Overlay copy**
+- **Top-left state pill**: `SWAPPING`
+- **Support callout**: `Object replaced`
 
 **Edit cue** — keep "okay that worked" and "could have been better", trim
 "not bad" if the beat runs long.
 
-**Sequence** — `[S04] Apple Swap`
+**Sequence**
+- `[S04A] Status Pill: SWAPPING`
+- `[S04B] Support Callout: Object replaced`
+- `[S04C] Apple Swap`
 
 **Open items (blockers)**
 - Apple PNG asset — I can pull one via media-toolkit or you provide a URL.
