@@ -24,6 +24,4 @@ export const TIMING = {
 
 export const DEBUG_VIEW = {
   showBallMaskOverlay: true,
-  showPersonAlphaPreview: true,
-  showPersonMaskPreview: false,
 };
