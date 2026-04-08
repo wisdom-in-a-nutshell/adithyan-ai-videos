@@ -60,6 +60,9 @@ const getBallTreatment = (timeInSeconds, timing) => {
       color: BALL_RECOLOR.yellow,
       opacity: 1,
       sizeScale: 1.32,
+      coverShiftX: -0.08,
+      coverShiftY: -0.05,
+      coverScale: 1.02,
     };
   }
 
@@ -68,6 +71,9 @@ const getBallTreatment = (timeInSeconds, timing) => {
       color: BALL_RECOLOR.red,
       opacity: 1,
       sizeScale: 1.28,
+      coverShiftX: -0.075,
+      coverShiftY: -0.04,
+      coverScale: 1.015,
     };
   }
 
@@ -76,6 +82,9 @@ const getBallTreatment = (timeInSeconds, timing) => {
       color: BALL_RECOLOR.blue,
       opacity: 1,
       sizeScale: 1.28,
+      coverShiftX: -0.03,
+      coverShiftY: -0.02,
+      coverScale: 1,
     };
   }
 
@@ -129,6 +138,9 @@ const TrackedBallOverlay = ({trackPoint, treatment}) => {
   const left = Math.round(trackPoint.cx - size / 2) - leftBias;
   const top = Math.round(trackPoint.cy - size / 2) - topBias;
   const glow = treatment.color;
+  const coverShiftX = Math.round(size * (treatment.coverShiftX ?? 0));
+  const coverShiftY = Math.round(size * (treatment.coverShiftY ?? 0));
+  const coverScale = treatment.coverScale ?? 1;
 
   return (
     <div
@@ -140,11 +152,30 @@ const TrackedBallOverlay = ({trackPoint, treatment}) => {
         height: size,
         borderRadius: '50%',
         opacity: treatment.opacity,
-        backgroundColor: treatment.color,
-        boxShadow: `0 0 8px ${glow}, 0 0 18px ${glow}`,
-        border: 'none',
+        pointerEvents: 'none',
       }}
-    />
+    >
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          transform: `translate(${coverShiftX}px, ${coverShiftY}px) scale(${coverScale})`,
+          transformOrigin: 'center center',
+          borderRadius: '50%',
+          backgroundColor: treatment.color,
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          borderRadius: '50%',
+          backgroundColor: treatment.color,
+          boxShadow: `0 0 8px ${glow}, 0 0 18px ${glow}`,
+          border: 'none',
+        }}
+      />
+    </div>
   );
 };
 
