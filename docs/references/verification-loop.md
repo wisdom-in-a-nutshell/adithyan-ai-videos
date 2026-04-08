@@ -25,7 +25,7 @@ Use short slices for each beat during iteration.
 ## 3) Deterministic Still
 
 ```bash
-npx remotion still src/index.js <CompositionId> /tmp/<id>-f0048.png --frame 48 --overwrite
+npx remotion still src/index.js <CompositionId> tmp/<id>-f0048.png --frame 48 --overwrite
 ```
 
 Use stills for quick visual A/B checks (edge cleanup, readability, spacing).
@@ -33,7 +33,7 @@ Use stills for quick visual A/B checks (edge cleanup, readability, spacing).
 ## 4) Quality Pass
 
 ```bash
-npm run render -- --comp <CompositionId> --hq --out /tmp/<CompositionId>-hq.mp4 --no-open
+npm run render -- --comp <CompositionId> --hq --out tmp/<CompositionId>-hq.mp4 --no-open
 ```
 
 Run only when a section is stable.

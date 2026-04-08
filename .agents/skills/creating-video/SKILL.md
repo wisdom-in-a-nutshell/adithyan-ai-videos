@@ -69,7 +69,7 @@ For a new video project, the “done” state is:
 - `<repo-root>/src/projects/registry.js` registration
 - Remotion code changes (new overlay primitives or a per-project composition wiring), as needed
 - `<repo-root>/docs/projects/<project-id>/tasks.md` when the work needs a durable resume point
-- A verification render + stills under `/tmp` (see `references/verification.md`)
+- A verification render + stills under repo-local `tmp/` (see `references/verification.md`)
 
 ## Workflow (Close The Loop)
 

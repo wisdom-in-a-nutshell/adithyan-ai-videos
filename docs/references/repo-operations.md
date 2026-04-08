@@ -5,7 +5,7 @@
 - `npm start`: start Remotion Studio through `scripts/studio_cached.mjs`.
 - `npm run render -- --comp <CompositionId> --from 0 --to 6`: render a short
   preview slice for iteration.
-- `npm run render -- --comp <CompositionId> --hq --out /tmp/<CompositionId>-hq.mp4 --no-open`:
+- `npm run render -- --comp <CompositionId> --hq --out tmp/<CompositionId>-hq.mp4 --no-open`:
   render a local high-quality checkpoint.
 - `npm run new:project -- --id <project-id> --title "My Video"`: scaffold both
   project folders and register the new composition.

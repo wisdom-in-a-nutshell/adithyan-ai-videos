@@ -34,7 +34,8 @@ Notes:
 - Disable caching: `npm run render -- --no-cache`
 - Force re-download: `npm run render -- --refresh`
   - See `references/asset-caching.md` for the details (sha1(url) filenames, assetMap wiring).
-- If you want a stable filename (don’t overwrite `/tmp/<comp>.mp4`), pass `--out`.
+- Default render output is repo-local `tmp/<comp>.mp4`.
+- If you want a different stable filename, pass `--out`.
 
 ### Fast Iteration (Recommended)
 
@@ -43,13 +44,13 @@ Notes:
 npm run render -- --from 0 --to 6
 
 # Half-res debug render (useful for longer sections without waiting forever)
-npm run render -- --from 116.6 --to 151.0 --scale 0.5 --crf 28 --out /tmp/TextEffects-layers-half.mp4
+npm run render -- --from 116.6 --to 151.0 --scale 0.5 --crf 28 --out tmp/TextEffects-layers-half.mp4
 
 # Full quality (disable preview defaults)
 npm run render -- --hq
 
 # Full quality with a stable output path
-npm run render -- --hq --scale 1 --crf 18 --out /tmp/TextEffects-hq.mp4
+npm run render -- --hq --scale 1 --crf 18 --out tmp/TextEffects-hq.mp4
 
 # Pick a different composition
 npm run render -- --comp ActiveSpeakerDetection --from 0 --to 3

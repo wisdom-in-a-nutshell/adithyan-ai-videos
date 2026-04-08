@@ -5,6 +5,7 @@ public/
 .cache/
 .remotion/
 .DS_Store
+tmp/
 
 # local asset cache (default is ~/.cache/win-remotion-assets, but keep safe)
 *.mp4

@@ -43,7 +43,7 @@ Usage:
 Defaults:
   --comp     TextEffects
   --preview  on (fast iteration)
-  --out      /tmp/<comp>.mp4
+  --out      tmp/<comp>.mp4
   caching    on (downloads remote URLs from src/projects/*/assets.js into ~/.cache)
 
 Preview preset:
@@ -76,7 +76,7 @@ const toSeconds = toNumber(getArg('--to'));
 const scale = toNumber(getArg('--scale')) ?? (isPreview ? 0.25 : null);
 const crf = toNumber(getArg('--crf')) ?? (isPreview ? 28 : null);
 
-const out = getArg('--out') || `/tmp/${comp}.mp4`;
+const out = getArg('--out') || path.join('tmp', `${comp}.mp4`);
 
 if (hasFlag('--help') || hasFlag('-h')) {
   printHelp();
@@ -122,6 +122,8 @@ if (!meta) {
   }
   process.exit(1);
 }
+
+fs.mkdirSync(path.dirname(path.resolve(out)), {recursive: true});
 
 const renderArgs = ['remotion', 'render', entry, comp, out, '--overwrite'];
 if (scale !== null) renderArgs.push('--scale', String(scale));

@@ -13,18 +13,18 @@ cd ~/GitHub/adithyan-ai-videos
 npm run render -- --from 0 --to 5
 
 # Longer debug render at half resolution (good for checking sync/artifacts)
-npm run render -- --from 116.6 --to 151.0 --scale 0.5 --crf 28 --out /tmp/TextEffects-layers-half.mp4
+npm run render -- --from 116.6 --to 151.0 --scale 0.5 --crf 28 --out tmp/TextEffects-layers-half.mp4
 
 # Stills (use composition ids and explicit frames)
-npx remotion still src/index.js <CompositionId> /tmp/<id>-f0048.png --frame 48
-npx remotion still src/index.js <CompositionId> /tmp/<id>-f0055.png --frame 55
-npx remotion still src/index.js <CompositionId> /tmp/<id>-f0060.png --frame 60
+npx remotion still src/index.js <CompositionId> tmp/<id>-f0048.png --frame 48
+npx remotion still src/index.js <CompositionId> tmp/<id>-f0055.png --frame 55
+npx remotion still src/index.js <CompositionId> tmp/<id>-f0060.png --frame 60
 ```
 
 Outputs:
 
-- Video: `/tmp/<CompositionId>.mp4`
-- Stills: `/tmp/<id>-f*.png`
+- Video: `tmp/<CompositionId>.mp4`
+- Stills: `tmp/<id>-f*.png`
 
 ## Checklist (What To Look For)
 
