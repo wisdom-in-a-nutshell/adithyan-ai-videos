@@ -15,12 +15,12 @@ import {SKETCH_FONT_FAMILY, SketchDefs} from '../../styles/sketch.js';
 import {
   BALL_SEGMENT_MASK_URL,
   FPS,
+  OPENER_UI,
   OVERLAY_VIEW,
   PERSON_MATTE_ALPHA_URL,
   TIMING,
   VIDEO_URL,
 } from './assets.js';
-import {TEXT_EFFECTS_UI_SCALE} from '../text-effects/ui.js';
 
 const resolveAssetSrc = (src, assetMap) => {
   if (!src || typeof src !== 'string') {
@@ -91,7 +91,7 @@ export const C0046Comp = (props) => {
           <LabelOverlay
             text="RAW RECORDING"
             durationInFrames={Math.max(1, Math.floor((TIMING.introEnd - TIMING.introStart) * FPS))}
-            scale={TEXT_EFFECTS_UI_SCALE}
+            scale={OPENER_UI.labelScale}
           />
         </Sequence>
 
@@ -103,7 +103,7 @@ export const C0046Comp = (props) => {
           <CodexCallout
             text="CODEX"
             durationInFrames={Math.max(1, Math.floor((TIMING.introEnd - TIMING.introStart) * FPS))}
-            scale={TEXT_EFFECTS_UI_SCALE}
+            scale={OPENER_UI.codexScale}
           />
         </Sequence>
 
@@ -113,10 +113,10 @@ export const C0046Comp = (props) => {
           durationInFrames={Math.max(1, Math.floor((TIMING.introEnd - TIMING.introStart) * FPS))}
         >
           <DisclaimerOverlay
-            text="Everything you're seeing in this video is rendered by Codex"
+            text="Everything that you're seeing in this video is rendered by Codex"
             durationInFrames={Math.max(1, Math.floor((TIMING.introEnd - TIMING.introStart) * FPS))}
-            scale={TEXT_EFFECTS_UI_SCALE}
-            bottomPx={140}
+            scale={OPENER_UI.disclaimerScale}
+            bottomPx={OPENER_UI.disclaimerBottomPx}
           />
         </Sequence>
       </AbsoluteFill>

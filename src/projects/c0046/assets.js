@@ -34,6 +34,13 @@ export const HERO_STAMP_TIMING = {
   codexEnd: 5.2,
 };
 
+export const OPENER_UI = {
+  labelScale: 1.56,
+  codexScale: 1.8,
+  disclaimerScale: 1.56,
+  disclaimerBottomPx: 176,
+};
+
 export const OVERLAY_VIEW = {
   showBallTrackingMask: true,
   showForegroundMatte: true,
