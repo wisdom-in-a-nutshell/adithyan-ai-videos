@@ -1,0 +1,50 @@
+{
+  "command": "media-toolkit segment video",
+  "data": {
+    "input": {
+      "media_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d2751e027b5318a42691bb206ad8bcc3eeaaa6f4d8cc1f1ff61bf52c30d50395/source.mp4",
+      "used_upload": false
+    },
+    "job": {
+      "cached": false,
+      "endpoint": "/media/segment/video",
+      "job_id": "VIDEO_SEGMENT_da16b8416bb5e398",
+      "status": "completed"
+    },
+    "result": {
+      "alpha_url": "https://storage.aipodcast.ing/cache/sam3/alpha/f1782de5-6237-4646-8dd7-b4870fa37b6b.webm",
+      "anchor": {
+        "frame_index": null,
+        "seconds": 14.0
+      },
+      "generate_alpha": true,
+      "mask_url": "https://storage.aipodcast.ing/cache/sam3/masks/ef765380-7e51-4885-a470-b02f22be37fa.mp4",
+      "max_frame_num_to_track": null,
+      "prompt": "black ball",
+      "propagation_direction": "forward",
+      "source_id": "e314dc4885f",
+      "storage_prefix": "cache",
+      "success": true,
+      "video_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d2751e027b5318a42691bb206ad8bcc3eeaaa6f4d8cc1f1ff61bf52c30d50395/source.mp4",
+      "window": {
+        "end": {
+          "frame_index": null,
+          "seconds": 58.0
+        },
+        "start": {
+          "frame_index": null,
+          "seconds": 12.0
+        }
+      }
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 1410228,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/segment-ball-12-58-alpha-status.json",
+    "request_id": "d2bf2c1296f3466c9711c5c4ce4d02ca",
+    "timestamp_utc": "2026-04-08T14:07:25.956341+00:00"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}

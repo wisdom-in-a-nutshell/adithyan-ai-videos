@@ -18,10 +18,11 @@ compositing, and timing effects to the transcript.
 - **HeroStamp** (`src/components/HeroStamp.js`) — autodetects `this video is
   100% edited by Codex` from `transcript_words.json`. Reuse as-is.
 - **DisclaimerOverlay** (`src/overlay_kit/overlays.js`) — black bottom pill.
-- **Ball mask**: SAM3.1 segmentation, window 12.0–58.0s, anchor 14.0s, prompt
-  "black ball". Mask URL:
-  `https://storage.aipodcast.ing/cache/sam3/masks/356ca01f-b943-4fb7-92bf-7653a67d594c.mp4`
-  (alpha=false — this is a mask video, not an alpha matte).
+- **Ball alpha**: SAM3.1 segmentation (with alpha), window 12.0–58.0s,
+  anchor 14.0s, prompt "black ball". VP9 alpha.webm, stacks cleanly as a
+  foreground layer.
+  - URL: `https://storage.aipodcast.ing/cache/sam3/alpha/f1782de5-6237-4646-8dd7-b4870fa37b6b.webm`
+  - Status artifact: `projects/c0046/artifacts/segment-ball-12-58-alpha-status.json`
 
 ---
 
@@ -71,15 +72,15 @@ compositing, and timing effects to the transcript.
 - "throwing it up and down" 20.80–21.88
 
 **Visual**
-- **[S02] Ball mask** — the SAM mask asset, mounted as a recoloring layer
-  over the source video.
+- **[S02] Ball alpha layer** — the SAM alpha asset, mounted as a foreground
+  layer over the source video.
   - **Enters at 15.32s** (on the word "tracking"). Before this it is hidden.
-  - **Default tint**: none. The mask is invisible-but-loaded from 15.32 →
-    33.72 (the mask just lets Codex "know" where the ball is, but no color
-    change yet). Alternative: a subtle dashed outline during this window so
-    the viewer sees that tracking is happening. Decision deferred — first
-    preview will show whether the outline is needed.
-  - Mask stays active until S04 apple swap at 53.44s.
+  - **Default tint**: none. The alpha is invisible-but-loaded from 15.32 →
+    33.72 (Codex "knows" where the ball is, but no visible change yet).
+    Alternative: a subtle dashed outline during this window so the viewer
+    sees that tracking is happening. Decision deferred — first preview will
+    show whether the outline is needed.
+  - Stays active until S04 apple swap at 53.44s.
 
 **Edit cue** — trim the pause between "start tracking it now" and the first
 throw.
@@ -105,7 +106,10 @@ throw.
 - "move it like that" 45.68–46.16 (yellow holds through this)
 
 **Visual**
-- **[S03] Ball recolor** — the ball mask is tinted to match the spoken color.
+- **[S03] Ball recolor** — a colored fill is clipped by the ball alpha so
+  only the ball region is tinted. The ball's original shading shows through
+  via `mix-blend-mode: multiply` (or similar), so it reads as a coloured
+  ball, not a flat blob.
   - Color changes land **on the word**, not before. Use a 0.08s fade between
     colors (snappy but not jarring).
   - Colors (tentative): blue `#3b82f6`, red `#ef4444`, yellow `#facc15`.
@@ -134,14 +138,13 @@ throw.
 - "could have been better" 57.20–57.68 (keep one reaction line)
 
 **Visual**
-- **[S04] Apple swap** — at 53.44s, the tinted ball mask is replaced by an
-  apple image composited at the mask's position.
+- **[S04] Apple swap** — at 53.44s, the tinted ball alpha is replaced by an
+  apple image composited at the alpha centroid.
   - Source image: a simple apple PNG with transparent background
     (`projects/c0046/apple.png` — not yet sourced; need to fetch).
-  - The apple should track the ball's position for the rest of the beat.
-    Since the SAM mask window ends at 58.0s, the apple follows the mask
-    centroid from 53.44 → 58.0. From 58.0 → 60.16 the apple is held at its
-    last position (or fades out).
+  - The apple follows the ball alpha's centroid from 53.44 → 58.0s. From
+    58.0 → 60.16 the apple is held at its last position (or fades out),
+    since the SAM window ends at 58.0.
   - One reaction beat held, chatter after trimmed.
 
 **Edit cue** — keep "okay that worked" and "could have been better", trim
@@ -181,9 +184,9 @@ preview render. Narration-only for now; current timestamps from v1:
 ## Constants to add to `src/projects/c0046/assets.js`
 
 ```js
-// SAM mask for the black ball
-export const BALL_MASK_URL = 'https://storage.aipodcast.ing/cache/sam3/masks/356ca01f-b943-4fb7-92bf-7653a67d594c.mp4';
-export const BALL_MASK_WINDOW = {start: 12.0, end: 58.0, anchor: 14.0};
+// SAM alpha for the black ball (VP9 alpha.webm)
+export const BALL_ALPHA_URL = 'https://storage.aipodcast.ing/cache/sam3/alpha/f1782de5-6237-4646-8dd7-b4870fa37b6b.webm';
+export const BALL_ALPHA_WINDOW = {start: 12.0, end: 58.0, anchor: 14.0};
 
 // Apple image (TBD — fetch or provide URL)
 export const APPLE_IMAGE_URL = null;
