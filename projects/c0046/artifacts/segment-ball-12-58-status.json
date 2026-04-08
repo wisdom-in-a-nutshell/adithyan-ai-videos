@@ -1,0 +1,139 @@
+{
+  "command": "media-toolkit status",
+  "data": {
+    "input": null,
+    "job": {
+      "cached": false,
+      "cancel_requested_at": null,
+      "canceled_at": null,
+      "completed_at": "2026-04-08T13:09:24.774000Z",
+      "created_at": "2026-04-08T13:02:52.937000Z",
+      "duration_seconds": 389.940648,
+      "endpoint": "segment_video_media",
+      "error": null,
+      "input_params": {
+        "anchor": {
+          "frame_index": null,
+          "seconds": 14.0
+        },
+        "channel_name": "MISC",
+        "generate_alpha": false,
+        "max_frame_num_to_track": null,
+        "media_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d2751e027b5318a42691bb206ad8bcc3eeaaa6f4d8cc1f1ff61bf52c30d50395/source.mp4",
+        "prompt": "black ball",
+        "propagation_direction": "forward",
+        "source_id": null,
+        "storage_prefix": "cache",
+        "use_cache": true,
+        "window": {
+          "end": {
+            "frame_index": null,
+            "seconds": 58.0
+          },
+          "start": {
+            "frame_index": null,
+            "seconds": 12.0
+          }
+        }
+      },
+      "job_completed_at": "2026-04-08T13:09:24.868000Z",
+      "job_duration_seconds": 391.931,
+      "job_id": "VIDEO_SEGMENT_b02188bab95ae08b",
+      "job_type": "VIDEO_SEGMENTATION",
+      "queue_dequeue_count": 1,
+      "queue_max_dequeue_count": 3,
+      "request_data": {
+        "input_params": {
+          "anchor": {
+            "frame_index": null,
+            "seconds": 14.0
+          },
+          "channel_name": "MISC",
+          "generate_alpha": false,
+          "max_frame_num_to_track": null,
+          "media_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d2751e027b5318a42691bb206ad8bcc3eeaaa6f4d8cc1f1ff61bf52c30d50395/source.mp4",
+          "prompt": "black ball",
+          "propagation_direction": "forward",
+          "source_id": null,
+          "storage_prefix": "cache",
+          "use_cache": true,
+          "window": {
+            "end": {
+              "frame_index": null,
+              "seconds": 58.0
+            },
+            "start": {
+              "frame_index": null,
+              "seconds": 12.0
+            }
+          }
+        }
+      },
+      "result": {
+        "alpha_url": null,
+        "anchor": {
+          "frame_index": null,
+          "seconds": 14.0
+        },
+        "generate_alpha": false,
+        "mask_url": "https://storage.aipodcast.ing/cache/sam3/masks/356ca01f-b943-4fb7-92bf-7653a67d594c.mp4",
+        "max_frame_num_to_track": null,
+        "prompt": "black ball",
+        "propagation_direction": "forward",
+        "source_id": "e314dc4885f",
+        "storage_prefix": "cache",
+        "success": true,
+        "video_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d2751e027b5318a42691bb206ad8bcc3eeaaa6f4d8cc1f1ff61bf52c30d50395/source.mp4",
+        "window": {
+          "end": {
+            "frame_index": null,
+            "seconds": 58.0
+          },
+          "start": {
+            "frame_index": null,
+            "seconds": 12.0
+          }
+        }
+      },
+      "should_retry": false,
+      "started_at": "2026-04-08T13:02:54.834000Z",
+      "status": "completed",
+      "updated_at": "2026-04-08T13:09:24.868000Z"
+    },
+    "result": {
+      "alpha_url": null,
+      "anchor": {
+        "frame_index": null,
+        "seconds": 14.0
+      },
+      "generate_alpha": false,
+      "mask_url": "https://storage.aipodcast.ing/cache/sam3/masks/356ca01f-b943-4fb7-92bf-7653a67d594c.mp4",
+      "max_frame_num_to_track": null,
+      "prompt": "black ball",
+      "propagation_direction": "forward",
+      "source_id": "e314dc4885f",
+      "storage_prefix": "cache",
+      "success": true,
+      "video_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d2751e027b5318a42691bb206ad8bcc3eeaaa6f4d8cc1f1ff61bf52c30d50395/source.mp4",
+      "window": {
+        "end": {
+          "frame_index": null,
+          "seconds": 58.0
+        },
+        "start": {
+          "frame_index": null,
+          "seconds": 12.0
+        }
+      }
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 731,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/segment-ball-12-58-status.json",
+    "request_id": "23a0b64965a5411891194a636b6659bd",
+    "timestamp_utc": "2026-04-08T13:09:31.611279+00:00"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}

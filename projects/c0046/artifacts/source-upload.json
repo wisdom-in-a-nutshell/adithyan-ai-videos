@@ -1,0 +1,28 @@
+{
+  "command": "media-toolkit upload",
+  "data": {
+    "input": {
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/public/imports/c0046/source.mp4",
+      "used_upload": true
+    },
+    "result": null,
+    "upload": {
+      "cached": true,
+      "content_sha256": "d2751e027b5318a42691bb206ad8bcc3eeaaa6f4d8cc1f1ff61bf52c30d50395",
+      "destination_path": "agent-media-toolkit/by-hash/d2751e027b5318a42691bb206ad8bcc3eeaaa6f4d8cc1f1ff61bf52c30d50395/source.mp4",
+      "file_name": "source.mp4",
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/public/imports/c0046/source.mp4",
+      "storage_prefix": "share",
+      "url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d2751e027b5318a42691bb206ad8bcc3eeaaa6f4d8cc1f1ff61bf52c30d50395/source.mp4"
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 850,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/source-upload.json",
+    "request_id": "4f00044f31a04aa0b90c4f7f91dedd6e",
+    "timestamp_utc": "2026-04-08T13:02:38.294364+00:00"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}

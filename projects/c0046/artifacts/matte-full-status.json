@@ -1,0 +1,81 @@
+{
+  "command": "media-toolkit status",
+  "data": {
+    "input": null,
+    "job": {
+      "cached": false,
+      "cancel_requested_at": null,
+      "canceled_at": null,
+      "completed_at": "2026-04-08T13:17:44.660000Z",
+      "created_at": "2026-04-08T13:02:53.047000Z",
+      "duration_seconds": 889.413033,
+      "endpoint": "matte_media",
+      "error": null,
+      "input_params": {
+        "channel_name": "MISC",
+        "max_seconds": null,
+        "media_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d2751e027b5318a42691bb206ad8bcc3eeaaa6f4d8cc1f1ff61bf52c30d50395/source.mp4",
+        "prompt": "person",
+        "source_id": null,
+        "storage_prefix": "cache",
+        "use_cache": true
+      },
+      "job_completed_at": "2026-04-08T13:17:44.753000Z",
+      "job_duration_seconds": 891.706,
+      "job_id": "VIDEO_MATTING_132502d6aa76fd79",
+      "job_type": "VIDEO_MATTING",
+      "queue_dequeue_count": 1,
+      "queue_max_dequeue_count": 3,
+      "request_data": {
+        "input_params": {
+          "channel_name": "MISC",
+          "max_seconds": null,
+          "media_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d2751e027b5318a42691bb206ad8bcc3eeaaa6f4d8cc1f1ff61bf52c30d50395/source.mp4",
+          "prompt": "person",
+          "source_id": null,
+          "storage_prefix": "cache",
+          "use_cache": true
+        }
+      },
+      "result": {
+        "alpha_url": "https://storage.aipodcast.ing/cache/matanyone/alpha/85deb882-444b-4304-ba4a-f73196e4dd9f.webm",
+        "error_message": null,
+        "first_frame_alpha_url": null,
+        "first_frame_mask_url": "https://storage.aipodcast.ing/cache/sam3/masks/ec1878ab-b51e-40b1-866e-4b20e63fe736.png",
+        "mask_url": "https://storage.aipodcast.ing/cache/matanyone/masks/4bd18a0e-e9ca-4f3b-8f3c-de0d32b3fcd6.mp4",
+        "max_seconds": null,
+        "prompt": "person",
+        "source_id": "e314dc4885f",
+        "stage": null,
+        "success": true,
+        "video_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d2751e027b5318a42691bb206ad8bcc3eeaaa6f4d8cc1f1ff61bf52c30d50395/source.mp4"
+      },
+      "should_retry": false,
+      "started_at": "2026-04-08T13:02:55.247000Z",
+      "status": "completed",
+      "updated_at": "2026-04-08T13:17:44.753000Z"
+    },
+    "result": {
+      "alpha_url": "https://storage.aipodcast.ing/cache/matanyone/alpha/85deb882-444b-4304-ba4a-f73196e4dd9f.webm",
+      "error_message": null,
+      "first_frame_alpha_url": null,
+      "first_frame_mask_url": "https://storage.aipodcast.ing/cache/sam3/masks/ec1878ab-b51e-40b1-866e-4b20e63fe736.png",
+      "mask_url": "https://storage.aipodcast.ing/cache/matanyone/masks/4bd18a0e-e9ca-4f3b-8f3c-de0d32b3fcd6.mp4",
+      "max_seconds": null,
+      "prompt": "person",
+      "source_id": "e314dc4885f",
+      "stage": null,
+      "success": true,
+      "video_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d2751e027b5318a42691bb206ad8bcc3eeaaa6f4d8cc1f1ff61bf52c30d50395/source.mp4"
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 485720,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/matte-full-status.json",
+    "request_id": "aaaa3340189e4971aae4e97c11065bf8",
+    "timestamp_utc": "2026-04-08T13:09:39.652533+00:00"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}
