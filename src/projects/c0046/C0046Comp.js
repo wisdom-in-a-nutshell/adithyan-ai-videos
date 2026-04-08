@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   AbsoluteFill,
+  Img,
   OffthreadVideo,
   Sequence,
   staticFile,
@@ -15,6 +16,7 @@ import {
 } from '../../overlay_kit/overlays.js';
 import {SKETCH_FONT_FAMILY, SketchDefs} from '../../styles/sketch.js';
 import {
+  APPLE_IMAGE_URL,
   BALL_RECOLOR,
   DEMO_UI,
   FPS,
@@ -217,14 +219,14 @@ const TrackedBallOverlay = ({trackPoint, treatment}) => {
   );
 };
 
-const AppleOverlay = ({trackPoint}) => {
+const AppleOverlay = ({trackPoint, assetMap}) => {
   if (!trackPoint) {
     return null;
   }
 
-  const size = Math.max(194, Math.round(trackPoint.r * 2.62));
-  const left = Math.round(trackPoint.cx - size / 2) - Math.round(size * 0.045);
-  const top = Math.round(trackPoint.cy - size / 2) - Math.round(size * 0.135);
+  const size = Math.max(206, Math.round(trackPoint.r * 2.78));
+  const left = Math.round(trackPoint.cx - size / 2) - Math.round(size * 0.05);
+  const top = Math.round(trackPoint.cy - size / 2) - Math.round(size * 0.14);
 
   return (
     <div
@@ -240,73 +242,35 @@ const AppleOverlay = ({trackPoint}) => {
       <div
         style={{
           position: 'absolute',
-          left: `${size * 0.19}px`,
-          top: `${size * 0.12}px`,
-          width: `${size * 0.31}px`,
-          height: `${size * 0.31}px`,
-          borderRadius: '50%',
-          backgroundColor: '#ef4538',
+          left: '50%',
+          top: '58%',
+          width: `${size * 0.86}px`,
+          height: `${size * 0.86}px`,
+          transform: 'translate(-50%, -50%)',
+          borderRadius: '46% 46% 52% 52%',
+          backgroundColor: '#d93628',
         }}
       />
-      <div
+      <Img
+        src={resolveAssetSrc(APPLE_IMAGE_URL, assetMap)}
         style={{
           position: 'absolute',
-          right: `${size * 0.19}px`,
-          top: `${size * 0.12}px`,
-          width: `${size * 0.31}px`,
-          height: `${size * 0.31}px`,
-          borderRadius: '50%',
-          backgroundColor: '#e23b2f',
+          inset: 0,
+          width: size,
+          height: size,
+          objectFit: 'contain',
         }}
       />
       <div
         style={{
           position: 'absolute',
           left: '50%',
-          bottom: `${size * 0.02}px`,
-          width: `${size * 0.82}px`,
-          height: `${size * 0.74}px`,
+          bottom: `${size * 0.03}px`,
+          width: `${size * 0.72}px`,
+          height: `${size * 0.34}px`,
           transform: 'translateX(-50%)',
-          borderRadius: '48% 48% 52% 52%',
+          borderRadius: '999px',
           backgroundColor: '#d93628',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          left: `${size * 0.47}px`,
-          top: `${size * 0.03}px`,
-          width: `${size * 0.07}px`,
-          height: `${size * 0.16}px`,
-          borderRadius: '999px',
-          backgroundColor: '#71411b',
-          transform: 'rotate(8deg)',
-          transformOrigin: 'bottom center',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          left: `${size * 0.52}px`,
-          top: `${size * 0.02}px`,
-          width: `${size * 0.21}px`,
-          height: `${size * 0.11}px`,
-          borderRadius: '999px 999px 999px 0',
-          backgroundColor: '#4fb44a',
-          transform: 'rotate(-24deg)',
-          transformOrigin: 'left bottom',
-        }}
-      />
-      <div
-        style={{
-          position: 'absolute',
-          left: `${size * 0.3}px`,
-          top: `${size * 0.22}px`,
-          width: `${size * 0.14}px`,
-          height: `${size * 0.07}px`,
-          borderRadius: '999px',
-          backgroundColor: 'rgba(255, 255, 255, 0.2)',
-          transform: 'rotate(-24deg)',
         }}
       />
     </div>
@@ -528,7 +492,7 @@ export const C0046Comp = (props) => {
               zIndex: 245,
             }}
           >
-            <AppleOverlay trackPoint={ballTrackPoint} />
+            <AppleOverlay trackPoint={ballTrackPoint} assetMap={assetMap} />
           </AbsoluteFill>
         </Sequence>
       ) : null}
