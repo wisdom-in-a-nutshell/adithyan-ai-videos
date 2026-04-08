@@ -11,10 +11,9 @@ import {HeroStamp} from '../../components/HeroStamp.js';
 import transcriptWords from './transcript_words.json';
 import {
   CodexCallout,
-  DisclaimerOverlay,
   LabelOverlay,
 } from '../../overlay_kit/overlays.js';
-import {SketchDefs} from '../../styles/sketch.js';
+import {SKETCH_FONT_FAMILY, SketchDefs} from '../../styles/sketch.js';
 import {
   BALL_SEGMENT_MASK_URL,
   FPS,
@@ -85,7 +84,12 @@ export const C0046Comp = (props) => {
   );
 
   return (
-    <AbsoluteFill style={{backgroundColor: '#000'}}>
+    <AbsoluteFill
+      style={{
+        backgroundColor: '#000',
+        fontFamily: SKETCH_FONT_FAMILY,
+      }}
+    >
       <SketchDefs />
 
       <AbsoluteFill
@@ -94,6 +98,7 @@ export const C0046Comp = (props) => {
             cameraTranslateY
           )}px, 0) scale(${cameraScale})`,
           transformOrigin: '50% 50%',
+          zIndex: 180,
         }}
       >
         <Sequence name="[S01] Source Clip" from={0}>
@@ -148,17 +153,6 @@ export const C0046Comp = (props) => {
           />
         </Sequence>
 
-        <Sequence
-          name="[S05] Disclaimer: Rendered By Codex"
-          from={Math.max(0, Math.floor(TIMING.introStart * FPS))}
-          durationInFrames={Math.max(1, Math.floor((TIMING.introEnd - TIMING.introStart) * FPS))}
-        >
-          <DisclaimerOverlay
-            text="Everything you're seeing in this video is rendered by Codex"
-            durationInFrames={Math.max(1, Math.floor((TIMING.introEnd - TIMING.introStart) * FPS))}
-            scale={TEXT_EFFECTS_UI_SCALE}
-          />
-        </Sequence>
       </AbsoluteFill>
 
       {OVERLAY_VIEW.showBallTrackingMask ? (
