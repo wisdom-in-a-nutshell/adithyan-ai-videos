@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   AbsoluteFill,
-  Img,
   OffthreadVideo,
   Sequence,
   staticFile,
@@ -16,7 +15,6 @@ import {
 } from '../../overlay_kit/overlays.js';
 import {SKETCH_FONT_FAMILY, SketchDefs} from '../../styles/sketch.js';
 import {
-  APPLE_IMAGE_URL,
   BALL_RECOLOR,
   DEMO_UI,
   FPS,
@@ -219,7 +217,7 @@ const TrackedBallOverlay = ({trackPoint, treatment}) => {
   );
 };
 
-const AppleOverlay = ({trackPoint, assetMap}) => {
+const AppleOverlay = ({trackPoint}) => {
   if (!trackPoint) {
     return null;
   }
@@ -242,35 +240,73 @@ const AppleOverlay = ({trackPoint, assetMap}) => {
       <div
         style={{
           position: 'absolute',
-          left: '50%',
-          top: '58%',
-          width: `${size * 0.86}px`,
-          height: `${size * 0.86}px`,
-          transform: 'translate(-50%, -50%)',
-          borderRadius: '46% 46% 52% 52%',
-          backgroundColor: '#d93628',
+          left: `${size * 0.14}px`,
+          top: `${size * 0.18}px`,
+          width: `${size * 0.42}px`,
+          height: `${size * 0.42}px`,
+          borderRadius: '50%',
+          backgroundColor: '#ef4538',
         }}
       />
-      <Img
-        src={resolveAssetSrc(APPLE_IMAGE_URL, assetMap)}
+      <div
         style={{
           position: 'absolute',
-          inset: 0,
-          width: size,
-          height: size,
-          objectFit: 'contain',
+          right: `${size * 0.14}px`,
+          top: `${size * 0.18}px`,
+          width: `${size * 0.42}px`,
+          height: `${size * 0.42}px`,
+          borderRadius: '50%',
+          backgroundColor: '#e23b2f',
         }}
       />
       <div
         style={{
           position: 'absolute',
           left: '50%',
-          bottom: `${size * 0.03}px`,
+          bottom: `${size * 0.07}px`,
           width: `${size * 0.72}px`,
-          height: `${size * 0.34}px`,
+          height: `${size * 0.48}px`,
           transform: 'translateX(-50%)',
           borderRadius: '999px',
           backgroundColor: '#d93628',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          left: `${size * 0.46}px`,
+          top: `${size * 0.03}px`,
+          width: `${size * 0.07}px`,
+          height: `${size * 0.16}px`,
+          borderRadius: '999px',
+          backgroundColor: '#71411b',
+          transform: 'rotate(8deg)',
+          transformOrigin: 'bottom center',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          left: `${size * 0.52}px`,
+          top: `${size * 0.02}px`,
+          width: `${size * 0.21}px`,
+          height: `${size * 0.11}px`,
+          borderRadius: '999px 999px 999px 0',
+          backgroundColor: '#4fb44a',
+          transform: 'rotate(-24deg)',
+          transformOrigin: 'left bottom',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          left: `${size * 0.27}px`,
+          top: `${size * 0.24}px`,
+          width: `${size * 0.16}px`,
+          height: `${size * 0.08}px`,
+          borderRadius: '999px',
+          backgroundColor: 'rgba(255, 255, 255, 0.2)',
+          transform: 'rotate(-24deg)',
         }}
       />
     </div>
