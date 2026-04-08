@@ -92,6 +92,8 @@ export const C0046Comp = (props) => {
             text="RAW RECORDING"
             durationInFrames={Math.max(1, Math.floor((TIMING.introEnd - TIMING.introStart) * FPS))}
             scale={OPENER_UI.labelScale}
+            topPx={OPENER_UI.labelTopPx}
+            leftPx={OPENER_UI.leftPx}
           />
         </Sequence>
 
@@ -104,6 +106,8 @@ export const C0046Comp = (props) => {
             text="CODEX"
             durationInFrames={Math.max(1, Math.floor((TIMING.introEnd - TIMING.introStart) * FPS))}
             scale={OPENER_UI.codexScale}
+            topPx={OPENER_UI.codexTopPx}
+            leftPx={OPENER_UI.leftPx}
           />
         </Sequence>
 

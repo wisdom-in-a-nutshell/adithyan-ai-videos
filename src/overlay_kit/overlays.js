@@ -369,7 +369,7 @@ const SubtitleOverlay = ({text, durationInFrames, scale}) => {
   );
 };
 
-const LabelOverlay = ({text, durationInFrames, scale}) => {
+const LabelOverlay = ({text, durationInFrames, scale, topPx, leftPx}) => {
   const opacity = useFadeOpacity(durationInFrames);
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
@@ -380,8 +380,8 @@ const LabelOverlay = ({text, durationInFrames, scale}) => {
     <div
       style={{
         position: 'absolute',
-        top: 32 * scale,
-        left: 32 * scale,
+        top: topPx ?? 32 * scale,
+        left: leftPx ?? 32 * scale,
         height: pillHeight,
         padding: `${10 * scale}px ${16 * scale}px`,
         borderRadius: 999,
@@ -413,7 +413,7 @@ const LabelOverlay = ({text, durationInFrames, scale}) => {
   );
 };
 
-const CodexCallout = ({text, logo, durationInFrames, scale}) => {
+const CodexCallout = ({text, logo, durationInFrames, scale, topPx, leftPx}) => {
   const opacity = useFadeOpacity(durationInFrames);
   const pillHeight = 44 * scale;
   const labelFontSize = 21 * scale;
@@ -421,8 +421,8 @@ const CodexCallout = ({text, logo, durationInFrames, scale}) => {
     <div
       style={{
         position: 'absolute',
-        top: 88 * scale,
-        left: 32 * scale,
+        top: topPx ?? 88 * scale,
+        left: leftPx ?? 32 * scale,
         height: pillHeight,
         padding: `${10 * scale}px ${16 * scale}px`,
         borderRadius: 16 * scale,

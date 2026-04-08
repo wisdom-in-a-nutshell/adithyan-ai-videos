@@ -39,6 +39,9 @@ export const OPENER_UI = {
   codexScale: 1.8,
   disclaimerScale: 1.56,
   disclaimerBottomPx: 176,
+  leftPx: 56,
+  labelTopPx: 56,
+  codexTopPx: 132,
 };
 
 export const OVERLAY_VIEW = {
