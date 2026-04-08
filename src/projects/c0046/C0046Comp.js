@@ -59,6 +59,7 @@ const getBallTreatment = (timeInSeconds, timing) => {
     return {
       color: BALL_RECOLOR.yellow,
       opacity: 1,
+      sizeScale: 1.04,
     };
   }
 
@@ -66,6 +67,7 @@ const getBallTreatment = (timeInSeconds, timing) => {
     return {
       color: BALL_RECOLOR.red,
       opacity: 1,
+      sizeScale: 1,
     };
   }
 
@@ -73,6 +75,7 @@ const getBallTreatment = (timeInSeconds, timing) => {
     return {
       color: BALL_RECOLOR.blue,
       opacity: 1,
+      sizeScale: 1,
     };
   }
 
@@ -80,6 +83,7 @@ const getBallTreatment = (timeInSeconds, timing) => {
     return {
       color: '#ffffff',
       opacity: 0.72,
+      sizeScale: 0.98,
     };
   }
 
@@ -119,7 +123,7 @@ const TrackedBallOverlay = ({trackPoint, treatment}) => {
     return null;
   }
 
-  const size = Math.max(104, Math.round(trackPoint.r * 1.54));
+  const size = Math.max(104, Math.round(trackPoint.r * 1.54 * (treatment.sizeScale ?? 1)));
   const leftBias = Math.round(size * 0.034);
   const topBias = Math.round(size * 0.038);
   const left = Math.round(trackPoint.cx - size / 2) - leftBias;
