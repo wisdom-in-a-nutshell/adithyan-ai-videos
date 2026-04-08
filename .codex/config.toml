@@ -3,3 +3,8 @@
 
 model = "gpt-5.4"
 model_reasoning_effort = "high"
+
+[agents.visual_reviewer]
+description = "Read-only reviewer for visual work such as screenshots, layouts, hierarchy, and clarity."
+config_file = "agents/visual_reviewer.toml"
+nickname_candidates = ["Lens", "Critic", "Review"]
