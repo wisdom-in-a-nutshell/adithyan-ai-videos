@@ -119,9 +119,9 @@ const TrackedBallOverlay = ({trackPoint, treatment}) => {
     return null;
   }
 
-  const size = Math.max(102, Math.round(trackPoint.r * 1.5));
-  const leftBias = Math.round(size * 0.028);
-  const topBias = Math.round(size * 0.032);
+  const size = Math.max(104, Math.round(trackPoint.r * 1.54));
+  const leftBias = Math.round(size * 0.034);
+  const topBias = Math.round(size * 0.038);
   const left = Math.round(trackPoint.cx - size / 2) - leftBias;
   const top = Math.round(trackPoint.cy - size / 2) - topBias;
   const glow = treatment.color;
