@@ -119,7 +119,7 @@ const TrackedBallOverlay = ({trackPoint, treatment}) => {
     return null;
   }
 
-  const size = Math.max(92, Math.round(trackPoint.r * 1.35));
+  const size = Math.max(98, Math.round(trackPoint.r * 1.46));
   const left = Math.round(trackPoint.cx - size / 2);
   const top = Math.round(trackPoint.cy - size / 2);
   const glow = treatment.color;
@@ -134,9 +134,9 @@ const TrackedBallOverlay = ({trackPoint, treatment}) => {
         height: size,
         borderRadius: '50%',
         opacity: treatment.opacity,
-        background: `radial-gradient(circle at 34% 30%, rgba(255,255,255,0.95) 0%, ${treatment.color} 34%, ${treatment.color} 66%, rgba(0,0,0,0.22) 100%)`,
-        boxShadow: `0 0 20px ${glow}, 0 0 42px ${glow}`,
-        border: `3px solid rgba(255,255,255,0.45)`,
+        background: `radial-gradient(circle at 34% 30%, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.7) 12%, ${treatment.color} 28%, ${treatment.color} 82%, rgba(255,255,255,0.22) 100%)`,
+        boxShadow: `0 0 14px ${glow}, 0 0 30px ${glow}`,
+        border: `1.5px solid rgba(255,255,255,0.18)`,
       }}
     />
   );
