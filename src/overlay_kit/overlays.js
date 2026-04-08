@@ -947,13 +947,13 @@ const ToolFlowOverlay = ({items, durationInFrames, scale, currentTime}) => {
   );
 };
 
-const DisclaimerOverlay = ({text, durationInFrames, scale}) => {
+const DisclaimerOverlay = ({text, durationInFrames, scale, bottomPx}) => {
   const opacity = useFadeOpacity(durationInFrames);
   return (
     <div
       style={{
         position: 'absolute',
-        bottom: 48 * scale,
+        bottom: bottomPx ?? 48 * scale,
         left: 0,
         right: 0,
         textAlign: 'center',
