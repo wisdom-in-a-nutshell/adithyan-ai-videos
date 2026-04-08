@@ -1,6 +1,13 @@
 import React from 'react';
 import {AbsoluteFill, OffthreadVideo, Sequence, staticFile, useCurrentFrame} from 'remotion';
-import {BALL_SEGMENT_MASK_URL, DEBUG_VIEW, FPS, TIMING, VIDEO_URL} from './assets.js';
+import {
+  BALL_SEGMENT_MASK_URL,
+  FPS,
+  OVERLAY_VIEW,
+  PERSON_MATTE_ALPHA_URL,
+  TIMING,
+  VIDEO_URL,
+} from './assets.js';
 
 const resolveAssetSrc = (src, assetMap) => {
   if (!src || typeof src !== 'string') {
@@ -51,8 +58,8 @@ export const C0046Comp = (props) => {
         />
       </Sequence>
 
-      {DEBUG_VIEW.showBallMaskOverlay ? (
-        <Sequence name="[D01] Ball Segment Overlay" from={0}>
+      {OVERLAY_VIEW.showBallTrackingMask ? (
+        <Sequence name="[FX01] Ball Tracking Mask" from={0}>
           <AbsoluteFill
             style={{
               opacity: inBallWindow ? 0.52 : 0,
@@ -67,6 +74,21 @@ export const C0046Comp = (props) => {
                 objectFit: 'cover',
                 mixBlendMode: 'screen',
                 filter: 'contrast(1.25) brightness(1.15)',
+              }}
+            />
+          </AbsoluteFill>
+        </Sequence>
+      ) : null}
+
+      {OVERLAY_VIEW.showForegroundMatte ? (
+        <Sequence name="[FX02] Foreground Matte" from={0}>
+          <AbsoluteFill style={{pointerEvents: 'none'}}>
+            <OffthreadVideo
+              src={resolveAssetSrc(PERSON_MATTE_ALPHA_URL, assetMap)}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
               }}
             />
           </AbsoluteFill>

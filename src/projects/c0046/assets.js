@@ -22,6 +22,7 @@ export const TIMING = {
   ballWindowEnd: 58,
 };
 
-export const DEBUG_VIEW = {
-  showBallMaskOverlay: true,
+export const OVERLAY_VIEW = {
+  showBallTrackingMask: true,
+  showForegroundMatte: true,
 };
