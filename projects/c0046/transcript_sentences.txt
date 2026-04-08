@@ -1,0 +1,57 @@
+Hi, my name is Adi, and everything that you're about to see in this video is 100% edited by Codex, a coding agent.
+And in this video, we are going to use it as a video editing agent.
+So I have a ball, a black ball in my hand, and I'm going to ask Codex to start tracking it now.
+that it's tracking it, I'm going to start throwing it up and down.
+And I'm going to ask it to change the color of the ball.
+Codex, please change the color of the ball to blue.
+Now, can you change it to red?
+Let's do yellow, maybe.
+And I'm just going to move it like that.
+Now that that's working, now I'm going to ask it to change this to an apple, maybe.
+Okay, that worked.
+Could have been better.
+Not bad.
+Now, this black ball is an object.
+I myself am an object too, so I could ask it to detect me.
+And then once it detects me, crop me out, and then it could start adding interesting backgrounds behind me.
+Or I could even, since I'm cropped out, I could also add like a text in between me and the background.
+Great.
+That works.
+Now I'm going to just briefly talk about how all of this works.
+So we use Codex to completely edit these videos to bring in all the effects.
+Codex is popularly known as a coding agent tool.
+But you don't have to necessarily use it only for coding.
+You can use for different applications.
+For example, video editing here.
+Why?
+If you look at Codex, it's a harness.
+What do I mean by harness?
+Harness is you have the model and then the harness tells, okay, here are the tools that are available to you.
+And then it sort of runs this in a loop and you can steer this from outside using your prompt and instructions.
+And By default, Codex comes with coding tools like to edit files and things like that.
+But if we can swap that with video editing tools, then we can use it to do interesting things like we just did.
+So in the specific video, I used two specific tools.
+One is called a SAM 3.1 and the other one was called Math 812.
+So SAM 3.1 was used to kind of track objects.
+and it can give you like a segment mask.
+And then math anyone is to kind of get an object boundary around myself.
+And then once you have those masks, codec by default is smart enough to use the inbuilt tools that are there in my machine like FFM back to kind of put this all together well.
+I also transcribe what I'm speaking right now, so it kind of knows the boundaries of that to bring in, the effects and that to stop.
+And of course, none of this is working in real time.
+Usually I see some of the tools in online.
+For example, in this case, SAM 3.1 was released one or two weeks ago, and I just wanted to try it.
+And I roughly have an idea or a storyboard in my head, and I typically just record in front of a green screen like this.
+I'll link the original video.
+You can see it.
+And then once I record it, I just go to Codex.
+I typically boot up my terminal and I just tell, hey, here are the tools that I give you access to and here's what I have in my mind and I want you to do it.
+And typically we go back and forth.
+I've talked about this earlier.
+Earlier you take a couple of hours to do these videos, but now I have sort of a workflow.
+I have nice skills and stuff, so it's come under an hour or 45 minutes to spin this up.
+Yeah, I try a lot of these experiments and many don't work, but some works.
+For example, if you're seeing this video, then it kind of worked and I've published it.
+Yeah, I just wanted to give an idea about you could also use codecs for other things like video editing.
+Hope that this is useful.
+Thanks.
+Bye.
