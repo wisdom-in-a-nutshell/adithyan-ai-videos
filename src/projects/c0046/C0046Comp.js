@@ -6,6 +6,7 @@ import {
   staticFile,
   useCurrentFrame,
 } from 'remotion';
+import ballTrack from './ball_track.json';
 import {
   CodexCallout,
   DisclaimerOverlay,
@@ -14,7 +15,6 @@ import {
 } from '../../overlay_kit/overlays.js';
 import {SKETCH_FONT_FAMILY, SketchDefs} from '../../styles/sketch.js';
 import {
-  BALL_ALPHA_URL,
   BALL_RECOLOR,
   DEMO_UI,
   FPS,
@@ -86,6 +86,62 @@ const getBallTreatment = (timeInSeconds, timing) => {
   return null;
 };
 
+const getTrackPointForFrame = (track, frame) => {
+  if (!Array.isArray(track) || track.length === 0) {
+    return null;
+  }
+
+  let lo = 0;
+  let hi = track.length - 1;
+
+  while (lo <= hi) {
+    const mid = Math.floor((lo + hi) / 2);
+    const value = track[mid].frame;
+    if (value === frame) {
+      return track[mid];
+    }
+    if (value < frame) {
+      lo = mid + 1;
+    } else {
+      hi = mid - 1;
+    }
+  }
+
+  const prev = hi >= 0 ? track[hi] : null;
+  const next = lo < track.length ? track[lo] : null;
+  if (!prev) return next;
+  if (!next) return prev;
+  return Math.abs(prev.frame - frame) <= Math.abs(next.frame - frame) ? prev : next;
+};
+
+const TrackedBallOverlay = ({trackPoint, treatment}) => {
+  if (!trackPoint || !treatment) {
+    return null;
+  }
+
+  const size = Math.max(92, Math.round(trackPoint.r * 1.35));
+  const left = Math.round(trackPoint.cx - size / 2);
+  const top = Math.round(trackPoint.cy - size / 2);
+  const glow = treatment.color;
+
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left,
+        top,
+        width: size,
+        height: size,
+        borderRadius: '50%',
+        opacity: treatment.opacity,
+        background: `radial-gradient(circle at 34% 30%, rgba(255,255,255,0.95) 0%, ${treatment.color} 34%, ${treatment.color} 66%, rgba(0,0,0,0.22) 100%)`,
+        boxShadow: `0 0 20px ${glow}, 0 0 42px ${glow}`,
+        border: `3px solid rgba(255,255,255,0.45)`,
+      }}
+    />
+  );
+};
+
 export const C0046Comp = (props) => {
   const assetMap = props?.assetMap ?? null;
   const frame = useCurrentFrame();
@@ -96,6 +152,7 @@ export const C0046Comp = (props) => {
   const beatDurationInFrames = (startSeconds, endSeconds) =>
     Math.max(1, secondsToFrames(endSeconds) - secondsToFrames(startSeconds));
   const ballTreatment = getBallTreatment(timeInSeconds, TIMING);
+  const ballTrackPoint = getTrackPointForFrame(ballTrack, frame);
 
   return (
     <AbsoluteFill
@@ -284,22 +341,7 @@ export const C0046Comp = (props) => {
               pointerEvents: 'none',
             }}
           >
-            {/* isolate so destination-in only clips the color fill below,
-                not the source video underneath this AbsoluteFill */}
-            <AbsoluteFill style={{isolation: 'isolate'}}>
-              <AbsoluteFill style={{backgroundColor: ballTreatment.color}} />
-              <OffthreadVideo
-                src={resolveAssetSrc(BALL_ALPHA_URL, assetMap)}
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                  mixBlendMode: 'destination-in',
-                }}
-              />
-            </AbsoluteFill>
+            <TrackedBallOverlay trackPoint={ballTrackPoint} treatment={ballTreatment} />
           </AbsoluteFill>
         </Sequence>
       ) : null}
