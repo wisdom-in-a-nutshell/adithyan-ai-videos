@@ -9,7 +9,7 @@ The user wants to switch focus from `C0040` to a new source clip. A clean baseli
 ## Scope / Non-Goals
 ### In Scope
 - Scaffold and wire a `c0046` project into the Remotion registry.
-- Point the project at the provided remote source video.
+- Point the project at the selected local source video.
 - Capture basic source metadata and a durable tracker for next steps.
 
 ### Out of Scope
@@ -19,14 +19,14 @@ The user wants to switch focus from `C0040` to a new source clip. A clean baseli
 
 ## Context / Constraints
 - Date started: 2026-04-08
-- Source clip selected by the user: `https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/3ee14ffc517bae7b3783738a670081c611c143205fe6fdda8a6d5bf6b6d725ef/C0046-hevc-1080p.mp4`
-- Source metadata from `ffprobe`: 1920x1080, 25 fps, 627.36s
+- Source clip selected by the user: `public/imports/c0046/source.mp4` (imported from Downloads `C0046-hevc-1080p.mp4`)
+- Source metadata from `ffprobe`: 1920x1080, 25 fps, 267.24s
 - `C0046` should be the active composition in Studio.
 - Older projects should stay in code but not be the active focus.
 
 ## Done When
 - [x] `C0046` is scaffolded and registered.
-- [x] `C0046` points at the provided remote source clip.
+- [x] `C0046` points at the selected local source clip.
 - [x] `C0046` is the enabled active composition in the registry.
 - [ ] We have reviewed or transcribed the footage enough to define the first real edit beats.
 
@@ -41,4 +41,4 @@ The user wants to switch focus from `C0040` to a new source clip. A clean baseli
 - `npm run render -- --comp C0046 --from 0 --to 6 --no-open`
 
 ## Progress Log
-- 2026-04-08: [DONE] Scaffolded `c0046`, switched the active registry entry to `C0046`, and pointed the composition at the provided remote source URL.
+- 2026-04-08: [DONE] Scaffolded `c0046`, switched the active registry entry to `C0046`, and pointed the composition at the selected local source clip imported from Downloads.
