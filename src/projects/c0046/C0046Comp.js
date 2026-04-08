@@ -313,10 +313,10 @@ const BodyDetectOverlay = ({opacity = 1, mode = 'detect'}) => {
       }}
     >
       <ellipse
-        cx="1238"
+        cx="1270"
         cy="592"
-        rx="214"
-        ry="372"
+        rx="186"
+        ry="344"
         fill="none"
         stroke={stroke}
         strokeWidth={strokeWidth}
@@ -324,10 +324,10 @@ const BodyDetectOverlay = ({opacity = 1, mode = 'detect'}) => {
         opacity="0.98"
       />
       <ellipse
-        cx="1228"
+        cx="1260"
         cy="586"
-        rx="228"
-        ry="388"
+        rx="198"
+        ry="356"
         fill="none"
         stroke={stroke}
         strokeWidth={mode === 'matte' ? 2.5 : 2.2}
