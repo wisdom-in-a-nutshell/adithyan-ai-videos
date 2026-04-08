@@ -2,7 +2,7 @@ export const PROJECT_ID = 'c0046';
 export const PROJECT_TITLE = 'C0046';
 
 export const VIDEO_URL = 'public/imports/c0046/source.mp4';
-export const BALL_SEGMENT_MASK_URL = 'public/imports/c0046/artifacts/ball-segment-mask-12-58.mp4';
+export const BALL_ALPHA_URL = 'public/imports/c0046/artifacts/ball-segment-alpha-12-58.webm';
 export const PERSON_MATTE_MASK_URL = 'public/imports/c0046/artifacts/person-matte-mask-full.mp4';
 export const PERSON_MATTE_ALPHA_URL = 'public/imports/c0046/artifacts/person-matte-alpha-full.webm';
 
@@ -51,11 +51,11 @@ export const OPENER_UI = {
 };
 
 export const DEMO_UI = {
-  statusScale: 1.46,
-  calloutScale: 1.52,
+  statusScale: 1.56,
+  calloutScale: 1.8,
   leftPx: 56,
   statusTopPx: 56,
-  calloutTopPx: 130,
+  calloutTopPx: 132,
 };
 
 export const OVERLAY_VIEW = {

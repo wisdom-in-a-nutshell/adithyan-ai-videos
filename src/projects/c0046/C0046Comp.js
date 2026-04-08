@@ -14,7 +14,7 @@ import {
 } from '../../overlay_kit/overlays.js';
 import {SKETCH_FONT_FAMILY, SketchDefs} from '../../styles/sketch.js';
 import {
-  BALL_SEGMENT_MASK_URL,
+  BALL_ALPHA_URL,
   DEMO_UI,
   FPS,
   OPENER_UI,
@@ -243,21 +243,19 @@ export const C0046Comp = (props) => {
       </AbsoluteFill>
 
       {OVERLAY_VIEW.showBallTrackingMask ? (
-        <Sequence name="[FX01] Ball Tracking Mask" from={0}>
+        <Sequence name="[FX01] Ball Tracking Alpha" from={0}>
           <AbsoluteFill
             style={{
-              opacity: inBallWindow ? 0.52 : 0,
+              opacity: inBallWindow ? 1 : 0,
               pointerEvents: 'none',
             }}
           >
             <OffthreadVideo
-              src={resolveAssetSrc(BALL_SEGMENT_MASK_URL, assetMap)}
+              src={resolveAssetSrc(BALL_ALPHA_URL, assetMap)}
               style={{
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
-                mixBlendMode: 'screen',
-                filter: 'contrast(1.25) brightness(1.15)',
               }}
             />
           </AbsoluteFill>
