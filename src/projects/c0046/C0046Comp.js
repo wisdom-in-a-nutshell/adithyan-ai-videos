@@ -14,7 +14,8 @@ import {
 } from '../../overlay_kit/overlays.js';
 import {SKETCH_FONT_FAMILY, SketchDefs} from '../../styles/sketch.js';
 import {
-  BALL_ALPHA_URL,
+  BALL_SEGMENT_MASK_URL,
+  BALL_RECOLOR,
   DEMO_UI,
   FPS,
   OPENER_UI,
@@ -56,36 +57,29 @@ const resolveAssetSrc = (src, assetMap) => {
 const getBallTreatment = (timeInSeconds, timing) => {
   if (timeInSeconds >= timing.recolorYellow && timeInSeconds < timing.appleSwap) {
     return {
-      glow: 'rgba(250, 204, 21, 0.95)',
-      filter:
-        'brightness(1.95) sepia(1) saturate(9) hue-rotate(0deg) contrast(1.2)',
-      opacity: 0.98,
+      color: BALL_RECOLOR.yellow,
+      opacity: 1,
     };
   }
 
   if (timeInSeconds >= timing.recolorRed && timeInSeconds < timing.recolorYellow) {
     return {
-      glow: 'rgba(239, 68, 68, 0.95)',
-      filter:
-        'brightness(1.75) sepia(1) saturate(8) hue-rotate(312deg) contrast(1.22)',
-      opacity: 0.98,
+      color: BALL_RECOLOR.red,
+      opacity: 1,
     };
   }
 
   if (timeInSeconds >= timing.recolorBlue && timeInSeconds < timing.recolorRed) {
     return {
-      glow: 'rgba(59, 130, 246, 0.95)',
-      filter:
-        'brightness(1.82) sepia(1) saturate(8) hue-rotate(168deg) contrast(1.18)',
-      opacity: 0.98,
+      color: BALL_RECOLOR.blue,
+      opacity: 1,
     };
   }
 
   if (timeInSeconds >= timing.trackStart && timeInSeconds < timing.recolorBlue) {
     return {
-      glow: 'rgba(255, 255, 255, 0.65)',
-      filter: 'brightness(1.18) contrast(1.12)',
-      opacity: 0.55,
+      color: '#ffffff',
+      opacity: 0.72,
     };
   }
 
@@ -283,7 +277,7 @@ export const C0046Comp = (props) => {
       </AbsoluteFill>
 
       {OVERLAY_VIEW.showBallTrackingMask ? (
-        <Sequence name="[FX01] Ball Tracking Alpha" from={0}>
+        <Sequence name="[FX01] Ball Tracking Recolor" from={0}>
           <AbsoluteFill
             style={{
               opacity: inBallWindow ? 1 : 0,
@@ -291,28 +285,17 @@ export const C0046Comp = (props) => {
             }}
           >
             <OffthreadVideo
-              src={resolveAssetSrc(BALL_ALPHA_URL, assetMap)}
+              src={resolveAssetSrc(BALL_SEGMENT_MASK_URL, assetMap)}
               style={{
                 position: 'absolute',
                 inset: 0,
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
-                opacity: ballTreatment ? 0.4 : 0,
-              }}
-            />
-            <OffthreadVideo
-              src={resolveAssetSrc(BALL_ALPHA_URL, assetMap)}
-              style={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                opacity: ballTreatment?.opacity ?? 0,
+                opacity: ballTreatment ? Math.min(1, ballTreatment.opacity * 0.9) : 0,
                 mixBlendMode: 'screen',
                 filter: ballTreatment
-                  ? `${ballTreatment.filter} drop-shadow(0 0 10px ${ballTreatment.glow}) drop-shadow(0 0 22px ${ballTreatment.glow})`
+                  ? `brightness(3.4) saturate(0) contrast(2.1) drop-shadow(0 0 10px ${ballTreatment.color}) drop-shadow(0 0 24px ${ballTreatment.color})`
                   : undefined,
               }}
             />

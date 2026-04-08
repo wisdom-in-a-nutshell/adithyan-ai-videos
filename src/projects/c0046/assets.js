@@ -3,6 +3,7 @@ export const PROJECT_TITLE = 'C0046';
 
 export const VIDEO_URL = 'public/imports/c0046/source.mp4';
 export const BALL_ALPHA_URL = 'public/imports/c0046/artifacts/ball-segment-alpha-12-58.webm';
+export const BALL_SEGMENT_MASK_URL = 'public/imports/c0046/artifacts/ball-segment-mask-12-58.mp4';
 export const PERSON_MATTE_MASK_URL = 'public/imports/c0046/artifacts/person-matte-mask-full.mp4';
 export const PERSON_MATTE_ALPHA_URL = 'public/imports/c0046/artifacts/person-matte-alpha-full.webm';
 
