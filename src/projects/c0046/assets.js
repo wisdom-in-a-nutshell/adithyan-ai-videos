@@ -6,6 +6,7 @@ export const BALL_ALPHA_URL = 'public/imports/c0046/artifacts/ball-segment-alpha
 export const BALL_SEGMENT_MASK_URL = 'public/imports/c0046/artifacts/ball-segment-mask-12-58.mp4';
 export const PERSON_MATTE_MASK_URL = 'public/imports/c0046/artifacts/person-matte-mask-full.mp4';
 export const PERSON_MATTE_ALPHA_URL = 'public/imports/c0046/artifacts/person-matte-alpha-full.webm';
+export const APPLE_IMAGE_URL = 'public/imports/c0046/apple.svg';
 
 export const FPS = 25;
 export const WIDTH = 1920;

@@ -79,26 +79,24 @@ compositing, and timing effects to the transcript.
   - Avoid a large top title / long bottom title system for every beat; that is not how the earlier video read.
 - **[S02] Ball alpha layer** — the SAM alpha asset, mounted as a foreground
   layer over the source video.
-  - **Enters at 15.32s** (on the word "tracking"). Before this it is hidden.
-  - **Default tint**: none. The alpha is invisible-but-loaded from 15.32 →
-    33.72 (Codex "knows" where the ball is, but no visible change yet).
-    Alternative: a subtle dashed outline during this window so the viewer
-    sees that tracking is happening. Decision deferred — first preview will
-    show whether the outline is needed.
-  - Stays active until S04 apple swap at 53.44s.
+  - **Enters at 15.84s** (just after the word "tracking" lands). Before this it is hidden.
+  - **Default visual**: a sketchy tracking ring that follows the ball from
+    15.84 → 34.32. It should read as "Codex is locked on" without changing
+    the object yet.
+  - Stays active until S04 apple swap at 53.88s.
 
 **Edit cue** — trim the pause between "start tracking it now" and the first
 throw.
 
 **Overlay copy**
 - **Top-left state pill**: `TRACKING`
-- **Support callout**: `Black ball tracked`
-- **Exact overlay timing**: 15.32s → 33.72s
+- **Support callout**: `I'm starting to track the ball.`
+- **Exact overlay timing**: 15.84s → 34.32s
 
 **Sequence**
 - `[S02A] Status Pill: TRACKING`
-- `[S02B] Support Callout: Black ball tracked`
-- `[S02C] Ball Tracking Mask` (spans 15.32 → 53.44)
+- `[S02B] Support Callout: I'm starting to track the ball.`
+- `[S02C] Ball Tracking Mask` (spans 15.84 → 53.88)
 
 ---
 
@@ -119,12 +117,12 @@ throw.
 - "move it like that" 45.68–46.16 (yellow holds through this)
 
 **Visual**
-- **[S03] Ball recolor** — a colored fill is clipped by the ball alpha so
-  only the ball region is tinted. The ball's original shading shows through
-  via `mix-blend-mode: multiply` (or similar), so it reads as a coloured
-  ball, not a flat blob.
-  - Color changes land **on the word**, not before. Use a 0.08s fade between
-    colors (snappy but not jarring).
+- **[S03] Ball recolor** — a tracked color treatment follows the ball and
+  fully overcovers the original black surface so no dark rim is visible.
+  The current implementation uses tracked position data plus an intentionally
+  oversized colored sphere, not a subtle tint blend.
+  - Color changes land **just after the word**, not before it. The current
+    offsets are two frames after each keyword ends at 25fps.
   - Colors (tentative): blue `#3b82f6`, red `#ef4444`, yellow `#facc15`.
     Adjust in `assets.js` after first preview.
 - No prompt chips in this beat — the color change IS the proof. Keep the
@@ -133,23 +131,23 @@ throw.
 **Overlay copy**
 - **Top-left state pill**: `RECOLORING`
 - **Support callouts**
-  - Blue beat: `Only the ball changes`
-  - Red beat: `Tracked region updated`
-  - Yellow beat: `Mask stays stable`
+  - Blue beat: `I'm changing it to blue.`
+  - Red beat: `I'm changing it to red.`
+  - Yellow beat: `I'm changing it to yellow.`
 - **Exact overlay timings**
-  - `RECOLORING` state pill: 33.72s → 53.44s
-  - `Only the ball changes`: 33.72s → 37.52s
-  - `Tracked region updated`: 37.52s → 42.32s
-  - `Mask stays stable`: 42.32s → 53.44s
+  - `RECOLORING` state pill: 34.32s → 53.88s
+  - `I'm changing it to blue.`: 34.32s → 38.24s
+  - `I'm changing it to red.`: 38.24s → 42.88s
+  - `I'm changing it to yellow.`: 42.88s → 53.88s
 
 **Edit cue** — trim the pause between each prompt and the color change.
 **Sequences**
 - `[S03A] Status Pill: RECOLORING`
-- `[S03B] Support Callout: Only the ball changes`
+- `[S03B] Support Callout: I'm changing it to blue.`
 - `[S03C] Recolor Blue`
-- `[S03D] Support Callout: Tracked region updated`
+- `[S03D] Support Callout: I'm changing it to red.`
 - `[S03E] Recolor Red`
-- `[S03F] Support Callout: Mask stays stable`
+- `[S03F] Support Callout: I'm changing it to yellow.`
 - `[S03G] Recolor Yellow`
 
 ---
@@ -165,31 +163,31 @@ throw.
 
 **Key word timings**
 - "change this to" 51.20–52.08 (intent)
-- **"apple" 53.44–53.80** → ball mask replaced by apple image
+- **"apple" 53.44–53.80** → apple swap triggers at 53.88s
 - "that worked" 56.40–56.52 (reaction — keep)
 - "could have been better" 57.20–57.68 (keep one reaction line)
 
 **Visual**
-- **[S04] Apple swap** — at 53.44s, the tinted ball alpha is replaced by an
+- **[S04] Apple swap** — at 53.88s, the tinted ball treatment is replaced by an
   apple image composited at the alpha centroid.
-  - Source image: a simple apple PNG with transparent background
-    (`projects/c0046/apple.png` — not yet sourced; need to fetch).
-  - The apple follows the ball alpha's centroid from 53.44 → 58.0s. From
+  - Source image: local transparent apple asset
+    (`public/imports/c0046/apple.svg`).
+  - The apple follows the ball alpha's centroid from 53.88 → 58.0s. From
     58.0 → 60.16 the apple is held at its last position (or fades out),
     since the SAM window ends at 58.0.
 - One reaction beat held, chatter after trimmed.
 
 **Overlay copy**
 - **Top-left state pill**: `SWAPPING`
-- **Support callout**: `Object replaced`
-- **Exact overlay timing**: 53.44s → 60.16s
+- **Support callout**: `I'm replacing it with an apple.`
+- **Exact overlay timing**: 53.88s → 60.16s
 
 **Edit cue** — keep "okay that worked" and "could have been better", trim
 "not bad" if the beat runs long.
 
 **Sequence**
 - `[S04A] Status Pill: SWAPPING`
-- `[S04B] Support Callout: Object replaced`
+- `[S04B] Support Callout: I'm replacing it with an apple.`
 - `[S04C] Apple Swap`
 
 **Open items (blockers)**
@@ -219,7 +217,7 @@ preview render. Narration-only for now; current timestamps from v1:
 2. **S01A Disclaimer pill** — trivial, uses existing component.
 3. **S02 + S03 ball mask recolor** — load the SAM mask video, composite it
    tinted over the source during the window. Recolor at word timings.
-4. **S04 apple swap** — swap tint for an apple image at 53.44s.
+4. **S04 apple swap** — swap tint for an apple image at 53.88s.
 
 ## Constants to add to `src/projects/c0046/assets.js`
 
@@ -228,8 +226,8 @@ preview render. Narration-only for now; current timestamps from v1:
 export const BALL_ALPHA_URL = 'https://storage.aipodcast.ing/cache/sam3/alpha/f1782de5-6237-4646-8dd7-b4870fa37b6b.webm';
 export const BALL_ALPHA_WINDOW = {start: 12.0, end: 58.0, anchor: 14.0};
 
-// Apple image (TBD — fetch or provide URL)
-export const APPLE_IMAGE_URL = null;
+// Apple image
+export const APPLE_IMAGE_URL = 'public/imports/c0046/apple.svg';
 
 // Effect anchors (seconds) — derived from transcript, hardcoded per skill guidance
 export const TIMING = {
@@ -237,11 +235,11 @@ export const TIMING = {
   disclaimerOut: 10.00,
   heroStampPhraseStart: 2.40,   // "this video is"
   heroStampHoldUntil: 6.20,
-  trackStart: 15.32,            // "tracking"
-  recolorBlue: 33.72,
-  recolorRed: 37.52,
-  recolorYellow: 42.32,
-  appleSwap: 53.44,
+  trackStart: 15.84,            // just after "tracking"
+  recolorBlue: 34.32,
+  recolorRed: 38.24,
+  recolorYellow: 42.88,
+  appleSwap: 53.88,
   maskWindowEnd: 58.00,
   s04End: 60.16,
 };

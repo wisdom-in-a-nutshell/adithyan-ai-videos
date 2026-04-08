@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   AbsoluteFill,
+  Img,
   OffthreadVideo,
   Sequence,
   staticFile,
@@ -15,6 +16,7 @@ import {
 } from '../../overlay_kit/overlays.js';
 import {SKETCH_FONT_FAMILY, SketchDefs} from '../../styles/sketch.js';
 import {
+  APPLE_IMAGE_URL,
   BALL_RECOLOR,
   DEMO_UI,
   FPS,
@@ -217,6 +219,32 @@ const TrackedBallOverlay = ({trackPoint, treatment}) => {
   );
 };
 
+const AppleOverlay = ({trackPoint, assetMap}) => {
+  if (!trackPoint) {
+    return null;
+  }
+
+  const size = Math.max(182, Math.round(trackPoint.r * 2.42));
+  const left = Math.round(trackPoint.cx - size / 2) - Math.round(size * 0.055);
+  const top = Math.round(trackPoint.cy - size / 2) - Math.round(size * 0.125);
+
+  return (
+    <Img
+      src={resolveAssetSrc(APPLE_IMAGE_URL, assetMap)}
+      style={{
+        position: 'absolute',
+        left,
+        top,
+        width: size,
+        height: size,
+        objectFit: 'contain',
+        pointerEvents: 'none',
+        filter: 'drop-shadow(0 10px 14px rgba(0, 0, 0, 0.22))',
+      }}
+    />
+  );
+};
+
 export const C0046Comp = (props) => {
   const assetMap = props?.assetMap ?? null;
   const frame = useCurrentFrame();
@@ -227,7 +255,9 @@ export const C0046Comp = (props) => {
   const beatDurationInFrames = (startSeconds, endSeconds) =>
     Math.max(1, secondsToFrames(endSeconds) - secondsToFrames(startSeconds));
   const ballTreatment = getBallTreatment(timeInSeconds, TIMING);
-  const ballTrackPoint = getTrackPointForFrame(ballTrack, frame);
+  const appleHoldFrame = secondsToFrames(TIMING.ballWindowEnd);
+  const trackFrame = timeInSeconds >= TIMING.appleSwap ? Math.min(frame, appleHoldFrame) : frame;
+  const ballTrackPoint = getTrackPointForFrame(ballTrack, trackFrame);
 
   return (
     <AbsoluteFill
@@ -288,7 +318,7 @@ export const C0046Comp = (props) => {
           durationInFrames={Math.max(1, Math.floor((TIMING.introEnd - TIMING.introStart) * FPS))}
         >
           <DisclaimerOverlay
-            text="Everything that you're seeing in this video is rendered by Codex"
+            text="Everything that you're seeing in this video is edited by Codex"
             durationInFrames={Math.max(1, Math.floor((TIMING.introEnd - TIMING.introStart) * FPS))}
             scale={OPENER_UI.disclaimerScale}
             bottomPx={OPENER_UI.disclaimerBottomPx}
@@ -310,12 +340,12 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
-          name="[S06] Callout: Black ball tracked"
+          name="[S06] Callout: I'm starting to track the ball."
           from={secondsToFrames(TIMING.trackStart)}
           durationInFrames={beatDurationInFrames(TIMING.trackStart, TIMING.recolorBlue)}
         >
           <CodexCallout
-            text="Black ball tracked"
+            text="I'm starting to track the ball."
             durationInFrames={beatDurationInFrames(TIMING.trackStart, TIMING.recolorBlue)}
             scale={DEMO_UI.calloutScale}
             topPx={DEMO_UI.calloutTopPx}
@@ -338,12 +368,12 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
-          name="[S08] Callout: Only the ball changes"
+          name="[S08] Callout: I'm changing it to blue."
           from={secondsToFrames(TIMING.recolorBlue)}
           durationInFrames={beatDurationInFrames(TIMING.recolorBlue, TIMING.recolorRed)}
         >
           <CodexCallout
-            text="Only the ball changes"
+            text="I'm changing it to blue."
             durationInFrames={beatDurationInFrames(TIMING.recolorBlue, TIMING.recolorRed)}
             scale={DEMO_UI.calloutScale}
             topPx={DEMO_UI.calloutTopPx}
@@ -352,12 +382,12 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
-          name="[S09] Callout: Tracked region updated"
+          name="[S09] Callout: I'm changing it to red."
           from={secondsToFrames(TIMING.recolorRed)}
           durationInFrames={beatDurationInFrames(TIMING.recolorRed, TIMING.recolorYellow)}
         >
           <CodexCallout
-            text="Tracked region updated"
+            text="I'm changing it to red."
             durationInFrames={beatDurationInFrames(TIMING.recolorRed, TIMING.recolorYellow)}
             scale={DEMO_UI.calloutScale}
             topPx={DEMO_UI.calloutTopPx}
@@ -366,12 +396,12 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
-          name="[S10] Callout: Mask stays stable"
+          name="[S10] Callout: I'm changing it to yellow."
           from={secondsToFrames(TIMING.recolorYellow)}
           durationInFrames={beatDurationInFrames(TIMING.recolorYellow, TIMING.appleSwap)}
         >
           <CodexCallout
-            text="Mask stays stable"
+            text="I'm changing it to yellow."
             durationInFrames={beatDurationInFrames(TIMING.recolorYellow, TIMING.appleSwap)}
             scale={DEMO_UI.calloutScale}
             topPx={DEMO_UI.calloutTopPx}
@@ -394,12 +424,12 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
-          name="[S12] Callout: Object replaced"
+          name="[S12] Callout: I'm replacing it with an apple."
           from={secondsToFrames(TIMING.appleSwap)}
           durationInFrames={beatDurationInFrames(TIMING.appleSwap, TIMING.appleReactionEnd)}
         >
           <CodexCallout
-            text="Object replaced"
+            text="I'm replacing it with an apple."
             durationInFrames={beatDurationInFrames(TIMING.appleSwap, TIMING.appleReactionEnd)}
             scale={DEMO_UI.calloutScale}
             topPx={DEMO_UI.calloutTopPx}
@@ -418,6 +448,19 @@ export const C0046Comp = (props) => {
             }}
           >
             <TrackedBallOverlay trackPoint={ballTrackPoint} treatment={ballTreatment} />
+          </AbsoluteFill>
+        </Sequence>
+      ) : null}
+
+      {timeInSeconds >= TIMING.appleSwap && timeInSeconds <= TIMING.appleReactionEnd ? (
+        <Sequence name="[FX03] Apple Swap" from={secondsToFrames(TIMING.appleSwap)}>
+          <AbsoluteFill
+            style={{
+              pointerEvents: 'none',
+              zIndex: 245,
+            }}
+          >
+            <AppleOverlay trackPoint={ballTrackPoint} assetMap={assetMap} />
           </AbsoluteFill>
         </Sequence>
       ) : null}
