@@ -224,24 +224,46 @@ const AppleOverlay = ({trackPoint, assetMap}) => {
     return null;
   }
 
-  const size = Math.max(182, Math.round(trackPoint.r * 2.42));
-  const left = Math.round(trackPoint.cx - size / 2) - Math.round(size * 0.055);
-  const top = Math.round(trackPoint.cy - size / 2) - Math.round(size * 0.125);
+  const size = Math.max(176, Math.round(trackPoint.r * 2.34));
+  const left = Math.round(trackPoint.cx - size / 2) - Math.round(size * 0.05);
+  const top = Math.round(trackPoint.cy - size / 2) - Math.round(size * 0.15);
 
   return (
-    <Img
-      src={resolveAssetSrc(APPLE_IMAGE_URL, assetMap)}
+    <div
       style={{
         position: 'absolute',
         left,
         top,
         width: size,
         height: size,
-        objectFit: 'contain',
         pointerEvents: 'none',
-        filter: 'drop-shadow(0 10px 14px rgba(0, 0, 0, 0.22))',
       }}
-    />
+    >
+      <div
+        style={{
+          position: 'absolute',
+          left: '50%',
+          top: '56%',
+          width: `${size * 0.82}px`,
+          height: `${size * 0.8}px`,
+          transform: 'translate(-50%, -50%)',
+          borderRadius: '46% 46% 52% 52%',
+          backgroundColor: '#d93628',
+          boxShadow: '0 8px 14px rgba(0, 0, 0, 0.12)',
+        }}
+      />
+      <Img
+        src={resolveAssetSrc(APPLE_IMAGE_URL, assetMap)}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: size,
+          height: size,
+          objectFit: 'contain',
+          filter: 'drop-shadow(0 10px 14px rgba(0, 0, 0, 0.22))',
+        }}
+      />
+    </div>
   );
 };
 
