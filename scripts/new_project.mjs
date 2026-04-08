@@ -212,7 +212,7 @@ if (!fs.existsSync(registryPath)) {
   die(`Missing registry file: ${registryPath}`);
 }
 const importLine = `import {${compositionConst}} from './${projectId}/composition.js';`;
-const entryLine = `  ${compositionConst},`;
+const entryLine = `  {composition: ${compositionConst}, enabled: true},`;
 const importMarker = '// NEW_PROJECT_IMPORTS';
 const entryMarker = '// NEW_PROJECT_ENTRIES';
 let registryText = fs.readFileSync(registryPath, 'utf8');
