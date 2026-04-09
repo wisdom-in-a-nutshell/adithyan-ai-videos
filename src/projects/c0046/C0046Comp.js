@@ -340,6 +340,14 @@ const S05SubjectMatte = ({
     `drop-shadow(0 0 10px ${outlineColor})`,
   ].join(' ');
 
+  // The matte webm was encoded with VP9 soft alpha — alpha values around the
+  // body sit in the 0.85–0.95 range instead of 1.0, which lets background
+  // colour bleed through and wash Adi's skin out (most visible against the
+  // warm cream studio backdrop). Compensate with a small saturation + contrast
+  // boost so his face matches his arms again. Tuned by eye against
+  // tmp/c0046-84-hq.png.
+  const compensationFilter = 'saturate(1.18) contrast(1.06)';
+
   return (
     <OffthreadVideo
       src={resolveAssetSrc(S05_SUBJECT_MATTE_URL, assetMap)}
@@ -353,7 +361,9 @@ const S05SubjectMatte = ({
         height: '100%',
         objectFit: 'cover',
         opacity,
-        filter: [outline ? outlineFilter : null, filter].filter(Boolean).join(' ') || undefined,
+        filter: [outline ? outlineFilter : compensationFilter, filter]
+          .filter(Boolean)
+          .join(' ') || undefined,
       }}
     />
   );

@@ -84,6 +84,9 @@ This matters because the repository is meant to be agent-first and repeatable. R
 - For the active cloud-targeted project path, the simplest working contract is
   remote-first runtime media in `src/projects/<id>/assets.js`, with local files
   promoted via `upload-media` before they become composition inputs.
+- For the current Modal backend worker shape, the tuned default is now
+  `64 CPU / 64 GiB` with auto concurrency landing at `28`, based on measured
+  `C0046` cloud benchmarks rather than the older hardcoded `8x` default.
 
 ## Open Questions / Blockers
 - What exact schema should `assets.js` use for dual local/remote runtime assets without making composition code noisy?
@@ -131,3 +134,6 @@ This matters because the repository is meant to be agent-first and repeatable. R
 - 2026-04-09: [IN-PROGRESS] Recorded the recommended direction: preserve current repo layout, keep local-first editing, add explicit local/cloud runtime asset descriptors, and eventually expose one repo-local render client boundary.
 - 2026-04-09: [IN-PROGRESS] Switched `C0046` runtime media to remote URLs, uploaded the remaining local-only runtime assets, and replaced the `S05` local PNG frame sequence with a remote keyed matte video so the active composition no longer depends on ignored local runtime files.
 - 2026-04-09: [IN-PROGRESS] Added a doctor guardrail so an enabled project fails if `assets.js` still points at local media files instead of remote runtime URLs.
+- 2026-04-09: [IN-PROGRESS] Raised the Modal cloud worker reservation from `64 CPU / 32 GiB` to `64 CPU / 64 GiB` and benchmarked a representative `C0046` slice (`72s -> 88s`) across explicit concurrency values.
+- 2026-04-09: [IN-PROGRESS] Recorded benchmark results for the tuned worker: `16x=135.04s`, `20x=122.72s`, `24x=124.09s`, `28x=113.00s`, `32x=118.25s`; `28x` is the best observed default so far.
+- 2026-04-09: [IN-PROGRESS] Confirmed the noisy “Detected differing memory amounts” warning comes from Remotion inside the cloud container and is not blocking renders; the benchmark jobs still completed successfully and uploaded outputs.

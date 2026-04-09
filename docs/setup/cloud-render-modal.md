@@ -19,3 +19,15 @@ npm run render:cloud -- --comp TextEffects --hq
 
 - Use local preview slices before cloud HQ renders.
 - Keep cloud renders for stable checkpoints, not tight iteration.
+- Current backend tuning is calibrated against `C0046` on a representative
+  `72s -> 88s` slice:
+  - worker reservation: `64` CPU cores, `65536` MB memory
+  - default auto concurrency target: `28`
+  - benchmark results:
+    - `16x`: about `135.04s`
+    - `20x`: about `122.72s`
+    - `24x`: about `124.09s`
+    - `28x`: about `113.00s`
+    - `32x`: about `118.25s`
+- The current best observed default is therefore `28x` on the `64 CPU / 64 GiB`
+  worker profile, not the maximum possible concurrency.
