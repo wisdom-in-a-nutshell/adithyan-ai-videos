@@ -14,6 +14,15 @@ export const S05_SUBJECT_FRAMES_DIR = 'public/imports/c0046/subject-keyed-s05-fr
 export const S05_BACKGROUND_COMPOSITE_URL = 'public/imports/c0046/s05-background-composite.mp4';
 export const S05_DEPTH_COMPOSITE_URL = 'public/imports/c0046/s05-depth-composite.mp4';
 
+// S06 storyboard sketches (xkcd-style hand-drawn).
+// Originals: projects/c0046/storyboard-assets/sketch/
+export const SKETCH_P2A_HARNESS_EMPTY_URL = 'public/imports/c0046/sketch/p2a-harness-empty.png';
+export const SKETCH_P2C_HARNESS_CODING_URL = 'public/imports/c0046/sketch/p2c-harness-coding-full.png';
+export const SKETCH_P2D_HARNESS_VIDEO_URL = 'public/imports/c0046/sketch/p2d-harness-video-full.png';
+export const SKETCH_P5_SAM_URL = 'public/imports/c0046/sketch/p5-sam.png';
+export const SKETCH_P6_MATANYONE_URL = 'public/imports/c0046/sketch/p6-matanyone.png';
+export const SKETCH_P7_REMOTION_URL = 'public/imports/c0046/sketch/p7-remotion.png';
+
 export const FPS = 25;
 export const WIDTH = 1920;
 export const HEIGHT = 1080;
@@ -48,6 +57,25 @@ export const TIMING = {
   depthTextStart: 85.84,
   depthTextEnd: 89.68,
   explainStart: 89.84,
+  // S06 — "How it works" / harness explainer
+  // Word-locked timestamps from transcript_words.json (see worklog).
+  s06HarnessEmptyStart: 111.44, // "it's a harness"
+  s06HarnessCodingStart: 133.6, // "coding tools"
+  s06HarnessVideoStart: 137.04, // "swap"
+  // S07 — "The stack" tool reveals
+  s07SamStart: 150.08,          // "SAM"
+  s07MatAnyoneStart: 164.24,    // "math anyone"
+  s07RemotionStart: 178.0,      // "FFM"
+  s07End: 184.0,                // before "transcribe"
+};
+
+// S06 sketch panel placement on the left third of the frame.
+// Sized so it fits comfortably without crossing into Adi on the right.
+export const SKETCH_PANEL_UI = {
+  leftPx: 64,
+  topPx: 220,
+  widthPx: 560,
+  heightPx: 760,
 };
 
 export const HERO_STAMP_TIMING = {

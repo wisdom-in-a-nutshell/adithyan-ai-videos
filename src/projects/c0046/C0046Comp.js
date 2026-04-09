@@ -24,9 +24,12 @@ import {
   FPS,
   OPENER_UI,
   OVERLAY_VIEW,
+  PERSON_MATTE_ALPHA_URL,
   S05_BACKGROUND_BASE_URL,
   S05_BACKGROUND_DEPTH_URL,
   S05_SUBJECT_FRAMES_DIR,
+  SKETCH_P2A_HARNESS_EMPTY_URL,
+  SKETCH_PANEL_UI,
   TIMING,
   VIDEO_URL,
 } from './assets.js';
@@ -441,6 +444,51 @@ const S05DepthText = ({durationInFrames}) => {
   );
 };
 
+// Hand-drawn storyboard sketch panel for the S06 "How it works" explainer.
+// Sits on the left third of the frame, fades in/out at the beat boundaries,
+// rises slightly from below on entry. Image src is resolved through assetMap
+// so cloud-render asset rewrites still work.
+const SketchPanel = ({src, assetMap, durationInFrames, leftPx, topPx, widthPx, heightPx}) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const dur = Math.max(1, Number(durationInFrames) || 1);
+  const fadeFrames = Math.max(1, Math.floor(0.32 * fps));
+  const inP = clamp01(frame / fadeFrames);
+  const outP = clamp01((dur - 1 - frame) / fadeFrames);
+  const opacity = interpolate(inP * outP, [0, 1], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+  const rise = interpolate(inP, [0, 1], [22, 0], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: leftPx,
+        top: topPx,
+        width: widthPx,
+        height: heightPx,
+        opacity,
+        transform: `translateY(${rise}px)`,
+        pointerEvents: 'none',
+        zIndex: 110,
+      }}
+    >
+      <Img
+        src={resolveAssetSrc(src, assetMap)}
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'contain',
+        }}
+      />
+    </div>
+  );
+};
+
 export const C0046Comp = (props) => {
   const assetMap = props?.assetMap ?? null;
   const frame = useCurrentFrame();
@@ -560,6 +608,62 @@ export const C0046Comp = (props) => {
             }}
           >
             <S05SubjectFrame assetMap={assetMap} relativeFrame={s05RelativeFrame} />
+          </AbsoluteFill>
+        </Sequence>
+
+        {/* ─── S06+S07: white backdrop + person matte for the explainer ─── */}
+        <Sequence
+          name="[S29A] Explainer White Backdrop"
+          from={secondsToFrames(TIMING.explainStart)}
+          durationInFrames={beatDurationInFrames(TIMING.explainStart, TIMING.s07End)}
+        >
+          <AbsoluteFill style={{backgroundColor: '#ffffff'}} />
+        </Sequence>
+
+        <Sequence
+          name="[S29B] Explainer Person Matte (Adi on white)"
+          from={secondsToFrames(TIMING.explainStart)}
+          durationInFrames={beatDurationInFrames(TIMING.explainStart, TIMING.s07End)}
+        >
+          <AbsoluteFill
+            style={{
+              pointerEvents: 'none',
+              zIndex: 220,
+            }}
+          >
+            <OffthreadVideo
+              src={resolveAssetSrc(PERSON_MATTE_ALPHA_URL, assetMap)}
+              startFrom={secondsToFrames(TIMING.explainStart)}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+            />
+          </AbsoluteFill>
+        </Sequence>
+
+        <Sequence
+          name="[S32] Sketch: P2a empty harness"
+          from={secondsToFrames(TIMING.s06HarnessEmptyStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s06HarnessEmptyStart,
+            TIMING.s06HarnessCodingStart
+          )}
+        >
+          <AbsoluteFill style={{zIndex: 190, pointerEvents: 'none'}}>
+            <SketchPanel
+              src={SKETCH_P2A_HARNESS_EMPTY_URL}
+              assetMap={assetMap}
+              durationInFrames={beatDurationInFrames(
+                TIMING.s06HarnessEmptyStart,
+                TIMING.s06HarnessCodingStart
+              )}
+              leftPx={SKETCH_PANEL_UI.leftPx}
+              topPx={SKETCH_PANEL_UI.topPx}
+              widthPx={SKETCH_PANEL_UI.widthPx}
+              heightPx={SKETCH_PANEL_UI.heightPx}
+            />
           </AbsoluteFill>
         </Sequence>
 
@@ -851,6 +955,49 @@ export const C0046Comp = (props) => {
             leftPx={DEMO_UI.leftPx}
           />
         </Sequence>
+
+        {/* ─── S06 — How it works (harness explainer) ─── */}
+
+        <Sequence
+          name="[S30] Status: HOW IT WORKS"
+          from={secondsToFrames(TIMING.s06HarnessEmptyStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s06HarnessEmptyStart,
+            TIMING.s06HarnessCodingStart
+          )}
+        >
+          <StatusLeftOverlay
+            text="HOW IT WORKS"
+            durationInFrames={beatDurationInFrames(
+              TIMING.s06HarnessEmptyStart,
+              TIMING.s06HarnessCodingStart
+            )}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S31] Callout: It's actually a harness."
+          from={secondsToFrames(TIMING.s06HarnessEmptyStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s06HarnessEmptyStart,
+            TIMING.s06HarnessCodingStart
+          )}
+        >
+          <CodexCallout
+            text="It's actually a harness."
+            durationInFrames={beatDurationInFrames(
+              TIMING.s06HarnessEmptyStart,
+              TIMING.s06HarnessCodingStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
       </AbsoluteFill>
 
       {OVERLAY_VIEW.showBallTrackingMask && ballTreatment ? (
