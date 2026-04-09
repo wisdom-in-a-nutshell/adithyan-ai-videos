@@ -19,8 +19,8 @@
 import {spawnSync} from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import {pathToFileURL} from 'node:url';
 import {getDefaultCacheBaseDir, prepareAssetCache, prepareMergedPublicDir} from './asset_cache.mjs';
+import {collectProjectAssetRefs, getProjectDirsForRender} from './project_assets.mjs';
 
 const die = (msg) => {
   // eslint-disable-next-line no-console
@@ -44,31 +44,15 @@ const refresh = hasFlag('refresh');
 const prepareOnly = hasFlag('prepare-only');
 const cacheBaseDir = getArg('cache-dir', getDefaultCacheBaseDir());
 
-const projectsDir = path.resolve('src', 'projects');
-if (!fs.existsSync(projectsDir)) {
-  die(`Missing projects dir: ${projectsDir}`);
+const projectDirs = await getProjectDirsForRender();
+if (projectDirs.length === 0) {
+  die('No enabled project compositions found in src/projects/registry.js');
 }
-
-const projectIds = fs
-  .readdirSync(projectsDir, {withFileTypes: true})
-  .filter((d) => d.isDirectory())
-  .map((d) => d.name);
-
-const urls = [];
-for (const id of projectIds) {
-  const assetsPath = path.resolve(projectsDir, id, 'assets.js');
-  if (!fs.existsSync(assetsPath)) continue;
-  const assets = await import(pathToFileURL(assetsPath).href);
-  for (const v of Object.values(assets)) {
-    if (typeof v === 'string' && /^https?:\/\//i.test(v)) {
-      urls.push(v);
-    }
-  }
-}
+const assetRefs = await collectProjectAssetRefs({projectDirs});
 
 const cache = await prepareAssetCache({
   cacheKey: 'assets',
-  urls,
+  urls: assetRefs.remoteUrls,
   cacheBaseDir,
   refresh,
 });
@@ -83,6 +67,8 @@ if (cache.failed.length > 0) {
 const mergedPublicDir = prepareMergedPublicDir({
   projectCacheDir: cache.projectCacheDir,
   repoPublicDir: path.resolve('public'),
+  localPublicPaths: assetRefs.localPublicPaths,
+  cachedPublicFiles: Object.values(cache.assetMap).map((value) => value.replace(/^\//, '')),
 });
 
 const propsPath = path.join(cache.projectCacheDir, 'studio-props.json');
@@ -107,7 +93,9 @@ if (prepareOnly) {
 }
 
 // eslint-disable-next-line no-console
-console.log(`[cache] dir=${cache.projectCacheDir} urls=${urls.length}`);
+console.log(
+  `[cache] dir=${cache.projectCacheDir} urls=${assetRefs.remoteUrls.length} local=${assetRefs.localPublicPaths.length}`
+);
 
 const entry = 'src/index.js';
 const cmdArgs = [

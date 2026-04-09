@@ -165,36 +165,45 @@ const ensureHardlinkOrCopy = (src, dst) => {
 // cache directory, we'd break any local files in repo `public/`. This merges both:
 // - repo `public/` contents (linked/copied)
 // - cached hashed assets (linked/copied at the root)
-export const prepareMergedPublicDir = ({projectCacheDir, repoPublicDir}) => {
+const copyPathIntoPublicDir = ({srcPath, dstPath}) => {
+  const stat = fs.statSync(srcPath);
+  if (stat.isDirectory()) {
+    fs.mkdirSync(dstPath, {recursive: true});
+    for (const ent of fs.readdirSync(srcPath, {withFileTypes: true})) {
+      copyPathIntoPublicDir({
+        srcPath: path.join(srcPath, ent.name),
+        dstPath: path.join(dstPath, ent.name),
+      });
+    }
+    return;
+  }
+  ensureHardlinkOrCopy(srcPath, dstPath);
+};
+
+export const prepareMergedPublicDir = ({
+  projectCacheDir,
+  repoPublicDir,
+  localPublicPaths = [],
+  cachedPublicFiles = [],
+}) => {
   const mergedPublicDir = path.join(projectCacheDir, 'public');
   fs.rmSync(mergedPublicDir, {recursive: true, force: true});
   fs.mkdirSync(mergedPublicDir, {recursive: true});
 
   if (repoPublicDir && fs.existsSync(repoPublicDir)) {
-    const stack = [{src: repoPublicDir, dst: mergedPublicDir}];
-    while (stack.length > 0) {
-      const {src, dst} = stack.pop();
-      for (const ent of fs.readdirSync(src, {withFileTypes: true})) {
-        const srcPath = path.join(src, ent.name);
-        const dstPath = path.join(dst, ent.name);
-        if (ent.isDirectory()) {
-          fs.mkdirSync(dstPath, {recursive: true});
-          stack.push({src: srcPath, dst: dstPath});
-        } else if (ent.isFile()) {
-          ensureHardlinkOrCopy(srcPath, dstPath);
-        } else if (ent.isSymbolicLink()) {
-          // Copy symlink target bytes (best-effort).
-          fs.copyFileSync(srcPath, dstPath);
-        }
-      }
+    for (const relativePath of localPublicPaths) {
+      const srcPath = path.join(repoPublicDir, relativePath);
+      if (!fs.existsSync(srcPath)) continue;
+      const dstPath = path.join(mergedPublicDir, relativePath);
+      fs.mkdirSync(path.dirname(dstPath), {recursive: true});
+      copyPathIntoPublicDir({srcPath, dstPath});
     }
   }
 
-  for (const ent of fs.readdirSync(projectCacheDir, {withFileTypes: true})) {
-    if (!ent.isFile()) continue;
-    if (ent.name.endsWith('.json')) continue;
-    const srcPath = path.join(projectCacheDir, ent.name);
-    const dstPath = path.join(mergedPublicDir, ent.name);
+  for (const fileName of cachedPublicFiles) {
+    const srcPath = path.join(projectCacheDir, fileName);
+    if (!fs.existsSync(srcPath) || !fs.statSync(srcPath).isFile()) continue;
+    const dstPath = path.join(mergedPublicDir, fileName);
     ensureHardlinkOrCopy(srcPath, dstPath);
   }
 

@@ -2,8 +2,8 @@
 import {spawnSync} from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import {pathToFileURL} from 'node:url';
 import {getDefaultCacheBaseDir, prepareAssetCache, prepareMergedPublicDir} from './asset_cache.mjs';
+import {collectProjectAssetRefs, getProjectDirsForRender} from './project_assets.mjs';
 
 const stripAnsi = (input) =>
   String(input).replace(
@@ -131,29 +131,12 @@ if (crf !== null) renderArgs.push('--crf', String(crf));
 
 // Code-first caching (default-on): cache URLs from `src/projects/*/assets.js` and pass an `assetMap` prop.
 if (useCache) {
-  const projectsDir = path.resolve('src', 'projects');
-  const urls = [];
-  if (fs.existsSync(projectsDir)) {
-    const projectIds = fs
-      .readdirSync(projectsDir, {withFileTypes: true})
-      .filter((d) => d.isDirectory())
-      .map((d) => d.name);
-
-    for (const id of projectIds) {
-      const assetsPath = path.resolve(projectsDir, id, 'assets.js');
-      if (!fs.existsSync(assetsPath)) continue;
-      const assets = await import(pathToFileURL(assetsPath).href);
-      for (const v of Object.values(assets)) {
-        if (typeof v === 'string' && /^https?:\/\//i.test(v)) {
-          urls.push(v);
-        }
-      }
-    }
-  }
+  const projectDirs = await getProjectDirsForRender({compositionId: comp});
+  const assetRefs = await collectProjectAssetRefs({projectDirs});
 
   const cache = await prepareAssetCache({
     cacheKey: 'assets',
-    urls,
+    urls: assetRefs.remoteUrls,
     cacheBaseDir,
     refresh: refreshCache,
   });
@@ -168,6 +151,8 @@ if (useCache) {
   const mergedPublicDir = prepareMergedPublicDir({
     projectCacheDir: cache.projectCacheDir,
     repoPublicDir: path.resolve('public'),
+    localPublicPaths: assetRefs.localPublicPaths,
+    cachedPublicFiles: Object.values(cache.assetMap).map((value) => value.replace(/^\//, '')),
   });
 
   const propsPath = path.join(cache.projectCacheDir, 'render-props.json');
