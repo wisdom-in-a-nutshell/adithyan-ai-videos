@@ -215,9 +215,9 @@ throw.
 **Visual concept — depth compositing demo**
 
 Layer order (bottom → top):
-1. **Background replacement** — swap the green screen for a dark dot-grid
-   (`background: #0d0d0d` + `radial-gradient` dots 48px). Fades in at 60.24s
-   over ~18 frames.
+1. **Background replacement** — swap the green screen for the studio plate
+   `projects/c0046/backgrounds/bg-studio.png`. Fades in at the spoken
+   background-change beat.
 2. **Depth text layer** — floating label text (e.g. "BACKGROUND LAYER") sits
    BETWEEN the background and Adi's silhouette. Uses the person matte as a
    clipping mask on the text so it reads as genuinely behind him.
