@@ -37,13 +37,15 @@ export const TIMING = {
   appleSwap: 53.88,
   appleReactionEnd: 60.16,
   foregroundMatteStart: 60.24,
-  selfDetectStart: 63.36,
-  selfDetectEnd: 71.52,
-  selfMatteStart: 71.52,
-  selfMatteEnd: 75.68,
-  backgroundReplaceStart: 75.68,
-  backgroundReplaceFadeEnd: 76.4,
-  depthTextStart: 82.88,
+  // Trigger these S05 effects just after the spoken action lands.
+  // 25fps => 2 frames = 0.08s.
+  selfDetectStart: 68.32,
+  selfDetectEnd: 72.48,
+  selfMatteStart: 72.48,
+  selfMatteEnd: 77.60,
+  backgroundReplaceStart: 77.60,
+  backgroundReplaceFadeEnd: 78.32,
+  depthTextStart: 85.84,
   depthTextEnd: 89.68,
   explainStart: 89.84,
 };

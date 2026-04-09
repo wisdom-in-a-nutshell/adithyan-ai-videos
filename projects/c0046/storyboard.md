@@ -206,6 +206,12 @@ throw.
 - 67s   "It could start adding interesting backgrounds behind me."
 - 75s   "I could also add like a text in between me and the background."
 
+**Exact action timings**
+- `detect me` ends at `68.24s` -> subject outline enters at `68.32s`
+- `crop me out` ends at `72.40s` -> matte cue enters at `72.48s`
+- `backgrounds behind me` ends at `77.52s` -> background replace enters at `77.60s`
+- `text in between me and the background` ends at `85.76s` -> depth text enters at `85.84s`
+
 **Visual concept — depth compositing demo**
 
 Layer order (bottom → top):
