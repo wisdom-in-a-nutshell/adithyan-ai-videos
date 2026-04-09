@@ -28,6 +28,7 @@ import {
   PERSON_MATTE_ALPHA_URL,
   S05_BACKGROUND_BASE_URL,
   S05_BACKGROUND_DEPTH_URL,
+  S05_SUBJECT_FRAMES_DIR,
   S05_SUBJECT_MATTE_URL,
   SKETCH_P2A_HARNESS_EMPTY_URL,
   SKETCH_P2B_HARNESS_TOOLS_PROMPT_URL,
@@ -324,6 +325,11 @@ const S05Backdrop = ({assetMap, depth = false}) => (
   />
 );
 
+// Total number of pre-keyed PNG frames in the S05 frames directory.
+// Used to clamp out-of-range index lookups so we don't try to load a
+// frame that doesn't exist.
+const S05_FRAME_COUNT = 740;
+
 const S05SubjectMatte = ({
   assetMap,
   sourceStartFrame = 0,
@@ -332,26 +338,32 @@ const S05SubjectMatte = ({
   outlineColor = 'rgba(34, 197, 94, 0.95)',
   filter,
 }) => {
-  // Single soft glow only. The previous outline (4 hard 2px drops + 10px blur)
-  // amplified every soft-alpha edge in the VP9 matte, making the face look
-  // tinted cyan/white. A single 4px blur reads as a gentle highlight without
-  // tracing matte artifacts.
-  const outlineFilter = `drop-shadow(0 0 4px ${outlineColor})`;
+  // Use the pre-keyed PNG frames (crisp binary alpha) instead of the VP9
+  // webm matte. The webm has soft alpha across most of Adi which let the
+  // background colour bleed into his face. The PNGs were extracted from
+  // the same source recording but with a clean key — only ~4% of pixels
+  // have soft alpha, all near the silhouette edges. This component is
+  // intentionally still called `S05SubjectMatte` to keep the existing
+  // call sites working unchanged.
+  const frame = useCurrentFrame();
+  const matteFrameIndex = sourceStartFrame + frame;
+  if (matteFrameIndex < 0 || matteFrameIndex >= S05_FRAME_COUNT) {
+    return null;
+  }
+  const frameName = `frame-${String(matteFrameIndex + 1).padStart(4, '0')}.png`;
+  const src = `${S05_SUBJECT_FRAMES_DIR}/${frameName}`;
 
-  // The matte webm was encoded with VP9 soft alpha — alpha values around the
-  // body sit in the 0.85–0.95 range instead of 1.0, which lets background
-  // colour bleed through and wash Adi's skin out (most visible against the
-  // warm cream studio backdrop). Compensate with a small saturation + contrast
-  // boost so his face matches his arms again. ALWAYS applied so both the
-  // clean matte and the outlined matte get the same skin colour treatment.
-  const compensationFilter = 'saturate(1.18) contrast(1.06)';
+  const outlineFilter = [
+    `drop-shadow(2px 0 0 ${outlineColor})`,
+    `drop-shadow(-2px 0 0 ${outlineColor})`,
+    `drop-shadow(0 2px 0 ${outlineColor})`,
+    `drop-shadow(0 -2px 0 ${outlineColor})`,
+    `drop-shadow(0 0 10px ${outlineColor})`,
+  ].join(' ');
 
   return (
-    <OffthreadVideo
-      src={resolveAssetSrc(S05_SUBJECT_MATTE_URL, assetMap)}
-      startFrom={Math.max(0, sourceStartFrame)}
-      muted
-      transparent
+    <Img
+      src={resolveAssetSrc(src, assetMap)}
       style={{
         position: 'absolute',
         inset: 0,
@@ -359,7 +371,7 @@ const S05SubjectMatte = ({
         height: '100%',
         objectFit: 'cover',
         opacity,
-        filter: [compensationFilter, outline ? outlineFilter : null, filter]
+        filter: [outline ? outlineFilter : null, filter]
           .filter(Boolean)
           .join(' ') || undefined,
       }}

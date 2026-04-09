@@ -13,6 +13,10 @@ export const S05_BACKGROUND_BASE_URL =
 export const S05_BACKGROUND_DEPTH_URL = S05_BACKGROUND_BASE_URL;
 export const S05_SUBJECT_MATTE_URL =
   'https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/3da2357970ee5637c7c731cca0118d072b500ecb4919af8a6a1a52fcc3eae2bd/subject-keyed-s05.webm';
+// Local PNG frames have crisp binary alpha (no bleed-through, unlike the VP9 webm).
+// Used by S05SubjectMatte for the actual rendering. The webm URL above is kept
+// only as a remote contract placeholder.
+export const S05_SUBJECT_FRAMES_DIR = 'public/imports/c0046/subject-keyed-s05-frames';
 
 // S06 storyboard sketches (xkcd-style hand-drawn).
 // Originals: projects/c0046/storyboard-assets/sketch/

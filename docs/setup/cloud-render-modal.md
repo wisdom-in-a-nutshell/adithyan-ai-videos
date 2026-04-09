@@ -31,3 +31,6 @@ npm run render:cloud -- --comp TextEffects --hq
     - `32x`: about `118.25s`
 - The current best observed default is therefore `28x` on the `64 CPU / 64 GiB`
   worker profile, not the maximum possible concurrency.
+- A later fair comparison on the same pushed SHA showed that reducing CPU to
+  `32` while keeping `64 GiB / 28x` made the same slice slower (`106s`) than
+  `64 CPU / 64 GiB / 28x` (`97s`), so keep `64 CPU` if speed is the priority.

@@ -137,3 +137,4 @@ This matters because the repository is meant to be agent-first and repeatable. R
 - 2026-04-09: [IN-PROGRESS] Raised the Modal cloud worker reservation from `64 CPU / 32 GiB` to `64 CPU / 64 GiB` and benchmarked a representative `C0046` slice (`72s -> 88s`) across explicit concurrency values.
 - 2026-04-09: [IN-PROGRESS] Recorded benchmark results for the tuned worker: `16x=135.04s`, `20x=122.72s`, `24x=124.09s`, `28x=113.00s`, `32x=118.25s`; `28x` is the best observed default so far.
 - 2026-04-09: [IN-PROGRESS] Confirmed the noisy “Detected differing memory amounts” warning comes from Remotion inside the cloud container and is not blocking renders; the benchmark jobs still completed successfully and uploaded outputs.
+- 2026-04-09: [IN-PROGRESS] Ran a same-SHA CPU reservation check at `28x`: `32 CPU / 64 GiB` took about `106s`, while `64 CPU / 64 GiB` took about `97s`, so reducing CPU does hurt this project's end-to-end speed.
