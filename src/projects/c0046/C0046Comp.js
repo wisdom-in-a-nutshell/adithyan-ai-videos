@@ -378,15 +378,19 @@ const S05DepthText = ({durationInFrames}) => {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
+  const driftRight = interpolate(inP, [0, 1], [0, 10], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
   const elegantFont = '"Baskerville", "Palatino Linotype", "Times New Roman", serif';
   const sharedWordStyle = {
     fontFamily: elegantFont,
-    fontWeight: 700,
+    fontWeight: 600,
     fontStyle: 'italic',
     lineHeight: 0.92,
     textTransform: 'uppercase',
-    color: 'rgba(78, 56, 39, 0.7)',
-    WebkitTextStroke: '1.2px rgba(255, 243, 222, 0.16)',
+    color: 'rgba(78, 56, 39, 0.62)',
+    WebkitTextStroke: '1px rgba(255, 243, 222, 0.14)',
     textShadow: '0 6px 18px rgba(24, 16, 9, 0.12)',
     whiteSpace: 'nowrap',
   };
@@ -405,7 +409,7 @@ const S05DepthText = ({durationInFrames}) => {
       <span
         style={{
           position: 'absolute',
-          left: '24%',
+          left: '22%',
           top: '31%',
           fontSize: 68,
           letterSpacing: 1.2,
@@ -418,11 +422,11 @@ const S05DepthText = ({durationInFrames}) => {
       <span
         style={{
           position: 'absolute',
-          right: '24%',
+          right: '20%',
           top: '31%',
-          fontSize: 90,
+          fontSize: 86,
           letterSpacing: 1.1,
-          transform: `translateX(${drift}px) rotate(1deg)`,
+          transform: `translateX(${driftRight}px) rotate(1deg)`,
           ...sharedWordStyle,
         }}
       >
