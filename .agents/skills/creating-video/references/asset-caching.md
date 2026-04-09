@@ -6,11 +6,19 @@ This repo uses a **code-first cache**:
 
 - URLs live in code: `src/projects/<id>/assets.js` exports (e.g. `*_VIDEO_URL`, `*_ALPHA_URL`).
 - `npm start` and `npm run render` automatically:
-  - scan `src/projects/*/assets.js` for exported `http(s)` URLs
+  - scan the active project(s) in `src/projects/*/assets.js` for exported `http(s)` URLs
   - download them into a local cache dir (stable filename = `sha1(url)` + extension)
   - serve the cache dir via Remotion `--public-dir`
   - pass `assetMap` via `--props` so compositions can rewrite URLs:
     - `"https://.../video.mp4" -> "/<sha1>.mp4"`
+
+The intended workflow is now:
+
+- keep runtime media remote-first in `assets.js`
+- let the local cache make local Studio/render fast
+- reserve local `public/imports/<project>/...` files for source material, drafts, or explicitly referenced small local assets
+
+That keeps local and cloud renders on the same runtime contract.
 
 ## Where The Cache Lives
 
@@ -23,6 +31,8 @@ This repo uses a **code-first cache**:
 - Force re-download (even if already cached): `--refresh`
 - Disable caching for a one-off run: `--no-cache` (render only)
 - If a cached render ever fails (404s or media "format error"), rerun with `--refresh` or fall back to `--no-cache`.
+- The cache now stages only the local public files explicitly referenced by the active project assets; it no longer needs the entire repo `public/` tree to be copied for every render.
+- For cloud-targeted work, avoid depending on local frame directories as runtime inputs. Convert them into one uploaded runtime asset when practical.
 
 ## Composition Wiring (What Code Must Do)
 
@@ -33,3 +43,8 @@ If a composition uses remote assets, it should support `assetMap`:
 - Thread `assetMap` into `Video`/`Img` sources.
 
 This keeps the product code clean: callers don't pass flags; caching “just happens”.
+
+## Cloud-Safe Rule Of Thumb
+
+- If the composition truly needs it at render time, prefer an uploaded remote URL in `assets.js`.
+- If the file is only an editable source or intermediate artifact, keep it under `projects/<project-id>/` or `public/imports/<project-id>/` and do not treat it as the runtime source of truth.

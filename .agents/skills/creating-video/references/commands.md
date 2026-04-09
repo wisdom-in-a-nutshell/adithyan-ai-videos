@@ -37,6 +37,19 @@ Notes:
 - Default render output is repo-local `tmp/<comp>.mp4`.
 - If you want a different stable filename, pass `--out`.
 
+## Cloud Render
+
+```bash
+cd <repo-root>
+npm run render:cloud -- --comp <CompositionId>
+```
+
+Notes:
+- This uses the deployed production Modal app, not `modal run -d`.
+- The command waits internally, prints heartbeat status lines, and returns the final URL when the cloud render finishes.
+- Cloud render is by pushed git SHA, so the working tree must be clean and pushed first.
+- Keep cloud renders for stable checkpoints. Use local slices first.
+
 ### Fast Iteration (Recommended)
 
 ```bash
@@ -54,6 +67,9 @@ npm run render -- --hq --scale 1 --crf 18 --out tmp/TextEffects-hq.mp4
 
 # Pick a different composition
 npm run render -- --comp ActiveSpeakerDetection --from 0 --to 3
+
+# Full cloud checkpoint once the local pass is stable
+npm run render:cloud -- --comp TextEffects
 ```
 
 Notes:
@@ -70,3 +86,13 @@ cd <repo-root>
 .agents/skills/media-toolkit/scripts/media_toolkit.sh --help
 .agents/skills/media-toolkit/scripts/media_toolkit.sh transcribe --help
 ```
+
+## Still Extraction
+
+For quick visual review, it is often cheaper to extract stills from a short rendered clip than to run `npx remotion still` directly:
+
+```bash
+ffmpeg -y -ss 8.0 -i tmp/<CompositionId>.mp4 -frames:v 1 tmp/<CompositionId>-f080.png
+```
+
+This is especially useful when the repo render wrapper already validated the clip and you want exact inspection frames from that same output.

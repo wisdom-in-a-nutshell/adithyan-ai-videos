@@ -16,6 +16,7 @@ Use **code-first** by default:
 - Put per-video code under `src/projects/<project-id>/`.
 - Register the composition through `src/projects/registry.js`; `src/Root.js` should continue rendering `PROJECT_COMPOSITIONS`.
 - Keep URLs, cut length, and per-video constants in code (e.g. `assets.js`).
+- Prefer remote-first runtime media in `assets.js` for compositions that may need cloud render; keep local files as editable source material until they are promoted into the runtime path.
 - For media-processing steps, first check `$media-toolkit` for a suitable command surface (for example transcription, transform, matting, or job status). If it fits the task, prefer it over lower-level backend-specific paths.
 - We removed `projects/<id>/project.json` / `scripts/*project*.mjs` workflows. Don’t reintroduce them unless the user explicitly asks.
 - Wrap major overlays in named `<Sequence>` blocks so effects are visible in Studio’s timeline.
@@ -59,6 +60,7 @@ References:
 5. Render (fast preview by default, auto-opens on macOS): `npm run render`.
    - Render a time slice in seconds (recommended for iteration): `npm run render -- --from 0 --to 6`
    - Full quality: `npm run render -- --hq`
+6. When the project reaches a stable checkpoint, use `npm run render:cloud` instead of ad hoc Modal commands so the repo-owned client handles submission, status, and final URL reporting.
 
 ## Expected Outputs (What To Produce)
 

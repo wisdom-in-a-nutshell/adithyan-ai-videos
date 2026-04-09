@@ -13,6 +13,9 @@ npm run render:cloud -- --comp TextEffects --hq
 - The target composition must not depend on ignored local runtime media.
   Active cloud-safe projects should keep runtime assets in `assets.js` as
   remote URLs.
+- If a beat currently depends on a local frame sequence for cutout quality,
+  convert it into one uploaded transparent runtime asset before relying on full
+  cloud render.
 
 ## Notes
 
@@ -22,6 +25,9 @@ npm run render:cloud -- --comp TextEffects --hq
   directly via `modal.Function.from_name(...)`. It no longer uses
   `modal run -d`, so cloud renders show up as function calls on the persistent
   deployed app instead of detached ephemeral apps.
+- The repo cloud wrapper now waits internally and emits heartbeat status lines
+  while the render is running. The command returns the final URL when the cloud
+  render completes.
 - Current backend tuning is calibrated against `C0046` on a representative
   `72s -> 88s` slice:
   - currently deployed worker reservation: `32` CPU cores, `65536` MB memory
@@ -37,3 +43,7 @@ npm run render:cloud -- --comp TextEffects --hq
 - The deployed app is currently kept at `32 CPU` by user preference, but if
   the priority shifts back to raw speed, move the worker reservation back to
   `64 CPU / 64 GiB` while keeping `28x` concurrency.
+- Noisy “Detected differing memory amounts” lines come from Remotion inside the
+  cloud container. They are useful to notice, but they were not the root cause
+  of the earlier `C0046` failures. The real blocker was local-only runtime
+  media in the composition path.

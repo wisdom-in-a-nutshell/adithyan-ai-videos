@@ -58,6 +58,11 @@ flowchart TD
 
 - Runtime inputs for a composition live in code under `src/projects/<id>/`;
   scratch manifests in `projects/<id>/` stay reference-only.
+- Runtime media that must work in both local and cloud renders should prefer a
+  single remote source of truth in `src/projects/<id>/assets.js`. Local files
+  can stay in `projects/<id>/` or `public/imports/<id>/` as editable source
+  material, but they should not remain the only runtime dependency for a stable
+  cloud path.
 - Every project exports one composition config from
   `src/projects/<id>/composition.js`.
 - `src/projects/registry.js` remains the source of truth for active

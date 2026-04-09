@@ -7,6 +7,8 @@
   preview slice for iteration.
 - `npm run render -- --comp <CompositionId> --hq --out tmp/<CompositionId>-hq.mp4 --no-open`:
   render a local high-quality checkpoint.
+- `npm run render:cloud -- --comp <CompositionId>`: submit a production cloud
+  render through the deployed Modal app and wait for the final URL.
 - `npm run new:project -- --id <project-id> --title "My Video"`: scaffold both
   project folders and register the new composition.
 - `npm run doctor`: verify repo shape and composition registration.
@@ -30,6 +32,13 @@
 - For an active project that should render in cloud, keep runtime media in
   `src/projects/<id>/assets.js` as remote URLs. Local review still works because
   the cache downloads those assets once and reuses them.
+- Treat local frame directories and scratch media as source material, not as
+  long-term runtime dependencies. If a cutout/effect needs them for quality,
+  prefer converting them into one uploaded transparent video and then pointing
+  `assets.js` at that remote asset.
+- `npm run render:cloud` owns the cloud wait loop. It prints the Modal call id,
+  dashboard URL, heartbeat status lines, and the final output URL. Do not do
+  separate manual polling unless you are debugging the backend itself.
 - Use short local preview slices during iteration and reserve cloud or HQ
   renders for stable checkpoints.
 

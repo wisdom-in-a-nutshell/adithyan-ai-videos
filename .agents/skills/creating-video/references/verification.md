@@ -26,6 +26,12 @@ Outputs:
 - Video: `tmp/<CompositionId>.mp4`
 - Stills: `tmp/<id>-f*.png`
 
+If `npx remotion still` is expensive or bypasses repo-specific cache behavior, extract stills from the rendered clip instead:
+
+```bash
+ffmpeg -y -ss 8.0 -i tmp/<CompositionId>.mp4 -frames:v 1 tmp/<id>-f080.png
+```
+
 ## Checklist (What To Look For)
 
 - Composite looks correct in the rendered MP4 (not just Studio).
@@ -61,3 +67,7 @@ Outputs:
   - usually comes from the RGBA `alpha.webm` having green-tinted RGB near partially-transparent edges
   - `feather` can amplify spill (it blurs edge colors outward)
   - prefer `shrink` (erode) first; if `shrink` has to be too large, re-run matting to get a cleaner `alpha.webm`
+- Cloud render failure after local success:
+  - check whether the composition still depends on local-only runtime media
+  - common offender: a local frame sequence used for a cutout effect
+  - best fix is usually one uploaded transparent video derived from that sequence, not teaching cloud about thousands of local files
