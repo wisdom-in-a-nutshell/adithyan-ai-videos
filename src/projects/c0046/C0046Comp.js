@@ -7,6 +7,7 @@ import {
   interpolate,
   staticFile,
   useCurrentFrame,
+  useVideoConfig,
 } from 'remotion';
 import ballTrack from './ball_track.json';
 import {
@@ -16,7 +17,6 @@ import {
   StatusLeftOverlay,
 } from '../../overlay_kit/overlays.js';
 import {SKETCH_FONT_FAMILY, SketchDefs} from '../../styles/sketch.js';
-import {TextPlacementDemoOverlay} from '../text-effects/TextPlacementDemoOverlay.js';
 import {
   APPLE_IMAGE_URL,
   BALL_RECOLOR,
@@ -356,6 +356,78 @@ const S05SubjectFrame = ({
   );
 };
 
+const clamp01 = (value) => Math.max(0, Math.min(1, value));
+
+const S05DepthText = ({durationInFrames}) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const fadeFrames = Math.max(1, Math.floor(0.18 * fps));
+  const dur = Math.max(1, Number(durationInFrames) || 1);
+  const inP = clamp01(frame / fadeFrames);
+  const outP = clamp01((dur - 1 - frame) / fadeFrames);
+  const opacity = interpolate(inP * outP, [0, 1], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+  const rise = interpolate(inP, [0, 1], [18, 0], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+  const pulse = 1 + Math.sin((frame / Math.max(1, fps)) * Math.PI * 1.35) * 0.012;
+
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: '50%',
+        top: '35%',
+        transform: `translate3d(-50%, calc(-50% + ${rise}px), 0) scale(${pulse})`,
+        opacity,
+        zIndex: 12,
+        pointerEvents: 'none',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 2,
+      }}
+    >
+      <span
+        style={{
+          fontFamily: SKETCH_FONT_FAMILY,
+          fontSize: 70,
+          fontWeight: 400,
+          letterSpacing: 7,
+          lineHeight: 0.95,
+          textTransform: 'uppercase',
+          color: 'rgba(243, 227, 201, 0.9)',
+          WebkitTextStroke: '4px rgba(32, 23, 14, 0.38)',
+          textShadow: '0 10px 28px rgba(34, 22, 10, 0.28)',
+          transform: 'translateX(-16px)',
+          whiteSpace: 'nowrap',
+        }}
+      >
+        TOTALLY
+      </span>
+      <span
+        style={{
+          fontFamily: SKETCH_FONT_FAMILY,
+          fontSize: 112,
+          fontWeight: 400,
+          letterSpacing: 5,
+          lineHeight: 0.9,
+          textTransform: 'uppercase',
+          color: 'rgba(255, 241, 215, 0.96)',
+          WebkitTextStroke: '6px rgba(32, 23, 14, 0.42)',
+          textShadow: '0 16px 32px rgba(34, 22, 10, 0.32)',
+          whiteSpace: 'nowrap',
+        }}
+      >
+        NATURAL
+      </span>
+    </div>
+  );
+};
+
 export const C0046Comp = (props) => {
   const assetMap = props?.assetMap ?? null;
   const frame = useCurrentFrame();
@@ -465,11 +537,7 @@ export const C0046Comp = (props) => {
           from={secondsToFrames(TIMING.depthTextStart)}
           durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
         >
-          <TextPlacementDemoOverlay
-            durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
-            scale={1}
-            variant="behind"
-          />
+          <S05DepthText durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)} />
         </Sequence>
 
         <Sequence
