@@ -373,7 +373,23 @@ const S05DepthText = ({durationInFrames}) => {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
-  const pulse = 1 + Math.sin((frame / Math.max(1, fps)) * Math.PI * 1.35) * 0.012;
+  const pulse = 1 + Math.sin((frame / Math.max(1, fps)) * Math.PI * 1.1) * 0.008;
+  const drift = interpolate(inP, [0, 1], [0, 16], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+  const elegantFont = '"Baskerville", "Palatino Linotype", "Times New Roman", serif';
+  const sharedWordStyle = {
+    fontFamily: elegantFont,
+    fontWeight: 700,
+    fontStyle: 'italic',
+    lineHeight: 0.92,
+    textTransform: 'uppercase',
+    color: 'rgba(78, 56, 39, 0.7)',
+    WebkitTextStroke: '1.2px rgba(255, 243, 222, 0.16)',
+    textShadow: '0 6px 18px rgba(24, 16, 9, 0.12)',
+    whiteSpace: 'nowrap',
+  };
 
   return (
     <div
@@ -389,19 +405,12 @@ const S05DepthText = ({durationInFrames}) => {
       <span
         style={{
           position: 'absolute',
-          left: '22%',
-          top: '34%',
-          fontFamily: SKETCH_FONT_FAMILY,
-          fontSize: 78,
-          fontWeight: 700,
-          letterSpacing: 4,
-          lineHeight: 0.95,
-          textTransform: 'uppercase',
-          color: 'rgba(246, 232, 205, 0.92)',
-          WebkitTextStroke: '4px rgba(39, 28, 16, 0.28)',
-          textShadow: '0 12px 24px rgba(31, 21, 11, 0.2)',
-          transform: 'rotate(-4deg)',
-          whiteSpace: 'nowrap',
+          left: '24%',
+          top: '31%',
+          fontSize: 68,
+          letterSpacing: 1.2,
+          transform: `translateX(${-drift}px) rotate(-2deg)`,
+          ...sharedWordStyle,
         }}
       >
         TOTALLY
@@ -409,19 +418,12 @@ const S05DepthText = ({durationInFrames}) => {
       <span
         style={{
           position: 'absolute',
-          right: '17%',
+          right: '24%',
           top: '31%',
-          fontFamily: SKETCH_FONT_FAMILY,
-          fontSize: 122,
-          fontWeight: 700,
-          letterSpacing: 3,
-          lineHeight: 0.9,
-          textTransform: 'uppercase',
-          color: 'rgba(255, 241, 215, 0.97)',
-          WebkitTextStroke: '6px rgba(39, 28, 16, 0.34)',
-          textShadow: '0 16px 32px rgba(31, 21, 11, 0.24)',
-          transform: 'rotate(1.5deg)',
-          whiteSpace: 'nowrap',
+          fontSize: 90,
+          letterSpacing: 1.1,
+          transform: `translateX(${drift}px) rotate(1deg)`,
+          ...sharedWordStyle,
         }}
       >
         NATURAL
