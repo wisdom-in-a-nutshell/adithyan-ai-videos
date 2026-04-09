@@ -39,9 +39,9 @@ Usage:
                        [--storage-prefix <share|cache|permanent>]
 
 Notes:
-  - Requires Modal secret 'r2-secret' for uploads.
+  - Requires Modal auth and the deployed 'aip-processor' app.
   - Render is by git SHA: working tree must be clean and pushed.
-  - This command runs Modal in detached mode so closing your terminal won't cancel the render.
+  - Invokes the deployed Modal function directly, not 'modal run -d'.
 `.trim());
   process.exit(0);
 }
@@ -62,15 +62,12 @@ const gitSha = String(shaRes.stdout || '').trim();
 if (!gitSha) die('Failed to determine git SHA');
 
 const modalRepoDir = path.resolve('..', 'modal_functions');
-const modalBinCandidate = path.join(modalRepoDir, 'venv', 'bin', 'modal');
-const modalBin = fs.existsSync(modalBinCandidate) ? modalBinCandidate : 'modal';
+const modalPythonCandidate = path.join(modalRepoDir, 'venv', 'bin', 'python');
+const modalPython = fs.existsSync(modalPythonCandidate) ? modalPythonCandidate : 'python3';
+const invoker = path.resolve('scripts', 'render_cloud_deployed.py');
 
 const args = [
-  'run',
-  '-d',
-  '--timestamps',
-  '-m',
-  'src.functions.video.render_remotion_cloud',
+  invoker,
   '--git-sha',
   gitSha,
   '--composition-id',
@@ -80,7 +77,6 @@ const args = [
 ];
 
 if (preview) args.push('--no-hq');
-else args.push('--hq');
 if (fromSeconds) args.push('--from-seconds', fromSeconds);
 if (toSeconds) args.push('--to-seconds', toSeconds);
 if (scale) args.push('--scale', scale);
@@ -88,29 +84,40 @@ if (crf) args.push('--crf', crf);
 if (concurrency) args.push('--concurrency', concurrency);
 if (delayRenderTimeoutMs) args.push('--delay-render-timeout-ms', delayRenderTimeoutMs);
 
-let appId = null;
+let callId = null;
+let dashboardUrl = null;
 let foundUrl = null;
-const appIdRe = /\bap-[A-Za-z0-9]+\b/;
+const callIdRe = /\bfc-[A-Za-z0-9]+\b/;
+const dashboardUrlRe = /(https:\/\/modal\.com\/apps\/\S+)/;
 const urlRe = /(https?:\/\/\S+?\.mp4)\b/;
 
-const runProc = spawn(modalBin, args, {cwd: modalRepoDir, stdio: ['ignore', 'pipe', 'pipe']});
+const runProc = spawn(modalPython, args, {cwd: process.cwd(), stdio: ['ignore', 'pipe', 'pipe']});
 
 const onChunk = (chunk) => {
   const text = String(chunk || '');
   process.stdout.write(text);
 
-  if (!appId) {
-    const m = text.match(appIdRe);
-    if (m && m[0]) {
-      appId = m[0];
+  if (!callId) {
+    const m = text.match(callIdRe);
+    if (m?.[0]) {
+      callId = m[0];
       // eslint-disable-next-line no-console
-      console.log(`\nModal app: ${appId}\n`);
+      console.log(`\nModal function call: ${callId}\n`);
+    }
+  }
+
+  if (!dashboardUrl) {
+    const m = text.match(dashboardUrlRe);
+    if (m?.[1]) {
+      dashboardUrl = m[1];
+      // eslint-disable-next-line no-console
+      console.log(`\nDashboard URL: ${dashboardUrl}\n`);
     }
   }
 
   if (!foundUrl) {
     const m = text.match(urlRe);
-    if (m && m[1]) {
+    if (m?.[1]) {
       foundUrl = m[1];
       // eslint-disable-next-line no-console
       console.log(`\nFINAL_URL: ${foundUrl}\n`);
@@ -124,6 +131,6 @@ runProc.on('exit', (code) => {
   if (code === 0) process.exit(0);
   die(
     `Modal render exited with code ${code ?? 'unknown'}.` +
-      (appId ? ` App: ${appId}` : '')
+      (callId ? ` Call: ${callId}` : '')
   );
 });

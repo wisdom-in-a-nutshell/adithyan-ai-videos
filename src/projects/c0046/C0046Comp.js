@@ -330,6 +330,26 @@ const S05Backdrop = ({assetMap, depth = false}) => (
 // frame that doesn't exist.
 const S05_FRAME_COUNT = 740;
 
+// Brief fade-in white backdrop, used to bridge the S05 → S06 transition so
+// the warm studio bg cross-dissolves into the white explainer bg instead of
+// popping. Sits at the same z layer as the underlying bg and fades from 0→1
+// across the first `fadeInFrames` of its sequence.
+const FadeInWhiteBackdrop = ({fadeInFrames = 8}) => {
+  const frame = useCurrentFrame();
+  const opacity = interpolate(frame, [0, fadeInFrames], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+  return (
+    <AbsoluteFill
+      style={{
+        backgroundColor: '#ffffff',
+        opacity,
+      }}
+    />
+  );
+};
+
 const S05SubjectMatte = ({
   assetMap,
   sourceStartFrame = 0,
@@ -347,10 +367,13 @@ const S05SubjectMatte = ({
   // call sites working unchanged.
   const frame = useCurrentFrame();
   const matteFrameIndex = sourceStartFrame + frame;
-  if (matteFrameIndex < 0 || matteFrameIndex >= S05_FRAME_COUNT) {
+  if (matteFrameIndex < 0) {
     return null;
   }
-  const frameName = `frame-${String(matteFrameIndex + 1).padStart(4, '0')}.png`;
+  // Clamp to the last available PNG so we can extend the matte sequence a few
+  // frames past the recorded range — used to bridge the S05 → S06 transition.
+  const clampedIndex = Math.min(matteFrameIndex, S05_FRAME_COUNT - 1);
+  const frameName = `frame-${String(clampedIndex + 1).padStart(4, '0')}.png`;
   const src = `${S05_SUBJECT_FRAMES_DIR}/${frameName}`;
 
   const outlineFilter = [
@@ -572,7 +595,7 @@ export const C0046Comp = (props) => {
           durationInFrames={beatDurationInFrames(
             TIMING.backgroundReplaceStart,
             TIMING.explainStart
-          )}
+          ) + 8}
         >
           <S05Backdrop assetMap={assetMap} />
         </Sequence>
@@ -627,7 +650,7 @@ export const C0046Comp = (props) => {
           durationInFrames={beatDurationInFrames(
             TIMING.backgroundReplaceStart,
             TIMING.explainStart
-          )}
+          ) + 8}
         >
           <AbsoluteFill
             style={{
@@ -651,11 +674,7 @@ export const C0046Comp = (props) => {
             DURATION_FRAMES - secondsToFrames(TIMING.explainStart)
           )}
         >
-          <AbsoluteFill
-            style={{
-              backgroundColor: '#ffffff',
-            }}
-          />
+          <FadeInWhiteBackdrop fadeInFrames={8} />
         </Sequence>
 
         <Sequence
