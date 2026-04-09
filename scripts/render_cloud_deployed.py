@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import time
 import sys
 from typing import Any
 
@@ -11,6 +12,7 @@ import modal
 
 APP_NAME = "aip-processor"
 FUNCTION_NAME = "render_remotion_cloud"
+STATUS_TIMEOUT_SECONDS = 15
 
 
 def _extract_url(result: Any) -> str | None:
@@ -66,9 +68,21 @@ def main() -> int:
     with modal.enable_output(show_progress=True, show_timestamps=True):
         func = modal.Function.from_name(APP_NAME, FUNCTION_NAME)
         call = func.spawn(args.git_sha, **kwargs)
-        print(f"Modal function call: {call.object_id}", flush=True)
-        print(f"Dashboard URL: {call.get_dashboard_url()}", flush=True)
-        result = call.get()
+        dashboard_url = call.get_dashboard_url()
+        print(f"Modal function call: {call.object_id}", file=sys.stderr, flush=True)
+        print(f"Dashboard URL: {dashboard_url}", file=sys.stderr, flush=True)
+        started = time.monotonic()
+        while True:
+            try:
+                result = call.get(timeout=STATUS_TIMEOUT_SECONDS)
+                break
+            except TimeoutError:
+                elapsed = int(time.monotonic() - started)
+                print(
+                    f"[status] running elapsed={elapsed}s call_id={call.object_id}",
+                    file=sys.stderr,
+                    flush=True,
+                )
 
     url = _extract_url(result)
     if url:
