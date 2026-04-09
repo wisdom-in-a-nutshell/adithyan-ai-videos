@@ -16,6 +16,7 @@ import {
   StatusLeftOverlay,
 } from '../../overlay_kit/overlays.js';
 import {SKETCH_FONT_FAMILY, SketchDefs} from '../../styles/sketch.js';
+import {TextPlacementDemoOverlay} from '../text-effects/TextPlacementDemoOverlay.js';
 import {
   APPLE_IMAGE_URL,
   BALL_RECOLOR,
@@ -23,9 +24,9 @@ import {
   FPS,
   OPENER_UI,
   OVERLAY_VIEW,
-  PERSON_MATTE_ALPHA_URL,
-  S05_BACKGROUND_COMPOSITE_URL,
-  S05_DEPTH_COMPOSITE_URL,
+  S05_BACKGROUND_BASE_URL,
+  S05_BACKGROUND_DEPTH_URL,
+  S05_SUBJECT_FRAMES_DIR,
   TIMING,
   VIDEO_URL,
 } from './assets.js';
@@ -296,6 +297,59 @@ const getFadeWindowOpacity = (timeInSeconds, start, end, fadeSeconds = 0.32) => 
   );
 };
 
+const getS05FrameSrc = (relativeFrame) => {
+  if (!Number.isFinite(relativeFrame) || relativeFrame < 0) {
+    return null;
+  }
+
+  const frameName = `frame-${String(relativeFrame + 1).padStart(4, '0')}.png`;
+  return `${S05_SUBJECT_FRAMES_DIR}/${frameName}`;
+};
+
+const S05Backdrop = ({assetMap, depth = false}) => (
+  <Img
+    src={resolveAssetSrc(depth ? S05_BACKGROUND_DEPTH_URL : S05_BACKGROUND_BASE_URL, assetMap)}
+    style={{
+      position: 'absolute',
+      inset: 0,
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+    }}
+  />
+);
+
+const S05SubjectFrame = ({assetMap, relativeFrame, opacity = 1, outline = false}) => {
+  const src = getS05FrameSrc(relativeFrame);
+  if (!src) {
+    return null;
+  }
+
+  const outlineColor = 'rgba(34, 197, 94, 0.95)';
+  const outlineFilter = [
+    `drop-shadow(2px 0 0 ${outlineColor})`,
+    `drop-shadow(-2px 0 0 ${outlineColor})`,
+    `drop-shadow(0 2px 0 ${outlineColor})`,
+    `drop-shadow(0 -2px 0 ${outlineColor})`,
+    `drop-shadow(0 0 7px rgba(34, 197, 94, 0.42))`,
+  ].join(' ');
+
+  return (
+    <Img
+      src={resolveAssetSrc(src, assetMap)}
+      style={{
+        position: 'absolute',
+        inset: 0,
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        opacity,
+        filter: outline ? outlineFilter : undefined,
+      }}
+    />
+  );
+};
+
 const BodyDetectOverlay = ({opacity = 1, mode = 'detect'}) => {
   const stroke = mode === 'matte' ? '#9cf3ff' : '#ffffff';
   const strokeWidth = mode === 'matte' ? 5.5 : 4.8;
@@ -351,6 +405,7 @@ export const C0046Comp = (props) => {
   const appleHoldFrame = secondsToFrames(TIMING.ballWindowEnd);
   const trackFrame = timeInSeconds >= TIMING.appleSwap ? Math.min(frame, appleHoldFrame) : frame;
   const ballTrackPoint = getTrackPointForFrame(ballTrack, trackFrame);
+  const s05RelativeFrame = frame - secondsToFrames(TIMING.foregroundMatteStart);
   const mattePulseOpacity = getFadeWindowOpacity(
     timeInSeconds,
     TIMING.selfMatteStart,
@@ -397,29 +452,45 @@ export const C0046Comp = (props) => {
             TIMING.depthTextStart
           )}
         >
-          <OffthreadVideo
-            src={resolveAssetSrc(S05_BACKGROUND_COMPOSITE_URL, assetMap)}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-            }}
+          <S05Backdrop assetMap={assetMap} />
+        </Sequence>
+
+        <Sequence
+          name="[S14] Depth Background"
+          from={secondsToFrames(TIMING.depthTextStart)}
+          durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
+        >
+          <S05Backdrop assetMap={assetMap} depth />
+        </Sequence>
+
+        <Sequence
+          name="[S14A] Depth Text Behind"
+          from={secondsToFrames(TIMING.depthTextStart)}
+          durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
+        >
+          <TextPlacementDemoOverlay
+            durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
+            scale={1}
+            variant="behind"
           />
         </Sequence>
 
         <Sequence
-          name="[S14] Depth Text"
-          from={secondsToFrames(TIMING.depthTextStart)}
-          durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
+          name="[S14B] Foreground Subject"
+          from={secondsToFrames(TIMING.backgroundReplaceStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.backgroundReplaceStart,
+            TIMING.explainStart
+          )}
         >
-          <OffthreadVideo
-            src={resolveAssetSrc(S05_DEPTH_COMPOSITE_URL, assetMap)}
+          <AbsoluteFill
             style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
+              pointerEvents: 'none',
+              zIndex: 220,
             }}
-          />
+          >
+            <S05SubjectFrame assetMap={assetMap} relativeFrame={s05RelativeFrame} />
+          </AbsoluteFill>
         </Sequence>
 
         <Sequence
@@ -755,22 +826,19 @@ export const C0046Comp = (props) => {
         </Sequence>
       ) : null}
 
-      {OVERLAY_VIEW.showForegroundMatte ? (
-        <Sequence name="[FX02] Foreground Matte" from={secondsToFrames(TIMING.explainStart)}>
+      {timeInSeconds >= TIMING.selfMatteStart && timeInSeconds < TIMING.backgroundReplaceStart ? (
+        <Sequence name="[FX02] Matte Outline" from={secondsToFrames(TIMING.selfMatteStart)}>
           <AbsoluteFill
             style={{
               pointerEvents: 'none',
-              opacity: timeInSeconds >= TIMING.explainStart ? 1 : 0,
               zIndex: 220,
             }}
           >
-            <OffthreadVideo
-              src={resolveAssetSrc(PERSON_MATTE_ALPHA_URL, assetMap)}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-              }}
+            <S05SubjectFrame
+              assetMap={assetMap}
+              relativeFrame={s05RelativeFrame}
+              outline
+              opacity={mattePulseOpacity}
             />
           </AbsoluteFill>
         </Sequence>
