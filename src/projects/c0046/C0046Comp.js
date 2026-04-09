@@ -332,13 +332,11 @@ const S05SubjectMatte = ({
   outlineColor = 'rgba(34, 197, 94, 0.95)',
   filter,
 }) => {
-  const outlineFilter = [
-    `drop-shadow(2px 0 0 ${outlineColor})`,
-    `drop-shadow(-2px 0 0 ${outlineColor})`,
-    `drop-shadow(0 2px 0 ${outlineColor})`,
-    `drop-shadow(0 -2px 0 ${outlineColor})`,
-    `drop-shadow(0 0 10px ${outlineColor})`,
-  ].join(' ');
+  // Single soft glow only. The previous outline (4 hard 2px drops + 10px blur)
+  // amplified every soft-alpha edge in the VP9 matte, making the face look
+  // tinted cyan/white. A single 4px blur reads as a gentle highlight without
+  // tracing matte artifacts.
+  const outlineFilter = `drop-shadow(0 0 4px ${outlineColor})`;
 
   // The matte webm was encoded with VP9 soft alpha — alpha values around the
   // body sit in the 0.85–0.95 range instead of 1.0, which lets background
