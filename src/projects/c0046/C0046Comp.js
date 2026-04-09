@@ -319,19 +319,24 @@ const S05Backdrop = ({assetMap, depth = false}) => (
   />
 );
 
-const S05SubjectFrame = ({assetMap, relativeFrame, opacity = 1, outline = false}) => {
+const S05SubjectFrame = ({
+  assetMap,
+  relativeFrame,
+  opacity = 1,
+  outline = false,
+  outlineColor = 'rgba(34, 197, 94, 0.95)',
+}) => {
   const src = getS05FrameSrc(relativeFrame);
   if (!src) {
     return null;
   }
 
-  const outlineColor = 'rgba(34, 197, 94, 0.95)';
   const outlineFilter = [
     `drop-shadow(2px 0 0 ${outlineColor})`,
     `drop-shadow(-2px 0 0 ${outlineColor})`,
     `drop-shadow(0 2px 0 ${outlineColor})`,
     `drop-shadow(0 -2px 0 ${outlineColor})`,
-    `drop-shadow(0 0 7px rgba(34, 197, 94, 0.42))`,
+    `drop-shadow(0 0 10px ${outlineColor})`,
   ].join(' ');
 
   return (
@@ -347,57 +352,6 @@ const S05SubjectFrame = ({assetMap, relativeFrame, opacity = 1, outline = false}
         filter: outline ? outlineFilter : undefined,
       }}
     />
-  );
-};
-
-const BodyDetectOverlay = ({opacity = 1, mode = 'detect'}) => {
-  const stroke = mode === 'matte' ? '#9cf3ff' : '#ffffff';
-  const strokeWidth = mode === 'matte' ? 5.5 : 4.8;
-  const mainX = mode === 'matte' ? 710 : 690;
-  const mainY = mode === 'matte' ? 54 : 40;
-  const mainWidth = mode === 'matte' ? 650 : 690;
-  const mainHeight = mode === 'matte' ? 936 : 970;
-  const mainRadius = mode === 'matte' ? 228 : 244;
-  const ghostOffsetX = mode === 'matte' ? 14 : 18;
-  const ghostOffsetY = mode === 'matte' ? 8 : 10;
-
-  return (
-    <svg
-      viewBox="0 0 1920 1080"
-      style={{
-        position: 'absolute',
-        inset: 0,
-        width: '100%',
-        height: '100%',
-        opacity,
-        overflow: 'visible',
-      }}
-    >
-      <rect
-        x={mainX}
-        y={mainY}
-        width={mainWidth}
-        height={mainHeight}
-        rx={mainRadius}
-        fill="none"
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-        filter="url(#pencil-stroke)"
-        opacity="0.98"
-      />
-      <rect
-        x={mainX + ghostOffsetX}
-        y={mainY - ghostOffsetY}
-        width={mainWidth - 12}
-        height={mainHeight + 6}
-        rx={mainRadius}
-        fill="none"
-        stroke={stroke}
-        strokeWidth={mode === 'matte' ? 2.5 : 2.2}
-        filter="url(#pencil-stroke)"
-        opacity={mode === 'matte' ? 0.5 : 0.42}
-      />
-    </svg>
   );
 };
 
@@ -820,16 +774,23 @@ export const C0046Comp = (props) => {
       ) : null}
 
       {timeInSeconds >= TIMING.selfDetectStart && timeInSeconds <= TIMING.selfMatteEnd ? (
-        <Sequence name="[FX04] Body Detect Outline" from={secondsToFrames(TIMING.selfDetectStart)}>
+        <Sequence name="[FX04] Subject Outline" from={secondsToFrames(TIMING.selfDetectStart)}>
           <AbsoluteFill
             style={{
               pointerEvents: 'none',
               zIndex: 239,
             }}
           >
-            <BodyDetectOverlay
-              opacity={Math.max(detectOutlineOpacity, mattePulseOpacity * 0.9)}
-              mode={timeInSeconds >= TIMING.selfMatteStart ? 'matte' : 'detect'}
+            <S05SubjectFrame
+              assetMap={assetMap}
+              relativeFrame={s05RelativeFrame}
+              outline
+              opacity={timeInSeconds >= TIMING.selfMatteStart ? mattePulseOpacity : detectOutlineOpacity}
+              outlineColor={
+                timeInSeconds >= TIMING.selfMatteStart
+                  ? 'rgba(156, 243, 255, 0.98)'
+                  : 'rgba(255, 255, 255, 0.98)'
+              }
             />
           </AbsoluteFill>
         </Sequence>
