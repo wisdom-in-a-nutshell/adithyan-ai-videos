@@ -498,7 +498,7 @@ export const C0046Comp = (props) => {
           from={secondsToFrames(TIMING.backgroundReplaceStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.backgroundReplaceStart,
-            TIMING.depthTextStart
+            TIMING.explainStart
           )}
         >
           <S05Backdrop assetMap={assetMap} />
@@ -535,14 +535,6 @@ export const C0046Comp = (props) => {
           >
             <S05SubjectFrame assetMap={assetMap} relativeFrame={s05RelativeFrame} />
           </AbsoluteFill>
-        </Sequence>
-
-        <Sequence
-          name="[S14] Depth Background"
-          from={secondsToFrames(TIMING.depthTextStart)}
-          durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
-        >
-          <S05Backdrop assetMap={assetMap} depth />
         </Sequence>
 
         <Sequence

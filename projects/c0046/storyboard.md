@@ -215,12 +215,11 @@ throw.
 **Visual concept — depth compositing demo**
 
 Layer order (bottom → top):
-1. **Background replacement** — swap the green screen for the studio plate
-   `projects/c0046/backgrounds/bg-studio.png`. Fades in at the spoken
-   background-change beat.
-2. **Depth text layer** — floating label text (e.g. "BACKGROUND LAYER") sits
-   BETWEEN the background and Adi's silhouette. Uses the person matte as a
-   clipping mask on the text so it reads as genuinely behind him.
+1. **Background replacement** — swap the green screen for the warm studio
+   plate during the "interesting backgrounds" beat, then keep that same
+   studio background continuously through the full `TOTALLY NATURAL` depth beat.
+2. **Depth text layer** — floating label text sits BETWEEN the background and
+   Adi's silhouette while the studio plate remains behind him.
 3. **Person matte** (`person-matte-alpha-full.webm`) — composites Adi on top.
 4. **UI overlays** on top as usual.
 
