@@ -85,8 +85,9 @@ This matters because the repository is meant to be agent-first and repeatable. R
   remote-first runtime media in `src/projects/<id>/assets.js`, with local files
   promoted via `upload-media` before they become composition inputs.
 - For the current Modal backend worker shape, the tuned default is now
-  `64 CPU / 64 GiB` with auto concurrency landing at `28`, based on measured
-  `C0046` cloud benchmarks rather than the older hardcoded `8x` default.
+  `32 CPU / 64 GiB` with auto concurrency landing at `28`, because that is the
+  current deployed setting. Benchmark evidence still shows `64 CPU / 64 GiB /
+  28x` is faster when raw speed matters.
 
 ## Open Questions / Blockers
 - What exact schema should `assets.js` use for dual local/remote runtime assets without making composition code noisy?
@@ -138,3 +139,4 @@ This matters because the repository is meant to be agent-first and repeatable. R
 - 2026-04-09: [IN-PROGRESS] Recorded benchmark results for the tuned worker: `16x=135.04s`, `20x=122.72s`, `24x=124.09s`, `28x=113.00s`, `32x=118.25s`; `28x` is the best observed default so far.
 - 2026-04-09: [IN-PROGRESS] Confirmed the noisy “Detected differing memory amounts” warning comes from Remotion inside the cloud container and is not blocking renders; the benchmark jobs still completed successfully and uploaded outputs.
 - 2026-04-09: [IN-PROGRESS] Ran a same-SHA CPU reservation check at `28x`: `32 CPU / 64 GiB` took about `106s`, while `64 CPU / 64 GiB` took about `97s`, so reducing CPU does hurt this project's end-to-end speed.
+- 2026-04-09: [IN-PROGRESS] Switched the repo cloud wrapper away from `modal run -d` and onto the deployed `aip-processor.render_remotion_cloud` function path, matching the production invocation pattern already used in `../win`.
