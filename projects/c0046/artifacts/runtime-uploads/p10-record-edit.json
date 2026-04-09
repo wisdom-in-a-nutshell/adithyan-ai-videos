@@ -1,0 +1,26 @@
+{
+  "command": "upload-media",
+  "data": {
+    "upload": {
+      "cached": false,
+      "content_sha256": "7b1dd66889aa06c732fbbeaec0e70db1f1d375530b72a9e8fdfc077368ca62a7",
+      "content_type": "image/png",
+      "destination_path": "agent-media-toolkit/by-hash/7b1dd66889aa06c732fbbeaec0e70db1f1d375530b72a9e8fdfc077368ca62a7/p10-record-edit.png",
+      "file_name": "p10-record-edit.png",
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/public/imports/c0046/sketch/p10-record-edit.png",
+      "object_name": "share/agent-media-toolkit/by-hash/7b1dd66889aa06c732fbbeaec0e70db1f1d375530b72a9e8fdfc077368ca62a7/p10-record-edit.png",
+      "source_file_name": "p10-record-edit.png",
+      "storage_prefix": "share",
+      "url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/7b1dd66889aa06c732fbbeaec0e70db1f1d375530b72a9e8fdfc077368ca62a7/p10-record-edit.png"
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 1551,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/runtime-uploads/p10-record-edit.json",
+    "request_id": "upload-media-4994e19e1b2241a594ab7b155d6d43e3",
+    "timestamp_utc": "2026-04-09T12:58:32Z"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}

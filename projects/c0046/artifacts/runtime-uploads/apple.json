@@ -1,0 +1,26 @@
+{
+  "command": "upload-media",
+  "data": {
+    "upload": {
+      "cached": false,
+      "content_sha256": "2273db9cd08848f71db3f2ffb3796e33d007b95b94c3ce71cb139509ca3ff679",
+      "content_type": "image/svg+xml",
+      "destination_path": "agent-media-toolkit/by-hash/2273db9cd08848f71db3f2ffb3796e33d007b95b94c3ce71cb139509ca3ff679/apple.svg",
+      "file_name": "apple.svg",
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/public/imports/c0046/apple.svg",
+      "object_name": "share/agent-media-toolkit/by-hash/2273db9cd08848f71db3f2ffb3796e33d007b95b94c3ce71cb139509ca3ff679/apple.svg",
+      "source_file_name": "apple.svg",
+      "storage_prefix": "share",
+      "url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/2273db9cd08848f71db3f2ffb3796e33d007b95b94c3ce71cb139509ca3ff679/apple.svg"
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 1634,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/runtime-uploads/apple.json",
+    "request_id": "upload-media-a795a7168fdb45a28164a813f77665e3",
+    "timestamp_utc": "2026-04-09T12:58:20Z"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}

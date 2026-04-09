@@ -27,6 +27,9 @@
 - `npm start` and `npm run render -- ...` scan `src/projects/*/assets.js`,
   build a local asset cache, and pass cached props plus a merged public dir into
   Remotion.
+- For an active project that should render in cloud, keep runtime media in
+  `src/projects/<id>/assets.js` as remote URLs. Local review still works because
+  the cache downloads those assets once and reuses them.
 - Use short local preview slices during iteration and reserve cloud or HQ
   renders for stable checkpoints.
 

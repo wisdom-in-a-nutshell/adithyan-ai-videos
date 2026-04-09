@@ -1,0 +1,26 @@
+{
+  "command": "upload-media",
+  "data": {
+    "upload": {
+      "cached": false,
+      "content_sha256": "e5cd57a67ca553e8ea9390f9ba096a5855d35c45cfd16e93ebb8e3a5f5d7ad80",
+      "content_type": "image/png",
+      "destination_path": "agent-media-toolkit/by-hash/e5cd57a67ca553e8ea9390f9ba096a5855d35c45cfd16e93ebb8e3a5f5d7ad80/p9-terminal.png",
+      "file_name": "p9-terminal.png",
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/public/imports/c0046/sketch/p9-terminal.png",
+      "object_name": "share/agent-media-toolkit/by-hash/e5cd57a67ca553e8ea9390f9ba096a5855d35c45cfd16e93ebb8e3a5f5d7ad80/p9-terminal.png",
+      "source_file_name": "p9-terminal.png",
+      "storage_prefix": "share",
+      "url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/e5cd57a67ca553e8ea9390f9ba096a5855d35c45cfd16e93ebb8e3a5f5d7ad80/p9-terminal.png"
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 1667,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/runtime-uploads/p9-terminal.json",
+    "request_id": "upload-media-f57ca7967e9d454bad50ac31d0a1c1ce",
+    "timestamp_utc": "2026-04-09T12:58:50Z"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}

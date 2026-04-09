@@ -1,0 +1,26 @@
+{
+  "command": "upload-media",
+  "data": {
+    "upload": {
+      "cached": false,
+      "content_sha256": "3da2357970ee5637c7c731cca0118d072b500ecb4919af8a6a1a52fcc3eae2bd",
+      "content_type": "video/webm",
+      "destination_path": "agent-media-toolkit/by-hash/3da2357970ee5637c7c731cca0118d072b500ecb4919af8a6a1a52fcc3eae2bd/subject-keyed-s05.webm",
+      "file_name": "subject-keyed-s05.webm",
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/public/imports/c0046/subject-keyed-s05.webm",
+      "object_name": "share/agent-media-toolkit/by-hash/3da2357970ee5637c7c731cca0118d072b500ecb4919af8a6a1a52fcc3eae2bd/subject-keyed-s05.webm",
+      "source_file_name": "subject-keyed-s05.webm",
+      "storage_prefix": "share",
+      "url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/3da2357970ee5637c7c731cca0118d072b500ecb4919af8a6a1a52fcc3eae2bd/subject-keyed-s05.webm"
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 6912,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/runtime-uploads/subject-keyed-s05.json",
+    "request_id": "upload-media-4356bb78cb2348c78eae90e75ea4324d",
+    "timestamp_utc": "2026-04-09T12:58:25Z"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}

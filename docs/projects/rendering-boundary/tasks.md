@@ -81,6 +81,9 @@ This matters because the repository is meant to be agent-first and repeatable. R
 - The right long-term fix is not “switch providers first”; it is “make runtime assets cloud-safe and expose a single render contract.”
 - The repository should eventually expose one repo-local render client that orchestrates local render, cloud preflight, asset promotion, and cloud submission/status.
 - The current shared uploader in `~/GitHub/scripts` should be reused rather than replaced.
+- For the active cloud-targeted project path, the simplest working contract is
+  remote-first runtime media in `src/projects/<id>/assets.js`, with local files
+  promoted via `upload-media` before they become composition inputs.
 
 ## Open Questions / Blockers
 - What exact schema should `assets.js` use for dual local/remote runtime assets without making composition code noisy?
@@ -126,3 +129,5 @@ This matters because the repository is meant to be agent-first and repeatable. R
 - 2026-04-09: [IN-PROGRESS] Created rendering-boundary tracker to capture the current render/cloud contradiction, preserve the recommended solution, and stop this design work from living only in chat.
 - 2026-04-09: [IN-PROGRESS] Recorded current evidence: local render succeeds, cloud render reaches Modal/Remotion and then fails because `public/imports/c0046/source.mp4` is local-only and ignored from git.
 - 2026-04-09: [IN-PROGRESS] Recorded the recommended direction: preserve current repo layout, keep local-first editing, add explicit local/cloud runtime asset descriptors, and eventually expose one repo-local render client boundary.
+- 2026-04-09: [IN-PROGRESS] Switched `C0046` runtime media to remote URLs, uploaded the remaining local-only runtime assets, and replaced the `S05` local PNG frame sequence with a remote keyed matte video so the active composition no longer depends on ignored local runtime files.
+- 2026-04-09: [IN-PROGRESS] Added a doctor guardrail so an enabled project fails if `assets.js` still points at local media files instead of remote runtime URLs.

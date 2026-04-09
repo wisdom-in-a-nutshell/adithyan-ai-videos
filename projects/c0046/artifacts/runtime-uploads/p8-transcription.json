@@ -1,0 +1,26 @@
+{
+  "command": "upload-media",
+  "data": {
+    "upload": {
+      "cached": false,
+      "content_sha256": "dbc92cfe73a27adb086751f1ea171f7a22c9beaac32d94f527a25c3031de90bf",
+      "content_type": "image/png",
+      "destination_path": "agent-media-toolkit/by-hash/dbc92cfe73a27adb086751f1ea171f7a22c9beaac32d94f527a25c3031de90bf/p8-transcription.png",
+      "file_name": "p8-transcription.png",
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/public/imports/c0046/sketch/p8-transcription.png",
+      "object_name": "share/agent-media-toolkit/by-hash/dbc92cfe73a27adb086751f1ea171f7a22c9beaac32d94f527a25c3031de90bf/p8-transcription.png",
+      "source_file_name": "p8-transcription.png",
+      "storage_prefix": "share",
+      "url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/dbc92cfe73a27adb086751f1ea171f7a22c9beaac32d94f527a25c3031de90bf/p8-transcription.png"
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 1818,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/runtime-uploads/p8-transcription.json",
+    "request_id": "upload-media-0f3a173e99a04afab1e42932e05c7691",
+    "timestamp_utc": "2026-04-09T12:58:48Z"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}

@@ -1,0 +1,26 @@
+{
+  "command": "upload-media",
+  "data": {
+    "upload": {
+      "cached": false,
+      "content_sha256": "af16a3c3027384fc5c0c762d2e37c091ad217edb28c2dd7b0fb9c5aa4b5c54e2",
+      "content_type": "image/png",
+      "destination_path": "agent-media-toolkit/by-hash/af16a3c3027384fc5c0c762d2e37c091ad217edb28c2dd7b0fb9c5aa4b5c54e2/bg-studio-warm.png",
+      "file_name": "bg-studio-warm.png",
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/public/imports/c0046/bg-studio-warm.png",
+      "object_name": "share/agent-media-toolkit/by-hash/af16a3c3027384fc5c0c762d2e37c091ad217edb28c2dd7b0fb9c5aa4b5c54e2/bg-studio-warm.png",
+      "source_file_name": "bg-studio-warm.png",
+      "storage_prefix": "share",
+      "url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/af16a3c3027384fc5c0c762d2e37c091ad217edb28c2dd7b0fb9c5aa4b5c54e2/bg-studio-warm.png"
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 2404,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/runtime-uploads/bg-studio-warm.json",
+    "request_id": "upload-media-b091af5fadf047a0b1e0cf627e0306cb",
+    "timestamp_utc": "2026-04-09T12:58:22Z"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}

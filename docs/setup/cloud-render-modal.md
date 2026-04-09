@@ -11,6 +11,9 @@ npm run render:cloud -- --comp TextEffects --hq
 - Working tree is clean and pushed (cloud render resolves by git SHA).
 - Modal auth and required secrets are configured.
 - `r2-secret` exists for upload and public URL return.
+- The target composition must not depend on ignored local runtime media.
+  Active cloud-safe projects should keep runtime assets in `assets.js` as
+  remote URLs.
 
 ## Notes
 

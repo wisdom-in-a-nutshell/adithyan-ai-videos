@@ -2,6 +2,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import {pathToFileURL} from 'node:url';
 
 const errors = [];
 const warnings = [];
@@ -52,6 +53,26 @@ if (registeredProjectIds.size === 0) {
   errors.push('No project composition imports found in src/projects/registry.js');
 }
 
+const registryImportToProjectDir = new Map();
+for (const m of registryText.matchAll(/import\s+\{([^}]+)\}\s+from '\.\/([^/]+)\/composition\.js';/g)) {
+  const importNames = m[1]
+    .split(',')
+    .map((value) => value.trim())
+    .filter(Boolean);
+  for (const importName of importNames) {
+    registryImportToProjectDir.set(importName, m[2]);
+  }
+}
+
+const enabledProjectIds = new Set();
+for (const m of registryText.matchAll(/\{composition:\s*([A-Za-z0-9_]+),\s*enabled:\s*(true|false)\}/g)) {
+  if (m[2] !== 'true') continue;
+  const projectDir = registryImportToProjectDir.get(m[1]);
+  if (projectDir) {
+    enabledProjectIds.add(projectDir);
+  }
+}
+
 for (const id of registeredProjectIds) {
   if (!srcProjectIds.includes(id)) {
     errors.push(`Registry imports missing project directory: src/projects/${id}`);
@@ -63,6 +84,21 @@ for (const id of srcProjectIds) {
   const assetsPath = path.join(projectDir, 'assets.js');
   if (!fs.existsSync(assetsPath)) {
     errors.push(`Missing assets.js for project: src/projects/${id}`);
+  }
+  if (fs.existsSync(assetsPath) && enabledProjectIds.has(id)) {
+    try {
+      const assetsModule = await import(`${pathToFileURL(assetsPath).href}?t=${fs.statSync(assetsPath).mtimeMs}`);
+      for (const [name, value] of Object.entries(assetsModule)) {
+        if (typeof value !== 'string') continue;
+        if (/^https?:\/\//i.test(value) || value.startsWith('data:')) continue;
+        if (!/\.(mp4|webm|png|jpe?g|svg|gif|mov)$/i.test(value)) continue;
+        errors.push(
+          `Enabled project ${id} has non-remote runtime asset ${name}: ${value}`
+        );
+      }
+    } catch (err) {
+      errors.push(`Failed to inspect assets for enabled project ${id}: ${String(err)}`);
+    }
   }
 
   const compositionPath = path.join(projectDir, 'composition.js');

@@ -1,0 +1,26 @@
+{
+  "command": "upload-media",
+  "data": {
+    "upload": {
+      "cached": false,
+      "content_sha256": "a3fcfddb049184d784b085fb7aacb0707e45870f3fc2d52771efe2b7c0641216",
+      "content_type": "image/png",
+      "destination_path": "agent-media-toolkit/by-hash/a3fcfddb049184d784b085fb7aacb0707e45870f3fc2d52771efe2b7c0641216/p6-matanyone.png",
+      "file_name": "p6-matanyone.png",
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/public/imports/c0046/sketch/p6-matanyone.png",
+      "object_name": "share/agent-media-toolkit/by-hash/a3fcfddb049184d784b085fb7aacb0707e45870f3fc2d52771efe2b7c0641216/p6-matanyone.png",
+      "source_file_name": "p6-matanyone.png",
+      "storage_prefix": "share",
+      "url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/a3fcfddb049184d784b085fb7aacb0707e45870f3fc2d52771efe2b7c0641216/p6-matanyone.png"
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 1656,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/runtime-uploads/p6-matanyone.json",
+    "request_id": "upload-media-f16ea7322a24441980bb14cfcd0d8dc1",
+    "timestamp_utc": "2026-04-09T12:58:44Z"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}

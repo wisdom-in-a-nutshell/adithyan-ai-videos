@@ -28,7 +28,7 @@ import {
   PERSON_MATTE_ALPHA_URL,
   S05_BACKGROUND_BASE_URL,
   S05_BACKGROUND_DEPTH_URL,
-  S05_SUBJECT_FRAMES_DIR,
+  S05_SUBJECT_MATTE_URL,
   SKETCH_P2A_HARNESS_EMPTY_URL,
   SKETCH_P2B_HARNESS_TOOLS_PROMPT_URL,
   SKETCH_P2C_HARNESS_CODING_URL,
@@ -311,15 +311,6 @@ const getFadeWindowOpacity = (timeInSeconds, start, end, fadeSeconds = 0.32) => 
   );
 };
 
-const getS05FrameSrc = (relativeFrame) => {
-  if (!Number.isFinite(relativeFrame) || relativeFrame < 0) {
-    return null;
-  }
-
-  const frameName = `frame-${String(relativeFrame + 1).padStart(4, '0')}.png`;
-  return `${S05_SUBJECT_FRAMES_DIR}/${frameName}`;
-};
-
 const S05Backdrop = ({assetMap, depth = false}) => (
   <Img
     src={resolveAssetSrc(depth ? S05_BACKGROUND_DEPTH_URL : S05_BACKGROUND_BASE_URL, assetMap)}
@@ -333,19 +324,14 @@ const S05Backdrop = ({assetMap, depth = false}) => (
   />
 );
 
-const S05SubjectFrame = ({
+const S05SubjectMatte = ({
   assetMap,
-  relativeFrame,
+  sourceStartFrame = 0,
   opacity = 1,
   outline = false,
   outlineColor = 'rgba(34, 197, 94, 0.95)',
   filter,
 }) => {
-  const src = getS05FrameSrc(relativeFrame);
-  if (!src) {
-    return null;
-  }
-
   const outlineFilter = [
     `drop-shadow(2px 0 0 ${outlineColor})`,
     `drop-shadow(-2px 0 0 ${outlineColor})`,
@@ -355,8 +341,11 @@ const S05SubjectFrame = ({
   ].join(' ');
 
   return (
-    <Img
-      src={resolveAssetSrc(src, assetMap)}
+    <OffthreadVideo
+      src={resolveAssetSrc(S05_SUBJECT_MATTE_URL, assetMap)}
+      startFrom={Math.max(0, sourceStartFrame)}
+      muted
+      transparent
       style={{
         position: 'absolute',
         inset: 0,
@@ -513,10 +502,12 @@ export const C0046Comp = (props) => {
   const appleHoldFrame = secondsToFrames(TIMING.ballWindowEnd);
   const trackFrame = timeInSeconds >= TIMING.appleSwap ? Math.min(frame, appleHoldFrame) : frame;
   const ballTrackPoint = getTrackPointForFrame(ballTrack, trackFrame);
-  // The S05 pre-keyed frames live in `subject-keyed-s05-frames/` and are
-  // numbered from 0 starting at `foregroundMatteStart` (60.24s), NOT from
-  // each consuming sequence's `from`. Always anchor on foregroundMatteStart.
-  const s05RelativeFrame = frame - secondsToFrames(TIMING.foregroundMatteStart);
+  const s05MatteStartFrame = secondsToFrames(TIMING.foregroundMatteStart);
+  const s05SelfMatteSourceStart = Math.max(0, secondsToFrames(TIMING.selfMatteStart) - s05MatteStartFrame);
+  const s05BackgroundSourceStart =
+    Math.max(0, secondsToFrames(TIMING.backgroundReplaceStart) - s05MatteStartFrame);
+  const s05DetectSourceStart =
+    Math.max(0, secondsToFrames(TIMING.selfDetectStart) - s05MatteStartFrame);
   const mattePulseOpacity = getFadeWindowOpacity(
     timeInSeconds,
     TIMING.selfMatteStart,
@@ -595,7 +586,10 @@ export const C0046Comp = (props) => {
               zIndex: 220,
             }}
           >
-            <S05SubjectFrame assetMap={assetMap} relativeFrame={s05RelativeFrame} />
+            <S05SubjectMatte
+              assetMap={assetMap}
+              sourceStartFrame={s05SelfMatteSourceStart}
+            />
           </AbsoluteFill>
         </Sequence>
 
@@ -621,7 +615,10 @@ export const C0046Comp = (props) => {
               zIndex: 220,
             }}
           >
-            <S05SubjectFrame assetMap={assetMap} relativeFrame={s05RelativeFrame} />
+            <S05SubjectMatte
+              assetMap={assetMap}
+              sourceStartFrame={s05BackgroundSourceStart}
+            />
           </AbsoluteFill>
         </Sequence>
 
@@ -1755,9 +1752,9 @@ export const C0046Comp = (props) => {
               zIndex: 239,
             }}
           >
-            <S05SubjectFrame
+            <S05SubjectMatte
               assetMap={assetMap}
-              relativeFrame={s05RelativeFrame}
+              sourceStartFrame={s05DetectSourceStart}
               outline
               opacity={timeInSeconds >= TIMING.selfMatteStart ? mattePulseOpacity : detectOutlineOpacity}
               outlineColor={
@@ -1778,9 +1775,9 @@ export const C0046Comp = (props) => {
               zIndex: 220,
             }}
           >
-            <S05SubjectFrame
+            <S05SubjectMatte
               assetMap={assetMap}
-              relativeFrame={s05RelativeFrame}
+              sourceStartFrame={s05SelfMatteSourceStart}
               outline
               opacity={mattePulseOpacity}
             />

@@ -1,0 +1,26 @@
+{
+  "command": "upload-media",
+  "data": {
+    "upload": {
+      "cached": false,
+      "content_sha256": "064e846eff0bff6a4db4960d3fbcb08f2282cb7c698b94e9c4bab7828c8123aa",
+      "content_type": "image/png",
+      "destination_path": "agent-media-toolkit/by-hash/064e846eff0bff6a4db4960d3fbcb08f2282cb7c698b94e9c4bab7828c8123aa/p7-remotion.png",
+      "file_name": "p7-remotion.png",
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/public/imports/c0046/sketch/p7-remotion.png",
+      "object_name": "share/agent-media-toolkit/by-hash/064e846eff0bff6a4db4960d3fbcb08f2282cb7c698b94e9c4bab7828c8123aa/p7-remotion.png",
+      "source_file_name": "p7-remotion.png",
+      "storage_prefix": "share",
+      "url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/064e846eff0bff6a4db4960d3fbcb08f2282cb7c698b94e9c4bab7828c8123aa/p7-remotion.png"
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 1691,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/runtime-uploads/p7-remotion.json",
+    "request_id": "upload-media-5e2c743047414c9899038c23255830f4",
+    "timestamp_utc": "2026-04-09T12:58:46Z"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}

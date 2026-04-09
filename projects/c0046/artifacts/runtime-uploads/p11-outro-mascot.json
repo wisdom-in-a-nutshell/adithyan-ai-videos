@@ -1,0 +1,26 @@
+{
+  "command": "upload-media",
+  "data": {
+    "upload": {
+      "cached": false,
+      "content_sha256": "d2c3c3acd13348265b26733c03ae72b89b747e05486bd1b51f91e2c02c14836e",
+      "content_type": "image/png",
+      "destination_path": "agent-media-toolkit/by-hash/d2c3c3acd13348265b26733c03ae72b89b747e05486bd1b51f91e2c02c14836e/p11-outro-mascot.png",
+      "file_name": "p11-outro-mascot.png",
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/public/imports/c0046/sketch/p11-outro-mascot.png",
+      "object_name": "share/agent-media-toolkit/by-hash/d2c3c3acd13348265b26733c03ae72b89b747e05486bd1b51f91e2c02c14836e/p11-outro-mascot.png",
+      "source_file_name": "p11-outro-mascot.png",
+      "storage_prefix": "share",
+      "url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d2c3c3acd13348265b26733c03ae72b89b747e05486bd1b51f91e2c02c14836e/p11-outro-mascot.png"
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 1550,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/runtime-uploads/p11-outro-mascot.json",
+    "request_id": "upload-media-1a79f7f54ffc46bfb070297afeaee70c",
+    "timestamp_utc": "2026-04-09T12:58:34Z"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}

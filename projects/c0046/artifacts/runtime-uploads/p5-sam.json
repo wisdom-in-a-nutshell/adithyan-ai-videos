@@ -1,0 +1,26 @@
+{
+  "command": "upload-media",
+  "data": {
+    "upload": {
+      "cached": false,
+      "content_sha256": "1bed5a30c9aa6d5dd9a14c4d3c23cafa3e0921c267b4d740f2a8c4f207b773ca",
+      "content_type": "image/png",
+      "destination_path": "agent-media-toolkit/by-hash/1bed5a30c9aa6d5dd9a14c4d3c23cafa3e0921c267b4d740f2a8c4f207b773ca/p5-sam.png",
+      "file_name": "p5-sam.png",
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/public/imports/c0046/sketch/p5-sam.png",
+      "object_name": "share/agent-media-toolkit/by-hash/1bed5a30c9aa6d5dd9a14c4d3c23cafa3e0921c267b4d740f2a8c4f207b773ca/p5-sam.png",
+      "source_file_name": "p5-sam.png",
+      "storage_prefix": "share",
+      "url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/1bed5a30c9aa6d5dd9a14c4d3c23cafa3e0921c267b4d740f2a8c4f207b773ca/p5-sam.png"
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 1612,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/runtime-uploads/p5-sam.json",
+    "request_id": "upload-media-97efbdc7bcce44119764912772f8e4e7",
+    "timestamp_utc": "2026-04-09T12:58:42Z"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}

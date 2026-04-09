@@ -1,0 +1,26 @@
+{
+  "command": "upload-media",
+  "data": {
+    "upload": {
+      "cached": false,
+      "content_sha256": "c7451b7140ac3b2d15f9213f4231b41fd726c75836454d07440d8c3aeb518c7d",
+      "content_type": "image/png",
+      "destination_path": "agent-media-toolkit/by-hash/c7451b7140ac3b2d15f9213f4231b41fd726c75836454d07440d8c3aeb518c7d/p2b-harness-tools-prompt.png",
+      "file_name": "p2b-harness-tools-prompt.png",
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/public/imports/c0046/sketch/p2b-harness-tools-prompt.png",
+      "object_name": "share/agent-media-toolkit/by-hash/c7451b7140ac3b2d15f9213f4231b41fd726c75836454d07440d8c3aeb518c7d/p2b-harness-tools-prompt.png",
+      "source_file_name": "p2b-harness-tools-prompt.png",
+      "storage_prefix": "share",
+      "url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/c7451b7140ac3b2d15f9213f4231b41fd726c75836454d07440d8c3aeb518c7d/p2b-harness-tools-prompt.png"
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 1672,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/runtime-uploads/p2b-harness-tools-prompt.json",
+    "request_id": "upload-media-0dd10c0ad516403ea48bda68c9c418f1",
+    "timestamp_utc": "2026-04-09T12:58:37Z"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}

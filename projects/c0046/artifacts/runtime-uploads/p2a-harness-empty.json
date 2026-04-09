@@ -1,0 +1,26 @@
+{
+  "command": "upload-media",
+  "data": {
+    "upload": {
+      "cached": false,
+      "content_sha256": "34ed725d5044a9e6254e5f135f2b2d96a3c554ca92233bc2e99735ea3a407944",
+      "content_type": "image/png",
+      "destination_path": "agent-media-toolkit/by-hash/34ed725d5044a9e6254e5f135f2b2d96a3c554ca92233bc2e99735ea3a407944/p2a-harness-empty.png",
+      "file_name": "p2a-harness-empty.png",
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/public/imports/c0046/sketch/p2a-harness-empty.png",
+      "object_name": "share/agent-media-toolkit/by-hash/34ed725d5044a9e6254e5f135f2b2d96a3c554ca92233bc2e99735ea3a407944/p2a-harness-empty.png",
+      "source_file_name": "p2a-harness-empty.png",
+      "storage_prefix": "share",
+      "url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/34ed725d5044a9e6254e5f135f2b2d96a3c554ca92233bc2e99735ea3a407944/p2a-harness-empty.png"
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 1696,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/c0046/artifacts/runtime-uploads/p2a-harness-empty.json",
+    "request_id": "upload-media-3648d9ceae154e2dbf4def78e45eabbe",
+    "timestamp_utc": "2026-04-09T12:58:35Z"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}
