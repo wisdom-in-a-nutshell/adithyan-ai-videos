@@ -385,13 +385,16 @@ const S05DepthText = ({durationInFrames}) => {
   const elegantFont = '"Baskerville", "Palatino Linotype", "Times New Roman", serif';
   const sharedWordStyle = {
     fontFamily: elegantFont,
-    fontWeight: 600,
+    fontWeight: 700,
     fontStyle: 'italic',
     lineHeight: 0.92,
     textTransform: 'uppercase',
-    color: 'rgba(78, 56, 39, 0.62)',
-    WebkitTextStroke: '1px rgba(255, 243, 222, 0.14)',
-    textShadow: '0 6px 18px rgba(24, 16, 9, 0.12)',
+    color: 'rgba(10, 5, 2, 0.88)',
+    WebkitTextStroke: '4px rgba(248, 222, 155, 0.80)',
+    textShadow: [
+      '0 0 18px rgba(250,210,120,0.55)',
+      '0 8px 36px rgba(0,0,0,0.35)',
+    ].join(', '),
     whiteSpace: 'nowrap',
   };
 
@@ -406,27 +409,29 @@ const S05DepthText = ({durationInFrames}) => {
         pointerEvents: 'none',
       }}
     >
+      {/* TOTALLY — left side, "Y" tucks behind shoulder */}
       <span
         style={{
           position: 'absolute',
-          left: '22%',
-          top: '31%',
-          fontSize: 68,
-          letterSpacing: 1.2,
+          left: '5%',
+          top: '42%',
+          fontSize: 128,
+          letterSpacing: 10,
           transform: `translateX(${-drift}px) rotate(-2deg)`,
           ...sharedWordStyle,
         }}
       >
         TOTALLY
       </span>
+      {/* NATURAL — right side, "N" tucks behind shoulder */}
       <span
         style={{
           position: 'absolute',
-          right: '20%',
-          top: '31%',
-          fontSize: 86,
-          letterSpacing: 1.1,
-          transform: `translateX(${driftRight}px) rotate(1deg)`,
+          right: '5%',
+          top: '42%',
+          fontSize: 128,
+          letterSpacing: 10,
+          transform: `translateX(${driftRight}px) rotate(1.5deg)`,
           ...sharedWordStyle,
         }}
       >
