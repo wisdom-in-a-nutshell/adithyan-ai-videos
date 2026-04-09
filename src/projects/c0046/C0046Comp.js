@@ -353,6 +353,13 @@ const S05SubjectFrame = ({assetMap, relativeFrame, opacity = 1, outline = false}
 const BodyDetectOverlay = ({opacity = 1, mode = 'detect'}) => {
   const stroke = mode === 'matte' ? '#9cf3ff' : '#ffffff';
   const strokeWidth = mode === 'matte' ? 5.5 : 4.8;
+  const mainX = mode === 'matte' ? 710 : 690;
+  const mainY = mode === 'matte' ? 54 : 40;
+  const mainWidth = mode === 'matte' ? 650 : 690;
+  const mainHeight = mode === 'matte' ? 936 : 970;
+  const mainRadius = mode === 'matte' ? 228 : 244;
+  const ghostOffsetX = mode === 'matte' ? 14 : 18;
+  const ghostOffsetY = mode === 'matte' ? 8 : 10;
 
   return (
     <svg
@@ -366,22 +373,24 @@ const BodyDetectOverlay = ({opacity = 1, mode = 'detect'}) => {
         overflow: 'visible',
       }}
     >
-      <ellipse
-        cx="1270"
-        cy="592"
-        rx="186"
-        ry="344"
+      <rect
+        x={mainX}
+        y={mainY}
+        width={mainWidth}
+        height={mainHeight}
+        rx={mainRadius}
         fill="none"
         stroke={stroke}
         strokeWidth={strokeWidth}
         filter="url(#pencil-stroke)"
         opacity="0.98"
       />
-      <ellipse
-        cx="1260"
-        cy="586"
-        rx="198"
-        ry="356"
+      <rect
+        x={mainX + ghostOffsetX}
+        y={mainY - ghostOffsetY}
+        width={mainWidth - 12}
+        height={mainHeight + 6}
+        rx={mainRadius}
         fill="none"
         stroke={stroke}
         strokeWidth={mode === 'matte' ? 2.5 : 2.2}
