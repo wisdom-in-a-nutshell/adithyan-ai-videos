@@ -624,12 +624,12 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
-          name="[S16] Callout: I'm detecting myself."
+          name="[S16] Callout: Detecting Adi."
           from={secondsToFrames(TIMING.selfDetectStart)}
           durationInFrames={beatDurationInFrames(TIMING.selfDetectStart, TIMING.selfMatteStart)}
         >
           <CodexCallout
-            text="I'm detecting myself."
+            text="Detecting Adi."
             durationInFrames={beatDurationInFrames(TIMING.selfDetectStart, TIMING.selfMatteStart)}
             scale={DEMO_UI.calloutScale}
             topPx={DEMO_UI.calloutTopPx}
@@ -658,7 +658,7 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
-          name="[S18] Callout: I'm cropping myself out."
+          name="[S18] Callout: Cropping Adi out."
           from={secondsToFrames(TIMING.selfMatteStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.selfMatteStart,
@@ -666,7 +666,7 @@ export const C0046Comp = (props) => {
           )}
         >
           <CodexCallout
-            text="I'm cropping myself out."
+            text="Cropping Adi out."
             durationInFrames={beatDurationInFrames(
               TIMING.selfMatteStart,
               TIMING.backgroundReplaceStart
@@ -712,7 +712,7 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
-          name="[S21] Callout: I'm changing the background."
+          name="[S21] Callout: Changing the background."
           from={secondsToFrames(TIMING.backgroundReplaceStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.backgroundReplaceStart,
@@ -720,7 +720,7 @@ export const C0046Comp = (props) => {
           )}
         >
           <CodexCallout
-            text="I'm changing the background."
+            text="Changing the background."
             durationInFrames={beatDurationInFrames(
               TIMING.backgroundReplaceStart,
               TIMING.depthTextStart
@@ -732,12 +732,12 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
-          name="[S22] Callout: I'm placing text behind me."
+          name="[S22] Callout: Placing text behind Adi."
           from={secondsToFrames(TIMING.depthTextStart)}
           durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
         >
           <CodexCallout
-            text="I'm placing text behind me."
+            text="Placing text behind Adi."
             durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
             scale={DEMO_UI.calloutScale}
             topPx={DEMO_UI.calloutTopPx}
