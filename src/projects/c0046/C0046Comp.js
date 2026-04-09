@@ -513,6 +513,9 @@ export const C0046Comp = (props) => {
   const appleHoldFrame = secondsToFrames(TIMING.ballWindowEnd);
   const trackFrame = timeInSeconds >= TIMING.appleSwap ? Math.min(frame, appleHoldFrame) : frame;
   const ballTrackPoint = getTrackPointForFrame(ballTrack, trackFrame);
+  // The S05 pre-keyed frames live in `subject-keyed-s05-frames/` and are
+  // numbered from 0 starting at `foregroundMatteStart` (60.24s), NOT from
+  // each consuming sequence's `from`. Always anchor on foregroundMatteStart.
   const s05RelativeFrame = frame - secondsToFrames(TIMING.foregroundMatteStart);
   const mattePulseOpacity = getFadeWindowOpacity(
     timeInSeconds,
@@ -693,7 +696,7 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
-          name="[S32SK] Sketch: P2b harness + tools + prompt"
+          name="[S32P] Sketch: P2b harness + tools + prompt"
           from={secondsToFrames(TIMING.s06HarnessToolsStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s06HarnessToolsStart,
@@ -1357,7 +1360,7 @@ export const C0046Comp = (props) => {
           )}
         >
           <CodexCallout
-            text="Swapped with video tools."
+            text="Swap with video tools."
             durationInFrames={beatDurationInFrames(
               TIMING.s06HarnessVideoStart,
               TIMING.s07SamStart
@@ -1394,7 +1397,7 @@ export const C0046Comp = (props) => {
           )}
         >
           <CodexCallout
-            text="SAM 3.1 — tracks objects."
+            text="SAM 3.1 tracks objects."
             durationInFrames={beatDurationInFrames(
               TIMING.s07SamStart,
               TIMING.s07MatAnyoneStart
@@ -1414,7 +1417,7 @@ export const C0046Comp = (props) => {
           )}
         >
           <CodexCallout
-            text="MatAnyone — cuts a clean matte."
+            text="MatAnyone cuts out the person."
             durationInFrames={beatDurationInFrames(
               TIMING.s07MatAnyoneStart,
               TIMING.s07RemotionStart
@@ -1612,7 +1615,7 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
-          name="[S43B] Callout: Used to take hours. Now ~45 min."
+          name="[S43B] Callout: Used to take hours. Now under 45 min."
           from={secondsToFrames(TIMING.s08IteratingStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s08IteratingStart,
@@ -1620,7 +1623,7 @@ export const C0046Comp = (props) => {
           )}
         >
           <CodexCallout
-            text="Used to take hours. Now ~45 min."
+            text="Used to take hours. Now under 45 min."
             durationInFrames={beatDurationInFrames(
               TIMING.s08IteratingStart,
               TIMING.s09ExperimentsStart
