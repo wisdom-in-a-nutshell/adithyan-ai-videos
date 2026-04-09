@@ -28,7 +28,6 @@ import {
   PERSON_MATTE_ALPHA_URL,
   S05_BACKGROUND_BASE_URL,
   S05_BACKGROUND_DEPTH_URL,
-  S05_SUBJECT_FRAMES_DIR,
   S05_SUBJECT_MATTE_URL,
   SKETCH_P2A_HARNESS_EMPTY_URL,
   SKETCH_P2B_HARNESS_TOOLS_PROMPT_URL,
@@ -325,10 +324,10 @@ const S05Backdrop = ({assetMap, depth = false}) => (
   />
 );
 
-// Total number of pre-keyed PNG frames in the S05 frames directory.
-// Used to clamp out-of-range index lookups so we don't try to load a
-// frame that doesn't exist.
-const S05_FRAME_COUNT = 740;
+// Total number of frames in the cloud-safe S05 alpha clip.
+// Includes 8 cloned tail frames so the foreground cutout can bridge
+// cleanly into S06 without dropping out before the white backdrop lands.
+const S05_MATTE_FRAME_COUNT = 748;
 
 // Brief fade-in white backdrop, used to bridge the S05 → S06 transition so
 // the warm studio bg cross-dissolves into the white explainer bg instead of
@@ -358,23 +357,9 @@ const S05SubjectMatte = ({
   outlineColor = 'rgba(34, 197, 94, 0.95)',
   filter,
 }) => {
-  // Use the pre-keyed PNG frames (crisp binary alpha) instead of the VP9
-  // webm matte. The webm has soft alpha across most of Adi which let the
-  // background colour bleed into his face. The PNGs were extracted from
-  // the same source recording but with a clean key — only ~4% of pixels
-  // have soft alpha, all near the silhouette edges. This component is
-  // intentionally still called `S05SubjectMatte` to keep the existing
-  // call sites working unchanged.
-  const frame = useCurrentFrame();
-  const matteFrameIndex = sourceStartFrame + frame;
-  if (matteFrameIndex < 0) {
+  if (sourceStartFrame >= S05_MATTE_FRAME_COUNT) {
     return null;
   }
-  // Clamp to the last available PNG so we can extend the matte sequence a few
-  // frames past the recorded range — used to bridge the S05 → S06 transition.
-  const clampedIndex = Math.min(matteFrameIndex, S05_FRAME_COUNT - 1);
-  const frameName = `frame-${String(clampedIndex + 1).padStart(4, '0')}.png`;
-  const src = `${S05_SUBJECT_FRAMES_DIR}/${frameName}`;
 
   const outlineFilter = [
     `drop-shadow(2px 0 0 ${outlineColor})`,
@@ -385,8 +370,12 @@ const S05SubjectMatte = ({
   ].join(' ');
 
   return (
-    <Img
-      src={resolveAssetSrc(src, assetMap)}
+    <OffthreadVideo
+      src={resolveAssetSrc(S05_SUBJECT_MATTE_URL, assetMap)}
+      startFrom={sourceStartFrame}
+      endAt={S05_MATTE_FRAME_COUNT}
+      muted
+      transparent
       style={{
         position: 'absolute',
         inset: 0,

@@ -220,10 +220,10 @@ Layer order (bottom → top):
    studio background continuously through the full `TOTALLY NATURAL` depth beat.
 2. **Depth text layer** — floating label text sits BETWEEN the background and
    Adi's silhouette while the studio plate remains behind him.
-3. **Person matte** — conceptually this is the foreground cutout layer. In the
-   current implementation the live comp uses the pre-keyed
-   `subject-keyed-s05-frames/` PNG sequence because it has cleaner edges than
-   the uploaded `.webm` matte.
+3. **Person matte** — the foreground cutout layer, now driven by the uploaded
+   `subject-keyed-s05-alpha.webm` asset generated from the original keyed PNG
+   sequence so the quality stays consistent while the runtime path remains
+   cloud-safe.
 4. **UI overlays** on top as usual.
 
 **Beat breakdown**

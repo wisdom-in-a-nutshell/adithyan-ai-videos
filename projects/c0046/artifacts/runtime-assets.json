@@ -1,14 +1,14 @@
 {
   "schema_version": "1.0",
   "project_id": "c0046",
-  "updated_utc": "2026-04-09T13:00:00Z",
+  "updated_utc": "2026-04-09T15:20:00Z",
   "assets": {
     "video_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d2751e027b5318a42691bb206ad8bcc3eeaaa6f4d8cc1f1ff61bf52c30d50395/source.mp4",
     "person_matte_alpha_url": "https://storage.aipodcast.ing/cache/matanyone/alpha/85deb882-444b-4304-ba4a-f73196e4dd9f.webm",
     "apple_image_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/2273db9cd08848f71db3f2ffb3796e33d007b95b94c3ce71cb139509ca3ff679/apple.svg",
     "s05_background_base_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/af16a3c3027384fc5c0c762d2e37c091ad217edb28c2dd7b0fb9c5aa4b5c54e2/bg-studio-warm.png",
     "s05_background_depth_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/af16a3c3027384fc5c0c762d2e37c091ad217edb28c2dd7b0fb9c5aa4b5c54e2/bg-studio-warm.png",
-    "s05_subject_matte_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/3da2357970ee5637c7c731cca0118d072b500ecb4919af8a6a1a52fcc3eae2bd/subject-keyed-s05.webm",
+    "s05_subject_matte_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/by-hash/bec580e02a17730d932822e084f29a159d318a2677b77542559fdc80bca8026d/subject-keyed-s05-alpha.webm",
     "sketch_p2a_harness_empty_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/34ed725d5044a9e6254e5f135f2b2d96a3c554ca92233bc2e99735ea3a407944/p2a-harness-empty.png",
     "sketch_p2b_harness_tools_prompt_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/c7451b7140ac3b2d15f9213f4231b41fd726c75836454d07440d8c3aeb518c7d/p2b-harness-tools-prompt.png",
     "sketch_p2c_harness_coding_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/30fce98e2aa4744a824cb173c2111222392fc27804d12693cac6f60be6345a61/p2c-harness-coding-full.png",
