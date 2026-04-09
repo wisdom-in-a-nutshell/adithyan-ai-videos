@@ -22,6 +22,7 @@ Panels:
 - P7  — Remotion + FFmpeg: stacked composited layers — locked
 - P8  — TRANSCRIPTION: mic + sound waves + speech bubble — locked (4th tool in stack)
 - P9  — TERMINAL: hand-drawn cmd window with `> codex, track the ball.` — locked (PROMPTING beat)
+- P10 — RECORD→EDIT: video camera + arrow + laptop showing the not-real-time workflow — locked (NOT REAL-TIME beat)
 
 All canonicals live next to this worklog at `sketch/p*.png`.
 Cropped versions used in the video at `sketch/cropped/p*.png` and copied
@@ -46,8 +47,8 @@ S07 — The stack (4 tool reveals):
 - 192.32s (s07End / s08RealtimeStart)
   → THE STACK pill is ONE long sequence here
 
-S08 — Workflow reality (pills + callouts only, plus terminal sketch):
-- 192.32s (s08RealtimeStart)      — NOT REAL-TIME pill
+S08 — Workflow reality (pills + callouts, plus 2 sketches):
+- 192.32s (s08RealtimeStart)      — NOT REAL-TIME pill + P10 Record→Edit sketch
 - 208.08s (s08RecordingStart)     — RECORDING pill
 - 220.48s (s08PromptingStart)     — PROMPTING pill + P9 Terminal sketch
 - 229.44s (s08IteratingStart)     — ITERATING pill

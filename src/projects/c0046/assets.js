@@ -25,6 +25,7 @@ export const SKETCH_P6_MATANYONE_URL = 'public/imports/c0046/sketch/p6-matanyone
 export const SKETCH_P7_REMOTION_URL = 'public/imports/c0046/sketch/p7-remotion.png';
 export const SKETCH_P8_TRANSCRIPTION_URL = 'public/imports/c0046/sketch/p8-transcription.png';
 export const SKETCH_P9_TERMINAL_URL = 'public/imports/c0046/sketch/p9-terminal.png';
+export const SKETCH_P10_RECORD_EDIT_URL = 'public/imports/c0046/sketch/p10-record-edit.png';
 
 export const FPS = 25;
 export const WIDTH = 1920;

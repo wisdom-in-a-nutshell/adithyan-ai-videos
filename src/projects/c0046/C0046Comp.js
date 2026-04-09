@@ -38,6 +38,7 @@ import {
   SKETCH_P7_REMOTION_URL,
   SKETCH_P8_TRANSCRIPTION_URL,
   SKETCH_P9_TERMINAL_URL,
+  SKETCH_P10_RECORD_EDIT_URL,
   SKETCH_PANEL_UI,
   TIMING,
   VIDEO_URL,
@@ -873,6 +874,30 @@ export const C0046Comp = (props) => {
               durationInFrames={beatDurationInFrames(
                 TIMING.s08PromptingStart,
                 TIMING.s08IteratingStart
+              )}
+              leftPx={SKETCH_PANEL_UI.leftPx}
+              topPx={SKETCH_PANEL_UI.topPx}
+              widthPx={SKETCH_PANEL_UI.widthPx}
+              heightPx={SKETCH_PANEL_UI.heightPx}
+            />
+          </AbsoluteFill>
+        </Sequence>
+
+        <Sequence
+          name="[S40] Sketch: P10 Record→Edit (NOT REAL-TIME)"
+          from={secondsToFrames(TIMING.s08RealtimeStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s08RealtimeStart,
+            TIMING.s08RecordingStart
+          )}
+        >
+          <AbsoluteFill style={{zIndex: 190, pointerEvents: 'none'}}>
+            <SketchPanel
+              src={SKETCH_P10_RECORD_EDIT_URL}
+              assetMap={assetMap}
+              durationInFrames={beatDurationInFrames(
+                TIMING.s08RealtimeStart,
+                TIMING.s08RecordingStart
               )}
               leftPx={SKETCH_PANEL_UI.leftPx}
               topPx={SKETCH_PANEL_UI.topPx}
