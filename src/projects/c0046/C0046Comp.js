@@ -325,6 +325,7 @@ const S05SubjectFrame = ({
   opacity = 1,
   outline = false,
   outlineColor = 'rgba(34, 197, 94, 0.95)',
+  filter,
 }) => {
   const src = getS05FrameSrc(relativeFrame);
   if (!src) {
@@ -349,7 +350,7 @@ const S05SubjectFrame = ({
         height: '100%',
         objectFit: 'cover',
         opacity,
-        filter: outline ? outlineFilter : undefined,
+        filter: [outline ? outlineFilter : null, filter].filter(Boolean).join(' ') || undefined,
       }}
     />
   );
@@ -781,6 +782,14 @@ export const C0046Comp = (props) => {
               zIndex: 239,
             }}
           >
+            {timeInSeconds >= TIMING.selfMatteStart ? (
+              <S05SubjectFrame
+                assetMap={assetMap}
+                relativeFrame={s05RelativeFrame}
+                opacity={Math.min(0.82, mattePulseOpacity * 0.9)}
+                filter="brightness(0) invert(1) saturate(0) contrast(1.25)"
+              />
+            ) : null}
             <S05SubjectFrame
               assetMap={assetMap}
               relativeFrame={s05RelativeFrame}
@@ -788,7 +797,7 @@ export const C0046Comp = (props) => {
               opacity={timeInSeconds >= TIMING.selfMatteStart ? mattePulseOpacity : detectOutlineOpacity}
               outlineColor={
                 timeInSeconds >= TIMING.selfMatteStart
-                  ? 'rgba(156, 243, 255, 0.98)'
+                  ? 'rgba(255, 255, 255, 0.98)'
                   : 'rgba(255, 255, 255, 0.98)'
               }
             />
