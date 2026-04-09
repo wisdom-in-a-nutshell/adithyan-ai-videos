@@ -342,8 +342,8 @@ const S05SubjectMatte = ({
   // body sit in the 0.85–0.95 range instead of 1.0, which lets background
   // colour bleed through and wash Adi's skin out (most visible against the
   // warm cream studio backdrop). Compensate with a small saturation + contrast
-  // boost so his face matches his arms again. Tuned by eye against
-  // tmp/c0046-84-hq.png.
+  // boost so his face matches his arms again. ALWAYS applied so both the
+  // clean matte and the outlined matte get the same skin colour treatment.
   const compensationFilter = 'saturate(1.18) contrast(1.06)';
 
   return (
@@ -359,7 +359,7 @@ const S05SubjectMatte = ({
         height: '100%',
         objectFit: 'cover',
         opacity,
-        filter: [outline ? outlineFilter : compensationFilter, filter]
+        filter: [compensationFilter, outline ? outlineFilter : null, filter]
           .filter(Boolean)
           .join(' ') || undefined,
       }}
