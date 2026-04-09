@@ -21,6 +21,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {getDefaultCacheBaseDir, prepareAssetCache, prepareMergedPublicDir} from './asset_cache.mjs';
 import {collectProjectAssetRefs, getProjectDirsForRender} from './project_assets.mjs';
+import {
+  TEMP_CLEANUP_HELP_TEXT,
+  logTempCleanupSummary,
+  parseTempCleanupArgs,
+  pruneRemotionTempDirs,
+} from './remotion_runtime.mjs';
 
 const die = (msg) => {
   // eslint-disable-next-line no-console
@@ -28,7 +34,29 @@ const die = (msg) => {
   process.exit(1);
 };
 
-const args = process.argv.slice(2);
+const printHelp = () => {
+  // eslint-disable-next-line no-console
+  console.log(`
+Usage:
+  npm start -- [options]
+  npm run studio:cached -- [options]
+
+Flags:
+  --cache-dir <dir>             default: WIN_REMOTION_ASSET_CACHE or ~/.cache/win-remotion-assets
+  --refresh                     re-download even if cached
+  --prepare-only                download + write props, do not start Studio
+  ${TEMP_CLEANUP_HELP_TEXT.replace(/\n/g, '\n  ')}
+`.trim());
+};
+
+let parsed = null;
+try {
+  parsed = parseTempCleanupArgs(process.argv.slice(2));
+} catch (error) {
+  die(error instanceof Error ? error.message : String(error));
+}
+
+const args = parsed.args;
 
 const getArg = (name, fallback) => {
   const idx = args.indexOf(`--${name}`);
@@ -39,6 +67,14 @@ const getArg = (name, fallback) => {
 };
 
 const hasFlag = (name) => args.includes(`--${name}`);
+
+if (args.includes('--help') || args.includes('-h')) {
+  printHelp();
+  process.exit(0);
+}
+
+const cleanupSummary = pruneRemotionTempDirs(parsed.tempCleanup);
+logTempCleanupSummary(cleanupSummary);
 
 const refresh = hasFlag('refresh');
 const prepareOnly = hasFlag('prepare-only');

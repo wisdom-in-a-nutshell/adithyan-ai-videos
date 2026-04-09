@@ -1,7 +1,7 @@
 # Video Project Model
 
 This repo separates editable source artifacts from runtime Remotion code. Each
-video project keeps reference material under `projects/<id>/`, runtime code
+video project keeps source material and derived artifacts under `projects/<id>/`, runtime code
 under `src/projects/<id>/`, and a central registry wires those compositions
 into Studio and render entrypoints.
 
@@ -30,8 +30,9 @@ flowchart TD
 
 ## Main Parts
 
-- `projects/<id>/`: reference-only source material and notes such as storyboards,
-  transcripts, masks, and handoff docs.
+- `projects/<id>/`: source material plus non-runtime derived artifacts and
+  worklogs such as storyboards, transcripts, masks, thumbnails, and upload
+  receipts.
 - `src/projects/<id>/`: runtime composition code. `assets.js` holds durable
   inputs, `<ProjectComp>.js` wires scenes, and `composition.js` exports the
   composition config.
@@ -56,8 +57,9 @@ flowchart TD
 
 ## Boundaries
 
-- Runtime inputs for a composition live in code under `src/projects/<id>/`;
-  scratch manifests in `projects/<id>/` stay reference-only.
+- Runtime inputs for a composition live in code under `src/projects/<id>/`.
+- `projects/<id>/` can hold source assets, generated work products, and
+  iteration logs, but runtime code must not depend on those paths directly.
 - Runtime media that must work in both local and cloud renders should prefer a
   single remote source of truth in `src/projects/<id>/assets.js`. Local files
   can stay in `projects/<id>/` or `public/imports/<id>/` as editable source

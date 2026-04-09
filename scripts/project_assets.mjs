@@ -70,7 +70,7 @@ export const getProjectDirsForRender = async ({compositionId = null} = {}) => {
   return getEnabledProjectDirs();
 };
 
-const normalizeLocalAssetRef = (value) => {
+export const normalizeLocalAssetRef = (value) => {
   if (typeof value !== 'string') return null;
   if (/^https?:\/\//i.test(value) || value.startsWith('data:')) return null;
   if (!LOCAL_ASSET_REF_RE.test(value)) return null;

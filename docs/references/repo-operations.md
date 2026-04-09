@@ -3,6 +3,8 @@
 ## Primary Commands
 
 - `npm start`: start Remotion Studio through `scripts/studio_cached.mjs`.
+- `npm run render`: render a preview of the first enabled composition from
+  `src/projects/registry.js`.
 - `npm run render -- --comp <CompositionId> --from 0 --to 6`: render a short
   preview slice for iteration.
 - `npm run render -- --comp <CompositionId> --hq --out tmp/<CompositionId>-hq.mp4 --no-open`:
@@ -22,13 +24,19 @@
   - merge conflict markers in staged files
   - invalid staged JSON
   - `npm run doctor`
-  - `npx remotion compositions src/index.js`
+  - `node scripts/remotion_cli.mjs compositions src/index.js`
 
 ## Execution Notes
 
 - `npm start` and `npm run render -- ...` scan `src/projects/*/assets.js`,
   build a local asset cache, and pass cached props plus a merged public dir into
   Remotion.
+- Local Remotion entrypoints prune stale temp dirs in `os.tmpdir()` before
+  launch. Use `--no-temp-cleanup` to opt out, or
+  `--temp-cleanup-age-hours <n>` to override the default `12h` TTL.
+- `scripts/precommit-check.sh` uses the same temp-cleaning wrapper for its
+  compile check so repeated local guardrail runs do not accumulate stale
+  Remotion bundles.
 - For an active project that should render in cloud, keep runtime media in
   `src/projects/<id>/assets.js` as remote URLs. Local review still works because
   the cache downloads those assets once and reuses them.

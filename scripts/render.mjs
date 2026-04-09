@@ -4,6 +4,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {getDefaultCacheBaseDir, prepareAssetCache, prepareMergedPublicDir} from './asset_cache.mjs';
 import {collectProjectAssetRefs, getProjectDirsForRender} from './project_assets.mjs';
+import {
+  TEMP_CLEANUP_HELP_TEXT,
+  logTempCleanupSummary,
+  parseTempCleanupArgs,
+  pruneRemotionTempDirs,
+} from './remotion_runtime.mjs';
 
 const stripAnsi = (input) =>
   String(input).replace(
@@ -20,15 +26,17 @@ const toNumber = (v) => {
   return Number.isFinite(n) ? n : null;
 };
 
+let cliArgs = [];
+
 const getArg = (name) => {
-  const idx = process.argv.indexOf(name);
+  const idx = cliArgs.indexOf(name);
   if (idx === -1) return null;
-  const next = process.argv[idx + 1];
+  const next = cliArgs[idx + 1];
   if (!next || next.startsWith('--')) return '';
   return next;
 };
 
-const hasFlag = (name) => process.argv.includes(name);
+const hasFlag = (name) => cliArgs.includes(name);
 
 const printHelp = () => {
   // Keep this short and operational.
@@ -39,9 +47,10 @@ Usage:
   npm run render -- [--comp <Name>] [--from <sec>] [--to <sec>]
                  [--preview|--hq] [--scale <n>] [--crf <n>]
                  [--out <path>] [--no-open] [--no-cache] [--refresh]
+                 [--no-temp-cleanup] [--temp-cleanup-age-hours <n>]
 
 Defaults:
-  --comp     TextEffects
+  --comp     first enabled composition from src/projects/registry.js
   --preview  on (fast iteration)
   --out      tmp/<comp>.mp4
   caching    on (downloads remote URLs from src/projects/*/assets.js into ~/.cache)
@@ -54,16 +63,37 @@ Render only a time slice (seconds -> frames based on composition fps):
   --from 0 --to 5
 
 Examples:
-  npm run render               # preview by default
-  npm run render -- --hq       # full quality
-  npm run render -- --preview --from 0 --to 6
-  npm run render -- --comp ActiveSpeakerDetection --preview --from 10 --to 20
-  npm run render -- --no-cache # disable caching
+  npm run render                             # preview first enabled composition
+  npm run render -- --hq                    # full quality
+  npm run render -- --comp C0046 --preview --from 0 --to 6
+  npm run render -- --comp C0046 --hq --out tmp/C0046-hq.mp4 --no-open
+  npm run render -- --no-cache              # disable caching
+
+Temp cleanup:
+  ${TEMP_CLEANUP_HELP_TEXT.replace(/\n/g, '\n  ')}
 `.trim());
 };
 
+let parsed = null;
+try {
+  parsed = parseTempCleanupArgs(process.argv.slice(2));
+} catch (error) {
+  process.stderr.write(`${error instanceof Error ? error.message : String(error)}\n`);
+  process.exit(1);
+}
+
+cliArgs = parsed.args;
+
+if (hasFlag('--help') || hasFlag('-h')) {
+  printHelp();
+  process.exit(0);
+}
+
+const cleanupSummary = pruneRemotionTempDirs(parsed.tempCleanup);
+logTempCleanupSummary(cleanupSummary);
+
 const entry = 'src/index.js';
-const comp = getArg('--comp') || 'TextEffects';
+const requestedComp = getArg('--comp') || null;
 const isHQ = hasFlag('--hq') || hasFlag('--full');
 const isPreview = !isHQ;
 const noOpen = hasFlag('--no-open');
@@ -75,13 +105,6 @@ const toSeconds = toNumber(getArg('--to'));
 
 const scale = toNumber(getArg('--scale')) ?? (isPreview ? 0.25 : null);
 const crf = toNumber(getArg('--crf')) ?? (isPreview ? 28 : null);
-
-const out = getArg('--out') || path.join('tmp', `${comp}.mp4`);
-
-if (hasFlag('--help') || hasFlag('-h')) {
-  printHelp();
-  process.exit(0);
-}
 
 const listRes = spawnSync(
   'npx',
@@ -114,6 +137,12 @@ for (const line of compLines) {
   });
 }
 
+const comp = requestedComp || comps[0]?.id || null;
+if (!comp) {
+  process.stderr.write('No compositions found in src/index.js\n');
+  process.exit(1);
+}
+
 const meta = comps.find((c) => c.id === comp);
 if (!meta) {
   process.stderr.write(`Unknown composition: ${comp}\n\nAvailable:\n`);
@@ -122,6 +151,8 @@ if (!meta) {
   }
   process.exit(1);
 }
+
+const out = getArg('--out') || path.join('tmp', `${comp}.mp4`);
 
 fs.mkdirSync(path.dirname(path.resolve(out)), {recursive: true});
 

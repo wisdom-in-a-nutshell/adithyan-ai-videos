@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node scripts/studio_cached.mjs",
-    "studio:text-effects": "remotion studio",
+    "studio:text-effects": "node scripts/studio_cached.mjs",
     "studio:cached": "node scripts/studio_cached.mjs",
     "render": "node scripts/render.mjs",
     "render:cloud": "node scripts/render_cloud.mjs",

@@ -39,6 +39,25 @@
   />
   ```
   When you copy/paste from an existing project that already does this right, **bring `muted` and `transparent` along** — they look optional but they're not.
+- **VP9 + alpha matte webms have SOFT alpha that bleeds the background through the body.** Even with `transparent` set correctly, a webm encoded as `pix_fmt=yuv420p` + `alpha_mode=1` (the standard VP9 alpha encoding) typically has alpha values in the 0.85–0.95 range across the subject's body, not strict 0/1. Result: at full HQ render, the background colour blends through Adi's skin and the face looks washed out vs the arms/edges. Symptom doesn't show in `--preview` (downscaling averages it out) but is obvious in HQ + cloud renders. Fixes ranked: (1) re-encode the matte with a hard alpha threshold; (2) **chroma-key the original source video in real time with an SVG `<feColorMatrix>` filter** — eliminates the matte file entirely, the source URL is already in the cloud, and the alpha is pixel-sharp; (3) compensate visually with a `saturate(1.18) contrast(1.06)` CSS filter on the matte (works but is a workaround). If you go with option 2, the filter looks like:
+  ```jsx
+  <svg style={{position:'absolute', width:0, height:0}} aria-hidden>
+    <defs>
+      <filter id="chroma-key" colorInterpolationFilters="sRGB">
+        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  1 -2 1 0 1" />
+        <feComponentTransfer>
+          <feFuncA type="table" tableValues="0 0 1 1" />
+        </feComponentTransfer>
+      </filter>
+    </defs>
+  </svg>
+  // ...then apply to a second OffthreadVideo of the same source:
+  <OffthreadVideo src={SOURCE_URL} startFrom={sequenceFromFrame} muted
+    style={{filter: 'url(#chroma-key)', /* ...inset/objectFit */}} />
+  ```
+  Watch out: rendering the source video twice means TWO `OffthreadVideo` instances. Mute the second one, and **use unique `startFrom` per consumer** so each instance plays the right slice — a stale prop name (e.g. forgetting to rename a call site after changing the prop) will silently default to `startFrom=0` and the chroma-keyed layer will show Adi from second 0 of the recording while the audio stays in sync, which is very confusing.
+- **Background crossfades smooth out otherwise-flicker-feeling transitions.** When two adjacent beats use different solid-colour or solid-image backdrops (e.g. warm studio bg → flat white at the end of an explainer cut), the abrupt swap can read as a "white flash" even though no frame is actually missing. Cheap fix: extend the outgoing background sequence by ~8 frames so it overlaps with the incoming one, and have the incoming backdrop fade in via `interpolate(useCurrentFrame(), [0, 8], [0, 1])`. The two backdrops then crossfade instead of popping. Same trick for any "matte source switch" — if you can keep ONE matte source rendering across the boundary while the bg fades, the subject stays continuously visible.
+- **Separate "visual end" from "callout end" when underlying tracking drifts.** For tracked-object effects (e.g. an apple compositied onto a hand-tracked ball), the visual overlay should stop on a specific anchor word the moment the underlying track gets unreliable, even though the status pill + callout for that beat may want to keep running. Pattern: add a dedicated `*VisualEnd` constant in `TIMING` next to the regular `*ReactionEnd`, and gate the FX overlay on `timeInSeconds <= TIMING.fooVisualEnd` while the pill/callout sequences still use `TIMING.fooReactionEnd`. That way the visual cleanly cuts at the right beat while the spoken commentary continues.
 - Reuse `src/overlay_kit/overlays.js` components for pills/callouts whenever possible (keeps fonts + sizing consistent).
 - If a pill/box suddenly stretches too wide: use `display: inline-flex`, `width: fit-content`, `maxWidth`, and `textOverflow: ellipsis`.
 - If you render any extra `Video` layers for effects, always set `muted` and align time with `startFrom={SequenceFromFrame}` to avoid audio doubling + restart.

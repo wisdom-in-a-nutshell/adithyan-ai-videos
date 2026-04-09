@@ -39,6 +39,6 @@ echo "[precommit] running repo doctor"
 node scripts/doctor.mjs
 
 echo "[precommit] verifying Remotion compositions compile"
-npx remotion compositions src/index.js >/dev/null
+node scripts/remotion_cli.mjs compositions src/index.js >/dev/null
 
 echo "[precommit] checks passed"

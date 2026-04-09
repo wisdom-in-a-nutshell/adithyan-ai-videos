@@ -3,7 +3,7 @@
 ## File Map
 
 - `src/projects/<id>/`: runtime composition code for one video.
-- `projects/<id>/`: reference-only source artifacts and notes for that video.
+- `projects/<id>/`: source artifacts, derived assets, and notes for that video.
 - `src/projects/registry.js`: source-of-truth list of active compositions.
 - `src/Root.js`: maps `PROJECT_COMPOSITIONS` into Remotion `<Composition>`
   entries.
@@ -25,12 +25,13 @@ Recommended files:
 
 ## Artifact Folder Contract (`projects/<id>/`)
 
-Reference-only source material and notes:
+Source material plus non-runtime derived artifacts and notes:
 
 - transcript exports
 - storyboard notes (default editable file: `storyboard.md`)
 - optional machine export (`storyboard.json`) when automation/parsing is needed
-- generated intermediate artifacts (mask URLs, logs, etc.)
+- generated intermediate artifacts (mask outputs, upload receipts, logs, etc.)
+- worklogs for thumbnails, backgrounds, sketches, and similar iteration assets
 
 These files are useful for humans/agents but should not become runtime dependencies.
 
@@ -55,7 +56,7 @@ Each composition config must include:
 ## Runtime Rules
 
 - Keep runtime inputs in `assets.js`; do not make runtime code depend on scratch
-  manifests under `projects/<id>/`.
+  manifests or derived files under `projects/<id>/`.
 - Use named `<Sequence name="...">` blocks for major beats.
 - Ensure key overlay layers use clear `zIndex` ordering when foreground alpha
   is present.
