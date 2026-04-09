@@ -23,6 +23,8 @@ export const SKETCH_P2D_HARNESS_VIDEO_URL = 'public/imports/c0046/sketch/p2d-har
 export const SKETCH_P5_SAM_URL = 'public/imports/c0046/sketch/p5-sam.png';
 export const SKETCH_P6_MATANYONE_URL = 'public/imports/c0046/sketch/p6-matanyone.png';
 export const SKETCH_P7_REMOTION_URL = 'public/imports/c0046/sketch/p7-remotion.png';
+export const SKETCH_P8_TRANSCRIPTION_URL = 'public/imports/c0046/sketch/p8-transcription.png';
+export const SKETCH_P9_TERMINAL_URL = 'public/imports/c0046/sketch/p9-terminal.png';
 
 export const FPS = 25;
 export const WIDTH = 1920;
@@ -67,11 +69,12 @@ export const TIMING = {
   s06HarnessToolsStart: 121.32, // "tools that are available"
   s06HarnessCodingStart: 133.6, // "coding tools"
   s06HarnessVideoStart: 137.04, // "swap"
-  // S07 — "The stack" tool reveals
-  s07SamStart: 150.08,          // "SAM"
-  s07MatAnyoneStart: 164.24,    // "math anyone"
-  s07RemotionStart: 178.0,      // "FFM"
-  s07End: 184.0,                // before "transcribe"
+  // S07 — "The stack" tool reveals (now 4 tools, transcription is the 4th)
+  s07SamStart: 150.08,           // "SAM"
+  s07MatAnyoneStart: 164.24,     // "math anyone"
+  s07RemotionStart: 178.0,       // "FFM"
+  s07TranscribeStart: 183.52,    // "also transcribe"
+  s07End: 192.32,                // moved to where S08 starts
   // S08 — workflow reality
   s08RealtimeStart: 192.32,     // "And of course, none of this is working in real time"
   s08RecordingStart: 208.08,    // "typically just record in front of a green screen"

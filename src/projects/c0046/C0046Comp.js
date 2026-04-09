@@ -36,6 +36,8 @@ import {
   SKETCH_P5_SAM_URL,
   SKETCH_P6_MATANYONE_URL,
   SKETCH_P7_REMOTION_URL,
+  SKETCH_P8_TRANSCRIPTION_URL,
+  SKETCH_P9_TERMINAL_URL,
   SKETCH_PANEL_UI,
   TIMING,
   VIDEO_URL,
@@ -651,7 +653,7 @@ export const C0046Comp = (props) => {
             <OffthreadVideo
               src={resolveAssetSrc(PERSON_MATTE_ALPHA_URL, assetMap)}
               startFrom={secondsToFrames(TIMING.explainStart)}
-              endAt={DURATION_FRAMES}
+              endAt={Math.max(1, DURATION_FRAMES - 2)}
               muted
               transparent
               style={{
@@ -813,7 +815,7 @@ export const C0046Comp = (props) => {
           from={secondsToFrames(TIMING.s07RemotionStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s07RemotionStart,
-            TIMING.s07End
+            TIMING.s07TranscribeStart
           )}
         >
           <AbsoluteFill style={{zIndex: 190, pointerEvents: 'none'}}>
@@ -822,7 +824,55 @@ export const C0046Comp = (props) => {
               assetMap={assetMap}
               durationInFrames={beatDurationInFrames(
                 TIMING.s07RemotionStart,
+                TIMING.s07TranscribeStart
+              )}
+              leftPx={SKETCH_PANEL_UI.leftPx}
+              topPx={SKETCH_PANEL_UI.topPx}
+              widthPx={SKETCH_PANEL_UI.widthPx}
+              heightPx={SKETCH_PANEL_UI.heightPx}
+            />
+          </AbsoluteFill>
+        </Sequence>
+
+        <Sequence
+          name="[S38] Sketch: P8 Transcription (4th tool in stack)"
+          from={secondsToFrames(TIMING.s07TranscribeStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s07TranscribeStart,
+            TIMING.s07End
+          )}
+        >
+          <AbsoluteFill style={{zIndex: 190, pointerEvents: 'none'}}>
+            <SketchPanel
+              src={SKETCH_P8_TRANSCRIPTION_URL}
+              assetMap={assetMap}
+              durationInFrames={beatDurationInFrames(
+                TIMING.s07TranscribeStart,
                 TIMING.s07End
+              )}
+              leftPx={SKETCH_PANEL_UI.leftPx}
+              topPx={SKETCH_PANEL_UI.topPx}
+              widthPx={SKETCH_PANEL_UI.widthPx}
+              heightPx={SKETCH_PANEL_UI.heightPx}
+            />
+          </AbsoluteFill>
+        </Sequence>
+
+        <Sequence
+          name="[S39] Sketch: P9 Terminal (during PROMPTING)"
+          from={secondsToFrames(TIMING.s08PromptingStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s08PromptingStart,
+            TIMING.s08IteratingStart
+          )}
+        >
+          <AbsoluteFill style={{zIndex: 190, pointerEvents: 'none'}}>
+            <SketchPanel
+              src={SKETCH_P9_TERMINAL_URL}
+              assetMap={assetMap}
+              durationInFrames={beatDurationInFrames(
+                TIMING.s08PromptingStart,
+                TIMING.s08IteratingStart
               )}
               leftPx={SKETCH_PANEL_UI.leftPx}
               topPx={SKETCH_PANEL_UI.topPx}
@@ -1330,13 +1380,33 @@ export const C0046Comp = (props) => {
           from={secondsToFrames(TIMING.s07RemotionStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s07RemotionStart,
-            TIMING.s07End
+            TIMING.s07TranscribeStart
           )}
         >
           <CodexCallout
             text="Remotion + FFmpeg composites it."
             durationInFrames={beatDurationInFrames(
               TIMING.s07RemotionStart,
+              TIMING.s07TranscribeStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S38B] Callout: Transcribes everything I say."
+          from={secondsToFrames(TIMING.s07TranscribeStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s07TranscribeStart,
+            TIMING.s07End
+          )}
+        >
+          <CodexCallout
+            text="Transcribes everything I say."
+            durationInFrames={beatDurationInFrames(
+              TIMING.s07TranscribeStart,
               TIMING.s07End
             )}
             scale={DEMO_UI.calloutScale}
