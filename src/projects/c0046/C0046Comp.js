@@ -21,6 +21,7 @@ import {
   APPLE_IMAGE_URL,
   BALL_RECOLOR,
   DEMO_UI,
+  DURATION_FRAMES,
   FPS,
   OPENER_UI,
   OVERLAY_VIEW,
@@ -29,6 +30,7 @@ import {
   S05_BACKGROUND_DEPTH_URL,
   S05_SUBJECT_FRAMES_DIR,
   SKETCH_P2A_HARNESS_EMPTY_URL,
+  SKETCH_P2B_HARNESS_TOOLS_PROMPT_URL,
   SKETCH_P2C_HARNESS_CODING_URL,
   SKETCH_P2D_HARNESS_VIDEO_URL,
   SKETCH_P5_SAM_URL,
@@ -616,19 +618,29 @@ export const C0046Comp = (props) => {
           </AbsoluteFill>
         </Sequence>
 
-        {/* ─── S06+S07: white backdrop + person matte for the explainer ─── */}
+        {/* ─── S06+S07+S08+S09: white backdrop + person matte through end of video ─── */}
         <Sequence
-          name="[S29A] Explainer White Backdrop"
+          name="[S29A] Explainer White Backdrop (through end)"
           from={secondsToFrames(TIMING.explainStart)}
-          durationInFrames={beatDurationInFrames(TIMING.explainStart, TIMING.s07End)}
+          durationInFrames={Math.max(
+            1,
+            DURATION_FRAMES - secondsToFrames(TIMING.explainStart)
+          )}
         >
-          <AbsoluteFill style={{backgroundColor: '#ffffff'}} />
+          <AbsoluteFill
+            style={{
+              backgroundColor: '#ffffff',
+            }}
+          />
         </Sequence>
 
         <Sequence
-          name="[S29B] Explainer Person Matte (Adi on white)"
+          name="[S29B] Explainer Person Matte (Adi on white, through end)"
           from={secondsToFrames(TIMING.explainStart)}
-          durationInFrames={beatDurationInFrames(TIMING.explainStart, TIMING.s07End)}
+          durationInFrames={Math.max(
+            1,
+            DURATION_FRAMES - secondsToFrames(TIMING.explainStart)
+          )}
         >
           <AbsoluteFill
             style={{
@@ -639,6 +651,9 @@ export const C0046Comp = (props) => {
             <OffthreadVideo
               src={resolveAssetSrc(PERSON_MATTE_ALPHA_URL, assetMap)}
               startFrom={secondsToFrames(TIMING.explainStart)}
+              endAt={DURATION_FRAMES}
+              muted
+              transparent
               style={{
                 width: '100%',
                 height: '100%',
@@ -648,12 +663,13 @@ export const C0046Comp = (props) => {
           </AbsoluteFill>
         </Sequence>
 
+
         <Sequence
           name="[S32] Sketch: P2a empty harness"
           from={secondsToFrames(TIMING.s06HarnessEmptyStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s06HarnessEmptyStart,
-            TIMING.s06HarnessCodingStart
+            TIMING.s06HarnessToolsStart
           )}
         >
           <AbsoluteFill style={{zIndex: 190, pointerEvents: 'none'}}>
@@ -662,7 +678,151 @@ export const C0046Comp = (props) => {
               assetMap={assetMap}
               durationInFrames={beatDurationInFrames(
                 TIMING.s06HarnessEmptyStart,
+                TIMING.s06HarnessToolsStart
+              )}
+              leftPx={SKETCH_PANEL_UI.leftPx}
+              topPx={SKETCH_PANEL_UI.topPx}
+              widthPx={SKETCH_PANEL_UI.widthPx}
+              heightPx={SKETCH_PANEL_UI.heightPx}
+            />
+          </AbsoluteFill>
+        </Sequence>
+
+        <Sequence
+          name="[S32SK] Sketch: P2b harness + tools + prompt"
+          from={secondsToFrames(TIMING.s06HarnessToolsStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s06HarnessToolsStart,
+            TIMING.s06HarnessCodingStart
+          )}
+        >
+          <AbsoluteFill style={{zIndex: 190, pointerEvents: 'none'}}>
+            <SketchPanel
+              src={SKETCH_P2B_HARNESS_TOOLS_PROMPT_URL}
+              assetMap={assetMap}
+              durationInFrames={beatDurationInFrames(
+                TIMING.s06HarnessToolsStart,
                 TIMING.s06HarnessCodingStart
+              )}
+              leftPx={SKETCH_PANEL_UI.leftPx}
+              topPx={SKETCH_PANEL_UI.topPx}
+              widthPx={SKETCH_PANEL_UI.widthPx}
+              heightPx={SKETCH_PANEL_UI.heightPx}
+            />
+          </AbsoluteFill>
+        </Sequence>
+
+        <Sequence
+          name="[S33] Sketch: P2c harness + coding tools"
+          from={secondsToFrames(TIMING.s06HarnessCodingStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s06HarnessCodingStart,
+            TIMING.s06HarnessVideoStart
+          )}
+        >
+          <AbsoluteFill style={{zIndex: 190, pointerEvents: 'none'}}>
+            <SketchPanel
+              src={SKETCH_P2C_HARNESS_CODING_URL}
+              assetMap={assetMap}
+              durationInFrames={beatDurationInFrames(
+                TIMING.s06HarnessCodingStart,
+                TIMING.s06HarnessVideoStart
+              )}
+              leftPx={SKETCH_PANEL_UI.leftPx}
+              topPx={SKETCH_PANEL_UI.topPx}
+              widthPx={SKETCH_PANEL_UI.widthPx}
+              heightPx={SKETCH_PANEL_UI.heightPx}
+            />
+          </AbsoluteFill>
+        </Sequence>
+
+        <Sequence
+          name="[S34] Sketch: P2d harness + video tools (swap)"
+          from={secondsToFrames(TIMING.s06HarnessVideoStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s06HarnessVideoStart,
+            TIMING.s07SamStart
+          )}
+        >
+          <AbsoluteFill style={{zIndex: 190, pointerEvents: 'none'}}>
+            <SketchPanel
+              src={SKETCH_P2D_HARNESS_VIDEO_URL}
+              assetMap={assetMap}
+              durationInFrames={beatDurationInFrames(
+                TIMING.s06HarnessVideoStart,
+                TIMING.s07SamStart
+              )}
+              leftPx={SKETCH_PANEL_UI.leftPx}
+              topPx={SKETCH_PANEL_UI.topPx}
+              widthPx={SKETCH_PANEL_UI.widthPx}
+              heightPx={SKETCH_PANEL_UI.heightPx}
+            />
+          </AbsoluteFill>
+        </Sequence>
+
+        <Sequence
+          name="[S35] Sketch: P5 SAM 3.1"
+          from={secondsToFrames(TIMING.s07SamStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s07SamStart,
+            TIMING.s07MatAnyoneStart
+          )}
+        >
+          <AbsoluteFill style={{zIndex: 190, pointerEvents: 'none'}}>
+            <SketchPanel
+              src={SKETCH_P5_SAM_URL}
+              assetMap={assetMap}
+              durationInFrames={beatDurationInFrames(
+                TIMING.s07SamStart,
+                TIMING.s07MatAnyoneStart
+              )}
+              leftPx={SKETCH_PANEL_UI.leftPx}
+              topPx={SKETCH_PANEL_UI.topPx}
+              widthPx={SKETCH_PANEL_UI.widthPx}
+              heightPx={SKETCH_PANEL_UI.heightPx}
+            />
+          </AbsoluteFill>
+        </Sequence>
+
+        <Sequence
+          name="[S36] Sketch: P6 MatAnyone"
+          from={secondsToFrames(TIMING.s07MatAnyoneStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s07MatAnyoneStart,
+            TIMING.s07RemotionStart
+          )}
+        >
+          <AbsoluteFill style={{zIndex: 190, pointerEvents: 'none'}}>
+            <SketchPanel
+              src={SKETCH_P6_MATANYONE_URL}
+              assetMap={assetMap}
+              durationInFrames={beatDurationInFrames(
+                TIMING.s07MatAnyoneStart,
+                TIMING.s07RemotionStart
+              )}
+              leftPx={SKETCH_PANEL_UI.leftPx}
+              topPx={SKETCH_PANEL_UI.topPx}
+              widthPx={SKETCH_PANEL_UI.widthPx}
+              heightPx={SKETCH_PANEL_UI.heightPx}
+            />
+          </AbsoluteFill>
+        </Sequence>
+
+        <Sequence
+          name="[S37] Sketch: P7 Remotion + FFmpeg"
+          from={secondsToFrames(TIMING.s07RemotionStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s07RemotionStart,
+            TIMING.s07End
+          )}
+        >
+          <AbsoluteFill style={{zIndex: 190, pointerEvents: 'none'}}>
+            <SketchPanel
+              src={SKETCH_P7_REMOTION_URL}
+              assetMap={assetMap}
+              durationInFrames={beatDurationInFrames(
+                TIMING.s07RemotionStart,
+                TIMING.s07End
               )}
               leftPx={SKETCH_PANEL_UI.leftPx}
               topPx={SKETCH_PANEL_UI.topPx}
@@ -963,19 +1123,20 @@ export const C0046Comp = (props) => {
 
         {/* ─── S06 — How it works (harness explainer) ─── */}
 
+        {/* Bridge: "Booting Codex" between S05 end and the harness reveal */}
         <Sequence
-          name="[S30] Status: HOW IT WORKS"
-          from={secondsToFrames(TIMING.s06HarnessEmptyStart)}
+          name="[S29C] Status: BOOTING CODEX"
+          from={secondsToFrames(TIMING.s06BridgeStart)}
           durationInFrames={beatDurationInFrames(
-            TIMING.s06HarnessEmptyStart,
-            TIMING.s06HarnessCodingStart
+            TIMING.s06BridgeStart,
+            TIMING.s06HarnessEmptyStart
           )}
         >
           <StatusLeftOverlay
-            text="HOW IT WORKS"
+            text="BOOTING CODEX"
             durationInFrames={beatDurationInFrames(
-              TIMING.s06HarnessEmptyStart,
-              TIMING.s06HarnessCodingStart
+              TIMING.s06BridgeStart,
+              TIMING.s06HarnessEmptyStart
             )}
             scale={DEMO_UI.statusScale}
             topPx={DEMO_UI.statusTopPx}
@@ -984,18 +1145,449 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
+          name="[S29D] Callout: Codex is animating this too."
+          from={secondsToFrames(TIMING.s06BridgeStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s06BridgeStart,
+            TIMING.s06HarnessEmptyStart
+          )}
+        >
+          <CodexCallout
+            text="Codex is animating this too."
+            durationInFrames={beatDurationInFrames(
+              TIMING.s06BridgeStart,
+              TIMING.s06HarnessEmptyStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        {/* HOW IT WORKS pill spans the whole P2a→P2b→P2c→P2d window so it
+            doesn't fade out and back in between sub-beats. Callouts still
+            change per beat below. */}
+        <Sequence
+          name="[S30+] Status: HOW IT WORKS (continuous)"
+          from={secondsToFrames(TIMING.s06HarnessEmptyStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s06HarnessEmptyStart,
+            TIMING.s07SamStart
+          )}
+        >
+          <StatusLeftOverlay
+            text="HOW IT WORKS"
+            durationInFrames={beatDurationInFrames(
+              TIMING.s06HarnessEmptyStart,
+              TIMING.s07SamStart
+            )}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        {/* Callouts swap per beat (text changes) */}
+        <Sequence
           name="[S31] Callout: It's actually a harness."
           from={secondsToFrames(TIMING.s06HarnessEmptyStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s06HarnessEmptyStart,
-            TIMING.s06HarnessCodingStart
+            TIMING.s06HarnessToolsStart
           )}
         >
           <CodexCallout
             text="It's actually a harness."
             durationInFrames={beatDurationInFrames(
               TIMING.s06HarnessEmptyStart,
+              TIMING.s06HarnessToolsStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S32B] Callout: Tools + prompt + a loop."
+          from={secondsToFrames(TIMING.s06HarnessToolsStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s06HarnessToolsStart,
+            TIMING.s06HarnessCodingStart
+          )}
+        >
+          <CodexCallout
+            text="Tools + prompt + a loop."
+            durationInFrames={beatDurationInFrames(
+              TIMING.s06HarnessToolsStart,
               TIMING.s06HarnessCodingStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S33B] Callout: By default, coding tools."
+          from={secondsToFrames(TIMING.s06HarnessCodingStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s06HarnessCodingStart,
+            TIMING.s06HarnessVideoStart
+          )}
+        >
+          <CodexCallout
+            text="By default, coding tools."
+            durationInFrames={beatDurationInFrames(
+              TIMING.s06HarnessCodingStart,
+              TIMING.s06HarnessVideoStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S34B] Callout: Swapped with video tools."
+          from={secondsToFrames(TIMING.s06HarnessVideoStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s06HarnessVideoStart,
+            TIMING.s07SamStart
+          )}
+        >
+          <CodexCallout
+            text="Swapped with video tools."
+            durationInFrames={beatDurationInFrames(
+              TIMING.s06HarnessVideoStart,
+              TIMING.s07SamStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        {/* ─── S07 — The stack: SAM 3.1, MatAnyone, Remotion ─── */}
+        {/* THE STACK pill spans P5+P6+P7 so it doesn't fade between sub-beats. */}
+        <Sequence
+          name="[S35+] Status: THE STACK (continuous)"
+          from={secondsToFrames(TIMING.s07SamStart)}
+          durationInFrames={beatDurationInFrames(TIMING.s07SamStart, TIMING.s07End)}
+        >
+          <StatusLeftOverlay
+            text="THE STACK"
+            durationInFrames={beatDurationInFrames(TIMING.s07SamStart, TIMING.s07End)}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        {/* Callouts swap per tool reveal */}
+        <Sequence
+          name="[S35B] Callout: SAM 3.1 — tracks objects."
+          from={secondsToFrames(TIMING.s07SamStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s07SamStart,
+            TIMING.s07MatAnyoneStart
+          )}
+        >
+          <CodexCallout
+            text="SAM 3.1 — tracks objects."
+            durationInFrames={beatDurationInFrames(
+              TIMING.s07SamStart,
+              TIMING.s07MatAnyoneStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S36B] Callout: MatAnyone — cuts a clean matte."
+          from={secondsToFrames(TIMING.s07MatAnyoneStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s07MatAnyoneStart,
+            TIMING.s07RemotionStart
+          )}
+        >
+          <CodexCallout
+            text="MatAnyone — cuts a clean matte."
+            durationInFrames={beatDurationInFrames(
+              TIMING.s07MatAnyoneStart,
+              TIMING.s07RemotionStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S37B] Callout: Remotion + FFmpeg composites it."
+          from={secondsToFrames(TIMING.s07RemotionStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s07RemotionStart,
+            TIMING.s07End
+          )}
+        >
+          <CodexCallout
+            text="Remotion + FFmpeg composites it."
+            durationInFrames={beatDurationInFrames(
+              TIMING.s07RemotionStart,
+              TIMING.s07End
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        {/* ─── S08 — Workflow reality (192.32 → 247.68) ─── */}
+
+        {/* NOT REAL-TIME */}
+        <Sequence
+          name="[S40A] Status: NOT REAL-TIME"
+          from={secondsToFrames(TIMING.s08RealtimeStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s08RealtimeStart,
+            TIMING.s08RecordingStart
+          )}
+        >
+          <StatusLeftOverlay
+            text="NOT REAL-TIME"
+            durationInFrames={beatDurationInFrames(
+              TIMING.s08RealtimeStart,
+              TIMING.s08RecordingStart
+            )}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S40B] Callout: These tools live online."
+          from={secondsToFrames(TIMING.s08RealtimeStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s08RealtimeStart,
+            TIMING.s08RecordingStart
+          )}
+        >
+          <CodexCallout
+            text="These tools live online."
+            durationInFrames={beatDurationInFrames(
+              TIMING.s08RealtimeStart,
+              TIMING.s08RecordingStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        {/* RECORDING */}
+        <Sequence
+          name="[S41A] Status: RECORDING"
+          from={secondsToFrames(TIMING.s08RecordingStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s08RecordingStart,
+            TIMING.s08PromptingStart
+          )}
+        >
+          <StatusLeftOverlay
+            text="RECORDING"
+            durationInFrames={beatDurationInFrames(
+              TIMING.s08RecordingStart,
+              TIMING.s08PromptingStart
+            )}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S41B] Callout: Record on a green screen."
+          from={secondsToFrames(TIMING.s08RecordingStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s08RecordingStart,
+            TIMING.s08PromptingStart
+          )}
+        >
+          <CodexCallout
+            text="Record on a green screen."
+            durationInFrames={beatDurationInFrames(
+              TIMING.s08RecordingStart,
+              TIMING.s08PromptingStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        {/* PROMPTING */}
+        <Sequence
+          name="[S42A] Status: PROMPTING"
+          from={secondsToFrames(TIMING.s08PromptingStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s08PromptingStart,
+            TIMING.s08IteratingStart
+          )}
+        >
+          <StatusLeftOverlay
+            text="PROMPTING"
+            durationInFrames={beatDurationInFrames(
+              TIMING.s08PromptingStart,
+              TIMING.s08IteratingStart
+            )}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S42B] Callout: Tell Codex what you want."
+          from={secondsToFrames(TIMING.s08PromptingStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s08PromptingStart,
+            TIMING.s08IteratingStart
+          )}
+        >
+          <CodexCallout
+            text="Tell Codex what you want."
+            durationInFrames={beatDurationInFrames(
+              TIMING.s08PromptingStart,
+              TIMING.s08IteratingStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        {/* ITERATING */}
+        <Sequence
+          name="[S43A] Status: ITERATING"
+          from={secondsToFrames(TIMING.s08IteratingStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s08IteratingStart,
+            TIMING.s09ExperimentsStart
+          )}
+        >
+          <StatusLeftOverlay
+            text="ITERATING"
+            durationInFrames={beatDurationInFrames(
+              TIMING.s08IteratingStart,
+              TIMING.s09ExperimentsStart
+            )}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S43B] Callout: Used to take hours. Now ~45 min."
+          from={secondsToFrames(TIMING.s08IteratingStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s08IteratingStart,
+            TIMING.s09ExperimentsStart
+          )}
+        >
+          <CodexCallout
+            text="Used to take hours. Now ~45 min."
+            durationInFrames={beatDurationInFrames(
+              TIMING.s08IteratingStart,
+              TIMING.s09ExperimentsStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        {/* ─── S09 — Close (247.68 → end) ─── */}
+
+        {/* EXPERIMENTS */}
+        <Sequence
+          name="[S44A] Status: EXPERIMENTS"
+          from={secondsToFrames(TIMING.s09ExperimentsStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s09ExperimentsStart,
+            TIMING.s09OutroStart
+          )}
+        >
+          <StatusLeftOverlay
+            text="EXPERIMENTS"
+            durationInFrames={beatDurationInFrames(
+              TIMING.s09ExperimentsStart,
+              TIMING.s09OutroStart
+            )}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S44B] Callout: Many don't work. Some do."
+          from={secondsToFrames(TIMING.s09ExperimentsStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.s09ExperimentsStart,
+            TIMING.s09OutroStart
+          )}
+        >
+          <CodexCallout
+            text="Many don't work. Some do."
+            durationInFrames={beatDurationInFrames(
+              TIMING.s09ExperimentsStart,
+              TIMING.s09OutroStart
+            )}
+            scale={DEMO_UI.calloutScale}
+            topPx={DEMO_UI.calloutTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        {/* OUTRO — final stamp */}
+        <Sequence
+          name="[S45A] Status: WRAP UP"
+          from={secondsToFrames(TIMING.s09OutroStart)}
+          durationInFrames={Math.max(
+            1,
+            DURATION_FRAMES - secondsToFrames(TIMING.s09OutroStart)
+          )}
+        >
+          <StatusLeftOverlay
+            text="100% EDITED BY CODEX"
+            durationInFrames={Math.max(
+              1,
+              DURATION_FRAMES - secondsToFrames(TIMING.s09OutroStart)
+            )}
+            scale={DEMO_UI.statusScale}
+            topPx={DEMO_UI.statusTopPx}
+            leftPx={DEMO_UI.leftPx}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S45B] Callout: Hope this was useful."
+          from={secondsToFrames(TIMING.s09OutroStart)}
+          durationInFrames={Math.max(
+            1,
+            DURATION_FRAMES - secondsToFrames(TIMING.s09OutroStart)
+          )}
+        >
+          <CodexCallout
+            text="Hope this was useful."
+            durationInFrames={Math.max(
+              1,
+              DURATION_FRAMES - secondsToFrames(TIMING.s09OutroStart)
             )}
             scale={DEMO_UI.calloutScale}
             topPx={DEMO_UI.calloutTopPx}

@@ -17,6 +17,7 @@ export const S05_DEPTH_COMPOSITE_URL = 'public/imports/c0046/s05-depth-composite
 // S06 storyboard sketches (xkcd-style hand-drawn).
 // Originals: projects/c0046/storyboard-assets/sketch/
 export const SKETCH_P2A_HARNESS_EMPTY_URL = 'public/imports/c0046/sketch/p2a-harness-empty.png';
+export const SKETCH_P2B_HARNESS_TOOLS_PROMPT_URL = 'public/imports/c0046/sketch/p2b-harness-tools-prompt.png';
 export const SKETCH_P2C_HARNESS_CODING_URL = 'public/imports/c0046/sketch/p2c-harness-coding-full.png';
 export const SKETCH_P2D_HARNESS_VIDEO_URL = 'public/imports/c0046/sketch/p2d-harness-video-full.png';
 export const SKETCH_P5_SAM_URL = 'public/imports/c0046/sketch/p5-sam.png';
@@ -59,7 +60,11 @@ export const TIMING = {
   explainStart: 89.84,
   // S06 — "How it works" / harness explainer
   // Word-locked timestamps from transcript_words.json (see worklog).
+  // Bridge between S05 ("totally natural") and the harness reveal —
+  // playful "booting up Codex" beat while Adi sets up the explainer.
+  s06BridgeStart: 89.84,        // right after "totally natural" / depthTextEnd
   s06HarnessEmptyStart: 111.44, // "it's a harness"
+  s06HarnessToolsStart: 121.32, // "tools that are available"
   s06HarnessCodingStart: 133.6, // "coding tools"
   s06HarnessVideoStart: 137.04, // "swap"
   // S07 — "The stack" tool reveals
@@ -67,6 +72,14 @@ export const TIMING = {
   s07MatAnyoneStart: 164.24,    // "math anyone"
   s07RemotionStart: 178.0,      // "FFM"
   s07End: 184.0,                // before "transcribe"
+  // S08 — workflow reality
+  s08RealtimeStart: 192.32,     // "And of course, none of this is working in real time"
+  s08RecordingStart: 208.08,    // "typically just record in front of a green screen"
+  s08PromptingStart: 220.48,    // "boot up my terminal"
+  s08IteratingStart: 229.44,    // "back and forth"
+  // S09 — close
+  s09ExperimentsStart: 247.68,  // "I try a lot of these experiments"
+  s09OutroStart: 264.24,        // "Hope that this is useful"
 };
 
 // S06 sketch panel placement on the left third of the frame.
