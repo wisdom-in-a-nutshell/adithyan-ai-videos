@@ -23,6 +23,7 @@ Panels:
 - P8  — TRANSCRIPTION: mic + sound waves + speech bubble — locked (4th tool in stack)
 - P9  — TERMINAL: hand-drawn cmd window with `> codex, track the ball.` — locked (PROMPTING beat)
 - P10 — RECORD→EDIT: video camera + arrow + laptop showing the not-real-time workflow — locked (NOT REAL-TIME beat)
+- P11 — OUTRO MASCOT: mascot waving + wooden sign "100% EDITED BY CODEX" + "thanks for watching." — locked (final close)
 
 All canonicals live next to this worklog at `sketch/p*.png`.
 Cropped versions used in the video at `sketch/cropped/p*.png` and copied
@@ -53,9 +54,9 @@ S08 — Workflow reality (pills + callouts, plus 2 sketches):
 - 220.48s (s08PromptingStart)     — PROMPTING pill + P9 Terminal sketch
 - 229.44s (s08IteratingStart)     — ITERATING pill
 
-S09 — Close (pills + callouts):
+S09 — Close:
 - 247.68s (s09ExperimentsStart)   — EXPERIMENTS pill
-- 264.24s (s09OutroStart)         — "100% EDITED BY CODEX" pill + "Hope this was useful." callout
+- 264.24s (s09OutroStart)         — "100% EDITED BY CODEX" pill + P11 Outro Mascot sketch (mascot waves + sign)
 
 White backdrop + Adi matte run continuously from explainStart (89.84s)
 through the end of the video.

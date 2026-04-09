@@ -39,6 +39,7 @@ import {
   SKETCH_P8_TRANSCRIPTION_URL,
   SKETCH_P9_TERMINAL_URL,
   SKETCH_P10_RECORD_EDIT_URL,
+  SKETCH_P11_OUTRO_MASCOT_URL,
   SKETCH_PANEL_UI,
   TIMING,
   VIDEO_URL,
@@ -898,6 +899,30 @@ export const C0046Comp = (props) => {
               durationInFrames={beatDurationInFrames(
                 TIMING.s08RealtimeStart,
                 TIMING.s08RecordingStart
+              )}
+              leftPx={SKETCH_PANEL_UI.leftPx}
+              topPx={SKETCH_PANEL_UI.topPx}
+              widthPx={SKETCH_PANEL_UI.widthPx}
+              heightPx={SKETCH_PANEL_UI.heightPx}
+            />
+          </AbsoluteFill>
+        </Sequence>
+
+        <Sequence
+          name="[S46] Sketch: P11 Outro mascot (final close)"
+          from={secondsToFrames(TIMING.s09OutroStart)}
+          durationInFrames={Math.max(
+            1,
+            DURATION_FRAMES - secondsToFrames(TIMING.s09OutroStart)
+          )}
+        >
+          <AbsoluteFill style={{zIndex: 190, pointerEvents: 'none'}}>
+            <SketchPanel
+              src={SKETCH_P11_OUTRO_MASCOT_URL}
+              assetMap={assetMap}
+              durationInFrames={Math.max(
+                1,
+                DURATION_FRAMES - secondsToFrames(TIMING.s09OutroStart)
               )}
               leftPx={SKETCH_PANEL_UI.leftPx}
               topPx={SKETCH_PANEL_UI.topPx}
