@@ -220,7 +220,10 @@ Layer order (bottom → top):
    studio background continuously through the full `TOTALLY NATURAL` depth beat.
 2. **Depth text layer** — floating label text sits BETWEEN the background and
    Adi's silhouette while the studio plate remains behind him.
-3. **Person matte** (`person-matte-alpha-full.webm`) — composites Adi on top.
+3. **Person matte** — conceptually this is the foreground cutout layer. In the
+   current implementation the live comp uses the pre-keyed
+   `subject-keyed-s05-frames/` PNG sequence because it has cleaner edges than
+   the uploaded `.webm` matte.
 4. **UI overlays** on top as usual.
 
 **Beat breakdown**
@@ -246,8 +249,10 @@ Layer order (bottom → top):
 - Background layer: put INSIDE the z180 wrapper after the source clip, as a
   `<Sequence from={foregroundMatteStart}>`. DOM order puts it above the source
   video but below overlay pills.
-- Person matte: already wired at z220 outside z180 wrapper. The matte's alpha
-  channel composites Adi on top of whatever is in z180.
+- Person matte: already wired at z220 outside z180 wrapper. Conceptually this
+  composites Adi on top of whatever is in z180. In practice the current comp
+  uses pre-keyed PNG frames for this cutout because the `.webm` matte bleeds
+  the background into Adi's face.
 - Depth text: render a text div BETWEEN the background sequence and the person
   matte sequence in DOM order. The matte will naturally composite Adi in front.
 - Body outline: needs a separate SAM or bounding-box track for Adi's body.
