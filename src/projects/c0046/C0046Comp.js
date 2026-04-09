@@ -379,30 +379,28 @@ const S05DepthText = ({durationInFrames}) => {
     <div
       style={{
         position: 'absolute',
-        left: '50%',
-        top: '35%',
-        transform: `translate3d(-50%, calc(-50% + ${rise}px), 0) scale(${pulse})`,
+        inset: 0,
+        transform: `translate3d(0, ${rise}px, 0) scale(${pulse})`,
         opacity,
         zIndex: 12,
         pointerEvents: 'none',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: 2,
       }}
     >
       <span
         style={{
+          position: 'absolute',
+          left: '22%',
+          top: '34%',
           fontFamily: SKETCH_FONT_FAMILY,
-          fontSize: 70,
-          fontWeight: 400,
-          letterSpacing: 7,
+          fontSize: 78,
+          fontWeight: 700,
+          letterSpacing: 4,
           lineHeight: 0.95,
           textTransform: 'uppercase',
-          color: 'rgba(243, 227, 201, 0.9)',
-          WebkitTextStroke: '4px rgba(32, 23, 14, 0.38)',
-          textShadow: '0 10px 28px rgba(34, 22, 10, 0.28)',
-          transform: 'translateX(-16px)',
+          color: 'rgba(246, 232, 205, 0.92)',
+          WebkitTextStroke: '4px rgba(39, 28, 16, 0.28)',
+          textShadow: '0 12px 24px rgba(31, 21, 11, 0.2)',
+          transform: 'rotate(-4deg)',
           whiteSpace: 'nowrap',
         }}
       >
@@ -410,15 +408,19 @@ const S05DepthText = ({durationInFrames}) => {
       </span>
       <span
         style={{
+          position: 'absolute',
+          right: '17%',
+          top: '31%',
           fontFamily: SKETCH_FONT_FAMILY,
-          fontSize: 112,
-          fontWeight: 400,
-          letterSpacing: 5,
+          fontSize: 122,
+          fontWeight: 700,
+          letterSpacing: 3,
           lineHeight: 0.9,
           textTransform: 'uppercase',
-          color: 'rgba(255, 241, 215, 0.96)',
-          WebkitTextStroke: '6px rgba(32, 23, 14, 0.42)',
-          textShadow: '0 16px 32px rgba(34, 22, 10, 0.32)',
+          color: 'rgba(255, 241, 215, 0.97)',
+          WebkitTextStroke: '6px rgba(39, 28, 16, 0.34)',
+          textShadow: '0 16px 32px rgba(31, 21, 11, 0.24)',
+          transform: 'rotate(1.5deg)',
           whiteSpace: 'nowrap',
         }}
       >
