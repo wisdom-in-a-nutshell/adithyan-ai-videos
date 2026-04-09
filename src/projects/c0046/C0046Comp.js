@@ -1734,7 +1734,7 @@ export const C0046Comp = (props) => {
         </Sequence>
       ) : null}
 
-      {timeInSeconds >= TIMING.appleSwap && timeInSeconds <= TIMING.appleReactionEnd ? (
+      {timeInSeconds >= TIMING.appleSwap && timeInSeconds <= TIMING.appleVisualEnd ? (
         <Sequence name="[FX03] Apple Swap" from={secondsToFrames(TIMING.appleSwap)}>
           <AbsoluteFill
             style={{

@@ -42,6 +42,9 @@ export const TIMING = {
   recolorRed: 38.24,
   recolorYellow: 42.88,
   appleSwap: 53.88,
+  // Apple visual overlay stops at "could" (in "could have been better")
+  // because the underlying ball track drifts after that point.
+  appleVisualEnd: 57.2,
   appleReactionEnd: 60.16,
   foregroundMatteStart: 60.24,
   // Trigger these S05 effects just after the spoken action lands.
