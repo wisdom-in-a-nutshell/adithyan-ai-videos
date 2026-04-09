@@ -1439,7 +1439,7 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
-          name="[S40B] Callout: These tools live online."
+          name="[S40B] Callout: Record first, post-process later."
           from={secondsToFrames(TIMING.s08RealtimeStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s08RealtimeStart,
@@ -1447,7 +1447,7 @@ export const C0046Comp = (props) => {
           )}
         >
           <CodexCallout
-            text="These tools live online."
+            text="Record first, post-process later."
             durationInFrames={beatDurationInFrames(
               TIMING.s08RealtimeStart,
               TIMING.s08RecordingStart
