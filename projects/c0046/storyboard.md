@@ -286,6 +286,33 @@ below the status pill. Same blue connector line + arrow animation.
   - `Video tools` (emoji 🛠) → ~92s
   - `Video artifacts` (emoji ✨) → ~95s
 
+**Exact beat breakdown**
+- **89.84–93.24** `HOW IT WORKS`
+  - Callout: `How all of this works.`
+  - This is the transition beat out of the proof section.
+- **93.24–97.68** `EDITING`
+  - Callout: `Codex edits the video and brings in the effects.`
+  - Keep this in the old `text-effects` pill/callout language, not a new visual system.
+- **98.16–108.64** `CODING AGENT`
+  - Callout: `Codex is known as a coding agent.`
+  - Then update the support line on `video editing here`.
+- **110.40–129.68** `HARNESS`
+  - This is the key explanatory block.
+  - Use the `CodexToolsArtifactsOverlay` pattern here:
+    - `Model`
+    - `Harness`
+    - `Tools`
+    - `Prompt + instructions`
+  - The loop/steering explanation should feel like a structured diagram, not a raw subtitle dump.
+- **130.08–144.76** `SWAPPING TOOLS`
+  - Callout: `Swap coding tools for video editing tools.`
+  - This is the payoff line before the tool-specific breakdown starts.
+
+**Recommended implementation**
+- Reuse the old top-left status/callout stack immediately after `S05`.
+- Reuse `CodexToolsArtifactsOverlay` for the harness explanation only.
+- Keep the background simple; by this point the proof is already established.
+
 ---
 
 ## S07 | 144.88–191.68 | Toolchain breakdown
@@ -303,6 +330,30 @@ below the status pill as Adi names each tool:
 - Status pill: `THE STACK`
 - Numbered pills timed to when Adi mentions each tool name.
 
+**Exact beat breakdown**
+- **144.88–149.36** `THE STACK`
+  - Callout: `I used two specific tools.`
+- **149.36–154.96** `TOOLS`
+  - `SAM 3.1`
+  - `MatAnyone`
+  - This can use `ThreeToolsOverlay`, but trimmed to only the tools actually named here.
+- **155.04–162.56** `SAM 3.1`
+  - Callout: `Tracks objects and gives a segment mask.`
+  - This is a strong place to reuse the old object-tracking / segmentation explanation language.
+- **163.04–169.60** `MATANYONE`
+  - Callout: `Gets an object boundary around me.`
+- **170.08–181.12** `COMBINING`
+  - Callout: `Once you have the masks, ffmpeg can put it together.`
+  - Keep this concise; the point is orchestration, not ffmpeg branding.
+- **183.36–191.68** `TRANSCRIPT TIMING`
+  - Callout: `The transcript tells Codex where effects should start and stop.`
+  - This is the bridge from tools to workflow.
+
+**Recommended implementation**
+- Reuse `ThreeToolsOverlay`, but make it project-specific instead of verbatim.
+- Keep the top-left status pill alive throughout.
+- This section should feel like Codex naming the stack, not like a brand slide.
+
 ---
 
 ## S08 | 192.32–247.28 | Workflow reality
@@ -319,6 +370,26 @@ No complex flow diagram. Just the status + support callout pattern from S02–S0
 Keep it clean — by this point the viewer has seen the technique; visual
 complexity should decrease, not increase.
 
+**Exact beat breakdown**
+- **192.32–204.28** `NOT REAL TIME`
+  - Callout: `This is not working in real time.`
+  - Secondary line can mention trying new tools quickly.
+- **204.84–213.84** `STORYBOARDING`
+  - Callout: `I usually start with a rough storyboard in my head.`
+- **216.08–227.84** `PROMPTING`
+  - Callout: `I give Codex the tools and the intent.`
+  - This is a clean place for a terminal/prompt-flavored overlay if needed.
+- **228.40–230.24** `ITERATING`
+  - Callout: `Then we go back and forth.`
+- **230.88–247.28** `WORKFLOW`
+  - Callout: `Now the whole workflow is under an hour.`
+  - This is the “skills / system got better” payoff beat.
+
+**Recommended implementation**
+- This section should be mostly pills, callouts, and maybe one terminal-ish accent.
+- Do not bring back heavy proof effects here.
+- Let the pacing breathe more than in the first half.
+
 ---
 
 ## S09 | 247.68–267.04 | Close
@@ -332,6 +403,24 @@ Simple centred card (using `TitleOverlay` or a custom outro) with:
 - Fade to black
 
 Timing: card enters at ~250s, holds, fades to black by 267s.
+
+**Exact beat breakdown**
+- **247.68–255.68** `EXPERIMENTS`
+  - Callout: `A lot of these experiments fail. Some work.`
+- **255.68–256.96** `THIS ONE WORKED`
+  - Callout: `If you're seeing this, this one worked.`
+- **258.72–263.76** `OTHER USES`
+  - Callout: `You can use Codex for more than coding.`
+- **264.24–267.04** `OUTRO`
+  - `Hope this is useful. Thanks. Bye.`
+
+**Recommended implementation**
+- Keep the ending simple.
+- Echo the opener visually rather than inventing a new ending style.
+- The cleanest close is:
+  - small status/callout beat
+  - then a centred `100% edited by Codex` outro card
+  - fade to black
 
 ---
 
