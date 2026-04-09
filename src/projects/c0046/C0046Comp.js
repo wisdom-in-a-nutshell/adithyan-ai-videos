@@ -420,6 +420,39 @@ export const C0046Comp = (props) => {
         </Sequence>
 
         <Sequence
+          name="[S12B] Matte White Backdrop"
+          from={secondsToFrames(TIMING.selfMatteStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.selfMatteStart,
+            TIMING.backgroundReplaceStart
+          )}
+        >
+          <AbsoluteFill
+            style={{
+              backgroundColor: '#ffffff',
+            }}
+          />
+        </Sequence>
+
+        <Sequence
+          name="[S12C] Matte Subject Cutout"
+          from={secondsToFrames(TIMING.selfMatteStart)}
+          durationInFrames={beatDurationInFrames(
+            TIMING.selfMatteStart,
+            TIMING.backgroundReplaceStart
+          )}
+        >
+          <AbsoluteFill
+            style={{
+              pointerEvents: 'none',
+              zIndex: 220,
+            }}
+          >
+            <S05SubjectFrame assetMap={assetMap} relativeFrame={s05RelativeFrame} />
+          </AbsoluteFill>
+        </Sequence>
+
+        <Sequence
           name="[S14] Depth Background"
           from={secondsToFrames(TIMING.depthTextStart)}
           durationInFrames={beatDurationInFrames(TIMING.depthTextStart, TIMING.explainStart)}
@@ -782,14 +815,6 @@ export const C0046Comp = (props) => {
               zIndex: 239,
             }}
           >
-            {timeInSeconds >= TIMING.selfMatteStart ? (
-              <S05SubjectFrame
-                assetMap={assetMap}
-                relativeFrame={s05RelativeFrame}
-                opacity={Math.min(0.82, mattePulseOpacity * 0.9)}
-                filter="brightness(0) invert(1) saturate(0) contrast(1.25)"
-              />
-            ) : null}
             <S05SubjectFrame
               assetMap={assetMap}
               relativeFrame={s05RelativeFrame}
@@ -797,7 +822,7 @@ export const C0046Comp = (props) => {
               opacity={timeInSeconds >= TIMING.selfMatteStart ? mattePulseOpacity : detectOutlineOpacity}
               outlineColor={
                 timeInSeconds >= TIMING.selfMatteStart
-                  ? 'rgba(255, 255, 255, 0.98)'
+                  ? 'rgba(125, 211, 252, 0.95)'
                   : 'rgba(255, 255, 255, 0.98)'
               }
             />
