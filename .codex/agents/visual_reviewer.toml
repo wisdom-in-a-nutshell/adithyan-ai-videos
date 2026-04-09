@@ -1,5 +1,5 @@
 # Managed by ~/.agents/codex/scripts/sync-repo-codex-configs.sh.
-# Edit ~/.agents/codex/config/repo-bootstrap.json or ~/.agents/codex/config/agents/*.toml and re-run the sync script.
+# Edit ~/.agents/agents/registry.json or ~/.agents/codex/config/agents/*.toml and re-run the sync script.
 name = "visual_reviewer"
 description = "Read-only reviewer for visual work such as screenshots, layouts, hierarchy, and clarity."
 model = "gpt-5.4"
