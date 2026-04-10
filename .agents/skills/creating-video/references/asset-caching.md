@@ -6,11 +6,13 @@ This repo uses a **code-first cache**:
 
 - URLs live in code: `src/projects/<id>/assets.js` exports (e.g. `*_VIDEO_URL`, `*_ALPHA_URL`).
 - `npm start` and `npm run render` automatically:
-  - scan the active project(s) in `src/projects/*/assets.js` for exported `http(s)` URLs
+  - scan the active composition set from `src/projects/registry.js` for exported `http(s)` URLs
   - download them into a local cache dir (stable filename = `sha1(url)` + extension)
   - serve the cache dir via Remotion `--public-dir`
   - pass `assetMap` via `--props` so compositions can rewrite URLs:
     - `"https://.../video.mp4" -> "/<sha1>.mp4"`
+
+If you pass `--comp`, the cache narrows to that composition's project assets instead of every enabled project.
 
 The intended workflow is now:
 

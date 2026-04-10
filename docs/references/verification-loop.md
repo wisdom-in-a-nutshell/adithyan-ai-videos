@@ -55,3 +55,9 @@ npm run render -- --comp <CompositionId> --hq --out tmp/<CompositionId>-hq.mp4 -
 ```
 
 Run only when a section is stable.
+
+## Shared Block Rule
+
+- If you changed code under `src/effects/`, verify two things before trusting the change:
+  - render `EffectsLab` once to inspect the shared block in isolation
+  - render at least one real narrative slice that uses that block
