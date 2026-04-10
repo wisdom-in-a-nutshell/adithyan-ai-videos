@@ -27,14 +27,14 @@ This matters because the repository is meant to be agent-first and repeatable. R
 - Document the rendering problem clearly in repo-native durable memory.
 - Define the long-term render workflow for local iteration versus cloud checkpoints.
 - Define the runtime asset contract for cloud-safe versus local-only assets.
-- Define the desired repo-local render client boundary and the commands it should expose.
+- Confirm whether the existing repo-owned command surfaces are sufficient, and document the threshold for introducing anything new.
 - Identify the highest-leverage implementation steps that preserve the current repo layout.
 - Make sure the proposed design remains compatible with the current Modal cloud render backend and possible future Azure-based execution.
 
 ### Out of Scope
 - Replatforming cloud render to Azure right now.
 - Rewriting the entire project layout or moving away from `src/projects/<id>/` and `projects/<id>/`.
-- Implementing the full render client in this tracker entry.
+- Building a new top-level render client unless a real repeated workflow gap appears.
 - Solving all `ObjectSegmentation` creative/editing tasks.
 
 ## Context / Constraints
@@ -71,12 +71,12 @@ This matters because the repository is meant to be agent-first and repeatable. R
 - [ ] The tracker clearly explains the current rendering problem, why it happens, and why it is recurring.
 - [ ] The tracker clearly records the recommended long-term solution in a form a new agent can resume cold.
 - [ ] The tracker records the recommended split between local editing renders and cloud checkpoint/final renders.
-- [ ] The tracker records a concrete proposed asset contract and render-client boundary.
+- [ ] The tracker records a concrete proposed asset contract and the current repo-owned command boundary.
 - [ ] The tracker records the next implementation steps without requiring chat memory.
 
 ## Milestones
 - [ ] Milestone 1 — Capture the rendering problem statement and evidence. Acceptance: tracker explains the current local/cloud contradiction with concrete file paths and observed failures. Validate: manual read-through of this tracker against the current repo.
-- [ ] Milestone 2 — Define the target architecture. Acceptance: tracker specifies local-vs-cloud modes, runtime asset contract, and render-client responsibilities in plain English. Validate: proposed workflow can be followed by a cold agent without extra chat context.
+- [ ] Milestone 2 — Define the target architecture. Acceptance: tracker specifies local-vs-cloud modes, runtime asset contract, and the current command responsibilities in plain English. Validate: proposed workflow can be followed by a cold agent without extra chat context.
 - [ ] Milestone 3 — Define implementation order. Acceptance: tracker lists immediate, near-term, and later steps that preserve current repo structure while making cloud render viable. Validate: steps are actionable and ordered by leverage.
 
 ## Execution Rules
@@ -109,10 +109,10 @@ This matters because the repository is meant to be agent-first and repeatable. R
   28x` is faster when raw speed matters.
 
 ## Open Questions / Blockers
-- What exact schema should `assets.js` use for dual local/remote runtime assets without making composition code noisy?
-- Should the first implementation step be the render client contract or the local render startup optimization?
+- What exact schema should `assets.js` use if we ever need richer runtime asset metadata without making composition code noisy?
+- Do current docs plus commands stay sufficient once a second or third active cloud-targeted project exists?
 - Which runtime assets should remain committed local assets versus promoted remote assets for cloud-safe rendering?
-- If Azure is adopted later, should it be a dedicated VM worker behind the same render client, or should Modal remain the only cloud backend for this repo?
+- If Azure is adopted later, should it sit behind the same repo-owned command surface, or should Modal remain the only cloud backend for this repo?
 
 ## Current Batch
 | Status | Work Item | Role | Resource |
@@ -123,13 +123,13 @@ This matters because the repository is meant to be agent-first and repeatable. R
 
 ## Backlog / Remaining Work
 - [ ] Define a runtime asset descriptor shape for cloud-relevant assets, for example `local`, `remote`, `requiredForCloud`, and `type`.
-- [ ] Define the repo-local render client contract, including `preflight`, `local`, `promote-assets`, `cloud submit`, and `cloud status`.
 - [ ] Document the difference between `local-scratch` and `cloud-checkpoint` render modes in repo docs.
 - [ ] Add a cloud-safety preflight rule that fails fast when required remote assets are missing.
 - [ ] Reuse `../scripts/bin/upload-media` as the shared asset promotion path instead of creating another uploader.
 - [ ] Investigate and reduce the local render startup cost caused by copying the full `public/` tree in `scripts/asset_cache.mjs`.
 - [ ] Decide which `ObjectSegmentation` runtime assets should be promoted to stable remote URLs first so the project can render in cloud.
 - [ ] Add or update docs in `docs/architecture/` and `docs/references/` once the solution is agreed.
+- [ ] Keep `creating-video/references/new-project-flow.md` aligned with the actual render policy so cold agents do not infer a second client layer.
 - [ ] Add a closeout learnings file under `docs/projects/rendering-boundary/learnings/README.md` before archive if implementation spans multiple sessions or cross-repo changes.
 - [ ] Close out and archive this tracker once the render contract is documented and implementation is either complete or intentionally split into follow-on trackers.
 
@@ -151,7 +151,7 @@ This matters because the repository is meant to be agent-first and repeatable. R
 ## Progress Log
 - 2026-04-09: [IN-PROGRESS] Created rendering-boundary tracker to capture the current render/cloud contradiction, preserve the recommended solution, and stop this design work from living only in chat.
 - 2026-04-09: [IN-PROGRESS] Recorded current evidence: local render succeeds, cloud render reaches Modal/Remotion and then fails because `public/imports/object-segmentation/source.mp4` is local-only and ignored from git.
-- 2026-04-09: [IN-PROGRESS] Recorded the recommended direction: preserve current repo layout, keep local-first editing, add explicit local/cloud runtime asset descriptors, and eventually expose one repo-local render client boundary.
+- 2026-04-09: [IN-PROGRESS] Recorded the recommended direction: preserve current repo layout, keep local-first editing, and make the runtime asset contract explicit without adding a second top-level client unless a real repeated workflow gap appears.
 - 2026-04-09: [IN-PROGRESS] Replaced the `S05` local PNG frame sequence with a single uploaded transparent VP9 asset (`subject-keyed-s05-alpha.webm`) generated from those same keyed frames. Local `70s -> 90s` verification now passes against the cloud-safe asset path, removing the last known full-comp cloud blocker in `ObjectSegmentation`.
 - 2026-04-09: [IN-PROGRESS] Added a doctor guardrail so an enabled project fails if `assets.js` still points at local media files instead of remote runtime URLs.
 - 2026-04-09: [IN-PROGRESS] Added repo-local Remotion temp cleanup before Studio, render, and precommit compile runs so stale macOS temp bundles are pruned automatically instead of accumulating under `/var/folders/.../T`.
@@ -160,3 +160,4 @@ This matters because the repository is meant to be agent-first and repeatable. R
 - 2026-04-09: [IN-PROGRESS] Confirmed the noisy “Detected differing memory amounts” warning comes from Remotion inside the cloud container and is not blocking renders; the benchmark jobs still completed successfully and uploaded outputs.
 - 2026-04-09: [IN-PROGRESS] Ran a same-SHA CPU reservation check at `28x`: `32 CPU / 64 GiB` took about `106s`, while `64 CPU / 64 GiB` took about `97s`, so reducing CPU does hurt this project's end-to-end speed.
 - 2026-04-09: [IN-PROGRESS] Switched the repo cloud wrapper away from `modal run -d` and onto the deployed `aip-processor.render_remotion_cloud` function path, matching the production invocation pattern already used in `../win`.
+- 2026-04-10: [IN-PROGRESS] Reconfirmed the current policy after a skill-oriented cold-start review: keep the existing repo-owned command surfaces (`npm start`, `npm run render`, `npm run render:cloud`, `$media-toolkit`), and use docs plus the creating-video skill to bridge workflow discovery before introducing any new client layer.
