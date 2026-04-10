@@ -2,7 +2,35 @@
 
 This is a catalog of overlay components and where to tweak them. Use this to reuse parts quickly without re-reading the entire file.
 
-## Primary Components
+## Shared Beats First
+
+- `StatusBeat`, `CalloutBeat`, `StatusCalloutBeat`
+  - File: `~/GitHub/adithyan-ai-videos/src/effects/EditorialBeat.js`
+  - Use for the repeated top-left status/callout pattern before dropping down to lower-level pills.
+
+- `SketchPanel`
+  - File: `~/GitHub/adithyan-ai-videos/src/effects/SketchPanel.js`
+  - Use for storyboard or explainer panel reveals.
+
+- `TransparentVideoOverlay`
+  - File: `~/GitHub/adithyan-ai-videos/src/effects/TransparentVideoOverlay.js`
+  - Use for alpha-video cutouts, matte outlines, and foreground subject layers.
+
+- `FadeInBackdrop`
+  - File: `~/GitHub/adithyan-ai-videos/src/effects/FadeInBackdrop.js`
+  - Use for simple background handoffs.
+
+- `TrackedObjectOverlay`
+  - File: `~/GitHub/adithyan-ai-videos/src/effects/TrackedObjectOverlay.js`
+  - Use for tracked circular object treatments driven by track data.
+
+Preview surface:
+
+- `EffectsLab`
+  - Files: `~/GitHub/adithyan-ai-videos/src/projects/effects-lab/`
+  - Use when you want to inspect the shared block behavior without opening a narrative project.
+
+## Low-Level Primitives
 
 - `LabelOverlay` (RAW RECORDING pill)
   - File: `~/GitHub/adithyan-ai-videos/src/overlay_kit/overlays.js`
@@ -37,10 +65,11 @@ This is a catalog of overlay components and where to tweak them. Use this to reu
 - `SketchLayer`, `SketchDefs`
   - File: `~/GitHub/adithyan-ai-videos/src/styles/sketch.js`
 
-## Composition Assembly
+## Legacy Composition Assembly
 
 - `MainVideo` (composition + layout)
   - File: `~/GitHub/adithyan-ai-videos/src/MainVideo.js`
+  - Legacy path used by active-speaker detection. Do not treat it as the default pattern for new projects.
 
 ## Convenience Exports
 
@@ -49,6 +78,7 @@ This is a catalog of overlay components and where to tweak them. Use this to reu
 
 ## Reuse Tips
 
+- Prefer `src/effects/` first if the block already exists there.
 - Keep raw footage clean; apply sketch to overlays only.
 - If a sketch border looks messy, prefer a clean border with a subtle shadow.
 - Tweak one component at a time and preview.

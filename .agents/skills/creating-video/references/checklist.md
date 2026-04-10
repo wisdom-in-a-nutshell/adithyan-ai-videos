@@ -1,5 +1,6 @@
 # Quick Checklist
 
+- [ ] Project id is descriptive and kebab-cased
 - [ ] Raw video URL confirmed
 - [ ] Runtime media in `src/projects/<project-id>/assets.js` is cloud-safe (prefer uploaded remote URLs for real render inputs)
 - [ ] Overlay timing anchors captured in `src/projects/<project-id>/assets.js`
@@ -11,5 +12,6 @@
 - [ ] If a beat used a local frame sequence for cutout quality, decide whether that sequence stays source-only or needs to be converted into one uploaded transparent runtime asset
 - [ ] Key overlays have explicit `zIndex` (especially if you have a foreground alpha layer)
 - [ ] Major effects are wrapped in named `<Sequence name="...">` blocks (so you can see them in the Studio timeline)
-- [ ] Preview in Remotion before render
+- [ ] If a repeated visual pattern emerged, decide whether it belongs in `src/effects/`
+- [ ] Preview in Studio before render
 - [ ] Stable checkpoint passes both local preview slice and cloud render path, if cloud delivery matters

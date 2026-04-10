@@ -1,24 +1,29 @@
-# Verification Loop (Short Render + Stills)
+# Verification Loop
 
-Goal: close the loop without relying on Studio playback.
+Goal: close the loop with rendered output, not Studio playback alone.
 
-## Preferred (Code-First)
+## Preferred Flow
 
-Render a short clip (seconds-based) + a few stills:
+1. Render a short clip.
+2. Review the clip.
+3. Extract exact stills from that clip if needed.
+
+Examples:
 
 ```bash
 cd ~/GitHub/adithyan-ai-videos
 
-# Fast preview render (auto-opens on macOS)
-npm run render -- --from 0 --to 5
+# Active project slice
+npm run render -- --comp ObjectSegmentation --from 68 --to 90
 
-# Longer debug render at half resolution (good for checking sync/artifacts)
-npm run render -- --from 116.6 --to 151.0 --scale 0.5 --crf 28 --out tmp/TextEffects-layers-half.mp4
+# Later beat-stack slice
+npm run render -- --comp ObjectSegmentation --from 150 --to 206
 
-# Stills (use composition ids and explicit frames)
-npx remotion still src/index.js <CompositionId> tmp/<id>-f0048.png --frame 48
-npx remotion still src/index.js <CompositionId> tmp/<id>-f0055.png --frame 55
-npx remotion still src/index.js <CompositionId> tmp/<id>-f0060.png --frame 60
+# Shared-block preview surface
+npm run render -- --comp EffectsLab --from 0 --to 8
+
+# Exact stills from a rendered clip
+ffmpeg -y -ss 8.0 -i tmp/ObjectSegmentation.mp4 -frames:v 1 tmp/object-segmentation-f080.png
 ```
 
 Outputs:
@@ -26,10 +31,10 @@ Outputs:
 - Video: `tmp/<CompositionId>.mp4`
 - Stills: `tmp/<id>-f*.png`
 
-If `npx remotion still` is expensive or bypasses repo-specific cache behavior, extract stills from the rendered clip instead:
+If you need a direct Remotion still for a single frame, use it as a secondary path, not the default:
 
 ```bash
-ffmpeg -y -ss 8.0 -i tmp/<CompositionId>.mp4 -frames:v 1 tmp/<id>-f080.png
+npx remotion still src/index.js <CompositionId> tmp/<id>-f0048.png --frame 48
 ```
 
 ## Checklist (What To Look For)
@@ -56,6 +61,8 @@ ffmpeg -y -ss 8.0 -i tmp/<CompositionId>.mp4 -frames:v 1 tmp/<id>-f080.png
 - Moving text shimmer:
   - slow the movement first (`textSpeedPxPerSecond`)
   - use a pill/backdrop behind text for stability
+- Shared block validation:
+  - if a change was made under `src/effects/`, render `EffectsLab` once before trusting a single narrative project
 
 ## Common Pitfalls
 

@@ -7,13 +7,14 @@ description: "Idea → storyboard → Remotion overlays/animation → short rend
 
 ## Overview
 
-Use this skill to collaborate with the user from idea → storyboard → Remotion implementation, with a tight visual verification loop (short renders + stills).
+Use this skill to collaborate from idea -> storyboard -> Remotion implementation with a tight verification loop.
 
-## Workflow Decision
+## Default Workflow
 
-Use **code-first** by default:
+Use code-first by default:
 
 - Put per-video code under `src/projects/<project-id>/`.
+- Prefer descriptive project ids such as `object-segmentation`, not opaque ticket-style ids, unless the repo already has a legacy id you are intentionally preserving.
 - Register the composition through `src/projects/registry.js`; `src/Root.js` should continue rendering `PROJECT_COMPOSITIONS`.
 - Keep URLs, cut length, and per-video constants in code (e.g. `assets.js`).
 - Prefer remote-first runtime media in `assets.js` for compositions that may need cloud render; keep local files as editable source material until they are promoted into the runtime path.
@@ -24,6 +25,7 @@ Use **code-first** by default:
 - For stable recordings, hardcode key effect timestamps in `src/projects/<id>/assets.js` (don’t re-find phrases at runtime). See `references/timeline-patterns.md`.
 - Don’t depend on “manifest” files at runtime (e.g. `projects/<id>/matting.json`). If they exist, treat them as scratch notes only.
 - For work that may span multiple sessions, keep active execution state in `docs/projects/<project-id>/tasks.md`.
+- Prefer shared house-style blocks from `src/effects/` once a visual pattern has repeated. Keep one-off scene wiring inside the project until the abstraction is proven.
 
 1. If the user already has a storyboard:
    - implement overlays/animations from it, then verify with short renders.
@@ -37,6 +39,7 @@ References:
 - Verification loop (render/stills): `references/verification.md`
 - Overlay component catalog: `references/overlay-components.md`
 - Shared effect blocks: `~/GitHub/adithyan-ai-videos/docs/references/effect-library.md`
+- Shared block preview surface: `src/projects/effects-lab/`
 - Style tokens + readability rules: `references/style-tokens.md`
 - Lessons learned (condensed do/don't): `references/lessons-learned.md`
 - Asset caching (default-on): `references/asset-caching.md`
@@ -59,10 +62,10 @@ References:
 2. Fill `src/projects/<project-id>/assets.js`, refine `<Project>Comp.js`, and keep editable source notes in `projects/<project-id>/`.
 3. If the work is likely to continue across sessions, create `docs/projects/<project-id>/tasks.md` and keep the resume state there.
 4. Preview: `npm start` and select the composition in Studio.
-5. Render (fast preview by default, auto-opens on macOS): `npm run render`.
+5. Render locally first: `npm run render`.
    - Render a time slice in seconds (recommended for iteration): `npm run render -- --from 0 --to 6`
    - Full quality: `npm run render -- --hq`
-6. When the project reaches a stable checkpoint, use `npm run render:cloud` instead of ad hoc Modal commands so the repo-owned client handles submission, status, and final URL reporting.
+6. When the project reaches a stable checkpoint, use `npm run render:cloud` so the repo-owned client handles submission, waiting, status, and the final URL.
 
 ## Expected Outputs (What To Produce)
 
@@ -81,10 +84,17 @@ Use short renders + a few stills to validate quickly while iterating (don’t tr
 
 See `references/verification.md` for the recommended commands and what to look for.
 
+## Practical Boundaries
+
+- `src/overlay_kit/` is for low-level primitives.
+- `src/effects/` is for repeated repo-specific beats and compositing blocks.
+- `src/projects/<project-id>/` is for project-specific assembly, copy, timing, and assets.
+- `projects/<project-id>/` is for source notes, receipts, sketches, and scratch artifacts.
+
 ## Self-Improvement (Document Learnings)
 
 When you learn something that is likely to repeat (a reliable workflow, a recurring pitfall, or a reusable contract):
 
 - Update this skill (prefer a short addition to `references/*` rather than bloating this file).
 - Update the nearest `AGENTS.md` if it is a repo-local operational rule for agents returning cold.
-- Prefer turning learnings into reusable artifacts: `storyboard.md` conventions (plus optional `storyboard.json` export), named `<Sequence>` patterns, `src/overlay_kit/` primitives, and `src/effects/` blocks when the pattern has already repeated across scenes.
+- Prefer turning learnings into reusable artifacts: `storyboard.md` conventions, named `<Sequence>` patterns, `src/overlay_kit/` primitives, and `src/effects/` blocks once the pattern has repeated across scenes.
