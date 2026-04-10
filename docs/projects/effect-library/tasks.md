@@ -60,6 +60,7 @@ This repo is becoming a repeatable video system, not a one-off playground. Right
 - Reusable knowledge should live primarily in shared code, with docs acting as an index and lookup layer rather than the sole source of truth.
 - Keep root `AGENTS.md` as a router; do not add nested `AGENTS.md` files for this work unless a subtree truly develops unique boundary rules.
 - Preserve the current docs contract: `docs/architecture/` for system shape, `docs/references/` for exact facts, `docs/projects/*/tasks.md` for active work.
+- The shared effect layer is a companion to `remotion-best-practices`, not a local replacement for it. Keep generic Remotion guidance external; codify only this repo's reusable house style, block library, and workflow-specific conventions.
 - The shared higher-level block folder should be `src/effects/`. `src/overlay_kit/` remains the home for low-level UI primitives and rough/sketch helpers.
 - The target shape is:
   - `src/overlay_kit/` for low-level primitives
