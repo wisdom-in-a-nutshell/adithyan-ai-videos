@@ -36,6 +36,7 @@ References:
 - Storyboard format: `references/storyboard.md`
 - Verification loop (render/stills): `references/verification.md`
 - Overlay component catalog: `references/overlay-components.md`
+- Shared effect blocks: `~/GitHub/adithyan-ai-videos/docs/references/effect-library.md`
 - Style tokens + readability rules: `references/style-tokens.md`
 - Lessons learned (condensed do/don't): `references/lessons-learned.md`
 - Asset caching (default-on): `references/asset-caching.md`
@@ -46,6 +47,7 @@ References:
 ## Where Things Live
 
 - Per-video code: `<repo-root>/src/projects/<project-id>/`
+- Shared effect blocks: `<repo-root>/src/effects/`
 - Artifact folder: `<repo-root>/projects/<project-id>/`
 - Composition registry: `<repo-root>/src/projects/registry.js`
 - Transcript timing data (recommended): `<repo-root>/src/projects/<project-id>/transcript_words.json` (keep it “thin”: words + timestamps)
@@ -85,4 +87,4 @@ When you learn something that is likely to repeat (a reliable workflow, a recurr
 
 - Update this skill (prefer a short addition to `references/*` rather than bloating this file).
 - Update the nearest `AGENTS.md` if it is a repo-local operational rule for agents returning cold.
-- Prefer turning learnings into reusable artifacts: `storyboard.md` conventions (plus optional `storyboard.json` export), named `<Sequence>` patterns, and `src/overlay_kit/` primitives.
+- Prefer turning learnings into reusable artifacts: `storyboard.md` conventions (plus optional `storyboard.json` export), named `<Sequence>` patterns, `src/overlay_kit/` primitives, and `src/effects/` blocks when the pattern has already repeated across scenes.

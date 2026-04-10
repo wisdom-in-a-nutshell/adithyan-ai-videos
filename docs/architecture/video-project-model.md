@@ -12,6 +12,7 @@ flowchart TD
     Assets[src/projects/<id>/assets.js]
     ProjectCode[src/projects/<id>/<ProjectComp>.js + composition.js]
     OverlayKit[src/overlay_kit/*]
+    Effects[src/effects/*]
     Registry[src/projects/registry.js]
     Entry[src/Root.js + src/index.js]
     Local[npm start / npm run render]
@@ -22,6 +23,7 @@ flowchart TD
     Artifacts --> ProjectCode
     Assets --> ProjectCode
     OverlayKit --> ProjectCode
+    Effects --> ProjectCode
     ProjectCode --> Registry
     Registry --> Entry
     Entry --> Local
@@ -38,6 +40,8 @@ flowchart TD
   composition config.
 - `src/overlay_kit/`: reusable overlays and drawing primitives shared across
   projects.
+- `src/effects/`: reusable house-style beats and compositing-level blocks that
+  sit above `overlay_kit` but below project-specific scene assembly.
 - `src/projects/registry.js` plus `src/Root.js`: the only path that turns a
   project into an active Remotion composition.
 - `scripts/*.mjs`: local entrypoints for Studio, render slices, scaffolding, and
@@ -73,6 +77,9 @@ flowchart TD
   so it stays available in-repo without appearing in Studio.
 - Reusable overlays belong in `src/overlay_kit/`; one-off scene wiring stays in
   project folders.
+- Reusable editorial beats and compositing helpers belong in `src/effects/`;
+  they are a repo-specific companion layer to external Remotion best practices,
+  not a local rewrite of them.
 - Major visual beats should be wrapped in named `<Sequence>` blocks for Studio
   timeline legibility.
 - Active execution state belongs in `docs/projects/<project>/tasks.md`, not in

@@ -3,7 +3,6 @@ import {
   OffthreadVideo,
   Sequence,
   interpolate,
-  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from 'remotion';
@@ -77,37 +76,7 @@ import {TextPlacementDemoOverlay} from './TextPlacementDemoOverlay.js';
 import {RecapOverlay} from './RecapOverlay.js';
 import {DescriptionLinksOverlay} from './DescriptionLinksOverlay.js';
 import {TEXT_EFFECTS_UI_SCALE} from './ui.js';
-
-const resolveAssetSrc = (src, assetMap) => {
-  if (!src || typeof src !== 'string') {
-    return src;
-  }
-  let resolved = src;
-
-  // `npm start` / `npm run render` inject an `assetMap` prop that rewrites remote URLs
-  // to local public-dir files (e.g. "https://.../video.mp4" -> "/<hash>.mp4").
-  if (assetMap && typeof assetMap === 'object') {
-    const mapped = assetMap[resolved];
-    if (typeof mapped === 'string' && mapped.length > 0) {
-      resolved = mapped;
-    }
-  }
-
-  if (/^https?:\/\//i.test(resolved) || resolved.startsWith('data:')) {
-    return resolved;
-  }
-  // If the caller already passed a `staticFile()` result, don't wrap it again.
-  if (resolved.startsWith('/public/')) {
-    return resolved;
-  }
-  if (resolved.startsWith('public/')) {
-    return staticFile(resolved.slice('public/'.length));
-  }
-  if (resolved.startsWith('/')) {
-    return staticFile(resolved.slice(1));
-  }
-  return staticFile(resolved);
-};
+import {resolveAssetSrc} from '../../lib/resolveAssetSrc.js';
 
 // Project-specific composition wrapper for `text-effects`.
 // Keep the cut short while iterating; extend later when we implement storyboard-driven beats.
