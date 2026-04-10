@@ -75,6 +75,7 @@ This repo is becoming a repeatable video system, not a one-off playground. Right
   - a tracked-object overlay helper driven by track data + treatment config
 - `S05DepthText`-style bespoke typography is not first-wave shared code yet; wait until a second project needs the same depth-text pattern.
 - Add an `effects-lab` reference composition once the first-wave blocks exist so agents can preview shared blocks without opening historical projects.
+- Older projects with stale runtime assets, such as `text-effects`, are useful as pattern references but should not block the effect-library rollout. Validate shared blocks against `c0046` and a future `effects-lab` or active project instead of rehabilitating archival asset URLs unless there is a direct product need.
 - Milestone 1 file map should be:
   - `src/lib/resolveAssetSrc.js` for shared runtime asset resolution
   - `src/effects/EditorialBeat.js` for `StatusBeat`, `CalloutBeat`, and the shared beat UI defaults
@@ -98,12 +99,13 @@ This repo is becoming a repeatable video system, not a one-off playground. Right
 | done | Freeze the Milestone 1 file map for `src/effects/`, the first-wave blocks, and the supporting docs/reference surface. | parent | `docs/projects/effect-library/tasks.md` |
 | done | Inventory the reusable patterns already present in `text-effects`, `c0046`, and `src/overlay_kit/` against the agreed first-wave list. | parent | `src/projects/c0046/C0046Comp.js`, `src/projects/text-effects/TextEffectsComp.js`, `src/overlay_kit/overlays.js` |
 | done | Extract the first shared files into `src/effects/` and migrate `c0046` to use them. | parent | `src/effects/`, `src/projects/c0046/C0046Comp.js` |
-| in_progress | Add the thin effect-catalog reference and align repo docs to the new `src/effects/` boundary. | parent | `docs/references/effect-library.md`, `docs/architecture/video-project-model.md` |
+| in_progress | Add the thin effect-catalog reference and align repo docs to the new `src/effects/` boundary. | parent | `docs/references/effect-library.md`, `docs/architecture/video-project-model.md`, `.agents/skills/creating-video/SKILL.md` |
 | todo | Decide whether to keep expanding the beat wrappers through older sections of `c0046` now or use the current extraction as the first stable cut. | parent | `src/projects/c0046/C0046Comp.js` |
+| todo | Add the `effects-lab` reference composition so shared blocks have a dedicated preview surface independent of archival projects. | parent | `src/projects/effects-lab/`, `src/projects/registry.js` |
 
 ## Backlog / Remaining Work
 - [ ] Create a concrete extraction map from existing code into shared blocks.
-- [ ] Extract the first wave of stable blocks from `text-effects` / `c0046`.
+- [ ] Extract the first wave of stable blocks from `c0046` and future active projects without depending on archived runtime assets.
 - [ ] Create a thin effect catalog doc under `docs/references/`.
 - [ ] Add an `effects-lab` composition for block previews and shared-block validation.
 - [ ] Update `creating-video` references to point to the shared effect layer once it exists.
@@ -125,3 +127,4 @@ This repo is becoming a repeatable video system, not a one-off playground. Right
 - 2026-04-10: [IN-PROGRESS] Froze the Milestone 1 file map and tightened the first-wave list based on actual repo evidence: keep the Remotion skill external, treat `src/effects/` as a companion house-style layer, and replace the not-yet-real shared chroma-key helper with the proven transparent-video cutout primitive.
 - 2026-04-10: [DONE] Created the first shared effect layer in `src/effects/` and `src/lib/resolveAssetSrc.js`, then migrated `c0046` to use `StatusBeat`, `CalloutBeat`, `SketchPanel`, `TransparentVideoOverlay`, `FadeInBackdrop`, and `TrackedObjectOverlay`.
 - 2026-04-10: [DONE] Validated the first extraction batch with `npm run doctor`, a local S05 render (`68s -> 90s`), and a ball-window sanity render (`15s -> 18s`).
+- 2026-04-10: [DONE] Explicitly descoped `text-effects` as a required validation target for this project because it is an older project with stale runtime assets; the shared-layer rollout will continue against `c0046` and a future `effects-lab` reference comp instead.

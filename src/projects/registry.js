@@ -6,7 +6,7 @@ import {C0046_COMPOSITION} from './c0046/composition.js';
 
 export const PROJECT_COMPOSITION_REGISTRY = [
   {composition: ACTIVE_SPEAKER_DETECTION_COMPOSITION, enabled: false},
-  {composition: TEXT_EFFECTS_COMPOSITION, enabled: true},
+  {composition: TEXT_EFFECTS_COMPOSITION, enabled: false},
   {composition: C0040_COMPOSITION, enabled: false},
   {composition: C0046_COMPOSITION, enabled: true},
   // NEW_PROJECT_ENTRIES
