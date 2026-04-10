@@ -1,0 +1,28 @@
+{
+  "command": "media-toolkit upload",
+  "data": {
+    "input": {
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/src/assets/openai-icon.svg",
+      "used_upload": true
+    },
+    "result": null,
+    "upload": {
+      "cached": false,
+      "content_sha256": "b93fa7942be639a1dae60194ff12141145d7d9fd59581582d6ff23335755f19c",
+      "destination_path": "agent-media-toolkit/by-hash/b93fa7942be639a1dae60194ff12141145d7d9fd59581582d6ff23335755f19c/openai-icon.svg",
+      "file_name": "openai-icon.svg",
+      "file_path": "/Users/dobby/GitHub/adithyan-ai-videos/src/assets/openai-icon.svg",
+      "storage_prefix": "share",
+      "url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/b93fa7942be639a1dae60194ff12141145d7d9fd59581582d6ff23335755f19c/openai-icon.svg"
+    }
+  },
+  "error": null,
+  "meta": {
+    "duration_ms": 2246,
+    "output_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/text-effects/artifacts/runtime-uploads/openai-icon.json",
+    "request_id": "ffc794d3f6d443d396cee045c01b96c4",
+    "timestamp_utc": "2026-04-10T09:11:19.673199+00:00"
+  },
+  "schema_version": "1.0",
+  "status": "ok"
+}

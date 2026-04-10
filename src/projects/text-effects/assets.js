@@ -5,7 +5,7 @@ export const TEXT_EFFECTS_ALPHA_URL =
   'https://storage.aipodcast.ing/cache/matanyone/alpha/88efdd42-c664-4df2-8c7d-34824323e95c.webm';
 
 export const TEXT_EFFECTS_CODEX_LOGO_URL =
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/ChatGPT-Logo.svg/2560px-ChatGPT-Logo.svg.png';
+  'https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/b93fa7942be639a1dae60194ff12141145d7d9fd59581582d6ff23335755f19c/openai-icon.svg';
 
 // Hero stamp ("THIS VIDEO 100% EDITED BY CODEX") timing for this recording.
 // Hardcode these so the on-screen text hits exactly with the spoken words.

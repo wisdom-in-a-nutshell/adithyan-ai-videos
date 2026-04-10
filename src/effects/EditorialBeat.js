@@ -51,6 +51,7 @@ export const CalloutBeat = ({
   from = 0,
   durationInFrames,
   text,
+  logo,
   ui,
 }) => {
   if (!text) {
@@ -69,6 +70,7 @@ export const CalloutBeat = ({
     >
       <CodexCallout
         text={text}
+        logo={logo}
         durationInFrames={normalizedDuration}
         scale={beatUi.calloutScale}
         topPx={beatUi.calloutTopPx}

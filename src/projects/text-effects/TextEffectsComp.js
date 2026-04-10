@@ -61,11 +61,14 @@ import {
 } from './assets.js';
 import {SKETCH_FONT_FAMILY} from '../../styles/sketch.js';
 import {
-  CodexCallout,
   DisclaimerOverlay,
   LabelOverlay,
-  StatusLeftOverlay,
 } from '../../overlay_kit/overlays.js';
+import {
+  CalloutBeat,
+  StatusBeat,
+  TransparentVideoOverlay,
+} from '../../effects/index.js';
 import {CodexToolsArtifactsOverlay} from './CodexToolsArtifactsOverlay.js';
 import {ThreeToolsOverlay} from './ThreeToolsOverlay.js';
 import {GreenScreenOverlay} from './GreenScreenOverlay.js';
@@ -254,23 +257,17 @@ export const TextEffectsComp = (props) => {
 
 		          return (
 		            <Sequence name="[T2] Matte Outline (Between Layers)" from={from} durationInFrames={dur}>
-              <OffthreadVideo
-                src={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL, assetMap)}
+              <TransparentVideoOverlay
+                assetMap={assetMap}
+                src={TEXT_EFFECTS_ALPHA_URL}
                 // Important: align the outline with the main foreground alpha layer.
                 // Without `startFrom`, this Video would start at frame 0 at `from`, making it look like a 2nd person.
                 startFrom={from}
                 endAt={from + dur}
-                muted
-                transparent
                 style={{
-                  position: 'absolute',
-                  inset: 0,
-                  width: '100%',
-	                  height: '100%',
-	                  objectFit: 'cover',
-	                  filter: outlineFilter,
-	                }}
-	              />
+                  filter: outlineFilter,
+                }}
+              />
 	            </Sequence>
 		          );
         })()}
@@ -353,16 +350,10 @@ export const TextEffectsComp = (props) => {
         })()}
 
 	        <Sequence name="[S01+] Foreground Alpha" from={0} durationInFrames={durationInFrames}>
-          <OffthreadVideo
-            src={resolveAssetSrc(TEXT_EFFECTS_ALPHA_URL, assetMap)}
-            muted
-            transparent
+          <TransparentVideoOverlay
+            assetMap={assetMap}
+            src={TEXT_EFFECTS_ALPHA_URL}
             style={{
-              position: 'absolute',
-              inset: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
               zIndex: 50,
             }}
           />
@@ -408,14 +399,14 @@ export const TextEffectsComp = (props) => {
 	                <LabelOverlay text="RAW RECORDING" durationInFrames={dur} scale={TEXT_EFFECTS_UI_SCALE} />
 	              </Sequence>
 
-	              <Sequence name="[S02] Setup: CODEX (Front)" from={codexFrom} durationInFrames={codexDur}>
-	                <CodexCallout
-	                  text="CODEX"
-	                  logo={TEXT_EFFECTS_CODEX_LOGO_URL}
-	                  durationInFrames={codexDur}
-	                  scale={TEXT_EFFECTS_UI_SCALE}
-	                />
-	              </Sequence>
+                <CalloutBeat
+                  name="[S02] Setup: CODEX (Front)"
+                  from={codexFrom}
+                  durationInFrames={codexDur}
+                  text="CODEX"
+                  logo={TEXT_EFFECTS_CODEX_LOGO_URL}
+                  ui={{calloutScale: TEXT_EFFECTS_UI_SCALE}}
+                />
 
 	              <Sequence name="[S02] Setup: Disclaimer (Front)" from={from} durationInFrames={dur}>
 	                <DisclaimerOverlay
@@ -443,37 +434,37 @@ export const TextEffectsComp = (props) => {
 
         return (
           <>
-            <Sequence name="[S03] Setup: ANIMATING (Front)" from={from} durationInFrames={animDur}>
-              <StatusLeftOverlay text="ANIMATING" durationInFrames={animDur} scale={TEXT_EFFECTS_UI_SCALE} />
-            </Sequence>
+            <StatusBeat
+              name="[S03] Setup: ANIMATING (Front)"
+              from={from}
+              durationInFrames={animDur}
+              text="ANIMATING"
+              ui={{statusScale: TEXT_EFFECTS_UI_SCALE}}
+            />
 
-            <Sequence
+            <StatusBeat
               name="[S05] Status: SEGMENTING PERSON"
               from={tool1From}
               durationInFrames={segDur}
-            >
-              <StatusLeftOverlay
-                text="SEGMENTING PERSON"
-                durationInFrames={segDur}
-                scale={TEXT_EFFECTS_UI_SCALE}
-              />
-            </Sequence>
+              text="SEGMENTING PERSON"
+              ui={{statusScale: TEXT_EFFECTS_UI_SCALE}}
+            />
 
-            <Sequence
+            <StatusBeat
               name="[S06] Status: MATTING"
               from={tool2From}
               durationInFrames={mattDur}
-            >
-              <StatusLeftOverlay text="MATTING" durationInFrames={mattDur} scale={TEXT_EFFECTS_UI_SCALE} />
-            </Sequence>
+              text="MATTING"
+              ui={{statusScale: TEXT_EFFECTS_UI_SCALE}}
+            />
 
-            <Sequence
+            <StatusBeat
               name="[S07] Status: COMPOSING"
               from={tool3From}
               durationInFrames={compDur}
-            >
-              <StatusLeftOverlay text="COMPOSING" durationInFrames={compDur} scale={TEXT_EFFECTS_UI_SCALE} />
-            </Sequence>
+              text="COMPOSING"
+              ui={{statusScale: TEXT_EFFECTS_UI_SCALE}}
+            />
 
             <Sequence
               name="[S03A] Setup: Tools -> Digital Artifacts"
