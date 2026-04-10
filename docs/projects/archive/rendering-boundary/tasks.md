@@ -17,6 +17,24 @@ client boundary justified?” Current recommendation: the existing commands are
 good enough for now. Do not add another top-level render client unless a real
 repeatable workflow gap appears that the current commands and docs cannot cover.
 
+## Closeout Summary
+
+This project is complete and ready to archive.
+
+Scoped outcome:
+- the active composition path is cloud-safe
+- local render no longer pays the old full-`public/` startup penalty
+- cloud render uses the deployed production Modal function path
+- repo docs and the `creating-video` skill now consistently describe the same
+  render and asset contract
+- the repo explicitly keeps the current command surface instead of inventing a
+  second render client prematurely
+
+Validation evidence:
+- successful local preview and HQ slices through the repo render wrapper
+- successful production cloud render returning a final remote output URL
+- doc/skill audit completed and reconciled with the repo’s current behavior
+
 ## Why / Impact
 The current repository structure is broadly good, but the rendering boundary is not explicit enough. Local editing works because runtime assets can live in ignored local `public/` paths, while cloud render works by cloning a git SHA in a clean remote environment. Those two assumptions conflict. If we do not fix this cleanly, agents will keep making the same mistake: a composition renders locally, then fails in cloud because required media only exists on the current machine. The result is wasted render time, unclear failure modes, and growing workflow drift.
 
@@ -51,16 +69,19 @@ This matters because the repository is meant to be agent-first and repeatable. R
   - runs the repo render command there
 - Current local render behavior is local-first and succeeds even when runtime assets only exist on this machine.
 - `.gitignore` currently ignores `public/`, `*.mp4`, and `*.webm`, which means many runtime assets are intentionally not committed.
-- `src/projects/object-segmentation/assets.js` currently points at local `public/...` runtime assets such as:
+- At project start, `src/projects/object-segmentation/assets.js` still pointed
+  at local `public/...` runtime assets such as:
   - `public/imports/object-segmentation/source.mp4`
   - `public/imports/object-segmentation/apple.svg`
   - `public/imports/object-segmentation/bg-studio-warm.png`
-- A real cloud render test against committed `HEAD` failed because the cloned repo could not find `public/imports/object-segmentation/source.mp4`.
+- An early cloud render test against committed `HEAD` failed because the cloned
+  repo could not find `public/imports/object-segmentation/source.mp4`.
 - A real local benchmark on the current Mac mini showed:
   - hardware: Apple M4 Mac mini, 10 CPU cores, 16 GB RAM
   - 10-second HQ render slices of `ObjectSegmentation` took about 110.5 seconds wall-clock
   - the major fixed cost is not pure frame render time; it is the repeated copy/merge of the `public/` tree
-- `scripts/asset_cache.mjs` currently prepares a merged public dir and ends up copying about 4.6 GB of `public/` on each render for this project.
+- Earlier in the project, `scripts/asset_cache.mjs` prepared a merged public dir
+  and copied about 4.6 GB of `public/` on each render for this project.
 - There is already a shared uploader that provides content-hash-stable public URLs:
   - `../scripts/bin/upload-media`
   - `../scripts/media/upload_media.py`
@@ -68,16 +89,16 @@ This matters because the repository is meant to be agent-first and repeatable. R
 - The user wants to preserve the current repo layout and avoid “fucking up” the repository just to fix cloud render.
 
 ## Done When
-- [ ] The tracker clearly explains the current rendering problem, why it happens, and why it is recurring.
-- [ ] The tracker clearly records the recommended long-term solution in a form a new agent can resume cold.
-- [ ] The tracker records the recommended split between local editing renders and cloud checkpoint/final renders.
-- [ ] The tracker records a concrete proposed asset contract and the current repo-owned command boundary.
-- [ ] The tracker records the next implementation steps without requiring chat memory.
+- [x] The tracker clearly explains the current rendering problem, why it happens, and why it is recurring.
+- [x] The tracker clearly records the recommended long-term solution in a form a new agent can resume cold.
+- [x] The tracker records the recommended split between local editing renders and cloud checkpoint/final renders.
+- [x] The tracker records a concrete proposed asset contract and the current repo-owned command boundary.
+- [x] The tracker records the next implementation steps without requiring chat memory.
 
 ## Milestones
-- [ ] Milestone 1 — Capture the rendering problem statement and evidence. Acceptance: tracker explains the current local/cloud contradiction with concrete file paths and observed failures. Validate: manual read-through of this tracker against the current repo.
-- [ ] Milestone 2 — Define the target architecture. Acceptance: tracker specifies local-vs-cloud modes, runtime asset contract, and the current command responsibilities in plain English. Validate: proposed workflow can be followed by a cold agent without extra chat context.
-- [ ] Milestone 3 — Define implementation order. Acceptance: tracker lists immediate, near-term, and later steps that preserve current repo structure while making cloud render viable. Validate: steps are actionable and ordered by leverage.
+- [x] Milestone 1 — Capture the rendering problem statement and evidence. Acceptance: tracker explains the current local/cloud contradiction with concrete file paths and observed failures. Validate: manual read-through of this tracker against the current repo.
+- [x] Milestone 2 — Define the target architecture. Acceptance: tracker specifies local-vs-cloud modes, runtime asset contract, and the current command responsibilities in plain English. Validate: proposed workflow can be followed by a cold agent without extra chat context.
+- [x] Milestone 3 — Define implementation order. Acceptance: tracker lists immediate, near-term, and later steps that preserve current repo structure while making cloud render viable. Validate: steps are actionable and ordered by leverage.
 
 ## Execution Rules
 - Keep this tracker focused on the rendering boundary problem, not on unrelated creative edits.
@@ -109,29 +130,35 @@ This matters because the repository is meant to be agent-first and repeatable. R
   28x` is faster when raw speed matters.
 
 ## Open Questions / Blockers
-- What exact schema should `assets.js` use if we ever need richer runtime asset metadata without making composition code noisy?
-- Do current docs plus commands stay sufficient once a second or third active cloud-targeted project exists?
-- Which runtime assets should remain committed local assets versus promoted remote assets for cloud-safe rendering?
-- If Azure is adopted later, should it sit behind the same repo-owned command surface, or should Modal remain the only cloud backend for this repo?
+
+None for this scoped closeout.
+
+Future considerations only:
+- If a second or third active cloud-targeted project appears, re-check whether
+  the current docs plus command surfaces are still sufficient.
+- If richer runtime asset metadata is ever needed, revisit whether `assets.js`
+  needs a structured descriptor shape.
+- If Azure is adopted later, keep the same repo-owned command surface unless a
+  provider-specific workflow truly forces a new boundary.
 
 ## Current Batch
 | Status | Work Item | Role | Resource |
 | --- | --- | --- | --- |
-| in_progress | Write the rendering-boundary project tracker with the current problem statement, evidence, and recommended solution. | parent | docs/projects/rendering-boundary/tasks.md |
-| todo | Normalize the target asset contract into explicit local/cloud-safe rules and examples. | parent | docs/projects/rendering-boundary/tasks.md |
-| todo | Turn the current recommendation into a short architecture/reference doc pair once the design is stable. | parent |  |
+| done | Finalize the tracker with the current render/asset policy and validation evidence. | parent | docs/projects/rendering-boundary/tasks.md |
+| done | Reconcile the tracker with repo docs and the creating-video skill after the cold-start review. | parent | docs/projects/rendering-boundary/tasks.md |
+| done | Archive the finished tracker and its learnings under `docs/projects/archive/rendering-boundary/`. | parent | docs/projects/archive/rendering-boundary/ |
 
 ## Backlog / Remaining Work
-- [ ] Define a runtime asset descriptor shape for cloud-relevant assets, for example `local`, `remote`, `requiredForCloud`, and `type`.
-- [ ] Document the difference between `local-scratch` and `cloud-checkpoint` render modes in repo docs.
-- [ ] Add a cloud-safety preflight rule that fails fast when required remote assets are missing.
-- [ ] Reuse `../scripts/bin/upload-media` as the shared asset promotion path instead of creating another uploader.
-- [ ] Investigate and reduce the local render startup cost caused by copying the full `public/` tree in `scripts/asset_cache.mjs`.
-- [ ] Decide which `ObjectSegmentation` runtime assets should be promoted to stable remote URLs first so the project can render in cloud.
-- [ ] Add or update docs in `docs/architecture/` and `docs/references/` once the solution is agreed.
-- [ ] Keep `creating-video/references/new-project-flow.md` aligned with the actual render policy so cold agents do not infer a second client layer.
-- [ ] Add a closeout learnings file under `docs/projects/rendering-boundary/learnings/README.md` before archive if implementation spans multiple sessions or cross-repo changes.
-- [ ] Close out and archive this tracker once the render contract is documented and implementation is either complete or intentionally split into follow-on trackers.
+
+Descoped from this finished tracker and left as future follow-on ideas:
+- consider a richer runtime asset descriptor only if a real composition needs
+  more than remote-first URLs plus the current cache rewrite path
+- add a cloud-safety preflight rule only if current doctor plus docs prove
+  insufficient in repeated use
+- revisit CPU reservation and provider strategy only if render volume or
+  backend diversity becomes a real operating problem
+- keep the new-project and effect-extraction references aligned as the shared
+  block library grows
 
 ## Validation / Test Plan
 - Confirm the tracker matches current repo reality:
@@ -148,6 +175,28 @@ This matters because the repository is meant to be agent-first and repeatable. R
   - about 110.5 seconds for a 10-second HQ render slice of `ObjectSegmentation`
   - startup overhead dominated by `public/` copy/merge work
 
+## Closeout Validation
+
+- Local repo validation and render slices passed during the implementation work:
+  - `npm run doctor`
+  - `npm run render -- --comp ObjectSegmentation --from 72 --to 74 --no-open`
+  - `npm run render -- --comp ObjectSegmentation --from 111 --to 113 --no-open`
+  - `npm run render -- --comp ObjectSegmentation --from 68 --to 90 --no-open`
+- Production cloud render completed successfully through the deployed Modal app
+  and returned a final remote output URL for `ObjectSegmentation`.
+- The final doc audit confirmed the active repo docs and `creating-video` skill
+  are aligned with the current render policy.
+
+## Delegation Retrospective
+
+- Delegated review help was useful for one narrow thing: confirming whether a
+  new broad skill or new top-level render client was justified.
+- The useful outcome was convergence, not implementation. Both review passes
+  pointed back to the same answer: keep the current command surface and improve
+  discoverability through docs.
+- Future heuristic: use review agents for bounded policy checks like this, but
+  keep the actual repo edits and tracker closeout in the parent thread.
+
 ## Progress Log
 - 2026-04-09: [IN-PROGRESS] Created rendering-boundary tracker to capture the current render/cloud contradiction, preserve the recommended solution, and stop this design work from living only in chat.
 - 2026-04-09: [IN-PROGRESS] Recorded current evidence: local render succeeds, cloud render reaches Modal/Remotion and then fails because `public/imports/object-segmentation/source.mp4` is local-only and ignored from git.
@@ -161,3 +210,4 @@ This matters because the repository is meant to be agent-first and repeatable. R
 - 2026-04-09: [IN-PROGRESS] Ran a same-SHA CPU reservation check at `28x`: `32 CPU / 64 GiB` took about `106s`, while `64 CPU / 64 GiB` took about `97s`, so reducing CPU does hurt this project's end-to-end speed.
 - 2026-04-09: [IN-PROGRESS] Switched the repo cloud wrapper away from `modal run -d` and onto the deployed `aip-processor.render_remotion_cloud` function path, matching the production invocation pattern already used in `../win`.
 - 2026-04-10: [IN-PROGRESS] Reconfirmed the current policy after a skill-oriented cold-start review: keep the existing repo-owned command surfaces (`npm start`, `npm run render`, `npm run render:cloud`, `$media-toolkit`), and use docs plus the creating-video skill to bridge workflow discovery before introducing any new client layer.
+- 2026-04-10: [DONE] Finalized the tracker, captured the closeout validation evidence, converted remaining speculative items into future follow-on ideas, and marked the project ready for archive under `docs/projects/archive/rendering-boundary/`.
