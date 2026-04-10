@@ -40,6 +40,9 @@ Use the layers like this:
 
 ## Rules
 
+- Use [EffectsLab](/Users/dobby/GitHub/adithyan-ai-videos/src/projects/effects-lab/composition.js) as the shared preview surface when you want to inspect the reusable blocks without opening an older narrative project.
+- Use [ObjectSegmentationComp.js](/Users/dobby/GitHub/adithyan-ai-videos/src/projects/object-segmentation/ObjectSegmentationComp.js) as the main real-project reference for how the shared blocks are assembled into a full edit.
+
 - If a pattern is generic to Remotion itself, keep it in the external
   `remotion-best-practices` skill rather than restating it here.
 - If a pattern is a repeated visual move in this repo, prefer shared code in

@@ -1,5 +1,5 @@
 ---
-project_id: c0046
+project_id: object-segmentation
 status: draft-v2
 aspect: 16:9
 target_duration_sec: 267.24
@@ -7,7 +7,7 @@ audio_locked: true
 core_motif: hero stamp + disclaimer pill + ball mask recolor + apple swap
 ---
 
-# C0046 Storyboard
+# Object Segmentation Storyboard
 
 ## Core Message
 Codex isn't just a coding tool. Give it the right media tools and it becomes
@@ -22,7 +22,7 @@ compositing, and timing effects to the transcript.
   anchor 14.0s, prompt "black ball". VP9 alpha.webm, stacks cleanly as a
   foreground layer.
   - URL: `https://storage.aipodcast.ing/cache/sam3/alpha/f1782de5-6237-4646-8dd7-b4870fa37b6b.webm`
-  - Status artifact: `projects/c0046/artifacts/segment-ball-12-58-alpha-status.json`
+  - Status artifact: `projects/object-segmentation/artifacts/segment-ball-12-58-alpha-status.json`
 
 ---
 
@@ -49,7 +49,7 @@ compositing, and timing effects to the transcript.
   - Phrase detection auto-locks onto "this video is 100% edited by Codex"
     (starts ~2.40s, peaks on "100%" 3.20s, holds through "Codex" 5.20s).
   - `holdUntilSeconds: 6.2` so it clears before the second sentence.
-  - Uses c0046 `transcript_words.json` as input.
+  - Uses the `object-segmentation` `transcript_words.json` as input.
 
 **Edit cue** — trim any pause before "And in this video..."
 **Sequences** — `[S01A] Disclaimer Pill`, `[S01B] Hero Stamp`
@@ -171,7 +171,7 @@ throw.
 - **[S04] Apple swap** — at 53.88s, the tinted ball treatment is replaced by an
   apple image composited at the alpha centroid.
   - Current implementation: built-in vector-style apple shape inside
-    `C0046Comp.js`, sized from the tracked ball position to guarantee full
+    `ObjectSegmentationComp.js`, sized from the tracked ball position to guarantee full
     coverage in the swap beat.
   - The apple follows the ball alpha's centroid from 53.88 → 58.0s. From
     58.0 → 60.16 the apple is held at its last position (or fades out),
@@ -439,7 +439,7 @@ Timing: card enters at ~250s, holds, fades to black by 267s.
    tinted over the source during the window. Recolor at word timings.
 4. **S04 apple swap** — swap tint for an apple image at 53.88s.
 
-## Constants to add to `src/projects/c0046/assets.js`
+## Constants to add to `src/projects/object-segmentation/assets.js`
 
 ```js
 // SAM alpha for the black ball (VP9 alpha.webm)
@@ -447,7 +447,7 @@ export const BALL_ALPHA_URL = 'https://storage.aipodcast.ing/cache/sam3/alpha/f1
 export const BALL_ALPHA_WINDOW = {start: 12.0, end: 58.0, anchor: 14.0};
 
 // Apple swap is currently implemented as a built-in vector-style shape in
-// C0046Comp.js rather than a separate runtime asset.
+// ObjectSegmentationComp.js rather than a separate runtime asset.
 
 // Effect anchors (seconds) — derived from transcript, hardcoded per skill guidance
 export const TIMING = {

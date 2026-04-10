@@ -1,4 +1,4 @@
-# C0046 S06 storyboard sketches — worklog
+# Object Segmentation S06 storyboard sketches — worklog
 
 Style canon: `.claude/skills/imagegen/styles/minimal-monochrome-webcomic-agent.md`
 Mascot reference: `.claude/skills/imagegen/styles/assets/agent-mascot-reference.png`
@@ -27,10 +27,10 @@ Panels:
 
 All canonicals live next to this worklog at `sketch/p*.png`.
 Cropped versions used in the video at `sketch/cropped/p*.png` and copied
-into `public/imports/c0046/sketch/p*.png`.
+into `public/imports/object-segmentation/sketch/p*.png`.
 Versioned drafts live in `sketch/worklog/p*-v*.png`.
 
-## In-video timing (word-locked, see TIMING in src/projects/c0046/assets.js)
+## In-video timing (word-locked, see TIMING in src/projects/object-segmentation/assets.js)
 
 S06 — How it works (harness explainer):
 - 89.84s  (s06BridgeStart)        — "BOOTING CODEX" pill bridge (no sketch)

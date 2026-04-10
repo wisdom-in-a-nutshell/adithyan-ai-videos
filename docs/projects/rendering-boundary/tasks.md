@@ -21,7 +21,7 @@ This matters because the repository is meant to be agent-first and repeatable. R
 - Replatforming cloud render to Azure right now.
 - Rewriting the entire project layout or moving away from `src/projects/<id>/` and `projects/<id>/`.
 - Implementing the full render client in this tracker entry.
-- Solving all `C0046` creative/editing tasks.
+- Solving all `ObjectSegmentation` creative/editing tasks.
 
 ## Context / Constraints
 - Date started: 2026-04-09
@@ -37,14 +37,14 @@ This matters because the repository is meant to be agent-first and repeatable. R
   - runs the repo render command there
 - Current local render behavior is local-first and succeeds even when runtime assets only exist on this machine.
 - `.gitignore` currently ignores `public/`, `*.mp4`, and `*.webm`, which means many runtime assets are intentionally not committed.
-- `src/projects/c0046/assets.js` currently points at local `public/...` runtime assets such as:
-  - `public/imports/c0046/source.mp4`
-  - `public/imports/c0046/apple.svg`
-  - `public/imports/c0046/bg-studio-warm.png`
-- A real cloud render test against committed `HEAD` failed because the cloned repo could not find `public/imports/c0046/source.mp4`.
+- `src/projects/object-segmentation/assets.js` currently points at local `public/...` runtime assets such as:
+  - `public/imports/object-segmentation/source.mp4`
+  - `public/imports/object-segmentation/apple.svg`
+  - `public/imports/object-segmentation/bg-studio-warm.png`
+- A real cloud render test against committed `HEAD` failed because the cloned repo could not find `public/imports/object-segmentation/source.mp4`.
 - A real local benchmark on the current Mac mini showed:
   - hardware: Apple M4 Mac mini, 10 CPU cores, 16 GB RAM
-  - 10-second HQ render slices of `C0046` took about 110.5 seconds wall-clock
+  - 10-second HQ render slices of `ObjectSegmentation` took about 110.5 seconds wall-clock
   - the major fixed cost is not pure frame render time; it is the repeated copy/merge of the `public/` tree
 - `scripts/asset_cache.mjs` currently prepares a merged public dir and ends up copying about 4.6 GB of `public/` on each render for this project.
 - There is already a shared uploader that provides content-hash-stable public URLs:
@@ -109,7 +109,7 @@ This matters because the repository is meant to be agent-first and repeatable. R
 - [ ] Add a cloud-safety preflight rule that fails fast when required remote assets are missing.
 - [ ] Reuse `../scripts/bin/upload-media` as the shared asset promotion path instead of creating another uploader.
 - [ ] Investigate and reduce the local render startup cost caused by copying the full `public/` tree in `scripts/asset_cache.mjs`.
-- [ ] Decide which `C0046` runtime assets should be promoted to stable remote URLs first so the project can render in cloud.
+- [ ] Decide which `ObjectSegmentation` runtime assets should be promoted to stable remote URLs first so the project can render in cloud.
 - [ ] Add or update docs in `docs/architecture/` and `docs/references/` once the solution is agreed.
 - [ ] Add a closeout learnings file under `docs/projects/rendering-boundary/learnings/README.md` before archive if implementation spans multiple sessions or cross-repo changes.
 - [ ] Close out and archive this tracker once the render contract is documented and implementation is either complete or intentionally split into follow-on trackers.
@@ -118,7 +118,7 @@ This matters because the repository is meant to be agent-first and repeatable. R
 - Confirm the tracker matches current repo reality:
   - `scripts/render.mjs`
   - `scripts/render_cloud.mjs`
-  - `src/projects/c0046/assets.js`
+  - `src/projects/object-segmentation/assets.js`
   - `.gitignore`
   - `../modal_functions/src/functions/video/render_remotion_cloud/__init__.py`
   - `../scripts/bin/upload-media`
@@ -126,17 +126,17 @@ This matters because the repository is meant to be agent-first and repeatable. R
   - current cloud render reaches the Remotion render step
   - cloud failure is caused by missing local-only runtime assets in the cloned repo snapshot
 - Confirm the local-render benchmark summary is recorded accurately:
-  - about 110.5 seconds for a 10-second HQ render slice of `C0046`
+  - about 110.5 seconds for a 10-second HQ render slice of `ObjectSegmentation`
   - startup overhead dominated by `public/` copy/merge work
 
 ## Progress Log
 - 2026-04-09: [IN-PROGRESS] Created rendering-boundary tracker to capture the current render/cloud contradiction, preserve the recommended solution, and stop this design work from living only in chat.
-- 2026-04-09: [IN-PROGRESS] Recorded current evidence: local render succeeds, cloud render reaches Modal/Remotion and then fails because `public/imports/c0046/source.mp4` is local-only and ignored from git.
+- 2026-04-09: [IN-PROGRESS] Recorded current evidence: local render succeeds, cloud render reaches Modal/Remotion and then fails because `public/imports/object-segmentation/source.mp4` is local-only and ignored from git.
 - 2026-04-09: [IN-PROGRESS] Recorded the recommended direction: preserve current repo layout, keep local-first editing, add explicit local/cloud runtime asset descriptors, and eventually expose one repo-local render client boundary.
-- 2026-04-09: [IN-PROGRESS] Replaced the `S05` local PNG frame sequence with a single uploaded transparent VP9 asset (`subject-keyed-s05-alpha.webm`) generated from those same keyed frames. Local `70s -> 90s` verification now passes against the cloud-safe asset path, removing the last known full-comp cloud blocker in `C0046`.
+- 2026-04-09: [IN-PROGRESS] Replaced the `S05` local PNG frame sequence with a single uploaded transparent VP9 asset (`subject-keyed-s05-alpha.webm`) generated from those same keyed frames. Local `70s -> 90s` verification now passes against the cloud-safe asset path, removing the last known full-comp cloud blocker in `ObjectSegmentation`.
 - 2026-04-09: [IN-PROGRESS] Added a doctor guardrail so an enabled project fails if `assets.js` still points at local media files instead of remote runtime URLs.
 - 2026-04-09: [IN-PROGRESS] Added repo-local Remotion temp cleanup before Studio, render, and precommit compile runs so stale macOS temp bundles are pruned automatically instead of accumulating under `/var/folders/.../T`.
-- 2026-04-09: [IN-PROGRESS] Raised the Modal cloud worker reservation from `64 CPU / 32 GiB` to `64 CPU / 64 GiB` and benchmarked a representative `C0046` slice (`72s -> 88s`) across explicit concurrency values.
+- 2026-04-09: [IN-PROGRESS] Raised the Modal cloud worker reservation from `64 CPU / 32 GiB` to `64 CPU / 64 GiB` and benchmarked a representative `ObjectSegmentation` slice (`72s -> 88s`) across explicit concurrency values.
 - 2026-04-09: [IN-PROGRESS] Recorded benchmark results for the tuned worker: `16x=135.04s`, `20x=122.72s`, `24x=124.09s`, `28x=113.00s`, `32x=118.25s`; `28x` is the best observed default so far.
 - 2026-04-09: [IN-PROGRESS] Confirmed the noisy “Detected differing memory amounts” warning comes from Remotion inside the cloud container and is not blocking renders; the benchmark jobs still completed successfully and uploaded outputs.
 - 2026-04-09: [IN-PROGRESS] Ran a same-SHA CPU reservation check at `28x`: `32 CPU / 64 GiB` took about `106s`, while `64 CPU / 64 GiB` took about `97s`, so reducing CPU does hurt this project's end-to-end speed.

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "project_id": "c0046",
+  "project_id": "object-segmentation",
   "updated_utc": "2026-04-09T15:20:00Z",
   "assets": {
     "video_url": "https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/d2751e027b5318a42691bb206ad8bcc3eeaaa6f4d8cc1f1ff61bf52c30d50395/source.mp4",

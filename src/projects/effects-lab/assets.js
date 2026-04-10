@@ -1,0 +1,17 @@
+import {
+  PERSON_MATTE_ALPHA_URL,
+  SKETCH_P5_SAM_URL,
+  VIDEO_URL,
+} from '../object-segmentation/assets.js';
+
+export const EFFECTS_LAB_VIDEO_URL = VIDEO_URL;
+export const EFFECTS_LAB_ALPHA_URL = PERSON_MATTE_ALPHA_URL;
+export const EFFECTS_LAB_SKETCH_URL = SKETCH_P5_SAM_URL;
+
+export const EFFECTS_LAB_FPS = 25;
+export const EFFECTS_LAB_WIDTH = 1920;
+export const EFFECTS_LAB_HEIGHT = 1080;
+export const EFFECTS_LAB_DURATION_SECONDS = 8;
+export const EFFECTS_LAB_DURATION_FRAMES = Math.ceil(
+  EFFECTS_LAB_DURATION_SECONDS * EFFECTS_LAB_FPS
+);

@@ -3,7 +3,7 @@
 ## Command
 
 ```bash
-npm run render:cloud -- --comp TextEffects --hq
+npm run render:cloud -- --comp ObjectSegmentation --hq
 ```
 
 ## Preconditions
@@ -28,7 +28,7 @@ npm run render:cloud -- --comp TextEffects --hq
 - The repo cloud wrapper now waits internally and emits heartbeat status lines
   while the render is running. The command returns the final URL when the cloud
   render completes.
-- Current backend tuning is calibrated against `C0046` on a representative
+- Current backend tuning is calibrated against `ObjectSegmentation` on a representative
   `72s -> 88s` slice:
   - currently deployed worker reservation: `32` CPU cores, `65536` MB memory
   - default auto concurrency target: `28`
@@ -45,5 +45,5 @@ npm run render:cloud -- --comp TextEffects --hq
   `64 CPU / 64 GiB` while keeping `28x` concurrency.
 - Noisy “Detected differing memory amounts” lines come from Remotion inside the
   cloud container. They are useful to notice, but they were not the root cause
-  of the earlier `C0046` failures. The real blocker was local-only runtime
+  of the earlier `ObjectSegmentation` failures. The real blocker was local-only runtime
   media in the composition path.

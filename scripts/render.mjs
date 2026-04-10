@@ -65,8 +65,8 @@ Render only a time slice (seconds -> frames based on composition fps):
 Examples:
   npm run render                             # preview first enabled composition
   npm run render -- --hq                    # full quality
-  npm run render -- --comp C0046 --preview --from 0 --to 6
-  npm run render -- --comp C0046 --hq --out tmp/C0046-hq.mp4 --no-open
+  npm run render -- --comp ObjectSegmentation --preview --from 0 --to 6
+  npm run render -- --comp ObjectSegmentation --hq --out tmp/ObjectSegmentation-hq.mp4 --no-open
   npm run render -- --no-cache              # disable caching
 
 Temp cleanup:

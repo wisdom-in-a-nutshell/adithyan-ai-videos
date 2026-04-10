@@ -1,5 +1,5 @@
-export const PROJECT_ID = 'c0046';
-export const PROJECT_TITLE = 'C0046';
+export const PROJECT_ID = 'object-segmentation';
+export const PROJECT_TITLE = 'Object Segmentation';
 
 // Runtime media is remote-first so local and cloud renders use the same asset contract.
 export const VIDEO_URL =
@@ -15,7 +15,7 @@ export const S05_SUBJECT_MATTE_URL =
   'https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/by-hash/bec580e02a17730d932822e084f29a159d318a2677b77542559fdc80bca8026d/subject-keyed-s05-alpha.webm';
 
 // S06 storyboard sketches (xkcd-style hand-drawn).
-// Originals: projects/c0046/storyboard-assets/sketch/
+// Originals: projects/object-segmentation/storyboard-assets/sketch/
 export const SKETCH_P2A_HARNESS_EMPTY_URL =
   'https://storage.aipodcast.ing/share/agent-media-toolkit/by-hash/34ed725d5044a9e6254e5f135f2b2d96a3c554ca92233bc2e99735ea3a407944/p2a-harness-empty.png';
 export const SKETCH_P2B_HARNESS_TOOLS_PROMPT_URL =

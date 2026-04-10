@@ -10,10 +10,8 @@ import {
 } from 'remotion';
 import ballTrack from './ball_track.json';
 import {
-  CodexCallout,
   DisclaimerOverlay,
   LabelOverlay,
-  StatusLeftOverlay,
 } from '../../overlay_kit/overlays.js';
 import {
   CalloutBeat,
@@ -309,7 +307,7 @@ const S05DepthText = ({durationInFrames}) => {
   );
 };
 
-export const C0046Comp = (props) => {
+export const ObjectSegmentationComp = (props) => {
   const assetMap = props?.assetMap ?? null;
   const frame = useCurrentFrame();
   const timeInSeconds = frame / FPS;
@@ -961,432 +959,246 @@ export const C0046Comp = (props) => {
         />
 
         {/* Callouts swap per beat (text changes) */}
-        <Sequence
+        <CalloutBeat
           name="[S31] Callout: It's actually a harness."
           from={secondsToFrames(TIMING.s06HarnessEmptyStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s06HarnessEmptyStart,
             TIMING.s06HarnessToolsStart
           )}
-        >
-          <CodexCallout
-            text="It's actually a harness."
-            durationInFrames={beatDurationInFrames(
-              TIMING.s06HarnessEmptyStart,
-              TIMING.s06HarnessToolsStart
-            )}
-            scale={DEMO_UI.calloutScale}
-            topPx={DEMO_UI.calloutTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="It's actually a harness."
+          ui={DEMO_UI}
+        />
 
-        <Sequence
+        <CalloutBeat
           name="[S32B] Callout: Tools + prompt + a loop."
           from={secondsToFrames(TIMING.s06HarnessToolsStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s06HarnessToolsStart,
             TIMING.s06HarnessCodingStart
           )}
-        >
-          <CodexCallout
-            text="Tools + prompt + a loop."
-            durationInFrames={beatDurationInFrames(
-              TIMING.s06HarnessToolsStart,
-              TIMING.s06HarnessCodingStart
-            )}
-            scale={DEMO_UI.calloutScale}
-            topPx={DEMO_UI.calloutTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="Tools + prompt + a loop."
+          ui={DEMO_UI}
+        />
 
-        <Sequence
+        <CalloutBeat
           name="[S33B] Callout: By default, coding tools."
           from={secondsToFrames(TIMING.s06HarnessCodingStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s06HarnessCodingStart,
             TIMING.s06HarnessVideoStart
           )}
-        >
-          <CodexCallout
-            text="By default, coding tools."
-            durationInFrames={beatDurationInFrames(
-              TIMING.s06HarnessCodingStart,
-              TIMING.s06HarnessVideoStart
-            )}
-            scale={DEMO_UI.calloutScale}
-            topPx={DEMO_UI.calloutTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="By default, coding tools."
+          ui={DEMO_UI}
+        />
 
-        <Sequence
+        <CalloutBeat
           name="[S34B] Callout: Swapped with video tools."
           from={secondsToFrames(TIMING.s06HarnessVideoStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s06HarnessVideoStart,
             TIMING.s07SamStart
           )}
-        >
-          <CodexCallout
-            text="Swap with video tools."
-            durationInFrames={beatDurationInFrames(
-              TIMING.s06HarnessVideoStart,
-              TIMING.s07SamStart
-            )}
-            scale={DEMO_UI.calloutScale}
-            topPx={DEMO_UI.calloutTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="Swap with video tools."
+          ui={DEMO_UI}
+        />
 
         {/* ─── S07 — The stack: SAM 3.1, MatAnyone, Remotion ─── */}
         {/* THE STACK pill spans P5+P6+P7 so it doesn't fade between sub-beats. */}
-        <Sequence
+        <StatusBeat
           name="[S35+] Status: THE STACK (continuous)"
           from={secondsToFrames(TIMING.s07SamStart)}
           durationInFrames={beatDurationInFrames(TIMING.s07SamStart, TIMING.s07End)}
-        >
-          <StatusLeftOverlay
-            text="THE STACK"
-            durationInFrames={beatDurationInFrames(TIMING.s07SamStart, TIMING.s07End)}
-            scale={DEMO_UI.statusScale}
-            topPx={DEMO_UI.statusTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="THE STACK"
+          ui={DEMO_UI}
+        />
 
         {/* Callouts swap per tool reveal */}
-        <Sequence
+        <CalloutBeat
           name="[S35B] Callout: SAM 3.1 — tracks objects."
           from={secondsToFrames(TIMING.s07SamStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s07SamStart,
             TIMING.s07MatAnyoneStart
           )}
-        >
-          <CodexCallout
-            text="SAM 3.1 tracks objects."
-            durationInFrames={beatDurationInFrames(
-              TIMING.s07SamStart,
-              TIMING.s07MatAnyoneStart
-            )}
-            scale={DEMO_UI.calloutScale}
-            topPx={DEMO_UI.calloutTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="SAM 3.1 tracks objects."
+          ui={DEMO_UI}
+        />
 
-        <Sequence
+        <CalloutBeat
           name="[S36B] Callout: MatAnyone — cuts a clean matte."
           from={secondsToFrames(TIMING.s07MatAnyoneStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s07MatAnyoneStart,
             TIMING.s07RemotionStart
           )}
-        >
-          <CodexCallout
-            text="MatAnyone cuts out the person."
-            durationInFrames={beatDurationInFrames(
-              TIMING.s07MatAnyoneStart,
-              TIMING.s07RemotionStart
-            )}
-            scale={DEMO_UI.calloutScale}
-            topPx={DEMO_UI.calloutTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="MatAnyone cuts out the person."
+          ui={DEMO_UI}
+        />
 
-        <Sequence
+        <CalloutBeat
           name="[S37B] Callout: Remotion + FFmpeg composites it."
           from={secondsToFrames(TIMING.s07RemotionStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s07RemotionStart,
             TIMING.s07TranscribeStart
           )}
-        >
-          <CodexCallout
-            text="Remotion + FFmpeg composites it."
-            durationInFrames={beatDurationInFrames(
-              TIMING.s07RemotionStart,
-              TIMING.s07TranscribeStart
-            )}
-            scale={DEMO_UI.calloutScale}
-            topPx={DEMO_UI.calloutTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="Remotion + FFmpeg composites it."
+          ui={DEMO_UI}
+        />
 
-        <Sequence
+        <CalloutBeat
           name="[S38B] Callout: Transcribes everything I say."
           from={secondsToFrames(TIMING.s07TranscribeStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s07TranscribeStart,
             TIMING.s07End
           )}
-        >
-          <CodexCallout
-            text="Transcribes everything I say."
-            durationInFrames={beatDurationInFrames(
-              TIMING.s07TranscribeStart,
-              TIMING.s07End
-            )}
-            scale={DEMO_UI.calloutScale}
-            topPx={DEMO_UI.calloutTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="Transcribes everything I say."
+          ui={DEMO_UI}
+        />
 
         {/* ─── S08 — Workflow reality (192.32 → 247.68) ─── */}
 
         {/* NOT REAL-TIME */}
-        <Sequence
+        <StatusBeat
           name="[S40A] Status: NOT REAL-TIME"
           from={secondsToFrames(TIMING.s08RealtimeStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s08RealtimeStart,
             TIMING.s08RecordingStart
           )}
-        >
-          <StatusLeftOverlay
-            text="NOT REAL-TIME"
-            durationInFrames={beatDurationInFrames(
-              TIMING.s08RealtimeStart,
-              TIMING.s08RecordingStart
-            )}
-            scale={DEMO_UI.statusScale}
-            topPx={DEMO_UI.statusTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="NOT REAL-TIME"
+          ui={DEMO_UI}
+        />
 
-        <Sequence
+        <CalloutBeat
           name="[S40B] Callout: Record first, post-process later."
           from={secondsToFrames(TIMING.s08RealtimeStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s08RealtimeStart,
             TIMING.s08RecordingStart
           )}
-        >
-          <CodexCallout
-            text="Record first, post-process later."
-            durationInFrames={beatDurationInFrames(
-              TIMING.s08RealtimeStart,
-              TIMING.s08RecordingStart
-            )}
-            scale={DEMO_UI.calloutScale}
-            topPx={DEMO_UI.calloutTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="Record first, post-process later."
+          ui={DEMO_UI}
+        />
 
         {/* RECORDING */}
-        <Sequence
+        <StatusBeat
           name="[S41A] Status: RECORDING"
           from={secondsToFrames(TIMING.s08RecordingStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s08RecordingStart,
             TIMING.s08PromptingStart
           )}
-        >
-          <StatusLeftOverlay
-            text="RECORDING"
-            durationInFrames={beatDurationInFrames(
-              TIMING.s08RecordingStart,
-              TIMING.s08PromptingStart
-            )}
-            scale={DEMO_UI.statusScale}
-            topPx={DEMO_UI.statusTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="RECORDING"
+          ui={DEMO_UI}
+        />
 
-        <Sequence
+        <CalloutBeat
           name="[S41B] Callout: Record on a green screen."
           from={secondsToFrames(TIMING.s08RecordingStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s08RecordingStart,
             TIMING.s08PromptingStart
           )}
-        >
-          <CodexCallout
-            text="Record on a green screen."
-            durationInFrames={beatDurationInFrames(
-              TIMING.s08RecordingStart,
-              TIMING.s08PromptingStart
-            )}
-            scale={DEMO_UI.calloutScale}
-            topPx={DEMO_UI.calloutTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="Record on a green screen."
+          ui={DEMO_UI}
+        />
 
         {/* PROMPTING */}
-        <Sequence
+        <StatusBeat
           name="[S42A] Status: PROMPTING"
           from={secondsToFrames(TIMING.s08PromptingStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s08PromptingStart,
             TIMING.s08IteratingStart
           )}
-        >
-          <StatusLeftOverlay
-            text="PROMPTING"
-            durationInFrames={beatDurationInFrames(
-              TIMING.s08PromptingStart,
-              TIMING.s08IteratingStart
-            )}
-            scale={DEMO_UI.statusScale}
-            topPx={DEMO_UI.statusTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="PROMPTING"
+          ui={DEMO_UI}
+        />
 
-        <Sequence
+        <CalloutBeat
           name="[S42B] Callout: Tell Codex what you want."
           from={secondsToFrames(TIMING.s08PromptingStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s08PromptingStart,
             TIMING.s08IteratingStart
           )}
-        >
-          <CodexCallout
-            text="Tell Codex what you want."
-            durationInFrames={beatDurationInFrames(
-              TIMING.s08PromptingStart,
-              TIMING.s08IteratingStart
-            )}
-            scale={DEMO_UI.calloutScale}
-            topPx={DEMO_UI.calloutTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="Tell Codex what you want."
+          ui={DEMO_UI}
+        />
 
         {/* ITERATING */}
-        <Sequence
+        <StatusBeat
           name="[S43A] Status: ITERATING"
           from={secondsToFrames(TIMING.s08IteratingStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s08IteratingStart,
             TIMING.s09ExperimentsStart
           )}
-        >
-          <StatusLeftOverlay
-            text="ITERATING"
-            durationInFrames={beatDurationInFrames(
-              TIMING.s08IteratingStart,
-              TIMING.s09ExperimentsStart
-            )}
-            scale={DEMO_UI.statusScale}
-            topPx={DEMO_UI.statusTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="ITERATING"
+          ui={DEMO_UI}
+        />
 
-        <Sequence
+        <CalloutBeat
           name="[S43B] Callout: Used to take hours. Now under 45 min."
           from={secondsToFrames(TIMING.s08IteratingStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s08IteratingStart,
             TIMING.s09ExperimentsStart
           )}
-        >
-          <CodexCallout
-            text="Used to take hours. Now under 45 min."
-            durationInFrames={beatDurationInFrames(
-              TIMING.s08IteratingStart,
-              TIMING.s09ExperimentsStart
-            )}
-            scale={DEMO_UI.calloutScale}
-            topPx={DEMO_UI.calloutTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="Used to take hours. Now under 45 min."
+          ui={DEMO_UI}
+        />
 
         {/* ─── S09 — Close (247.68 → end) ─── */}
 
         {/* EXPERIMENTS */}
-        <Sequence
+        <StatusBeat
           name="[S44A] Status: EXPERIMENTS"
           from={secondsToFrames(TIMING.s09ExperimentsStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s09ExperimentsStart,
             TIMING.s09OutroStart
           )}
-        >
-          <StatusLeftOverlay
-            text="EXPERIMENTS"
-            durationInFrames={beatDurationInFrames(
-              TIMING.s09ExperimentsStart,
-              TIMING.s09OutroStart
-            )}
-            scale={DEMO_UI.statusScale}
-            topPx={DEMO_UI.statusTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="EXPERIMENTS"
+          ui={DEMO_UI}
+        />
 
-        <Sequence
+        <CalloutBeat
           name="[S44B] Callout: Many don't work. Some do."
           from={secondsToFrames(TIMING.s09ExperimentsStart)}
           durationInFrames={beatDurationInFrames(
             TIMING.s09ExperimentsStart,
             TIMING.s09OutroStart
           )}
-        >
-          <CodexCallout
-            text="Many don't work. Some do."
-            durationInFrames={beatDurationInFrames(
-              TIMING.s09ExperimentsStart,
-              TIMING.s09OutroStart
-            )}
-            scale={DEMO_UI.calloutScale}
-            topPx={DEMO_UI.calloutTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="Many don't work. Some do."
+          ui={DEMO_UI}
+        />
 
         {/* OUTRO — final stamp */}
-        <Sequence
+        <StatusBeat
           name="[S45A] Status: WRAP UP"
           from={secondsToFrames(TIMING.s09OutroStart)}
           durationInFrames={Math.max(
             1,
             DURATION_FRAMES - secondsToFrames(TIMING.s09OutroStart)
           )}
-        >
-          <StatusLeftOverlay
-            text="100% EDITED BY CODEX"
-            durationInFrames={Math.max(
-              1,
-              DURATION_FRAMES - secondsToFrames(TIMING.s09OutroStart)
-            )}
-            scale={DEMO_UI.statusScale}
-            topPx={DEMO_UI.statusTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="100% EDITED BY CODEX"
+          ui={DEMO_UI}
+        />
 
-        <Sequence
+        <CalloutBeat
           name="[S45B] Callout: Hope this was useful."
           from={secondsToFrames(TIMING.s09OutroStart)}
           durationInFrames={Math.max(
             1,
             DURATION_FRAMES - secondsToFrames(TIMING.s09OutroStart)
           )}
-        >
-          <CodexCallout
-            text="Hope this was useful."
-            durationInFrames={Math.max(
-              1,
-              DURATION_FRAMES - secondsToFrames(TIMING.s09OutroStart)
-            )}
-            scale={DEMO_UI.calloutScale}
-            topPx={DEMO_UI.calloutTopPx}
-            leftPx={DEMO_UI.leftPx}
-          />
-        </Sequence>
+          text="Hope this was useful."
+          ui={DEMO_UI}
+        />
 
       </AbsoluteFill>
 

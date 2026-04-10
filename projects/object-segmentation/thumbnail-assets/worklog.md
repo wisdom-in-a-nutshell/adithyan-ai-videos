@@ -1,6 +1,6 @@
-# C0046 Thumbnail iterations
+# Object Segmentation thumbnail iterations
 
-Reference: `projects/c0046/thumbnail-assets/adi-twitter.jpg` (Twitter profile, 256x256)
+Reference: `projects/object-segmentation/thumbnail-assets/adi-twitter.jpg` (Twitter profile, 256x256)
 
 ## Goal
 YouTube thumbnail for "Codex as a video editor" video.
