@@ -12,6 +12,24 @@ Use the layers like this:
 - `src/projects/<id>/`: project-specific timing, copy, assets, and scene
   assembly.
 
+## Starting A New Project
+
+When a new video prompt arrives:
+
+1. Start with `src/projects/<id>/` for the project-specific edit.
+2. Check `src/effects/` and `src/projects/effects-lab/` before copying an old
+   narrative comp.
+3. Reuse shared blocks for repeated house-style moves such as:
+   - top-left status/callout beats
+   - sketch-panel reveals
+   - transparent subject overlays
+   - simple backdrop handoffs
+   - tracked circular object treatments
+4. Keep timing, wording, asset URLs, and bespoke scene choreography inside the
+   project until a second real project proves the pattern.
+5. If a new shared block is extracted, add it to `EffectsLab` and index it here
+   so the next cold agent can discover it quickly.
+
 ## Current Shared Blocks
 
 - `StatusBeat` and `CalloutBeat` in [EditorialBeat.js](/Users/dobby/GitHub/adithyan-ai-videos/src/effects/EditorialBeat.js)

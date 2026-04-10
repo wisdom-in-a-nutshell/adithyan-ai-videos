@@ -9,6 +9,8 @@
   entries.
 - `src/overlay_kit/`: reusable overlays and drawing helpers shared across
   projects.
+- `src/effects/`: reusable house-style beats and compositing blocks built on
+  top of `src/overlay_kit/`.
 
 ## Runtime Folder Contract (`src/projects/<id>/`)
 
@@ -62,6 +64,9 @@ Each composition config must include:
   is present.
 - Keep reusable primitives in `src/overlay_kit/`; keep one-off scene wiring in
   the project folder.
+- Prefer shared house-style blocks from `src/effects/` when the visual pattern
+  already exists there. Only keep bespoke versions inside the project until the
+  abstraction is proven.
 
 ## Scaffold Notes
 

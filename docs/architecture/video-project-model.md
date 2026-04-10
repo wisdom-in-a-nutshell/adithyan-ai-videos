@@ -88,5 +88,6 @@ flowchart TD
 ## Related References
 
 - `docs/references/project-contract.md`
+- `docs/references/effect-library.md`
 - `docs/references/repo-operations.md`
 - `docs/references/verification-loop.md`
