@@ -34,6 +34,7 @@ Use code-first by default:
 
 References:
 
+- New prompt -> project flow: `references/new-project-flow.md`
 - Intake questions: `references/intake.md`
 - Storyboard format: `references/storyboard.md`
 - Verification loop (render/stills): `references/verification.md`
