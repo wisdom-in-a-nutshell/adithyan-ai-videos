@@ -62,8 +62,10 @@ Each composition config must include:
 - Use named `<Sequence name="...">` blocks for major beats.
 - Ensure key overlay layers use clear `zIndex` ordering when foreground alpha
   is present.
-- Keep reusable primitives in `src/overlay_kit/`; keep one-off scene wiring in
-  the project folder.
+- Keep low-level primitives in `src/overlay_kit/`.
+- Keep repeated editorial beats and compositing helpers in `src/effects/`.
+- Keep one-off scene wiring, bespoke copy, and project-specific timing in the
+  project folder until the abstraction is proven.
 - Prefer shared house-style blocks from `src/effects/` when the visual pattern
   already exists there. Only keep bespoke versions inside the project until the
   abstraction is proven.

@@ -28,9 +28,9 @@
 
 ## Execution Notes
 
-- `npm start` and `npm run render -- ...` scan `src/projects/*/assets.js`,
-  build a local asset cache, and pass cached props plus a merged public dir into
-  Remotion.
+- `npm start` and `npm run render -- ...` scan the active composition set from
+  `src/projects/registry.js`, build a local asset cache for only those runtime
+  assets, and pass cached props plus a staged public dir into Remotion.
 - Local Remotion entrypoints prune stale temp dirs in `os.tmpdir()` before
   launch. Use `--no-temp-cleanup` to opt out, or
   `--temp-cleanup-age-hours <n>` to override the default `12h` TTL.

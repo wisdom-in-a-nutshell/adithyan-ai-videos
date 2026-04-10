@@ -20,7 +20,7 @@ npm start
 ```
 
 Notes:
-- `npm start` uses a local URL cache by default (downloads remote URLs from `src/projects/*/assets.js` once and serves them via `--public-dir`).
+- `npm start` uses a local URL cache by default (downloads remote URLs needed by the active composition set from `src/projects/registry.js` and serves them via `--public-dir`).
 - Cache dir defaults to `~/.cache/win-remotion-assets` (override with `WIN_REMOTION_ASSET_CACHE=/tmp/win-remotion-assets`).
 - Force re-download for Studio: `npm start -- --refresh`
 
