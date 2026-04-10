@@ -3,6 +3,27 @@
 ## Goal
 Establish a reusable, repo-native library of video effect blocks and house-style patterns so future projects can be assembled from shared code instead of copying old project compositions.
 
+## Closeout Summary
+
+This project is complete and ready to archive.
+
+Scoped outcome:
+- the shared effect layer exists in `src/effects/`
+- the active narrative project (`object-segmentation`) uses the extracted
+  blocks
+- `EffectsLab` exists as a dedicated preview surface for shared blocks
+- the `creating-video` skill and repo docs now point cold agents to the shared
+  layer instead of old narrative comps
+- the remaining optional polish is also complete:
+  - phrase-to-frame setup helper added
+  - extraction criteria documented
+
+Validation evidence:
+- `npm run doctor`
+- `npm run render -- --comp EffectsLab --from 0 --to 4 --no-open`
+- `npm run render -- --comp ObjectSegmentation --from 150 --to 160 --no-open`
+- `node scripts/find_phrase_frames.mjs --words src/projects/c0040/transcript_words.json --phrase "everything that you are" --fps 30 --after 3`
+
 ## Why / Impact
 This repo is becoming a repeatable video system, not a one-off playground. Right now the visual language is strong, but much of the reusable knowledge is trapped inside project comps like `text-effects` and `object-segmentation`. If we do not consolidate it, agents will keep re-discovering patterns, style will drift, and reuse will depend on chat memory instead of code.
 
@@ -34,17 +55,17 @@ This repo is becoming a repeatable video system, not a one-off playground. Right
 - There is not yet a proven shared chroma-key implementation in-repo; the reusable cutout/compositing primitive that exists today is transparent alpha-video playback plus outline/filter treatment.
 
 ## Done When
-- [ ] A shared effect/block layer exists in code with a clear boundary from `src/overlay_kit/`.
-- [ ] The first wave of reusable patterns is extracted and used by at least one real project composition.
-- [ ] A thin repo reference documents the effect catalog, block responsibilities, and when to use each block.
-- [ ] The `creating-video` workflow and repo docs point agents to the new shared effect layer instead of relying on project-specific memory.
-- [ ] The user has reviewed the proposed structure and confirmed it fits the intended long-term workflow.
+- [x] A shared effect/block layer exists in code with a clear boundary from `src/overlay_kit/`.
+- [x] The first wave of reusable patterns is extracted and used by at least one real project composition.
+- [x] A thin repo reference documents the effect catalog, block responsibilities, and when to use each block.
+- [x] The `creating-video` workflow and repo docs point agents to the new shared effect layer instead of relying on project-specific memory.
+- [x] The user has reviewed the proposed structure and confirmed it fits the intended long-term workflow.
 
 ## Milestones
 - [x] Milestone 1 — Inventory and design the shared effect system. Acceptance: repo has a reviewed file map, block taxonomy, and first-wave extraction order grounded in the current codebase. Validate: tracker + proposed file map are internally consistent and match the current reusable surfaces.
 - [x] Milestone 2 — Create the shared effect layer and extract the first wave of reusable blocks. Acceptance: shared code exists and one reference project renders through the extracted blocks without visual regression. Validate: `npm run doctor` and a short local render on the migrated project.
 - [x] Milestone 3 — Add the effect catalog and self-documenting usage examples. Acceptance: agents can discover available blocks and their intended use from repo docs plus code exports. Validate: doc review + one showcase/reference render.
-- [in_progress] Milestone 4 — Normalize the workflow around the shared layer. Acceptance: `creating-video` and repo references point to the new pattern, and at least one additional project can reuse the extracted blocks with low friction. Validate: `npm run doctor` and one project-specific verification render.
+- [x] Milestone 4 — Normalize the workflow around the shared layer. Acceptance: `creating-video` and repo references point to the new pattern, and at least one additional project can reuse the extracted blocks with low friction. Validate: `npm run doctor` and one project-specific verification render.
 
 ## Execution Rules
 - Keep work scoped to the current milestone unless the tracker explicitly expands scope.
@@ -76,6 +97,9 @@ This repo is becoming a repeatable video system, not a one-off playground. Right
 - `S05DepthText`-style bespoke typography is not first-wave shared code yet; wait until a second project needs the same depth-text pattern.
 - Add an `effects-lab` reference composition once the first-wave blocks exist so agents can preview shared blocks without opening historical projects.
 - Older projects with stale runtime assets, such as `text-effects`, are useful as pattern references but should not block the effect-library rollout. Validate shared blocks against `object-segmentation` and `effects-lab` or another active project instead of rehabilitating archival asset URLs unless there is a direct product need.
+- `EffectsLab` is sufficient as the second shared-block consumer for this
+  closeout because the real goal is cold-agent discoverability and safe reuse,
+  not proving a second narrative project immediately.
 - Milestone 1 file map should be:
   - `src/lib/resolveAssetSrc.js` for shared runtime asset resolution
   - `src/effects/EditorialBeat.js` for `StatusBeat`, `CalloutBeat`, and the shared beat UI defaults
@@ -88,9 +112,16 @@ This repo is becoming a repeatable video system, not a one-off playground. Right
   - `src/projects/effects-lab/` as the optional later showcase composition, not required for the first extraction batch
 
 ## Open Questions / Blockers
-- What exact file map should Milestone 1 freeze for `src/effects/`, the effect catalog doc, and the optional `effects-lab` composition?
-- Should the word-locked timestamp helper live in `src/effects/`, `src/lib/`, or another shared utility path?
-- How tightly should the imagegen/webcomic style anchor be linked into the effect-library docs versus left as a cross-reference only?
+
+None for this scoped closeout.
+
+Future considerations only:
+- if another narrative project starts reusing the same blocks, keep validating
+  the `src/effects/` boundary against real project pressure
+- if the shared layer grows significantly, consider a slightly richer
+  extraction-criteria reference or a grouped export surface
+- keep the imagegen/webcomic style anchor as a cross-reference unless a real
+  shared block starts depending on it
 
 ## Current Batch
 | Status | Work Item | Role | Resource |
@@ -102,25 +133,39 @@ This repo is becoming a repeatable video system, not a one-off playground. Right
 | done | Add the thin effect-catalog reference and align repo docs to the new `src/effects/` boundary. | parent | `docs/references/effect-library.md`, `docs/architecture/video-project-model.md`, `.agents/skills/creating-video/SKILL.md` |
 | done | Rename the active `c0046` project to the descriptive `object-segmentation` slug and finish converting the remaining direct beat stack duplication onto the shared helpers. | parent | `src/projects/object-segmentation/`, `projects/object-segmentation/`, `src/projects/registry.js` |
 | done | Add the `effects-lab` reference composition so shared blocks have a dedicated preview surface independent of archival projects. | parent | `src/projects/effects-lab/`, `src/projects/registry.js` |
-| in_progress | Decide whether Milestone 4 is complete with `effects-lab` as the second shared-block consumer or whether the tracker should wait for reuse in another narrative project. | parent | `docs/projects/effect-library/tasks.md` |
+| done | Add the setup-time phrase-to-frame helper and document the extraction rule for when code should move into `src/effects/`. | parent | `scripts/find_phrase_frames.mjs`, `src/lib/findPhraseFrames.js`, `.agents/skills/creating-video/references/effect-extraction.md` |
+| done | Close and archive the finished effect-library project. | parent | `docs/projects/archive/effect-library/` |
 
 ## Backlog / Remaining Work
-- [ ] Create a concrete extraction map from existing code into shared blocks.
-- [ ] Extract the first wave of stable blocks from `object-segmentation` and future active projects without depending on archived runtime assets.
-- [ ] Create a thin effect catalog doc under `docs/references/`.
-- [ ] Add an `effects-lab` composition for block previews and shared-block validation.
-- [ ] Update `creating-video` references to point to the shared effect layer once it exists.
-- [ ] Add a small shared helper for deriving word-locked phrase/frame anchors from transcript timing data during setup time, then keep the final timestamps hardcoded in project `assets.js`.
-- [ ] Decide how to surface the webcomic/imagegen style canon inside the shared effect docs so storyboard-panel generation stays consistent with the house brand.
-- [ ] Review `AGENTS.md` and repo references after the extraction to ensure routing still points to the right durable docs.
-- [ ] Add a closeout learnings task that reviews whether the new shared layer materially reduced agent drift.
-- [ ] Archive this tracker when the shared effect system is in place and documented.
+
+Descoped from this finished tracker and left as future follow-on ideas:
+- keep pressure-testing `src/effects/` against the next real narrative project
+- grow the extraction criteria only if agents still hesitate about where code
+  belongs
+- revisit grouped exports or naming only if the shared effect layer expands
+  materially beyond the first wave
 
 ## Validation / Test Plan
 - Planning stage: verify the proposed file map and block taxonomy against the current repo structure.
 - Extraction stage: `npm run doctor`
 - Extraction stage: short local render(s) for any migrated project composition using the new shared blocks.
 - If a showcase/effects-lab comp is added, render one short slice to confirm the reference surface stays healthy.
+
+## Closeout Validation
+
+- `npm run doctor`
+- `npm run render -- --comp EffectsLab --from 0 --to 4 --no-open`
+- `npm run render -- --comp ObjectSegmentation --from 150 --to 160 --no-open`
+- `node scripts/find_phrase_frames.mjs --words src/projects/c0040/transcript_words.json --phrase "everything that you are" --fps 30 --after 3`
+
+## Delegation Retrospective
+
+- Review agents were helpful for pressure-testing whether the shared layer was
+  agent-native enough and whether another broad skill or client was justified.
+- The useful outcome was confirmation, not implementation: the repo needed
+  tighter docs and one small helper, not another system.
+- Future heuristic: use review delegation to test workflow sufficiency, but keep
+  shared-boundary edits and tracker closeout in the parent thread.
 
 ## Progress Log
 - 2026-04-10: [IN-PROGRESS] Created project tracker for consolidating a shared effect/block library from the existing house style and proven project patterns.
@@ -132,3 +177,5 @@ This repo is becoming a repeatable video system, not a one-off playground. Right
 - 2026-04-10: [DONE] Renamed the active `c0046` project to the descriptive `object-segmentation` slug in code, artifacts, storyboard/worklog paths, and registry wiring. Also converted the remaining S06–S09 direct `CodexCallout` / `StatusLeftOverlay` beat stacks onto the shared `CalloutBeat` / `StatusBeat` helpers.
 - 2026-04-10: [DONE] Added `src/projects/effects-lab/` as the dedicated shared-block preview surface and validated it with a local render (`EffectsLab`, `0s -> 8s`).
 - 2026-04-10: [DONE] Revalidated the renamed `ObjectSegmentation` composition with local renders across the early compositing window (`68s -> 90s`) and the later shared-beat window (`150s -> 206s`).
+- 2026-04-10: [DONE] Added the shared phrase-to-frame setup helper in `src/lib/findPhraseFrames.js` plus `scripts/find_phrase_frames.mjs`, and documented both the helper and the extraction criteria in the `creating-video` refs.
+- 2026-04-10: [DONE] Finalized Milestone 4, recorded the closeout validation evidence, and marked the effect-library project ready for archive with `EffectsLab` as the dedicated shared-block preview surface.

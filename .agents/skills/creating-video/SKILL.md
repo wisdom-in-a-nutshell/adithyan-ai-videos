@@ -39,6 +39,7 @@ References:
 - Storyboard format: `references/storyboard.md`
 - Verification loop (render/stills): `references/verification.md`
 - Overlay component catalog: `references/overlay-components.md`
+- Effect extraction rule: `references/effect-extraction.md`
 - Shared effect blocks: `~/GitHub/adithyan-ai-videos/docs/references/effect-library.md`
 - Shared block preview surface: `src/projects/effects-lab/`
 - Style tokens + readability rules: `references/style-tokens.md`

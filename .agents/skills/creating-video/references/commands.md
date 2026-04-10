@@ -87,6 +87,18 @@ cd <repo-root>
 .agents/skills/media-toolkit/scripts/media_toolkit.sh transcribe --help
 ```
 
+## Setup Helpers
+
+Derive transcript-based anchors once during setup, then hardcode the result in
+`assets.js`:
+
+```bash
+node scripts/find_phrase_frames.mjs \
+  --words src/projects/<project-id>/transcript_words.json \
+  --phrase "totally natural" \
+  --fps 30
+```
+
 ## Still Extraction
 
 For quick visual review, it is usually cheaper to extract stills from a short rendered clip than to run `npx remotion still` directly:

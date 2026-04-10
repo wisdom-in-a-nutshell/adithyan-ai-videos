@@ -24,6 +24,20 @@ If the underlying recording + transcript are stable (you are iterating on the sa
 - It is fine to *derive* those timestamps once from `transcript_words.json`, but don’t keep runtime code that re-finds phrases every render.
 - If the source video changes, re-derive and update the hardcoded timestamps.
 
+For one-time derivation during setup, use the helper:
+
+```bash
+node scripts/find_phrase_frames.mjs \
+  --words src/projects/<project-id>/transcript_words.json \
+  --phrase "totally natural" \
+  --fps 30
+```
+
+Optional:
+- add `--after <seconds>` to skip earlier occurrences of the phrase
+- copy the returned seconds/frames into `assets.js`, then keep `assets.js` as
+  the durable source of truth
+
 ## Sequence Timing Gotcha (Frame Offsets)
 
 Inside a `<Sequence from={X}>`, `useCurrentFrame()` is **sequence-local** (0 at the start of the Sequence).

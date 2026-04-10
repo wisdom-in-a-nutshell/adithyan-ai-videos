@@ -21,6 +21,17 @@ npm run new:project -- --id <project-id> --title "My Video"
    - timing anchors
    - reference visuals or an old comp to match
 4. If the storyboard is missing, draft a short beat list before writing a lot of code.
+5. If timing anchors are missing but the transcript is already available, derive
+   them once with:
+
+```bash
+node scripts/find_phrase_frames.mjs \
+  --words src/projects/<project-id>/transcript_words.json \
+  --phrase "<phrase>" \
+  --fps <fps>
+```
+
+Then copy the chosen anchors into `src/projects/<project-id>/assets.js`.
 
 ## Default Tool Surfaces
 
@@ -42,6 +53,8 @@ Do not invent a new client surface for ordinary project work if one of the repo 
 - Check `src/effects/` and `src/projects/effects-lab/` before copying an old narrative comp.
 - Keep bespoke timing, copy, and scene choreography in the project until the abstraction repeats.
 - If a pattern repeats, prefer extracting it into `src/effects/` instead of growing another one-off local wrapper.
+- If you are unsure whether a pattern should be extracted, read
+  `references/effect-extraction.md` first.
 
 ## Verification Rule
 
