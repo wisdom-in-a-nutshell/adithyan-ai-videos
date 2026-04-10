@@ -3,6 +3,20 @@
 ## Goal
 Define and implement a render workflow that keeps local editing fast, makes cloud renders reproducible, and removes agent confusion about which assets and commands are valid in each mode.
 
+## Status Update
+
+As of 2026-04-10, the highest-risk part of this project is no longer the basic
+local-vs-cloud asset contradiction for the active path. The active project now
+uses remote-first runtime media, local render startup has already been reduced,
+and `npm run render:cloud` already behaves like a repo-owned cloud client with
+internal waiting and status output.
+
+The remaining question is not “do we need any render client at all?” It is
+“are the current repo-owned command surfaces sufficient, or is another unified
+client boundary justified?” Current recommendation: the existing commands are
+good enough for now. Do not add another top-level render client unless a real
+repeatable workflow gap appears that the current commands and docs cannot cover.
+
 ## Why / Impact
 The current repository structure is broadly good, but the rendering boundary is not explicit enough. Local editing works because runtime assets can live in ignored local `public/` paths, while cloud render works by cloning a git SHA in a clean remote environment. Those two assumptions conflict. If we do not fix this cleanly, agents will keep making the same mistake: a composition renders locally, then fails in cloud because required media only exists on the current machine. The result is wasted render time, unclear failure modes, and growing workflow drift.
 
@@ -78,8 +92,13 @@ This matters because the repository is meant to be agent-first and repeatable. R
 - The current repository layout is broadly sound; the highest-risk gap is the rendering and runtime asset boundary, not the overall project structure.
 - Local render should remain the default editing loop.
 - Cloud render should remain a checkpoint/final path, not the default editing path.
-- The right long-term fix is not “switch providers first”; it is “make runtime assets cloud-safe and expose a single render contract.”
-- The repository should eventually expose one repo-local render client that orchestrates local render, cloud preflight, asset promotion, and cloud submission/status.
+- The right long-term fix is not “switch providers first”; it is “make runtime assets cloud-safe and keep the render contract explicit.”
+- The current repo-owned command surfaces are sufficient for now:
+  - `npm start`
+  - `npm run render`
+  - `npm run render:cloud`
+  - `$media-toolkit` for media-processing work
+- Do not introduce another repo-wide render client unless repeated agent drift shows that the current commands plus docs are still insufficient.
 - The current shared uploader in `~/GitHub/scripts` should be reused rather than replaced.
 - For the active cloud-targeted project path, the simplest working contract is
   remote-first runtime media in `src/projects/<id>/assets.js`, with local files
