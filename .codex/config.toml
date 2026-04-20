@@ -5,9 +5,6 @@ model = "gpt-5.4"
 model_reasoning_effort = "high"
 plan_mode_reasoning_effort = "high"
 
-[mcp_servers.paper]
-url = "http://127.0.0.1:29979/mcp"
-
 [agents.visual_reviewer]
 description = "Read-only reviewer for visual work such as screenshots, layouts, hierarchy, and clarity."
 config_file = "agents/visual_reviewer.toml"

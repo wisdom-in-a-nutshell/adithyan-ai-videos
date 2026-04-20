@@ -40,7 +40,3 @@ js_repl = true
 [mcp_servers.openaiDeveloperDocs]
 enabled = false
 url = "https://developers.openai.com/mcp"
-
-[mcp_servers.paper]
-enabled = true
-url = "http://127.0.0.1:29979/mcp"
