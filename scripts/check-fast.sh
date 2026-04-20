@@ -6,19 +6,19 @@ cd "$(dirname "$0")/.."
 mapfile -t staged_files < <(git diff --cached --name-only --diff-filter=ACMR)
 
 if [ "${#staged_files[@]}" -eq 0 ]; then
-  echo "[precommit] no staged files; skipping checks"
+  echo "[check:fast] no staged files; skipping checks"
   exit 0
 fi
 
-echo "[precommit] checking for merge conflict markers"
+echo "[check:fast] checking for merge conflict markers"
 if command -v rg >/dev/null 2>&1; then
   if rg -n --no-messages "^(<<<<<<< |=======|>>>>>>> )" -- "${staged_files[@]}"; then
-    echo "[precommit] merge conflict markers detected"
+    echo "[check:fast] merge conflict markers detected"
     exit 1
   fi
 else
   if grep -nE "^(<<<<<<< |=======|>>>>>>> )" "${staged_files[@]}"; then
-    echo "[precommit] merge conflict markers detected"
+    echo "[check:fast] merge conflict markers detected"
     exit 1
   fi
 fi
@@ -31,14 +31,14 @@ for file in "${staged_files[@]}"; do
 done
 
 if [ "$json_failed" -ne 0 ]; then
-  echo "[precommit] invalid JSON detected"
+  echo "[check:fast] invalid JSON detected"
   exit 1
 fi
 
-echo "[precommit] running repo doctor"
+echo "[check:fast] running repo doctor"
 node scripts/doctor.mjs
 
-echo "[precommit] verifying Remotion compositions compile"
+echo "[check:fast] verifying Remotion compositions compile"
 node scripts/remotion_cli.mjs compositions src/index.js >/dev/null
 
-echo "[precommit] checks passed"
+echo "[check:fast] passed"

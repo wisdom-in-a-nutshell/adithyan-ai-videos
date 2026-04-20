@@ -11,8 +11,7 @@
     "render:cloud": "node scripts/render_cloud.mjs",
     "new:project": "node scripts/new_project.mjs",
     "doctor": "node scripts/doctor.mjs",
-    "check:fast": "bash scripts/precommit-check.sh",
-    "prepare": "husky"
+    "check:fast": "bash scripts/check-fast.sh"
   },
   "dependencies": {
     "@remotion/cli": "^4.0.0",
@@ -23,7 +22,5 @@
     "remotion": "^4.0.0",
     "roughjs": "^4.6.6"
   },
-  "devDependencies": {
-    "husky": "^9.1.7"
-  }
+  "devDependencies": {}
 }

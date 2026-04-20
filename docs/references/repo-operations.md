@@ -14,11 +14,11 @@
 - `npm run new:project -- --id <project-id> --title "My Video"`: scaffold both
   project folders and register the new composition.
 - `npm run doctor`: verify repo shape and composition registration.
-- `npm run check:fast`: run the staged-file guardrail used by pre-commit.
+- `npm run check:fast`: run the staged-file guardrail used by the shared agent commit hook.
 
 ## Validation Contract
 
-- Husky pre-commit runs `npm run check:fast`.
+- The shared agent Git hook runs `scripts/check-fast.sh`.
 - `check:fast` must stay fast and non-rendering.
 - Current blocking checks:
   - merge conflict markers in staged files
@@ -34,7 +34,7 @@
 - Local Remotion entrypoints prune stale temp dirs in `os.tmpdir()` before
   launch. Use `--no-temp-cleanup` to opt out, or
   `--temp-cleanup-age-hours <n>` to override the default `12h` TTL.
-- `scripts/precommit-check.sh` uses the same temp-cleaning wrapper for its
+- `scripts/check-fast.sh` uses the same temp-cleaning wrapper for its
   compile check so repeated local guardrail runs do not accumulate stale
   Remotion bundles.
 - For an active project that should render in cloud, keep runtime media in
