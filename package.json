@@ -11,7 +11,8 @@
     "render:cloud": "node scripts/render_cloud.mjs",
     "new:project": "node scripts/new_project.mjs",
     "doctor": "node scripts/doctor.mjs",
-    "check:fast": "bash scripts/check-fast.sh"
+    "check:fast": "bash scripts/check-fast.sh",
+    "check:full": "bash scripts/check-full.sh"
   },
   "dependencies": {
     "@remotion/cli": "4.0.450",

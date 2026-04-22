@@ -35,6 +35,21 @@ if [ "$json_failed" -ne 0 ]; then
   exit 1
 fi
 
+needs_video_checks=0
+for file in "${staged_files[@]}"; do
+  case "$file" in
+    package.json|package-lock.json|src/*|scripts/*|projects/*)
+      needs_video_checks=1
+      ;;
+  esac
+done
+
+if [ "$needs_video_checks" -eq 0 ]; then
+  echo "[check:fast] no staged video/runtime files; skipping video checks"
+  echo "[check:fast] passed"
+  exit 0
+fi
+
 echo "[check:fast] running repo doctor"
 node scripts/doctor.mjs
 
