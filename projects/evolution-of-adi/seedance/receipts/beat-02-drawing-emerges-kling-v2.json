@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "fal-ai/kling-video/o3/standard/image-to-video",
+  "local_request_id": "fal-seedance-1778169150773-81af51aa",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T15:53:52.629677Z",
+  "input": {
+    "prompt": "Locked overhead camera, top-down view of an open sketchbook on a wooden desk. Photograph taped to the LEFT page (with cream-colored masking tape on the corners). RIGHT page is blank cream paper. Camera does not move. The LEFT page does not change throughout the entire clip \u2014 same photograph, same tape, untouched.\n\nPHASED ACTION \u2014 must read as a real artist time-lapse, with strokes building IN DRAWING ORDER, NOT a fade-in or reveal:\n\n[0.0 \u2013 1.2s]: Pencil OUTLINE strokes appear on the right page in clear drawing order. First the head-and-shoulders contour (a simple oval and shoulder line). Then the eyes (two short dark strokes with pupils). Then the nose. Then the mouth. Each stroke appears DISCRETELY, one after another, like watching an animator drag a pencil across the page. NO color in this phase \u2014 only dark pencil lines on cream paper.\n\n[1.2 \u2013 2.5s]: The outline continues to build \u2014 hair shape (loose pencil curves), eyebrows, ears. The drawing now reads as a complete LINE drawing \u2014 recognizably the figure of a young boy, but still entirely in pencil with no fills.\n\n[2.5 \u2013 4.0s]: Watercolor washes BLOOM in over the line work in waves. First the warm brown skin tone fills the face. Then a darker wash settles into the hair area. Then a soft wash for the shirt. Each wash spreads from a starting point outward \u2014 like real watercolor seeping into paper. The pencil outline remains visible underneath the washes.\n\n[4.0 \u2013 4.8s]: Final shading details \u2014 slight darker tones at the edges of the face, around the eyes for depth. Watercolor textures settle.\n\n[4.8 \u2013 5.0s]: Hold on the completed pencil + watercolor portrait, matching the end frame exactly.\n\nCritical: this must look like a hand-drawn time-lapse where you can SEE each stroke being placed and each watercolor wash spreading. NOT a fade. NOT a reveal. NOT all-at-once. Strokes appear in clear drawing order. Watercolor blooms after the lines. Like watching a real artist work, sped up.\n\nConstraints: locked overhead camera, no zoom, no pan. NO visible pencil or hand in frame \u2014 strokes appear on their own. The photograph on the left page never changes. Single continuous take.",
+    "image_url": "https://v3b.fal.media/files/b/0a994553/LmIN9bxMQGe_Wq6vY1Qpa_02_open_photo_blank.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a994553/ZYX8gYypS7KlSMBj2lJOQ_03_drawing_emerges_on_spread.png",
+    "duration": 5,
+    "aspect_ratio": "1:1"
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/02_open_photo_blank.png",
+      "url": "https://v3b.fal.media/files/b/0a994553/LmIN9bxMQGe_Wq6vY1Qpa_02_open_photo_blank.png",
+      "uploaded": true,
+      "bytes": 644232,
+      "sha256": "8765feadb38df954ef6c3825048465d184f226a6f9429742a5c023f0c96fdebb",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/03_drawing_emerges_on_spread.png",
+      "url": "https://v3b.fal.media/files/b/0a994553/ZYX8gYypS7KlSMBj2lJOQ_03_drawing_emerges_on_spread.png",
+      "uploaded": true,
+      "bytes": 699203,
+      "sha256": "a2a919fd538198f67d6e7524c26649604557cf37f06d6f2c9abce4f67d117cf5",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a994559/v6ttxkLhkvwskUPXU-C1o_output.mp4",
+      "content_type": "video/mp4",
+      "file_name": "output.mp4",
+      "file_size": 2052724
+    }
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a994559/v6ttxkLhkvwskUPXU-C1o_output.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/beat-02-drawing-emerges-kling-v2.mp4",
+      "bytes": 2052724,
+      "sha256": "b436afd7f98724616b1fa9025e14ae40c1959dea18b770d51c051bb1dd2d3c18"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-02-drawing-emerges-kling-v2.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
