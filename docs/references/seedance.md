@@ -6,7 +6,7 @@ Generative video model from ByteDance. Useful for adding motion to stylized stil
 
 | Variant | Max res | Duration | Notes |
 |---|---|---|---|
-| Seedance 2.0 | 720p | flexible (`duration=-1` auto) | Native synchronized audio. Multimodal refs (up to 9 images + 3 video + 3 audio per call). |
+| Seedance 2.0 | 1080p | flexible (`duration=-1` auto) | Native synchronized audio. Multimodal refs (up to 9 images + 3 video + 3 audio per call). |
 | Seedance 2.0 Fast | 720p | flexible | Cheaper / lower-latency. Use for iteration; switch to full 2.0 for finals. |
 | Seedance 1.5 Pro | (per Volcengine docs) | — | Intermediate release; positioning between 1.0 Pro and 2.0. |
 | Seedance 1.0 Pro | 1080p | 2–12s (default 5s) | I2V supports start-frame + optional end-frame. Has `fix-camera` flag. |
@@ -14,7 +14,7 @@ Generative video model from ByteDance. Useful for adding motion to stylized stil
 
 Aspect ratios across the lineup: 16:9, 4:3, 1:1, 3:4, 9:16, 21:9.
 
-**2.0 currently caps at 720p on Replicate/fal**, which is a regression from 1.0 Pro's 1080p. For 1080p output today: use 1.0 Pro, upscale 2.0 outputs, or check whether Volcengine direct exposes a 1080p tier for 2.0.
+**Seedance 2.0 (full endpoint on fal) supports 1080p** as of April 2026. The Fast variant still caps at 720p — use it for cheap iteration only.
 
 ## Modes
 
@@ -45,10 +45,10 @@ Official guidance (Replicate readme): "be specific — describe camera movements
 - **Replicate** — `bytedance/seedance-2.0`, `seedance-2.0-fast`, `seedance-1-pro`, `seedance-1-lite`.
 - **fal.ai** — full 2.0 lineup (T2V / I2V / Ref2V) plus Fast tier; 1.0 Pro / 1.0 Lite also available.
 
-Local fal Ref2V runs use the repo client. See `docs/references/fal-seedance-client.md` for the full machine contract.
+Local fal Ref2V runs use the self-contained `fal-seedance` skill. See `.claude/skills/fal-seedance/references/client.md` for the full machine contract.
 
 ```bash
-node scripts/fal_seedance_ref2v.mjs run \
+python3 .claude/skills/fal-seedance/scripts/fal_seedance_ref2v.py run \
   --project <project-id> \
   --ref projects/<project-id>/storyboard/frame-01.png \
   --prompt "Animate @Image1 as the primary frame. Subtle breathing, one natural blink, tiny head turn, locked camera." \
@@ -59,13 +59,13 @@ node scripts/fal_seedance_ref2v.mjs run \
 
 The client reads `~/.secrets/fal/env`, uploads local refs during real runs, downloads the generated MP4, and writes a JSON receipt under `projects/<id>/seedance/`.
 
-Use `node scripts/fal_seedance_ref2v.mjs doctor --remote` to verify fal auth/connectivity without submitting a video generation.
+Use `python3 .claude/skills/fal-seedance/scripts/fal_seedance_ref2v.py doctor --remote` to verify fal auth/connectivity without submitting a video generation.
 
 Indicative pricing (verify before billing decisions): 1.0 Pro ≈ $0.74 / 5s 1080p on fal; 1.0 Lite ≈ $0.18 / 5s 720p. 2.0 priced per-second; check provider pages.
 
 ## Gotchas
 
-- **720p ceiling on 2.0** — plan for upscaling or fall back to 1.0 Pro if a project's spec is 1080p.
+- **Fast variant still caps at 720p** — switch to the full `bytedance/seedance-2.0/reference-to-video` endpoint for 1080p.
 - **Cross-call consistency is best-effort, not guaranteed** — even with Ref2V, expect some drift. Plan a regeneration budget per shot.
 - **Subtle ≠ free** — "subtle" prompts can still produce too much motion (extra blinks, jaw movement, head sway) that breaks a still-portrait feel. Iterate on the negative space of the prompt as much as the positive.
 - **fps default is undocumented** in fetched provider pages; 1.0 Pro's token formula `(h*w*fps*duration)/1024` implies it's a parameter — set it explicitly when the provider exposes it.
