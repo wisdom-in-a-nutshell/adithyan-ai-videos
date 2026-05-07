@@ -4,7 +4,7 @@
 
 - **Wedge (locked 2026-04-03):** AI-assisted content/media creation tools, built for self, shipped for others. See `~/GitHub/adi/memory/areas/builder/builder.md`.
 - **Motion:** Daily video practice → notice pain → build small tools → ship publicly. One motion, three outcomes (builder output, freelance inbound, rare-fit job).
-- **What this video does:** A personal, low-stakes ship that restarts the daily-shipping muscle and puts Adi in direct contact with current image/video model pain (Nano Banana Pro for stylization, Seedance for motion, Remotion for stitching). The pain noticed during production becomes the next tool seed.
+- **What this video does:** A personal, low-stakes ship that restarts the daily-shipping muscle and puts Adi in direct contact with current image/video model pain (the `imagegen` skill / Image Gen 2 model for stylization, Seedance for motion, Remotion for stitching). The pain noticed during production becomes the next tool seed.
 
 ## The two-video plan
 
@@ -60,7 +60,7 @@ Follows the repo's project contract (`docs/references/project-contract.md`). Sou
 projects/evolution-of-adi/
   brief.md             # this file
   originals/           # raw source photos
-  stylized/            # Pixar-rendered portraits (output of Nano Banana Pro)
+  stylized/            # Pixar-rendered portraits (output of the imagegen skill, Image Gen 2)
   seedance_clips/      # animated portrait clips
 src/projects/evolution-of-adi/
   composition.js       # Remotion composition config (registered in registry.js)
@@ -95,7 +95,7 @@ Likely pain points to log during production (these become candidates for the nex
 - Prompt drift across photos despite using the same prompt.
 - Likeness loss in specific age ranges (very young child, teen).
 - Seedance producing motion that breaks the still-portrait feel.
-- Manual screenshot-and-describe loop with the agent generating the Pixar portraits — the **agent visual feedback loop** pain almost certainly resurfaces here. That's the one already identified as the first real tool to build (`~/GitHub/adi/memory/areas/builder/builder.md` "Emerging core problem").
+- Manual screenshot-and-describe loop with the agent generating the Pixar portraits via the `imagegen` skill — the **agent visual feedback loop** pain almost certainly resurfaces here. That's the one already identified as the first real tool to build (`~/GitHub/adi/memory/areas/builder/builder.md` "Emerging core problem").
 
 If the agent-visual-feedback pain is concrete enough by end of day, the next builder beat is: prototype the render → screenshot → feed-to-agent loop using this exact project as the testbed.
 
