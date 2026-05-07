@@ -1,0 +1,52 @@
+Continuous single-shot top-down view of a wooden desk with warm ambient light. The full sequence is one take, no cuts.
+
+References (assign roles explicitly):
+- @Image1: the real source photograph of a young South Indian boy (age ~9), head-and-shoulders, gentle closed-mouth smile, short dark hair. This exact photograph is taped to the LEFT page of the open sketchbook and remains on the left page throughout the entire sequence as a static reference.
+- @Image2: the target end-state illustrated portrait, used ONLY as the medium and style anchor for the drawing that emerges on the RIGHT page — pencil and watercolor on cream sketchbook paper, soft natural lighting, hand-drawn texture.
+
+Layout — important spatial logic:
+- The sketchbook opens to a two-page spread.
+- LEFT page: the real photograph (@Image1) is already taped/clipped to the page when the book opens. It sits roughly centered on the left page, slightly angled, like a tucked-in keepsake. The photograph stays in this position the entire video — the artist never draws on it.
+- RIGHT page: starts blank. This is where the artist will draw the illustrated portrait.
+
+Camera: locked overhead top-down framing for [0–2s] showing the full spread. Slow gentle dolly-in starting at [2s] toward the RIGHT page, settling by [3s] at a closer overhead view of the right page (with the left page edge still visible at the left side of frame). Locked again from [3s] to end. No tilts, no pans.
+
+Lighting: warm soft ambient light from the upper-left throughout, gentle natural shadows, intimate desk-lamp mood. Consistent across the full take.
+
+Action timeline:
+
+[0.0 – 1.0s]
+A closed sketchbook lies on a wooden desk, top-down framing. Soft warm light, subtle shadow on the desk surface. Camera locked. Subtle ambient stillness — no motion.
+
+[1.0 – 2.0s]
+A hand enters from the right side of the frame, gently grasps the cover of the sketchbook, and opens it to reveal a two-page spread. The LEFT page already has the real photograph (@Image1) taped/clipped to it, slightly angled, like a kept memory. The RIGHT page is blank cream paper. The hand exits the frame to the right.
+
+[2.0 – 3.0s]
+Camera slowly dollies in toward the RIGHT page. The photograph on the LEFT page remains visible at the edge of the frame — it does not move. Composition centers on the blank right page where the drawing will happen.
+
+[3.0 – 5.0s]
+A hand re-enters from the right holding a pencil. The pencil tip touches the BLANK RIGHT page (NOT the photograph) and begins to sketch. Pencil strokes appear in real time on the right page, building up an illustrated portrait of the same boy as in the photograph. As the drawing progresses, soft watercolor washes — warm browns, gentle skin tones — bloom in over the pencil strokes. The illustration emerges on the right page, growing more complete with each second. The photograph on the LEFT page remains untouched and unchanged. By the end of [5.0s], a hand-drawn pencil + watercolor portrait fills the right page, matching the medium, line work, and color palette of @Image2 (sketchbook illustration style on cream paper).
+
+[5.0 – 6.0s]
+The hand and pencil exit the frame to the right. Camera holds locked on the spread: real photograph on the LEFT page (untouched), finished illustrated portrait on the RIGHT page. Both visible. Subtle paper grain. Quiet hold.
+
+Audio:
+- Throughout: warm quiet room tone, very subtle ambient bed.
+- [1.5s]: soft single creak of the sketchbook opening.
+- [3.0 – 5.0s]: gentle continuous pencil scratching across paper.
+- No music, no voice, no sudden audio events.
+
+Identity and style constraints:
+- The boy in the illustrated portrait on the right page must be unmistakably the same boy as in the photograph on the left — same face shape, same eye shape, same hairline, same skin tone. The artist is drawing this specific boy from the reference photo.
+- The illustrated end state must match @Image2's medium: pencil + watercolor on visible cream paper, hand-drawn texture, NOT photoreal, NOT 3D, NOT digital-looking.
+- The transformation must read as the artist drawing the boy by hand while looking at the photograph as reference, not as a digital filter or morph.
+
+Hard constraints:
+- Single continuous take, no cuts, no scene changes.
+- Locked overhead camera with one slow dolly-in starting at [2s]; otherwise camera does not move.
+- The photograph on the LEFT page is never drawn on, never altered, never moved. It stays in place as a static reference.
+- The pencil only ever touches the RIGHT page.
+- No extra characters in frame beyond the disembodied hand.
+- No on-screen text, no titles, no captions.
+- No sudden movements, no jitter, no jump cuts.
+- The sketchbook stays flat on the desk throughout.
