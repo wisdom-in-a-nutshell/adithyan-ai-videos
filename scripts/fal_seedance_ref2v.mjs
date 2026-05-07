@@ -7,9 +7,13 @@ import crypto from 'node:crypto';
 import {fal} from '@fal-ai/client';
 
 const SCHEMA_VERSION = '1.0';
-const ENDPOINT = 'bytedance/seedance-2.0/fast/reference-to-video';
+const DEFAULT_ENDPOINT = 'bytedance/seedance-2.0/reference-to-video';
+const VALID_ENDPOINTS = new Set([
+  'bytedance/seedance-2.0/reference-to-video',
+  'bytedance/seedance-2.0/fast/reference-to-video',
+]);
 const DEFAULT_SECRET_ENV_FILE = path.join(os.homedir(), '.secrets', 'fal', 'env');
-const VALID_RESOLUTIONS = new Set(['480p', '720p']);
+const VALID_RESOLUTIONS = new Set(['480p', '720p', '1080p']);
 const VALID_ASPECT_RATIOS = new Set(['auto', '21:9', '16:9', '4:3', '1:1', '3:4', '9:16']);
 const VALID_LIFECYCLES = new Set(['never', 'immediate', '1h', '1d', '7d', '30d', '1y']);
 const DOCTOR_CHECK_FILENAME = 'fal-seedance-doctor.txt';
@@ -61,8 +65,9 @@ const parseArgs = (argv) => {
     receiptDir: null,
     name: null,
     duration: 'auto',
-    resolution: '720p',
+    resolution: '1080p',
     aspectRatio: 'auto',
+    endpoint: DEFAULT_ENDPOINT,
     generateAudio: false,
     seed: null,
     dryRun: false,
@@ -142,6 +147,10 @@ const parseArgs = (argv) => {
         break;
       case '--aspect-ratio':
         options.aspectRatio = readValue(arg, i);
+        i += 1;
+        break;
+      case '--endpoint':
+        options.endpoint = readValue(arg, i);
         i += 1;
         break;
       case '--generate-audio':
@@ -226,8 +235,10 @@ Common flags:
   --video-url <url>              Reference video URL; repeat up to 3
   --audio-url <url>              Reference audio URL; repeat up to 3
   --duration <auto|4..15>        Default: auto
-  --resolution <480p|720p>       Default: 720p
+  --resolution <480p|720p|1080p> Default: 1080p (full endpoint only). Fast endpoint caps at 720p.
   --aspect-ratio <ratio|auto>    Default: auto
+  --endpoint <id>                Default: bytedance/seedance-2.0/reference-to-video.
+                                 Pass bytedance/seedance-2.0/fast/reference-to-video for the cheaper/faster variant.
   --generate-audio               Enable Seedance synchronized audio
   --seed <integer>               Fixed seed for reproducibility
   --dry-run                      Validate and print planned request without calling fal
@@ -305,10 +316,22 @@ const validateOptions = (options) => {
     fail('E_USAGE', 'Seedance Ref2V accepts at most 12 total reference files', {exitCode: 2});
   }
   if (!VALID_RESOLUTIONS.has(options.resolution)) {
-    fail('E_USAGE', `Invalid resolution: ${options.resolution}`, {exitCode: 2, hint: 'Use 480p or 720p.'});
+    fail('E_USAGE', `Invalid resolution: ${options.resolution}`, {exitCode: 2, hint: 'Use 480p, 720p, or 1080p.'});
   }
   if (!VALID_ASPECT_RATIOS.has(options.aspectRatio)) {
     fail('E_USAGE', `Invalid aspect ratio: ${options.aspectRatio}`, {exitCode: 2});
+  }
+  if (!VALID_ENDPOINTS.has(options.endpoint)) {
+    fail('E_USAGE', `Invalid endpoint: ${options.endpoint}`, {
+      exitCode: 2,
+      hint: `Use one of: ${[...VALID_ENDPOINTS].join(', ')}`,
+    });
+  }
+  if (options.endpoint === 'bytedance/seedance-2.0/fast/reference-to-video' && options.resolution === '1080p') {
+    fail('E_USAGE', `1080p is not supported by the fast endpoint`, {
+      exitCode: 2,
+      hint: 'Use --endpoint bytedance/seedance-2.0/reference-to-video for 1080p, or pass --resolution 720p.',
+    });
   }
   if (options.duration !== 'auto') {
     const parsedDuration = Number(options.duration);
@@ -502,7 +525,7 @@ const run = async ({options, startedAt, localRequestId}) => {
       request_id: localRequestId,
       data: {
         dry_run: true,
-        endpoint: ENDPOINT,
+        endpoint: options.endpoint,
         input: dryRunInput,
         references,
         output: paths,
@@ -513,14 +536,14 @@ const run = async ({options, startedAt, localRequestId}) => {
   }
 
   if (options.progress !== 'off') {
-    process.stderr.write(`Submitting fal Seedance request to ${ENDPOINT}\n`);
+    process.stderr.write(`Submitting fal Seedance request to ${options.endpoint}\n`);
   }
 
   const abortController = new AbortController();
   const timeout = setTimeout(() => abortController.abort(), options.timeoutMs);
   let result;
   try {
-    result = await fal.subscribe(ENDPOINT, {
+    result = await fal.subscribe(options.endpoint, {
       input: plannedInput,
       logs: options.progress !== 'off',
       pollInterval: options.pollIntervalMs,
@@ -570,7 +593,7 @@ const run = async ({options, startedAt, localRequestId}) => {
 
   const receipt = {
     schema_version: SCHEMA_VERSION,
-    endpoint: ENDPOINT,
+    endpoint: options.endpoint,
     local_request_id: localRequestId,
     fal_request_id: result.requestId,
     created_at_utc: nowIso(),
@@ -597,7 +620,7 @@ const run = async ({options, startedAt, localRequestId}) => {
     status: 'ok',
     request_id: localRequestId,
     data: {
-      endpoint: ENDPOINT,
+      endpoint: options.endpoint,
       fal_request_id: result.requestId,
       video: result.data.video,
       seed: result.data.seed ?? null,
@@ -630,7 +653,7 @@ const validate = ({options, startedAt, localRequestId}) => {
     status: 'ok',
     request_id: localRequestId,
     data: {
-      endpoint: ENDPOINT,
+      endpoint: options.endpoint,
       secret_env_file: secretPath,
       secret_present: secretPresent,
       sync_hint: hint,
@@ -679,7 +702,7 @@ const doctor = async ({options, startedAt, localRequestId}) => {
     status: 'ok',
     request_id: localRequestId,
     data: {
-      endpoint: ENDPOINT,
+      endpoint: options.endpoint,
       secret_env_file: secretPath,
       secret_present: true,
       mapping_file: '/Users/dobby/GitHub/scripts/sync/machine-secrets/fal.env.map',

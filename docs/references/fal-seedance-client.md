@@ -87,9 +87,11 @@ Progress and provider logs go to stderr only.
 
 ## Ref2V Schema
 
-The client targets:
+The client defaults to the full-quality endpoint:
 
-`bytedance/seedance-2.0/fast/reference-to-video`
+`bytedance/seedance-2.0/reference-to-video`
+
+Pass `--endpoint bytedance/seedance-2.0/fast/reference-to-video` to use the faster/cheaper variant. The full endpoint supports up to 1080p and is recommended for production renders; the fast variant caps at 720p and is recommended for cheap prompt iteration only.
 
 Supported input limits from fal:
 
@@ -98,7 +100,7 @@ Supported input limits from fal:
 - `audio_urls`: up to 3 audio files, MP3/WAV, combined duration up to 15s
 - total files across image/video/audio: up to 12
 - `duration`: `auto` or 4-15 seconds
-- `resolution`: `480p` or `720p`
+- `resolution`: `480p`, `720p`, or `1080p` (full endpoint only — fast caps at 720p)
 - `aspect_ratio`: `auto`, `21:9`, `16:9`, `4:3`, `1:1`, `3:4`, `9:16`
 
 ## Reference Prompting Rules
@@ -108,13 +110,15 @@ Supported input limits from fal:
 - Refer to audio as `@Audio1`, `@Audio2`, etc.
 - Explicitly assign each reference a role: primary frame, character identity, style, outfit, environment, camera motion, action choreography, rhythm, or audio mood.
 - For a storyboard frame, make `@Image1` the primary frame to animate. Use later images as anchors unless a transition or morph is intended.
-- Use short canaries before batching: 4s, 720p, no generated audio unless needed.
+- Use short canaries before batching. Resolution defaults to 1080p on the full endpoint; drop to 720p (or use `--endpoint .../fast/...`) for cheap prompt iteration.
 - For 10s+ clips, write timed segments in the prompt.
 - Do not copy Replicate payloads into this client. fal uses `image_urls` / `video_urls` / `audio_urls` and `@Image1` handles. Replicate uses different field names and bracket handles.
 
 ## Storyboard-To-Video Recipes
 
-Treat Seedance Ref2V as a shot generator with labeled anchors, not as a deterministic storyboard renderer. Generate one short clip per storyboard beat, re-pass stable identity/style anchors in each call, and stitch accepted clips later.
+The full Seedance 2.0 endpoint can handle continuous multi-action shots within a single take (open object → camera dolly → action → state change), with director-level camera control. Use timed-segment prompts (`[0-2s] ... [2-5s] ...`) for those.
+
+Treat the "one short clip per beat, stitch later" pattern as the fallback for cases where the model demonstrably struggles with a continuous shot — not the default.
 
 ### Single Storyboard Frame
 
