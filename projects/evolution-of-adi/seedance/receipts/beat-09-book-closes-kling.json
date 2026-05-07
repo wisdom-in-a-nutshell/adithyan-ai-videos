@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "fal-ai/kling-video/o3/standard/image-to-video",
+  "local_request_id": "fal-seedance-1778171715107-48dc0362",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T16:37:15.037841Z",
+  "input": {
+    "prompt": "Locked overhead camera, top-down view of an open sketchbook on a wooden desk. The left page has a real color photograph of a smiling man, the right page has a hand-drawn pencil and watercolor portrait of the same man.\n\nBOOK-CLOSING motion:\n\n[0.0 \u2013 0.8s]: Hold on the open spread.\n\n[0.8 \u2013 2.0s]: The right side of the sketchbook (the right cover) gently lifts and rotates closed, swinging from the right edge over toward the left. As the cover rotates, it covers the right page first (the illustration), then continues over the spread.\n\n[2.0 \u2013 3.5s]: The cover continues swinging closed, now covering the left page (the photograph). The book closes flat.\n\n[3.5 \u2013 4.5s]: After the book closes, the view is now the BACK COVER of the sketchbook \u2014 plain smooth cream cover, NO TEXT, with the spine binding visible on the RIGHT side of the frame. The book sits flat and closed on the wooden desk.\n\n[4.5 \u2013 5.0s]: Hold on the closed back cover, matching the end frame exactly.\n\nLighting: warm soft directional light from upper-left throughout, gentle natural shadows.\n\nConstraints: locked overhead camera (no pan, no zoom, no tilt). NO visible hand. Single continuous take. The clip MUST end exactly at the provided end frame (closed back cover, plain, spine on right).",
+    "image_url": "https://v3b.fal.media/files/b/0a994653/CyjRXmF78MOFgVd0dgpTK_09_closing_spread_real_present.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a994655/cq5Kz4azRWEnVE8V56Gpl_10_closed_book_end.png",
+    "duration": 5,
+    "aspect_ratio": "1:1"
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/09_closing_spread_real_present.png",
+      "url": "https://v3b.fal.media/files/b/0a994653/CyjRXmF78MOFgVd0dgpTK_09_closing_spread_real_present.png",
+      "uploaded": true,
+      "bytes": 726318,
+      "sha256": "696093600dbb97aef7a7dd9716732337ff44952b19c89fe966dbf40f8b1261c6",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/10_closed_book_end.png",
+      "url": "https://v3b.fal.media/files/b/0a994655/cq5Kz4azRWEnVE8V56Gpl_10_closed_book_end.png",
+      "uploaded": true,
+      "bytes": 691554,
+      "sha256": "1ed261ac1f1a6167e6592e22c4d729f23fb187f28edb8360c02601db94891c9f",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a99465c/y-RPPXrOK4CIyIwcajW0B_output.mp4",
+      "content_type": "video/mp4",
+      "file_name": "output.mp4",
+      "file_size": 3361370
+    }
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a99465c/y-RPPXrOK4CIyIwcajW0B_output.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/beat-09-book-closes-kling.mp4",
+      "bytes": 3361370,
+      "sha256": "ad35a59b0e02b4491aaabf1bf6603172dd690fa4e917b746fef94cf9dbbe1542"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-09-book-closes-kling.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
