@@ -8,7 +8,7 @@
 
 ## The two-video plan
 
-1. **Result video (today, by 9pm CEST):** the polished 15–20s evolution time-lapse itself. This is the artifact that ships.
+1. **Result video:** the polished evolution time-lapse itself. This is the artifact that ships.
 2. **Making-of video (follow-up, soon):** narrated walkthrough of the workflow — pain points hit, prompt iteration, what worked, what failed, where the agent was editing blind. This is the *builder* video; the result video is the bait that earns attention for it.
 
 Both matter. The result alone is charming personal content. The making-of alone has no artifact to anchor it. Together they're a complete builder beat: visible work + visible process.
@@ -75,7 +75,7 @@ Register the composition in `src/projects/registry.js` per repo contract once th
 - **Aspect ratio:** 1:1 square. Crops cleanly to YouTube Shorts (9:16 with letterboxing) and lands on X / LinkedIn without re-render.
 - **Duration:** 15–20 seconds.
 - **Music:** optional. Skip if it slows shipping.
-- **Hard deadline:** 9pm CEST tonight, 2026-05-07. Whatever isn't done ships rough or is cut. No extension.
+- **Pace:** ship when it's good, not when the clock says. The original 9pm CEST same-day target was set before the creative concept evolved into the "Sketchbook of Me" version (see `storyboard.md`); the new concept warrants the extra production time.
 - **Posting surfaces:** YouTube Shorts + X. LinkedIn optional.
 
 ## Discipline & watchouts
