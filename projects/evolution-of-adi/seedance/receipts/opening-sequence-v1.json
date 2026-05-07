@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "bytedance/seedance-2.0/reference-to-video",
+  "local_request_id": "fal-seedance-1778155407517-ec743f53",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T12:06:57.231813Z",
+  "input": {
+    "prompt": "Continuous single-shot top-down view of a wooden desk with warm ambient light. The full sequence is one take, no cuts.\n\nReferences (assign roles explicitly):\n- @Image1: the real source photograph of a young South Indian boy (age ~9), head-and-shoulders, gentle closed-mouth smile, short dark hair. This exact photograph appears taped to the sketchbook page during the sequence.\n- @Image2: the target end-state illustrated portrait of the same boy, used ONLY as the medium and style anchor for the final drawing \u2014 pencil and watercolor on cream sketchbook paper, soft natural lighting, hand-drawn texture.\n\nCamera: locked overhead top-down framing for [0\u20132s]. Slow gentle dolly-in starting at [2s], settling by [3s] at a closer overhead view of the right page. Locked again from [3s] to end. No tilts, no pans.\n\nLighting: warm soft ambient light from the upper-left throughout, gentle natural shadows, intimate desk-lamp mood. Consistent across the full take.\n\nAction timeline:\n\n[0.0 \u2013 1.0s]\nA closed sketchbook lies in the center of a wooden desk, top-down framing. Soft warm light, subtle shadow on the desk surface. Camera locked. Subtle ambient stillness \u2014 no motion.\n\n[1.0 \u2013 2.0s]\nA hand enters from the right side of the frame, gently grasps the cover of the sketchbook, and opens it to reveal a clean blank two-page spread of cream paper. The hand exits the frame to the right after the book settles flat. Camera remains locked.\n\n[2.0 \u2013 3.0s]\nCamera slowly dollies in toward the right page of the open sketchbook. As the dolly-in completes, the real photograph (@Image1, head-and-shoulders portrait of the boy) appears taped or pinned at the center of the right page, slightly angled, small format like a snapshot.\n\n[3.0 \u2013 5.0s]\nA hand re-enters from the right holding a pencil. The pencil tip touches the paper near the photograph and begins to sketch. Pencil strokes appear in real time around and over the photograph, building up an illustrated portrait. Soft watercolor washes \u2014 warm browns, gentle skin tones, subtle background \u2014 bloom in over the pencil strokes. The original photograph gradually fades into the paper as the watercolor saturates and the line work completes. By the end of [5.0s], the photograph has fully faded and an illustrated pencil + watercolor portrait of the same boy fills the page area where the photo was. The illustrated end state must match the medium, line quality, color palette, and composition of @Image2.\n\n[5.0 \u2013 6.0s]\nThe hand and pencil exit the frame to the right. Camera holds locked on the finished illustrated portrait sitting on the right page of the open sketchbook. Subtle paper grain visible. Quiet hold.\n\nAudio:\n- Throughout: warm quiet room tone, very subtle ambient bed.\n- [1.5s]: soft single creak of the sketchbook opening.\n- [3.0 \u2013 5.0s]: gentle continuous pencil scratching across paper.\n- No music, no voice, no sudden audio events.\n\nIdentity and style constraints:\n- The boy in the final illustration must be unmistakably the same boy as in @Image1 \u2014 same face shape, same eye shape, same hairline, same skin tone.\n- The illustrated end state must match @Image2's medium: pencil + watercolor on visible cream paper, hand-drawn texture, NOT photoreal, NOT 3D, NOT digital-looking.\n- The transformation must read as the photograph being redrawn by hand, not as a digital filter or morph.\n\nHard constraints:\n- Single continuous take, no cuts, no scene changes.\n- Locked overhead camera with one slow dolly-in starting at [2s]; otherwise camera does not move.\n- No extra characters in frame beyond the disembodied hand.\n- No on-screen text, no titles, no captions.\n- No sudden movements, no jitter, no jump cuts.\n- The sketchbook stays flat on the desk throughout.",
+    "image_urls": [
+      "https://v3b.fal.media/files/b/0a993ff4/La0hFq3MTlIvsGEL-WHOJ_01_child.jpg",
+      "https://v3b.fal.media/files/b/0a993ff5/jFXSb2Zx9_5BBk6N8UoFJ_1_child_age9.png"
+    ],
+    "video_urls": [],
+    "audio_urls": [],
+    "resolution": "1080p",
+    "duration": 6,
+    "aspect_ratio": "1:1",
+    "generate_audio": true
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/originals/01_child.jpg",
+      "url": "https://v3b.fal.media/files/b/0a993ff4/La0hFq3MTlIvsGEL-WHOJ_01_child.jpg",
+      "uploaded": true,
+      "bytes": 1182076,
+      "sha256": "9089c02a7e041f5916f617c3555e1666a7ec3c972a1efdca9df00a2a459bb1c1"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/stylized/final-sequence/1_child_age9.png",
+      "url": "https://v3b.fal.media/files/b/0a993ff5/jFXSb2Zx9_5BBk6N8UoFJ_1_child_age9.png",
+      "uploaded": true,
+      "bytes": 2211525,
+      "sha256": "689c5876dee0e1b54bbd9e0c94872687ec6b92c99a692e9ad8d76bb58de5e0c2"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a994009/nlUDWHFLQPLIFt0I9X1xN_video.mp4",
+      "content_type": "video/mp4",
+      "file_name": "video.mp4",
+      "file_size": 4737783
+    },
+    "seed": 1367439595
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a994009/nlUDWHFLQPLIFt0I9X1xN_video.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/opening-sequence-v1.mp4",
+      "bytes": 4737783,
+      "sha256": "c2a84b42a184267fc01b1e20f86348d44ae81fc1e932973fbeebf54ad4f41f66"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/opening-sequence-v1.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
