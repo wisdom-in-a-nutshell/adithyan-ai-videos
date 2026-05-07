@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "bytedance/seedance-2.0/image-to-video",
+  "local_request_id": "fal-seedance-1778163103979-7247cc3a",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T14:15:23.841892Z",
+  "input": {
+    "prompt": "Locked camera, full-frame view of a hand-drawn portrait on cream sketchbook paper.\n\nAction timeline:\n[0.0 \u2013 1.5s]: The portrait visible at the start (a young man with short dark hair, age ~19, smiling) gradually FADES AWAY into the cream paper. The pencil strokes and watercolor wash gently dissolve back into the page texture. The fade is smooth and even, like the portrait was never drawn.\n[1.5 \u2013 2.0s]: The page is briefly BLANK \u2014 just clean cream sketchbook paper, no marks.\n[2.0 \u2013 5.0s]: A new portrait emerges on the same blank page. Pencil strokes appear progressively, drawing the figure of an older man with curly hair (age ~23, calm introspective expression). Watercolor washes \u2014 warm browns, gentle skin tones \u2014 bloom in over the pencil work as it builds. By the end of the clip, the new portrait is complete and matches the end frame exactly.\n\nConstraints: locked camera, no movement, no zoom, no pan. The cream paper background remains constant throughout \u2014 only the portrait content changes. NO visible pencil, hand, or eraser at any point. NO morphing one face into another \u2014 the first face fades to blank, then the new face is drawn fresh from scratch. Single continuous take. The clip MUST end exactly at the provided end frame for seamless stitching.",
+    "image_url": "https://v3b.fal.media/files/b/0a9942f6/8P7XBFxGR7vR6_mfP-x0v_05_standalone_late_teen_age19.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a9942f6/P9TcER7h4ShWRODAbVxJF_06_standalone_mid_20s_age23.png",
+    "resolution": "720p",
+    "duration": 5,
+    "aspect_ratio": "1:1",
+    "generate_audio": false
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/05_standalone_late_teen_age19.png",
+      "url": "https://v3b.fal.media/files/b/0a9942f6/8P7XBFxGR7vR6_mfP-x0v_05_standalone_late_teen_age19.png",
+      "uploaded": true,
+      "bytes": 2095055,
+      "sha256": "8e51aa6f3fc77e2589877cf38d5c9a279afbaf9105b136c5853ee20b1fc72e41",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/06_standalone_mid_20s_age23.png",
+      "url": "https://v3b.fal.media/files/b/0a9942f6/P9TcER7h4ShWRODAbVxJF_06_standalone_mid_20s_age23.png",
+      "uploaded": true,
+      "bytes": 2180505,
+      "sha256": "d7e20d837144b4a0f99785d1c20605fc48f1f710d7d535af1e59bf1538bee670",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a99430b/vcBQRBpAFhC5alHxSlpJN_video.mp4",
+      "content_type": "video/mp4",
+      "file_name": "video.mp4",
+      "file_size": 3511608
+    },
+    "seed": 634330249
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a99430b/vcBQRBpAFhC5alHxSlpJN_video.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/beat-05-redraw-test.mp4",
+      "bytes": 3511608,
+      "sha256": "dc5751eadca825774cf08ec1faa75ee3f1e4804f8ef1362b5e834ad272ea8681"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-05-redraw-test.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
