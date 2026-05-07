@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "fal-ai/kling-video/o3/standard/image-to-video",
+  "local_request_id": "fal-seedance-1778170748146-8d67d63c",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T16:21:24.193177Z",
+  "input": {
+    "prompt": "Locked camera, full-frame view of a hand-drawn pencil and watercolor portrait of a young man in his late teens with a wide smile on cream sketchbook paper.\n\nPAGE-TURN motion \u2014 turning to the next blank page in a sketchbook:\n\n[0.0 \u2013 0.7s]: Hold on the late-teen portrait.\n\n[0.7 \u2013 1.5s]: The right edge of the page begins to LIFT and curl gently upward. The portrait starts to peel away from the right side.\n\n[1.5 \u2013 3.0s]: The page TURNS \u2014 the entire portrait page lifts up and rotates over toward the left, sliding out of the frame. As the page lifts, the BLANK CREAM PAGE underneath is revealed.\n\n[3.0 \u2013 4.5s]: The previous page finishes turning out of frame. The blank cream sketchbook page settles flat into view, completely empty. Same cream paper tone as before.\n\n[4.5 \u2013 5.0s]: Hold on the blank cream page.\n\nCritical: real PAGE-TURN motion \u2014 paper physically lifting, curling, rotating away. NOT a fade. NOT a dissolve. Real paper physics.\n\nConstraints: locked camera, no zoom, no pan. NO visible hand. Single continuous take. The clip MUST end exactly at the provided end frame.",
+    "image_url": "https://v3b.fal.media/files/b/0a9945f2/Yxno3leGnYKRkMhlpIknD_05_standalone_late_teen_age19.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a9945f8/XGsDO5qjXY7mMlDssuAAn_00_blank_page_landing.png",
+    "duration": 5,
+    "aspect_ratio": "1:1"
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/05_standalone_late_teen_age19.png",
+      "url": "https://v3b.fal.media/files/b/0a9945f2/Yxno3leGnYKRkMhlpIknD_05_standalone_late_teen_age19.png",
+      "uploaded": true,
+      "bytes": 2095055,
+      "sha256": "8e51aa6f3fc77e2589877cf38d5c9a279afbaf9105b136c5853ee20b1fc72e41",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/00_blank_page_landing.png",
+      "url": "https://v3b.fal.media/files/b/0a9945f8/XGsDO5qjXY7mMlDssuAAn_00_blank_page_landing.png",
+      "uploaded": true,
+      "bytes": 1869205,
+      "sha256": "f29431c3347ad747fa1e1f71c62cf7147eef2ad139a85cde96386b91daefa803",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a9945fe/FK49ApczyZ69t7ygqxDeB_output.mp4",
+      "content_type": "video/mp4",
+      "file_name": "output.mp4",
+      "file_size": 3766016
+    }
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a9945fe/FK49ApczyZ69t7ygqxDeB_output.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/beat-05a-page-turn-late-teen-to-blank-kling.mp4",
+      "bytes": 3766016,
+      "sha256": "c1d193ebc3176e302751dac9d42814e0b7a5ac2b1a5e2938fdde0b707e2151fa"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-05a-page-turn-late-teen-to-blank-kling.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
