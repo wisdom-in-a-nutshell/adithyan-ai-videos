@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "bytedance/seedance-2.0/image-to-video",
+  "local_request_id": "fal-seedance-1778162290949-d6cf468e",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T14:00:23.929054Z",
+  "input": {
+    "prompt": "Locked camera. A hand-drawn pencil and watercolor portrait on cream paper transforms organically. The face slowly redraws itself: pencil strokes shift and re-form, watercolor washes flow and resettle. The portrait at the start (a man ~30 years old with a beard) gradually transforms into the portrait at the end (a man ~34 years old with voluminous curly black hair, full beard, and a warm open smile). The medium remains pencil + watercolor on cream paper throughout. The smile lands gently at the end.\n\nConstraints: locked camera. Continuous, organic transformation. NO visible pencil or hand. Single continuous take. The clip MUST end exactly at the provided end frame.",
+    "image_url": "https://v3b.fal.media/files/b/0a9942a5/Y-TNu62vdsX0nt-jD9WVs_07_standalone_early_30s_age30.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a9942a5/xUdvz-618qOxVa3ZpWFRC_08_standalone_present_day_age34.png",
+    "resolution": "720p",
+    "duration": 4,
+    "aspect_ratio": "1:1",
+    "generate_audio": false
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/07_standalone_early_30s_age30.png",
+      "url": "https://v3b.fal.media/files/b/0a9942a5/Y-TNu62vdsX0nt-jD9WVs_07_standalone_early_30s_age30.png",
+      "uploaded": true,
+      "bytes": 2222980,
+      "sha256": "cbcef01822fbd08edab77753e08d23a26d745b31eebb0bdf9bc3a16af54f180b",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/08_standalone_present_day_age34.png",
+      "url": "https://v3b.fal.media/files/b/0a9942a5/xUdvz-618qOxVa3ZpWFRC_08_standalone_present_day_age34.png",
+      "uploaded": true,
+      "bytes": 2295693,
+      "sha256": "8f858b8d8d9bd183f77dff46d82887243066d3a04a553e70cf7af57810a9f598",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a9942b0/Pb11M--oserazBJqmOjsk_video.mp4",
+      "content_type": "video/mp4",
+      "file_name": "video.mp4",
+      "file_size": 2788870
+    },
+    "seed": 36429637
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a9942b0/Pb11M--oserazBJqmOjsk_video.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/beat-07-early-30s-to-present.mp4",
+      "bytes": 2788870,
+      "sha256": "bff2e3a13536e6f5f6b93afd46329b41a365e37241ef4c3dd186f4f44938dedd"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-07-early-30s-to-present.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}

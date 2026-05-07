@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "bytedance/seedance-2.0/image-to-video",
+  "local_request_id": "fal-seedance-1778162280016-f41f9d78",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T14:00:23.700603Z",
+  "input": {
+    "prompt": "Locked camera. A hand-drawn pencil and watercolor portrait on cream paper transforms organically. The face slowly redraws itself: pencil strokes shift and re-form, watercolor washes flow and resettle, the features age. The portrait at the start (a young boy ~9 years old) gradually transforms into the portrait at the end (a young man ~19 years old with a wide genuine smile). The medium remains pencil + watercolor on cream paper throughout \u2014 the surface stays the same.\n\nConstraints: locked camera, no movement. The transformation is continuous, organic, dreamlike \u2014 not a hard cut or wipe. NO visible pencil or hand. Single continuous take. The clip MUST end exactly at the provided end frame.",
+    "image_url": "https://v3b.fal.media/files/b/0a9942a4/kai0ZBSwrjRmrVjti95yZ_04_standalone_child_age9.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a9942a4/Z0MYxZUQRsfpaE1KdaNEi_05_standalone_late_teen_age19.png",
+    "resolution": "720p",
+    "duration": 4,
+    "aspect_ratio": "1:1",
+    "generate_audio": false
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/04_standalone_child_age9.png",
+      "url": "https://v3b.fal.media/files/b/0a9942a4/kai0ZBSwrjRmrVjti95yZ_04_standalone_child_age9.png",
+      "uploaded": true,
+      "bytes": 2211525,
+      "sha256": "689c5876dee0e1b54bbd9e0c94872687ec6b92c99a692e9ad8d76bb58de5e0c2",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/05_standalone_late_teen_age19.png",
+      "url": "https://v3b.fal.media/files/b/0a9942a4/Z0MYxZUQRsfpaE1KdaNEi_05_standalone_late_teen_age19.png",
+      "uploaded": true,
+      "bytes": 2095055,
+      "sha256": "8e51aa6f3fc77e2589877cf38d5c9a279afbaf9105b136c5853ee20b1fc72e41",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a9942b0/k7DuN0H-iIP0tdwjVE9qr_video.mp4",
+      "content_type": "video/mp4",
+      "file_name": "video.mp4",
+      "file_size": 3159146
+    },
+    "seed": 431911411
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a9942b0/k7DuN0H-iIP0tdwjVE9qr_video.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/beat-04-child-to-late-teen.mp4",
+      "bytes": 3159146,
+      "sha256": "69131918eb7c79e33234dd6de2017ae807ef75a2aea2ce8db2d90b2d72ef21b1"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-04-child-to-late-teen.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
