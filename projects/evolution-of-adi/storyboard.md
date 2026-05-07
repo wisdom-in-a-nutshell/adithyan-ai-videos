@@ -18,16 +18,20 @@ Reversed chronological: **child → present**. Ending on real present-day Adi la
 
 ## Source photos — locked
 
-Final 6 ages in `originals/` (sorted chronologically; `_unused/` holds dropped candidates):
+Locked final stylized portraits in `stylized/final/`. Original sources in `originals/`; iterations in `stylized/v1_3q_neutral/`, `stylized/v2_deadon_expressive/`, `stylized/v3_iterated/`. `_unused/` holds dropped sources.
 
-| # | File | Approx. age | Notes |
-|---|------|-------------|-------|
-| 1 | `01_child.jpg` | ~9 | B&W school portrait, gentle smile |
-| 2 | `02_teen_early.jpg` | ~13 | Passport, maroon background |
-| 3 | `03_late_teen.jpg` | ~19 | Passport, gridded shirt, fuller face |
-| 4 | `04_mid_20s.png` | ~23 | B&W candid, Reebok polo — only candid in the middle |
-| 5 | `05_early_30s.jpg` | ~30 | Mirror selfie, maroon sweater |
-| 6 | `06_present_day.webp` | ~34 | Curly hair, beard — the closing punchline |
+| # | File | Approx. age | Source used | Vibe |
+|---|------|-------------|-------------|------|
+| 1 | `01_child.png` | ~9 | `01_child.jpg` (B&W school portrait) | Gentle source-smile, childlike proportions |
+| 2 | `02_teen_early.png` | ~13 | `02_teen_early.jpg` (maroon passport) | Stoic awkward teen — **NOT used in video, kept in final/ for archive** |
+| 3 | `03_late_teen.png` | ~19 | `03_late_teen_alt.jpg` (blue checkered shirt, smiling) | Big genuine open smile, the joy beat |
+| 4 | `04_mid_20s.png` | ~23 | `04_mid_20s.png` (B&W Reebok candid) | Introspective, curly hair, calm depth |
+| 5 | `05_early_30s.png` | ~30 | `05_early_30s.jpg` (mirror selfie) | Calm composed, full beard, settled |
+| 6 | `06_present_day.png` | ~34 | `06_present_day.webp` (profile portrait) | Warm open smile, voluminous curls — the closing punch |
+
+**Style:** hand-drawn sketchbook portraits — pencil + watercolor on visible cream/aged paper texture, dead-on framing, plain dark crewneck, source-expression preserved per photo.
+
+**Video sequence: 5 ages.** 02 is dropped from the video — visually too close to 03's source structure and adds passport-monotony without enough age separation. Kept in `final/` as archive only.
 
 **Decisions logged:**
 - Baby photo dropped — features too undefined for likeness to "lock"; opens the time-lapse on a face viewers can already track.
@@ -35,31 +39,30 @@ Final 6 ages in `originals/` (sorted chronologically; `_unused/` holds dropped c
 - Family candid (~10–12) and prize photo (~9–10) considered as alternates for the child slot but kept the B&W school portrait per Adi's preference. Both stashed in `_unused/`.
 - 06_present_day.webp is the bookend punchline — pick the right closer matters more than any other choice.
 
-## Shot list
+## Shot list — Sketchbook of Me (5 ages)
 
-Total runtime target: **18–20s, 1:1 square**.
+The locked creative concept is **"Sketchbook of Me"** (Version B): a single page of paper, fixed frame. Pencil strokes appear, watercolor settles, an illustrated portrait emerges. The page fades, the next age is drawn over it on the same paper. Closing beat: pencil draws present-day Adi, last stroke lands, illustration dissolves into the real present-day photo.
 
-The bookend structure is **real → Pixar middle → real**. Opener is the real child photo; closer is the real present-day photo. Both are stylization-free.
+**Sequence:** 1 → 3 → 4 → 5 → 6 (02 is skipped).
 
-| # | Shot | Source | Duration | Notes |
+Total runtime target: **~18s, 1:1 square**.
+
+| # | Beat | Source | Duration | Notes |
 |---|------|--------|----------|-------|
-| 1 | Real child photo (opener) | `originals/01_child.jpg` | 2.0s | Hold still, slight Ken Burns (3% zoom in) |
-| 2 | **Magic transition** — entering the dream | overlay effect | 0.6s | White-bloom flash + particle/stardust dissolve |
-| 3 | Pixar child portrait | `seedance_clips/01_child_pixar.mp4` | 1.9s | Subtle blink / breath via Seedance |
-| 4 | Crossfade | — | 0.3s | |
-| 5 | Pixar early teen (~13) | `seedance_clips/02_teen_early_pixar.mp4` | 1.7s | Subtle motion |
-| 6 | Crossfade | — | 0.3s | |
-| 7 | Pixar late teen (~19) | `seedance_clips/03_late_teen_pixar.mp4` | 1.7s | Subtle motion |
-| 8 | Crossfade | — | 0.3s | |
-| 9 | Pixar mid-20s | `seedance_clips/04_mid_20s_pixar.mp4` | 1.7s | Subtle motion |
-| 10 | Crossfade | — | 0.3s | |
-| 11 | Pixar early-30s | `seedance_clips/05_early_30s_pixar.mp4` | 1.7s | Subtle motion |
-| 12 | **Magic transition** — exiting the dream | overlay effect | 0.6s | Mirror of shot 2 |
-| 13 | Real present-day photo (closer) | `originals/06_present_day.webp` | 2.5s | Hold longest. The punchline. Slight Ken Burns out (3% zoom, settle to 0) |
+| 1 | Real child photo appears on paper background. Hand enters with pencil. | `originals/01_child.jpg` | 2.5s | Anchors viewer to "this is a real person" |
+| 2 | Pencil draws over the real photo. Strokes accumulate. Watercolor washes settle. Photo transforms into the illustrated child portrait. | Seedance from `stylized/final/01_child.png` | 2.5s | The first "magic" moment |
+| 3 | Hold on illustrated child. Subtle Seedance breath/eye motion. | `stylized/final/01_child.png` (animated) | 1.0s | Let it land |
+| 4 | Page fades → blank → pencil redraws → settles → hold. **Late teen (~19)** with the genuine smile. | Seedance from `stylized/final/03_late_teen.png` | 2.0s | First joy beat |
+| 5 | Page fades → redraws → settles → hold. **Mid-20s (~23)** introspective, curls. | Seedance from `stylized/final/04_mid_20s.png` | 2.0s | |
+| 6 | Page fades → redraws → settles → hold. **Early-30s (~30)** calm, beard. | Seedance from `stylized/final/05_early_30s.png` | 2.0s | |
+| 7 | Hand draws **present-day (~34)**. Last stroke lands. Hold for a beat. | Seedance from `stylized/final/06_present_day.png` | 2.5s | The reveal beat — warm open smile lands |
+| 8 | Illustrated present-day morphs/dissolves into real present-day photo. Hold. | `originals/06_present_day.webp` | 2.5s | Closing punch — "the drawing was a memory; the real face is now" |
 
-**Total: ~17.6s** (within target).
+**Total: ~17.0s.**
 
-If pushed for time: drop one of the middle Pixar ages (early teen OR mid-20s feel most cuttable). Don't drop bookends or magic transitions — they carry the concept.
+**Reality check on the production work:** each "drawing" beat is a Seedance image-to-video animation ("pencil strokes appearing one by one revealing this portrait, watercolor wash arriving last, ~2.5s"). Page fades + the final morph-to-real are Remotion sequences/crossfades over the Seedance clips.
+
+If pushed for time: drop one of the middle ages (mid-20s or early-30s feel most cuttable in a pinch). Don't drop the opener, the closer, or the present-day reveal.
 
 ## Transitions
 
