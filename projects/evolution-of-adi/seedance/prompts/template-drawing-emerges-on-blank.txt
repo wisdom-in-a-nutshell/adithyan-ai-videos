@@ -1,0 +1,26 @@
+DRAWING-EMERGES-ON-BLANK template (Kling O3, 5s, 1:1)
+Used for: starting an age beat — pencil + watercolor sketch emerges on a
+previously blank cream page.
+
+Substitute {SUBJECT_DESCRIPTION} for the target portrait (e.g. "a young man
+in his late teens with a wide genuine smile", "a man with a beard", etc.).
+
+---
+
+Locked camera, full-frame view of a blank cream sketchbook page. The cream paper background does not change — only sketch content is added. NO visible pencil, NO visible hand — strokes appear on their own as if drawn by an invisible artist.
+
+PHASED ACTION — must read as a real artist time-lapse, with strokes building IN DRAWING ORDER, NOT a fade-in or reveal:
+
+[0.0 – 1.2s]: Pencil OUTLINE strokes appear on the cream page in clear drawing order. First the head-and-shoulders contour. Then the eyes. Then the nose. Then the mouth. Each stroke appears DISCRETELY, one after another, like watching an animator drag a pencil across the page. NO color in this phase — only dark pencil lines on cream paper.
+
+[1.2 – 2.5s]: The outline continues to build — hair shape, eyebrows, ears. The drawing now reads as a complete LINE drawing — recognizably {SUBJECT_DESCRIPTION}, but still entirely in pencil with no fills.
+
+[2.5 – 4.0s]: Watercolor washes BLOOM in over the line work in waves. First the warm brown skin tone fills the face. Then a darker wash settles into the hair area. Then a soft wash for the shirt. Each wash spreads from a starting point outward — like real watercolor seeping into paper.
+
+[4.0 – 4.8s]: Final shading details — slight darker tones at the edges of the face, around the eyes for depth.
+
+[4.8 – 5.0s]: Hold on the completed pencil + watercolor portrait, matching the end frame exactly.
+
+Critical: this must look like a hand-drawn time-lapse where you can SEE each stroke being placed and each watercolor wash spreading. NOT a fade. NOT a reveal. NOT all-at-once. Strokes appear in clear drawing order. Watercolor blooms after the lines. Like watching a real artist work, sped up.
+
+Constraints: locked camera, no zoom, no pan. NO visible pencil or hand. Single continuous take. The clip MUST end exactly at the provided end frame for seamless stitching.
