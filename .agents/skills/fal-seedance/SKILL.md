@@ -26,6 +26,8 @@ The CLI reads `~/.secrets/fal/env` directly. Do not pass fal keys through flags,
 5. For visual canaries, default to `--no-generate-audio`, 4-5 seconds, `720p`, and a restrained prompt.
 6. Keep each successful run's JSON receipt with the MP4; use the receipt to regenerate or compare drift.
 
+For the active Evolution of Adi storyboard-image workflow, read `references/evolution-of-adi.md` before running Seedance. It contains the exact reference-call patterns and project paths.
+
 ## Commands
 
 Validate the local secret bootstrap:
@@ -48,6 +50,21 @@ node scripts/fal_seedance_ref2v.mjs run \
 ```
 
 Run after the dry-run looks right by removing `--dry-run`.
+
+Multi-reference storyboard canary:
+
+```bash
+node scripts/fal_seedance_ref2v.mjs run \
+  --project evolution-of-adi \
+  --name early-30s-with-identity-anchors \
+  --ref projects/evolution-of-adi/stylized/final/05_early_30s.png \
+  --ref projects/evolution-of-adi/stylized/final/04_mid_20s.png \
+  --ref projects/evolution-of-adi/stylized/final/06_present_day.png \
+  --prompt "Animate @Image1 as the primary portrait. Use @Image2 and @Image3 only as identity and style anchors for the same person. Gentle smile, subtle breathing, tiny head turn, soft studio light, locked camera, no age change, no outfit change, no face reshaping." \
+  --duration 4 \
+  --aspect-ratio 1:1 \
+  --dry-run
+```
 
 ## Prompt Rules
 
