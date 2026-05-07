@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "fal-ai/kling-video/o3/standard/image-to-video",
+  "local_request_id": "fal-seedance-1778170754869-20e731e6",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T16:20:29.187343Z",
+  "input": {
+    "prompt": "Locked camera, full-frame view of a blank cream sketchbook page. NO visible pencil, NO visible hand \u2014 strokes appear on their own.\n\nPHASED ACTION \u2014 strokes building IN DRAWING ORDER:\n\n[0.0 \u2013 1.2s]: Pencil OUTLINE strokes appear in clear drawing order: head-and-shoulders contour, eyes, nose, mouth. Each stroke appears DISCRETELY. NO color yet.\n\n[1.2 \u2013 2.5s]: Outline continues \u2014 short curly dark hair, eyebrows, ears. The drawing reads as a young man in his early 20s with curly hair, calm introspective expression, in pure pencil.\n\n[2.5 \u2013 4.0s]: Watercolor washes BLOOM in waves over the line work. Warm brown skin tone first, then darker wash for hair, then shirt wash. Each wash spreads outward like watercolor seeping into paper.\n\n[4.0 \u2013 4.8s]: Final shading details.\n\n[4.8 \u2013 5.0s]: Hold on the completed portrait, matching the end frame exactly.\n\nCritical: real artist time-lapse \u2014 strokes in drawing order, watercolor blooming after lines. NOT a fade.\n\nConstraints: locked camera. NO visible pencil or hand. Single continuous take. The clip MUST end exactly at the provided end frame.",
+    "image_url": "https://v3b.fal.media/files/b/0a9945f3/bxFfM5K-aqxI6L9USGc6O_00_blank_page_landing.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a9945f3/OzQJMk7xnw_ji11nuyKAP_06_standalone_mid_20s_age23.png",
+    "duration": 5,
+    "aspect_ratio": "1:1"
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/00_blank_page_landing.png",
+      "url": "https://v3b.fal.media/files/b/0a9945f3/bxFfM5K-aqxI6L9USGc6O_00_blank_page_landing.png",
+      "uploaded": true,
+      "bytes": 1869205,
+      "sha256": "f29431c3347ad747fa1e1f71c62cf7147eef2ad139a85cde96386b91daefa803",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/06_standalone_mid_20s_age23.png",
+      "url": "https://v3b.fal.media/files/b/0a9945f3/OzQJMk7xnw_ji11nuyKAP_06_standalone_mid_20s_age23.png",
+      "uploaded": true,
+      "bytes": 2180505,
+      "sha256": "d7e20d837144b4a0f99785d1c20605fc48f1f710d7d535af1e59bf1538bee670",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a9945fa/VTp8-IGfshMFwxEcrrIYJ_output.mp4",
+      "content_type": "video/mp4",
+      "file_name": "output.mp4",
+      "file_size": 4693649
+    }
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a9945fa/VTp8-IGfshMFwxEcrrIYJ_output.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/beat-05b-emerges-mid-20s-kling.mp4",
+      "bytes": 4693649,
+      "sha256": "f51e9e997d5233a06a8f401f6989e8c8d38d87df631d41997c735bf05d21b405"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-05b-emerges-mid-20s-kling.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
