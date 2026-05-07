@@ -26,8 +26,6 @@ The CLI reads `~/.secrets/fal/env` directly. Do not pass fal keys through flags,
 5. For visual canaries, default to `--no-generate-audio`, 4-5 seconds, `720p`, and a restrained prompt.
 6. Keep each successful run's JSON receipt with the MP4; use the receipt to regenerate or compare drift.
 
-For the active Evolution of Adi storyboard-image workflow, read `references/evolution-of-adi.md` before running Seedance. It contains the exact reference-call patterns and project paths.
-
 ## Commands
 
 Validate the local secret bootstrap:
@@ -40,10 +38,10 @@ Dry-run a canary:
 
 ```bash
 node scripts/fal_seedance_ref2v.mjs run \
-  --project evolution-of-adi \
-  --name early-30s-studio-canary \
-  --ref projects/evolution-of-adi/originals/05_early_30s.jpg \
-  --prompt "A calm studio portrait of the man in @Image1, gentle smile, subtle breathing, tiny head turn, soft key light, locked camera, no age change." \
+  --project <project-id> \
+  --name portrait-motion-canary \
+  --ref projects/<project-id>/storyboard/frame-01.png \
+  --prompt "Animate @Image1 as a calm studio portrait. Gentle smile, subtle breathing, one natural blink, tiny head turn, soft key light, locked camera, no face reshaping." \
   --duration 4 \
   --aspect-ratio 1:1 \
   --dry-run
@@ -55,12 +53,12 @@ Multi-reference storyboard canary:
 
 ```bash
 node scripts/fal_seedance_ref2v.mjs run \
-  --project evolution-of-adi \
-  --name early-30s-with-identity-anchors \
-  --ref projects/evolution-of-adi/stylized/final/05_early_30s.png \
-  --ref projects/evolution-of-adi/stylized/final/04_mid_20s.png \
-  --ref projects/evolution-of-adi/stylized/final/06_present_day.png \
-  --prompt "Animate @Image1 as the primary portrait. Use @Image2 and @Image3 only as identity and style anchors for the same person. Gentle smile, subtle breathing, tiny head turn, soft studio light, locked camera, no age change, no outfit change, no face reshaping." \
+  --project <project-id> \
+  --name anchored-portrait-motion \
+  --ref projects/<project-id>/storyboard/primary-frame.png \
+  --ref projects/<project-id>/storyboard/identity-anchor-01.png \
+  --ref projects/<project-id>/storyboard/style-anchor-01.png \
+  --prompt "Animate @Image1 as the primary frame. Use @Image2 and @Image3 only as identity and style anchors. Subtle breathing, one natural blink, tiny head turn, soft studio light, locked camera, no face reshaping, no outfit change." \
   --duration 4 \
   --aspect-ratio 1:1 \
   --dry-run
@@ -69,6 +67,7 @@ node scripts/fal_seedance_ref2v.mjs run \
 ## Prompt Rules
 
 - Use `@ImageN` handles, matching fal's Seedance schema.
+- `@Image1` should usually be the primary frame to animate. Additional image refs should be described as identity, style, object, or environment anchors so Seedance does not treat them as a morph target by accident.
 - Describe the exact camera move and the amount of motion.
 - For identity canaries, explicitly say no age change, no outfit change, no face reshaping, and locked or near-locked camera.
 - Avoid asking for the full age-evolution morph until the single-age identity canary is acceptable.
