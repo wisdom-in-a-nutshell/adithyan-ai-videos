@@ -108,6 +108,74 @@ Supported input limits from fal:
 - For a storyboard frame, make `@Image1` the primary frame to animate. Use later images as anchors unless a transition or morph is intended.
 - Use short canaries before batching: 4s, 720p, no generated audio unless needed.
 - For 10s+ clips, write timed segments in the prompt.
+- Do not copy Replicate payloads into this client. fal uses `image_urls` / `video_urls` / `audio_urls` and `@Image1` handles. Replicate uses different field names and bracket handles.
+
+## Storyboard-To-Video Recipes
+
+Treat Seedance Ref2V as a shot generator with labeled anchors, not as a deterministic storyboard renderer. Generate one short clip per storyboard beat, re-pass stable identity/style anchors in each call, and stitch accepted clips later.
+
+### Single Storyboard Frame
+
+Use when the storyboard frame already defines composition and you only need subtle motion:
+
+```text
+Animate @Image1 as the primary frame.
+[0-4s]: locked medium close-up, subtle breathing, one natural blink, soft key light.
+No face reshaping, no outfit change, no new characters.
+```
+
+### Identity + Style Anchors
+
+Use when one frame is primary but consistency needs extra references:
+
+```text
+Animate @Image1 as the primary frame.
+Use @Image2 only as the character identity anchor.
+Use @Image3 only as the color/style anchor.
+[0-4s]: locked camera, subtle breathing, one natural blink, tiny head turn.
+No face reshaping, no outfit change, no age change, no new characters.
+```
+
+### Motion Transfer
+
+Use a short reference video when camera or action matters more than static composition:
+
+```text
+Animate @Image1 as the character and visual style reference.
+Reference @Video1 only for camera movement and action choreography.
+[0-5s]: follow @Video1's motion timing, but preserve @Image1's face, outfit, and style.
+```
+
+### Time-Segmented Shot
+
+Use for longer 8-15s generations:
+
+```text
+@Image1 is the primary character and first visual anchor.
+@Image2 is the environment reference.
+[0-4s]: medium close-up, calm expression, soft side light, locked camera.
+[4-8s]: slow push-in, tiny head turn toward camera.
+[8-12s]: expression warms slightly, lighting stays consistent.
+No extra characters, no text, no abrupt cuts.
+```
+
+## Free Verification Boundary
+
+Can verify without paid video generation:
+
+- local secret file exists and can be parsed: `validate`
+- fal auth/connectivity via storage only: `doctor --remote`
+- local reference files exist and fit prompt handle order: `run --dry-run`
+- reference counts and supported parameter values
+- planned MP4 and receipt paths
+
+Cannot verify without actual provider generation:
+
+- identity retention
+- prompt adherence
+- motion quality
+- provider safety rejection on the generation endpoint
+- whether multi-reference roles are interpreted exactly as intended
 
 ## Output Files
 

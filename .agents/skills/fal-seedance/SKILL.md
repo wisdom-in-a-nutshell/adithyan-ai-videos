@@ -80,6 +80,8 @@ node scripts/fal_seedance_ref2v.mjs run \
 - For identity canaries, explicitly say no age change, no outfit change, no face reshaping, and locked or near-locked camera.
 - For longer clips, write timed segments. For storyboard/image canaries, keep the first test short and restrained.
 - Avoid asking for a morph or multi-shot story until the single-frame motion canary is acceptable.
+- Treat Ref2V as a shot generator with labeled anchors, not a deterministic storyboard renderer. Generate one short clip per storyboard beat and stitch accepted clips later.
+- Do not copy Replicate examples directly; fal uses `image_urls` / `video_urls` / `audio_urls` and `@Image1` handles.
 
 ## Output Contract
 
