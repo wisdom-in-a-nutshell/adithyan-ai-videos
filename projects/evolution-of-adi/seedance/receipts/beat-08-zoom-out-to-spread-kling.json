@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "fal-ai/kling-video/o3/standard/image-to-video",
+  "local_request_id": "fal-seedance-1778171706133-9035b68a",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T16:39:13.152357Z",
+  "input": {
+    "prompt": "Camera DOLLY-OUT / pull-back shot. Begins at full-frame close-up on a hand-drawn pencil and watercolor portrait of a smiling man with curly hair and a beard on cream paper.\n\n[0.0 \u2013 0.8s]: Hold on the close-up portrait. Camera is locked.\n\n[0.8 \u2013 2.5s]: Camera slowly pulls BACK and OUT. As the camera retreats, the framing widens \u2014 the illustration reveals itself to be on the RIGHT page of an open sketchbook. The page edges, the sketchbook binding, and the wooden desk surface come into view at the edges of the frame.\n\n[2.5 \u2013 4.0s]: Camera continues pulling back. The LEFT page of the open sketchbook becomes visible \u2014 and on it, a real color photograph (of the same smiling man with curly hair and beard, wearing a dark crewneck) is taped with cream-colored masking tape on the corners. The photograph appears as the camera reveals it \u2014 not fading in, just coming into view as the framing widens.\n\n[4.0 \u2013 4.8s]: Camera settles at top-down overhead view of the full open sketchbook spread on the wooden desk: real photograph on left, hand-drawn illustration on right.\n\n[4.8 \u2013 5.0s]: Hold on the closing spread, matching the end frame exactly.\n\nThe illustration on the right page does not change. The photograph on the left page is already in place \u2014 it does not appear or fade in, just enters frame as the camera retreats.\n\nConstraints: smooth steady dolly-out / pull-back camera move only \u2014 no pan, no tilt, no jitter. NO visible hand or pencil. Single continuous take. The clip MUST end exactly at the provided end frame for seamless stitching.",
+    "image_url": "https://v3b.fal.media/files/b/0a994652/R_6TCgGCR47K65bRugOHl_08_standalone_present_day_age34.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a994659/n1_9-RntSSubhyR0z9l3n_09_closing_spread_real_present.png",
+    "duration": 5,
+    "aspect_ratio": "1:1"
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/08_standalone_present_day_age34.png",
+      "url": "https://v3b.fal.media/files/b/0a994652/R_6TCgGCR47K65bRugOHl_08_standalone_present_day_age34.png",
+      "uploaded": true,
+      "bytes": 2295693,
+      "sha256": "8f858b8d8d9bd183f77dff46d82887243066d3a04a553e70cf7af57810a9f598",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/09_closing_spread_real_present.png",
+      "url": "https://v3b.fal.media/files/b/0a994659/n1_9-RntSSubhyR0z9l3n_09_closing_spread_real_present.png",
+      "uploaded": true,
+      "bytes": 726318,
+      "sha256": "696093600dbb97aef7a7dd9716732337ff44952b19c89fe966dbf40f8b1261c6",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a994660/RO5oVObOpgUUJc7ntZLHS_output.mp4",
+      "content_type": "video/mp4",
+      "file_name": "output.mp4",
+      "file_size": 6449863
+    }
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a994660/RO5oVObOpgUUJc7ntZLHS_output.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/beat-08-zoom-out-to-spread-kling.mp4",
+      "bytes": 6449863,
+      "sha256": "5e9d90f21792cd29e10c4c4526f4e4853af915d09f60ccc8ea580410f60140a3"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-08-zoom-out-to-spread-kling.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
