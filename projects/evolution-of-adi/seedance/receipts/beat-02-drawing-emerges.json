@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "bytedance/seedance-2.0/image-to-video",
+  "local_request_id": "fal-seedance-1778162267927-3afed133",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T14:00:48.567776Z",
+  "input": {
+    "prompt": "Top-down overhead view of an open sketchbook on a wooden desk. The left page has a small B&W photograph taped with cream-colored masking tape. The right page is blank cream paper. Locked overhead camera throughout \u2014 no camera movement, no zoom, no pan.\n\nAction: A hand-drawn pencil and watercolor portrait magically emerges on the RIGHT PAGE of the sketchbook. Pencil strokes appear gradually, building up the figure of a young boy. Soft watercolor washes \u2014 warm browns, gentle skin tones \u2014 bloom in over the pencil work. The illustration grows more complete with each second until it matches the end frame exactly. NO visible pencil or hand drawing it \u2014 strokes appear on their own as if by memory.\n\nThe LEFT page (with the photograph) does NOT change at all \u2014 same photograph, same tape, same position throughout.\n\nAudio: gentle continuous pencil-on-paper scratching sound throughout, very soft watercolor brush whispers, quiet warm room tone underneath. No music, no voice.\n\nConstraints: locked overhead camera. No hand or pencil visible. The photograph on the left page is unchanged. Single continuous take. The clip MUST end exactly at the provided end frame for seamless stitching.",
+    "image_url": "https://v3b.fal.media/files/b/0a9942a2/-qkyzrZD9sRaWHLuTNVjo_02_open_photo_blank.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a9942a3/fn5CtE_TAQdT-lbE0RLN1_03_drawing_emerges_on_spread.png",
+    "resolution": "720p",
+    "duration": 5,
+    "aspect_ratio": "1:1",
+    "generate_audio": true
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/02_open_photo_blank.png",
+      "url": "https://v3b.fal.media/files/b/0a9942a2/-qkyzrZD9sRaWHLuTNVjo_02_open_photo_blank.png",
+      "uploaded": true,
+      "bytes": 644232,
+      "sha256": "8765feadb38df954ef6c3825048465d184f226a6f9429742a5c023f0c96fdebb",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/03_drawing_emerges_on_spread.png",
+      "url": "https://v3b.fal.media/files/b/0a9942a3/fn5CtE_TAQdT-lbE0RLN1_03_drawing_emerges_on_spread.png",
+      "uploaded": true,
+      "bytes": 699203,
+      "sha256": "a2a919fd538198f67d6e7524c26649604557cf37f06d6f2c9abce4f67d117cf5",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a9942b4/qMgL9BMuqzT9Ytfspm1yw_video.mp4",
+      "content_type": "video/mp4",
+      "file_name": "video.mp4",
+      "file_size": 1117424
+    },
+    "seed": 1216656358
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a9942b4/qMgL9BMuqzT9Ytfspm1yw_video.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/beat-02-drawing-emerges.mp4",
+      "bytes": 1117424,
+      "sha256": "bfcca2e26b8aa848325e1fbae782da03839fba01b6c223c897d96efdc2436d61"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-02-drawing-emerges.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}

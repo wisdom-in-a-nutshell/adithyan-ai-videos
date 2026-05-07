@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "bytedance/seedance-2.0/image-to-video",
+  "local_request_id": "fal-seedance-1778162298760-5538996a",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T14:00:34.315883Z",
+  "input": {
+    "prompt": "Camera dolly-out / pull-back shot. Starts close-up on a hand-drawn pencil and watercolor portrait of a smiling man with curly hair and beard, full frame on cream paper. The camera slowly pulls BACK over the course of the clip, revealing the illustration is on the RIGHT page of an open sketchbook on a warm wooden desk. As the camera retreats, the LEFT page comes into view: a real color photograph of the same man (smiling, curly hair, beard, dark crewneck) is taped to the left page with cream-colored masking tape. The camera settles at a top-down overhead view of the full open sketchbook spread by the end of the clip.\n\nThe illustration on the right page does not change. The photograph on the left page comes into frame already in place \u2014 it does not appear or fade in, it simply enters the camera's field of view as the camera pulls back.\n\nAudio: very soft ambient room tone, the gentlest possible paper-edge whisper as the camera moves. No music, no voice.\n\nConstraints: smooth steady dolly-out / pull-back camera move only \u2014 no pan, no tilt, no jitter. No hand or pencil visible. Single continuous take. The clip MUST end exactly at the provided end frame.",
+    "image_url": "https://v3b.fal.media/files/b/0a9942a5/I6Su8i4qpuPjlkqUBteKw_08_standalone_present_day_age34.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a9942a6/Ph6Car4kJmvJ0uqrnsooM_09_closing_spread_real_present.png",
+    "resolution": "720p",
+    "duration": 5,
+    "aspect_ratio": "1:1",
+    "generate_audio": true
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/08_standalone_present_day_age34.png",
+      "url": "https://v3b.fal.media/files/b/0a9942a5/I6Su8i4qpuPjlkqUBteKw_08_standalone_present_day_age34.png",
+      "uploaded": true,
+      "bytes": 2295693,
+      "sha256": "8f858b8d8d9bd183f77dff46d82887243066d3a04a553e70cf7af57810a9f598",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/09_closing_spread_real_present.png",
+      "url": "https://v3b.fal.media/files/b/0a9942a6/Ph6Car4kJmvJ0uqrnsooM_09_closing_spread_real_present.png",
+      "uploaded": true,
+      "bytes": 726318,
+      "sha256": "696093600dbb97aef7a7dd9716732337ff44952b19c89fe966dbf40f8b1261c6",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a9942b1/LjPw44sNJLpA4W8Wirvb6_video.mp4",
+      "content_type": "video/mp4",
+      "file_name": "video.mp4",
+      "file_size": 4708616
+    },
+    "seed": 277819539
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a9942b1/LjPw44sNJLpA4W8Wirvb6_video.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/beat-08-zoom-out-to-spread.mp4",
+      "bytes": 4708616,
+      "sha256": "5eb94adc4d04ba435995dbb2284c042dae49f767c13c62692955c55331d67f56"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-08-zoom-out-to-spread.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
