@@ -23,5 +23,8 @@
     "react-dom": "^18.2.0",
     "remotion": "4.0.450",
     "roughjs": "^4.6.6"
+  },
+  "overrides": {
+    "postcss": "8.5.14"
   }
 }
