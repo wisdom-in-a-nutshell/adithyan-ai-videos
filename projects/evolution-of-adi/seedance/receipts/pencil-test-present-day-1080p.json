@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "bytedance/seedance-2.0/image-to-video",
+  "local_request_id": "fal-seedance-1778165421838-f690ae06",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T14:56:47.628584Z",
+  "input": {
+    "prompt": "Locked camera, full-frame view of a sheet of cream sketchbook paper.\n\nAction: A pencil sketch portrait emerges progressively on the blank cream page. Confident pencil strokes appear, drawing the figure of a man with curly hair, beard, and a warm smile. Lines accumulate and build up the portrait over the duration of the clip. By the end, the completed pencil sketch matches the end frame exactly.\n\nConstraints: locked camera, no movement, no zoom, no pan. The cream paper background remains constant throughout \u2014 only pencil strokes are added. NO visible pencil, NO visible hand. Strokes appear on their own as if by memory. Single continuous take. The clip MUST end exactly at the provided end frame for seamless stitching.",
+    "image_url": "https://v3b.fal.media/files/b/0a9943de/QKKirEsixMWK7Stfm2X4Y_00_blank_cream_paper.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a9943de/6rtOgFze_OjV3W8nKXJkr_06_present_day_pencil_gpt.png",
+    "resolution": "1080p",
+    "duration": 5,
+    "aspect_ratio": "1:1",
+    "generate_audio": false
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/stylized/v5_pencil/00_blank_cream_paper.png",
+      "url": "https://v3b.fal.media/files/b/0a9943de/QKKirEsixMWK7Stfm2X4Y_00_blank_cream_paper.png",
+      "uploaded": true,
+      "bytes": 1170341,
+      "sha256": "bdb3220daaaa4d3f7db9157cd777e27f58d450cc04677a043b1f34f268e20588",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/stylized/v5_pencil/06_present_day_pencil_gpt.png",
+      "url": "https://v3b.fal.media/files/b/0a9943de/6rtOgFze_OjV3W8nKXJkr_06_present_day_pencil_gpt.png",
+      "uploaded": true,
+      "bytes": 1735073,
+      "sha256": "6c750f8fc0bf0e6626c881f7d38996a74b72724f2642f8d1d358fe2673dacd86",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a994402/5oPsYgaqNLPDrJOYiMxLK_video.mp4",
+      "content_type": "video/mp4",
+      "file_name": "video.mp4",
+      "file_size": 8021803
+    },
+    "seed": 1208080853
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a994402/5oPsYgaqNLPDrJOYiMxLK_video.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/pencil-test-present-day-1080p.mp4",
+      "bytes": 8021803,
+      "sha256": "cd0c9d5822c84b358505e0af14034a24540690f220f71d5eae05210d6bfa115f"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/pencil-test-present-day-1080p.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
