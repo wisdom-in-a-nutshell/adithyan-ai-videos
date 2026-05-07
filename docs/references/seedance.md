@@ -45,19 +45,21 @@ Official guidance (Replicate readme): "be specific — describe camera movements
 - **Replicate** — `bytedance/seedance-2.0`, `seedance-2.0-fast`, `seedance-1-pro`, `seedance-1-lite`.
 - **fal.ai** — full 2.0 lineup (T2V / I2V / Ref2V) plus Fast tier; 1.0 Pro / 1.0 Lite also available.
 
-Local fal Ref2V runs use the repo client:
+Local fal Ref2V runs use the repo client. See `docs/references/fal-seedance-client.md` for the full machine contract.
 
 ```bash
 node scripts/fal_seedance_ref2v.mjs run \
-  --project evolution-of-adi \
-  --ref projects/evolution-of-adi/originals/05_early_30s.jpg \
-  --prompt "A calm studio portrait of the man in @Image1, gentle smile, subtle breathing, tiny head turn, soft key light, locked camera, no age change." \
+  --project <project-id> \
+  --ref projects/<project-id>/storyboard/frame-01.png \
+  --prompt "Animate @Image1 as the primary frame. Subtle breathing, one natural blink, tiny head turn, locked camera." \
   --duration 4 \
   --aspect-ratio 1:1 \
   --dry-run
 ```
 
 The client reads `~/.secrets/fal/env`, uploads local refs during real runs, downloads the generated MP4, and writes a JSON receipt under `projects/<id>/seedance/`.
+
+Use `node scripts/fal_seedance_ref2v.mjs doctor --remote` to verify fal auth/connectivity without submitting a video generation.
 
 Indicative pricing (verify before billing decisions): 1.0 Pro ≈ $0.74 / 5s 1080p on fal; 1.0 Lite ≈ $0.18 / 5s 720p. 2.0 priced per-second; check provider pages.
 

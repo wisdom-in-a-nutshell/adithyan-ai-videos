@@ -12,6 +12,7 @@ const DEFAULT_SECRET_ENV_FILE = path.join(os.homedir(), '.secrets', 'fal', 'env'
 const VALID_RESOLUTIONS = new Set(['480p', '720p']);
 const VALID_ASPECT_RATIOS = new Set(['auto', '21:9', '16:9', '4:3', '1:1', '3:4', '9:16']);
 const VALID_LIFECYCLES = new Set(['never', 'immediate', '1h', '1d', '7d', '30d', '1y']);
+const DOCTOR_CHECK_FILENAME = 'fal-seedance-doctor.txt';
 
 const nowIso = () => new Date().toISOString();
 const requestId = () => `fal-seedance-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`;
@@ -66,6 +67,7 @@ const parseArgs = (argv) => {
     seed: null,
     dryRun: false,
     noInput: false,
+    remote: false,
     json: true,
     plain: false,
     progress: 'plain',
@@ -158,6 +160,9 @@ const parseArgs = (argv) => {
       case '--no-input':
         options.noInput = true;
         break;
+      case '--remote':
+        options.remote = true;
+        break;
       case '--json':
         options.json = true;
         options.plain = false;
@@ -211,6 +216,7 @@ const parseArgs = (argv) => {
 const usage = () => `Usage:
   node scripts/fal_seedance_ref2v.mjs run --project <id> --prompt <text> --ref <path-or-url> [--ref <path-or-url> ...]
   node scripts/fal_seedance_ref2v.mjs validate [--secret-env-file <path>]
+  node scripts/fal_seedance_ref2v.mjs doctor [--remote]
 
 Common flags:
   --project <id>                 Project folder under projects/<id>
@@ -225,6 +231,7 @@ Common flags:
   --generate-audio               Enable Seedance synchronized audio
   --seed <integer>               Fixed seed for reproducibility
   --dry-run                      Validate and print planned request without calling fal
+  --remote                       doctor only: verify fal auth with a tiny storage upload; no video inference
   --secret-env-file <path>       Default: ~/.secrets/fal/env
   --no-download                  Keep only fal output URL and receipt
   --plain                        Print only the local video path or remote URL on success
@@ -271,8 +278,8 @@ const readSecretEnvFile = (secretEnvFile) => {
 };
 
 const validateOptions = (options) => {
-  if (!['run', 'validate', 'help'].includes(options.command)) {
-    fail('E_USAGE', `Unknown command: ${options.command}`, {exitCode: 2, hint: 'Use run, validate, or --help.'});
+  if (!['run', 'validate', 'doctor', 'help'].includes(options.command)) {
+    fail('E_USAGE', `Unknown command: ${options.command}`, {exitCode: 2, hint: 'Use run, validate, doctor, or --help.'});
   }
   if (options.command !== 'run') return;
 
@@ -632,6 +639,79 @@ const validate = ({options, startedAt, localRequestId}) => {
   });
 };
 
+const runRemoteDoctorCheck = async ({secret, localRequestId}) => {
+  fal.config({credentials: secret.value});
+  const payload = `fal-seedance doctor ${localRequestId}\n`;
+  const file = new File([payload], DOCTOR_CHECK_FILENAME, {type: 'text/plain'});
+  const url = await fal.storage.upload(file, {lifecycle: {expiresIn: 'immediate'}});
+  let urlHost = null;
+  try {
+    urlHost = new URL(url).host;
+  } catch {
+    urlHost = null;
+  }
+  return {
+    requested: true,
+    status: 'ok',
+    method: 'fal.storage.upload',
+    inference: false,
+    uploaded_bytes: payload.length,
+    url_host: urlHost,
+  };
+};
+
+const doctor = async ({options, startedAt, localRequestId}) => {
+  const secretPath = path.resolve(options.secretEnvFile.replace(/^~(?=$|\/)/, os.homedir()));
+  const secret = readSecretEnvFile(secretPath);
+  const remoteCheck = options.remote
+    ? await runRemoteDoctorCheck({secret, localRequestId})
+    : {
+        requested: false,
+        status: 'skipped',
+        method: null,
+        inference: false,
+        hint: 'Pass --remote to verify fal provider auth via storage upload without video inference.',
+      };
+
+  printResult({
+    startedAt,
+    command: 'fal-seedance.ref2v.doctor',
+    status: 'ok',
+    request_id: localRequestId,
+    data: {
+      endpoint: ENDPOINT,
+      secret_env_file: secretPath,
+      secret_present: true,
+      mapping_file: '/Users/dobby/GitHub/scripts/sync/machine-secrets/fal.env.map',
+      remote_check: remoteCheck,
+      production_inference_performed: false,
+    },
+  });
+};
+
+const classifyUnexpectedError = (error) => {
+  const message = error instanceof Error ? error.message : String(error);
+  if (/401|403|unauthori[sz]ed|forbidden|invalid.*key|api key|authentication/i.test(message)) {
+    return new CliError('E_AUTH_PROVIDER', 'fal rejected the configured credentials', {
+      exitCode: 3,
+      retryable: false,
+      hint: 'Refresh ~/.secrets/fal/env from Key Vault and verify fal--api-key is valid.',
+    });
+  }
+  if (/fetch|network|ENOTFOUND|ECONN|ETIMEDOUT|timeout|socket|TLS|DNS/i.test(message)) {
+    return new CliError('E_NETWORK', 'fal network request failed', {
+      exitCode: 4,
+      retryable: true,
+      hint: 'Retry later or check network connectivity and fal status.',
+    });
+  }
+  return new CliError('E_UNEXPECTED', message, {
+    exitCode: 1,
+    retryable: false,
+    hint: 'Run doctor --remote for provider connectivity, then retry with --dry-run before generation.',
+  });
+};
+
 const main = async () => {
   const startedAt = Date.now();
   const localRequestId = requestId();
@@ -647,16 +727,16 @@ const main = async () => {
       validate({options, startedAt, localRequestId});
       return 0;
     }
+    if (options.command === 'doctor') {
+      await doctor({options, startedAt, localRequestId});
+      return 0;
+    }
     return await run({options, startedAt, localRequestId});
   } catch (error) {
     const cliError =
       error instanceof CliError
         ? error
-        : new CliError('E_UNEXPECTED', error instanceof Error ? error.message : String(error), {
-            exitCode: 1,
-            retryable: false,
-            hint: 'Run with --dry-run first; use --progress plain for provider status.',
-          });
+        : classifyUnexpectedError(error);
     printResult({
       startedAt,
       command,

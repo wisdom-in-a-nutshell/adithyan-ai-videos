@@ -14,6 +14,7 @@ Use this skill when a task involves fal.ai Seedance, reference-to-video, image-t
 - Secret mapping: `/Users/dobby/GitHub/scripts/sync/machine-secrets/fal.env.map`
 - Generated secret file: `~/.secrets/fal/env`
 - CLI: `node scripts/fal_seedance_ref2v.mjs`
+- Client contract: `docs/references/fal-seedance-client.md`
 
 The CLI reads `~/.secrets/fal/env` directly. Do not pass fal keys through flags, tracked files, or chat-visible shell commands.
 
@@ -32,6 +33,12 @@ Validate the local secret bootstrap:
 
 ```bash
 node scripts/fal_seedance_ref2v.mjs validate
+```
+
+Verify fal provider connectivity without video inference:
+
+```bash
+node scripts/fal_seedance_ref2v.mjs doctor --remote
 ```
 
 Dry-run a canary:
@@ -68,9 +75,11 @@ node scripts/fal_seedance_ref2v.mjs run \
 
 - Use `@ImageN` handles, matching fal's Seedance schema.
 - `@Image1` should usually be the primary frame to animate. Additional image refs should be described as identity, style, object, or environment anchors so Seedance does not treat them as a morph target by accident.
+- Explicitly assign every reference a role in the prompt: primary frame, character identity, style, outfit, environment, camera movement, action choreography, rhythm, or sound.
 - Describe the exact camera move and the amount of motion.
 - For identity canaries, explicitly say no age change, no outfit change, no face reshaping, and locked or near-locked camera.
-- Avoid asking for the full age-evolution morph until the single-age identity canary is acceptable.
+- For longer clips, write timed segments. For storyboard/image canaries, keep the first test short and restrained.
+- Avoid asking for a morph or multi-shot story until the single-frame motion canary is acceptable.
 
 ## Output Contract
 
