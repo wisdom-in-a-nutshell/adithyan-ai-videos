@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "bytedance/seedance-2.0/image-to-video",
+  "local_request_id": "fal-seedance-1778162274739-f06a8f0a",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T14:01:54.395239Z",
+  "input": {
+    "prompt": "Camera dolly-in / push-in shot. Starts at top-down overhead view of an open sketchbook on a wooden desk (a photograph on the left page, an illustrated portrait of a young boy on the right page). The camera slowly pushes IN toward the illustrated portrait on the right page over the course of the clip. As the camera tightens, the sketchbook context falls away (the photograph on the left, the desk, the page edges all leave the frame) until only the illustrated portrait fills the entire frame at the end.\n\nThe illustrated portrait itself does not change \u2014 only the framing tightens. By the end of the clip, the framing matches the end frame exactly: a hand-drawn pencil and watercolor portrait of a young boy, full frame, on cream paper.\n\nConstraints: smooth steady dolly-in camera move only \u2014 no pan, no tilt, no jitter. No hand or pencil visible. Single continuous take. The clip MUST end exactly at the provided end frame.",
+    "image_url": "https://v3b.fal.media/files/b/0a9942a3/8zlwUakceSKfySxw0eVX0_03_drawing_emerges_on_spread.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a9942a3/_Iz0nJQdg6OSGqUzRaAUQ_04_standalone_child_age9.png",
+    "resolution": "720p",
+    "duration": 4,
+    "aspect_ratio": "1:1",
+    "generate_audio": false
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/03_drawing_emerges_on_spread.png",
+      "url": "https://v3b.fal.media/files/b/0a9942a3/8zlwUakceSKfySxw0eVX0_03_drawing_emerges_on_spread.png",
+      "uploaded": true,
+      "bytes": 699203,
+      "sha256": "a2a919fd538198f67d6e7524c26649604557cf37f06d6f2c9abce4f67d117cf5",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/04_standalone_child_age9.png",
+      "url": "https://v3b.fal.media/files/b/0a9942a3/_Iz0nJQdg6OSGqUzRaAUQ_04_standalone_child_age9.png",
+      "uploaded": true,
+      "bytes": 2211525,
+      "sha256": "689c5876dee0e1b54bbd9e0c94872687ec6b92c99a692e9ad8d76bb58de5e0c2",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a9942b8/TEr4_H7xtEaPwN-ZjVAiK_video.mp4",
+      "content_type": "video/mp4",
+      "file_name": "video.mp4",
+      "file_size": 5248615
+    },
+    "seed": 1106474650
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a9942b8/TEr4_H7xtEaPwN-ZjVAiK_video.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/beat-03-zoom-into-drawing.mp4",
+      "bytes": 5248615,
+      "sha256": "3af6b77caafcdb10dac4bba3b3690801b8b99173bcaa1e728398b454fad75bf1"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-03-zoom-into-drawing.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
