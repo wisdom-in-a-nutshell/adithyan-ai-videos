@@ -44,6 +44,8 @@ node scripts/fal_seedance_ref2v.mjs doctor --remote
 
 `doctor --remote` uploads a tiny text file to fal storage with immediate lifecycle expiry. It verifies the API key and provider connectivity without submitting a Seedance generation.
 
+If `doctor --remote` returns `E_BILLING_REQUIRED`, the configured key reached fal, but the fal account is locked until the balance is topped up.
+
 Dry-run a reference-to-video request:
 
 ```bash
@@ -79,7 +81,7 @@ Progress and provider logs go to stderr only.
 - `0`: success
 - `1`: unexpected/provider output failure
 - `2`: usage, validation, or missing local file
-- `3`: missing or rejected credentials
+- `3`: missing/rejected credentials or account lock such as exhausted fal balance
 - `4`: network/provider availability issue
 - `5`: timeout or interruption
 

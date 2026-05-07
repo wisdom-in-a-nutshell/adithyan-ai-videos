@@ -691,21 +691,35 @@ const doctor = async ({options, startedAt, localRequestId}) => {
 
 const classifyUnexpectedError = (error) => {
   const message = error instanceof Error ? error.message : String(error);
-  if (/401|403|unauthori[sz]ed|forbidden|invalid.*key|api key|authentication/i.test(message)) {
+  const providerDetail =
+    error && typeof error === 'object' && error.body && typeof error.body === 'object'
+      ? error.body.detail || error.body.message || null
+      : null;
+  const providerStatus = error && typeof error === 'object' ? error.status || null : null;
+  const combinedMessage = [message, providerDetail].filter(Boolean).join(' ');
+
+  if (providerStatus === 403 && /exhausted balance|top up|billing|balance/i.test(combinedMessage)) {
+    return new CliError('E_BILLING_REQUIRED', 'fal account is locked because the balance is exhausted', {
+      exitCode: 3,
+      retryable: false,
+      hint: 'Top up the fal account balance at https://fal.ai/dashboard/billing, then rerun doctor --remote.',
+    });
+  }
+  if (/401|403|unauthori[sz]ed|forbidden|invalid.*key|api key|authentication/i.test(combinedMessage)) {
     return new CliError('E_AUTH_PROVIDER', 'fal rejected the configured credentials', {
       exitCode: 3,
       retryable: false,
       hint: 'Refresh ~/.secrets/fal/env from Key Vault and verify fal--api-key is valid.',
     });
   }
-  if (/fetch|network|ENOTFOUND|ECONN|ETIMEDOUT|timeout|socket|TLS|DNS/i.test(message)) {
+  if (/fetch|network|ENOTFOUND|ECONN|ETIMEDOUT|timeout|socket|TLS|DNS/i.test(combinedMessage)) {
     return new CliError('E_NETWORK', 'fal network request failed', {
       exitCode: 4,
       retryable: true,
       hint: 'Retry later or check network connectivity and fal status.',
     });
   }
-  return new CliError('E_UNEXPECTED', message, {
+  return new CliError('E_UNEXPECTED', providerDetail || message, {
     exitCode: 1,
     retryable: false,
     hint: 'Run doctor --remote for provider connectivity, then retry with --dry-run before generation.',
