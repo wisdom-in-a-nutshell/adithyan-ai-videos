@@ -31,7 +31,7 @@ Official guidance (Replicate readme): "be specific — describe camera movements
 - **Subtle subject motion** (blink, breath, slight head turn, micro-expression) is reliable.
 - **Full-body environment interaction** is the harder edge — reduce ambition or break into multiple clips.
 - **Dialogue** (2.0): put spoken lines in quotes inside the prompt.
-- **Reference handles** (2.0 Ref2V): address inputs as `[Image1]`, `[Video1]`, `[Audio1]` in the prompt body.
+- **Reference handles** (fal 2.0 Ref2V): address inputs as `@Image1`, `@Video1`, `@Audio1` in the prompt body.
 - **Multi-shot inside one generation** is supported (1.0 paper: "native multi-shot narrative coherence"). Useful for morph/transition shots without stitching in post.
 
 ## Style preservation
@@ -44,6 +44,20 @@ Official guidance (Replicate readme): "be specific — describe camera movements
 - **Volcengine Ark** (official, China-first) — `volcengine.com/docs/82379`. Full lineup including 1.5 Pro.
 - **Replicate** — `bytedance/seedance-2.0`, `seedance-2.0-fast`, `seedance-1-pro`, `seedance-1-lite`.
 - **fal.ai** — full 2.0 lineup (T2V / I2V / Ref2V) plus Fast tier; 1.0 Pro / 1.0 Lite also available.
+
+Local fal Ref2V runs use the repo client:
+
+```bash
+node scripts/fal_seedance_ref2v.mjs run \
+  --project evolution-of-adi \
+  --ref projects/evolution-of-adi/originals/05_early_30s.jpg \
+  --prompt "A calm studio portrait of the man in @Image1, gentle smile, subtle breathing, tiny head turn, soft key light, locked camera, no age change." \
+  --duration 4 \
+  --aspect-ratio 1:1 \
+  --dry-run
+```
+
+The client reads `~/.secrets/fal/env`, uploads local refs during real runs, downloads the generated MP4, and writes a JSON receipt under `projects/<id>/seedance/`.
 
 Indicative pricing (verify before billing decisions): 1.0 Pro ≈ $0.74 / 5s 1080p on fal; 1.0 Lite ≈ $0.18 / 5s 720p. 2.0 priced per-second; check provider pages.
 

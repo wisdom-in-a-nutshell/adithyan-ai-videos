@@ -1,0 +1,69 @@
+---
+name: fal-seedance
+description: "Use for fal.ai Seedance video generation in this repo, especially Seedance 2.0 reference-to-video runs with multiple image references, prompt canaries, local file uploads, generated MP4 downloads, and JSON receipts."
+---
+
+# fal Seedance
+
+Use this skill when a task involves fal.ai Seedance, reference-to-video, image-to-video, or Seedance canaries for storyboard/style exploration.
+
+## Default Lane
+
+- Endpoint: `bytedance/seedance-2.0/fast/reference-to-video`
+- Secret lane: machine-local shared integration `fal`
+- Secret mapping: `/Users/dobby/GitHub/scripts/sync/machine-secrets/fal.env.map`
+- Generated secret file: `~/.secrets/fal/env`
+- CLI: `node scripts/fal_seedance_ref2v.mjs`
+
+The CLI reads `~/.secrets/fal/env` directly. Do not pass fal keys through flags, tracked files, or chat-visible shell commands.
+
+## Workflow
+
+1. Start with `--dry-run` for every new prompt or reference set.
+2. Use `--project <id>` so outputs stay under `projects/<id>/seedance/`.
+3. Pass local reference images with repeated `--ref`; the CLI uploads them to fal CDN during real runs.
+4. Refer to inputs in prompts as `@Image1`, `@Image2`, etc.
+5. For visual canaries, default to `--no-generate-audio`, 4-5 seconds, `720p`, and a restrained prompt.
+6. Keep each successful run's JSON receipt with the MP4; use the receipt to regenerate or compare drift.
+
+## Commands
+
+Validate the local secret bootstrap:
+
+```bash
+node scripts/fal_seedance_ref2v.mjs validate
+```
+
+Dry-run a canary:
+
+```bash
+node scripts/fal_seedance_ref2v.mjs run \
+  --project evolution-of-adi \
+  --name early-30s-studio-canary \
+  --ref projects/evolution-of-adi/originals/05_early_30s.jpg \
+  --prompt "A calm studio portrait of the man in @Image1, gentle smile, subtle breathing, tiny head turn, soft key light, locked camera, no age change." \
+  --duration 4 \
+  --aspect-ratio 1:1 \
+  --dry-run
+```
+
+Run after the dry-run looks right by removing `--dry-run`.
+
+## Prompt Rules
+
+- Use `@ImageN` handles, matching fal's Seedance schema.
+- Describe the exact camera move and the amount of motion.
+- For identity canaries, explicitly say no age change, no outfit change, no face reshaping, and locked or near-locked camera.
+- Avoid asking for the full age-evolution morph until the single-age identity canary is acceptable.
+
+## Output Contract
+
+The CLI prints one JSON object to stdout by default:
+
+- `status`: `ok` or `error`
+- `data.video.url`: fal output URL on success
+- `data.local_video.path`: downloaded MP4 path when download is enabled
+- `data.receipt_path`: JSON receipt path
+- `error.code`: stable error code on failure
+
+Progress and provider logs go to stderr only.
