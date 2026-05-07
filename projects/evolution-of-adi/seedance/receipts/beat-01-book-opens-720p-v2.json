@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "bytedance/seedance-2.0/image-to-video",
+  "local_request_id": "fal-seedance-1778162157627-0bd848b8",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T13:59:09.631676Z",
+  "input": {
+    "prompt": "Top-down overhead view of a closed sketchbook on a warm wooden desk, transforming into the open sketchbook with a photograph taped to the left page and a blank right page. Locked overhead camera throughout \u2014 no camera movement.\n\nAction: The cover of the sketchbook gently lifts and rotates open from the right edge, hinging on the spine on the left side of the book. As the cover rotates open, it reveals the inside spread: the photograph (already taped to the left inside page with small pieces of cream-colored masking tape on the corners) becomes visible, and the right page is shown as blank cream paper. The book settles flat into the open position by the end of the clip.\n\nLighting: warm soft directional light from upper-left throughout, gentle natural shadows on the desk. Consistent across the entire clip.\n\nAudio: soft single creak as the cover lifts, gentle paper rustle as the book settles open, quiet warm room tone underneath. No music, no voice.\n\nConstraints: locked overhead camera (no pan, no zoom, no tilt). No hand or person visible. Single continuous take, no cuts. The clip MUST end exactly at the provided end frame so it can be stitched seamlessly with the next clip.",
+    "image_url": "https://v3b.fal.media/files/b/0a994297/Bj5Z0bV-vgonKr5izIj6j_01_closed_book.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a994298/6J5YO4oY8q0JopoEUPezD_02_open_photo_blank.png",
+    "resolution": "720p",
+    "duration": 5,
+    "aspect_ratio": "1:1",
+    "generate_audio": true
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/01_closed_book.png",
+      "url": "https://v3b.fal.media/files/b/0a994297/Bj5Z0bV-vgonKr5izIj6j_01_closed_book.png",
+      "uploaded": true,
+      "bytes": 673774,
+      "sha256": "61c8f0e8d8a020ec733d41ba7669b98e9cb77d7638918657ef8769631b815440",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/02_open_photo_blank.png",
+      "url": "https://v3b.fal.media/files/b/0a994298/6J5YO4oY8q0JopoEUPezD_02_open_photo_blank.png",
+      "uploaded": true,
+      "bytes": 644232,
+      "sha256": "8765feadb38df954ef6c3825048465d184f226a6f9429742a5c023f0c96fdebb",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a9942aa/Xvkh-30SmQQJ7Su2R3OH1_video.mp4",
+      "content_type": "video/mp4",
+      "file_name": "video.mp4",
+      "file_size": 2248583
+    },
+    "seed": 1870413976
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a9942aa/Xvkh-30SmQQJ7Su2R3OH1_video.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/beat-01-book-opens-720p-v2.mp4",
+      "bytes": 2248583,
+      "sha256": "c63bd41b3b8ae5a6b85dd3ac3f6262db2db024459989901f43ec67581fa8f886"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-01-book-opens-720p-v2.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
