@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "bytedance/seedance-2.0/image-to-video",
+  "local_request_id": "fal-seedance-1778162306159-485ee497",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T14:01:13.603155Z",
+  "input": {
+    "prompt": "Top-down overhead view of an open sketchbook on a wooden desk: the left page has a real color photograph of a smiling man with curly hair and beard, the right page has a hand-drawn pencil and watercolor portrait of the same man. Locked overhead camera throughout \u2014 no camera movement.\n\nAction: The right side of the sketchbook (the right cover) gently lifts and rotates closed, swinging from the right edge over the spread. As the cover comes down, it covers the illustrated portrait first, then the photograph, then the entire spread. The book closes flat. After the book has closed, the view is now the BACK COVER of the sketchbook \u2014 plain smooth cream cover, no text, with the spine binding visible on the RIGHT side of the frame.\n\nLighting: warm soft directional light from upper-left throughout, gentle natural shadows on the desk. Consistent.\n\nAudio: gentle paper rustle as the cover swings closed, soft cover thud as the book settles flat, quiet warm room tone. No music, no voice.\n\nConstraints: locked overhead camera (no pan, no zoom, no tilt). No hand or person visible. Single continuous take. The clip MUST end exactly at the provided end frame (the closed back cover with spine on the right).",
+    "image_url": "https://v3b.fal.media/files/b/0a9942a6/4WSidHcG7xziTZYklZ5e7_09_closing_spread_real_present.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a9942a6/elyMS8-3X-3wJjcfWvm8Y_10_closed_book_end.png",
+    "resolution": "720p",
+    "duration": 5,
+    "aspect_ratio": "1:1",
+    "generate_audio": true
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/09_closing_spread_real_present.png",
+      "url": "https://v3b.fal.media/files/b/0a9942a6/4WSidHcG7xziTZYklZ5e7_09_closing_spread_real_present.png",
+      "uploaded": true,
+      "bytes": 726318,
+      "sha256": "696093600dbb97aef7a7dd9716732337ff44952b19c89fe966dbf40f8b1261c6",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/10_closed_book_end.png",
+      "url": "https://v3b.fal.media/files/b/0a9942a6/elyMS8-3X-3wJjcfWvm8Y_10_closed_book_end.png",
+      "uploaded": true,
+      "bytes": 691554,
+      "sha256": "1ed261ac1f1a6167e6592e22c4d729f23fb187f28edb8360c02601db94891c9f",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a9942b6/HM8k_AFDx4rhpVQzawcj0_video.mp4",
+      "content_type": "video/mp4",
+      "file_name": "video.mp4",
+      "file_size": 2799191
+    },
+    "seed": 1143864047
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a9942b6/HM8k_AFDx4rhpVQzawcj0_video.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/beat-09-book-closes.mp4",
+      "bytes": 2799191,
+      "sha256": "253a95daf76b3e92fb9d2a0d93ecd0666c6380de5ff101a22fea13661e87a71a"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-09-book-closes.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
