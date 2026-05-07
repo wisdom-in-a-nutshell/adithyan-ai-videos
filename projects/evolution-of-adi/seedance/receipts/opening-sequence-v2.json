@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "bytedance/seedance-2.0/reference-to-video",
+  "local_request_id": "fal-seedance-1778156010019-beffb2e6",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T12:16:39.066786Z",
+  "input": {
+    "prompt": "Continuous single-shot top-down view of a wooden desk with warm ambient light. The full sequence is one take, no cuts.\n\nReferences (assign roles explicitly):\n- @Image1: the real source photograph of a young South Indian boy (age ~9), head-and-shoulders, gentle closed-mouth smile, short dark hair. This exact photograph is taped to the LEFT page of the open sketchbook and remains on the left page throughout the entire sequence as a static reference.\n- @Image2: the target end-state illustrated portrait, used ONLY as the medium and style anchor for the drawing that emerges on the RIGHT page \u2014 pencil and watercolor on cream sketchbook paper, soft natural lighting, hand-drawn texture.\n\nLayout \u2014 important spatial logic:\n- The sketchbook opens to a two-page spread.\n- LEFT page: the real photograph (@Image1) is already taped/clipped to the page when the book opens. It sits roughly centered on the left page, slightly angled, like a tucked-in keepsake. The photograph stays in this position the entire video \u2014 the artist never draws on it.\n- RIGHT page: starts blank. This is where the artist will draw the illustrated portrait.\n\nCamera: locked overhead top-down framing for [0\u20132s] showing the full spread. Slow gentle dolly-in starting at [2s] toward the RIGHT page, settling by [3s] at a closer overhead view of the right page (with the left page edge still visible at the left side of frame). Locked again from [3s] to end. No tilts, no pans.\n\nLighting: warm soft ambient light from the upper-left throughout, gentle natural shadows, intimate desk-lamp mood. Consistent across the full take.\n\nAction timeline:\n\n[0.0 \u2013 1.0s]\nA closed sketchbook lies on a wooden desk, top-down framing. Soft warm light, subtle shadow on the desk surface. Camera locked. Subtle ambient stillness \u2014 no motion.\n\n[1.0 \u2013 2.0s]\nA hand enters from the right side of the frame, gently grasps the cover of the sketchbook, and opens it to reveal a two-page spread. The LEFT page already has the real photograph (@Image1) taped/clipped to it, slightly angled, like a kept memory. The RIGHT page is blank cream paper. The hand exits the frame to the right.\n\n[2.0 \u2013 3.0s]\nCamera slowly dollies in toward the RIGHT page. The photograph on the LEFT page remains visible at the edge of the frame \u2014 it does not move. Composition centers on the blank right page where the drawing will happen.\n\n[3.0 \u2013 5.0s]\nA hand re-enters from the right holding a pencil. The pencil tip touches the BLANK RIGHT page (NOT the photograph) and begins to sketch. Pencil strokes appear in real time on the right page, building up an illustrated portrait of the same boy as in the photograph. As the drawing progresses, soft watercolor washes \u2014 warm browns, gentle skin tones \u2014 bloom in over the pencil strokes. The illustration emerges on the right page, growing more complete with each second. The photograph on the LEFT page remains untouched and unchanged. By the end of [5.0s], a hand-drawn pencil + watercolor portrait fills the right page, matching the medium, line work, and color palette of @Image2 (sketchbook illustration style on cream paper).\n\n[5.0 \u2013 6.0s]\nThe hand and pencil exit the frame to the right. Camera holds locked on the spread: real photograph on the LEFT page (untouched), finished illustrated portrait on the RIGHT page. Both visible. Subtle paper grain. Quiet hold.\n\nAudio:\n- Throughout: warm quiet room tone, very subtle ambient bed.\n- [1.5s]: soft single creak of the sketchbook opening.\n- [3.0 \u2013 5.0s]: gentle continuous pencil scratching across paper.\n- No music, no voice, no sudden audio events.\n\nIdentity and style constraints:\n- The boy in the illustrated portrait on the right page must be unmistakably the same boy as in the photograph on the left \u2014 same face shape, same eye shape, same hairline, same skin tone. The artist is drawing this specific boy from the reference photo.\n- The illustrated end state must match @Image2's medium: pencil + watercolor on visible cream paper, hand-drawn texture, NOT photoreal, NOT 3D, NOT digital-looking.\n- The transformation must read as the artist drawing the boy by hand while looking at the photograph as reference, not as a digital filter or morph.\n\nHard constraints:\n- Single continuous take, no cuts, no scene changes.\n- Locked overhead camera with one slow dolly-in starting at [2s]; otherwise camera does not move.\n- The photograph on the LEFT page is never drawn on, never altered, never moved. It stays in place as a static reference.\n- The pencil only ever touches the RIGHT page.\n- No extra characters in frame beyond the disembodied hand.\n- No on-screen text, no titles, no captions.\n- No sudden movements, no jitter, no jump cuts.\n- The sketchbook stays flat on the desk throughout.",
+    "image_urls": [
+      "https://v3b.fal.media/files/b/0a994031/i7ODdZgzT8tJPpVLr19iL_01_child.jpg",
+      "https://v3b.fal.media/files/b/0a994034/v4Zy8RRQE1KDGa0pIQMOs_1_child_age9.png"
+    ],
+    "video_urls": [],
+    "audio_urls": [],
+    "resolution": "720p",
+    "duration": 6,
+    "aspect_ratio": "1:1",
+    "generate_audio": true
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/originals/01_child.jpg",
+      "url": "https://v3b.fal.media/files/b/0a994031/i7ODdZgzT8tJPpVLr19iL_01_child.jpg",
+      "uploaded": true,
+      "bytes": 1182076,
+      "sha256": "9089c02a7e041f5916f617c3555e1666a7ec3c972a1efdca9df00a2a459bb1c1"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/stylized/final-sequence/1_child_age9.png",
+      "url": "https://v3b.fal.media/files/b/0a994034/v4Zy8RRQE1KDGa0pIQMOs_1_child_age9.png",
+      "uploaded": true,
+      "bytes": 2211525,
+      "sha256": "689c5876dee0e1b54bbd9e0c94872687ec6b92c99a692e9ad8d76bb58de5e0c2"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a994043/yA6kQIFKdqrbdIJDqeJAP_video.mp4",
+      "content_type": "video/mp4",
+      "file_name": "video.mp4",
+      "file_size": 2965053
+    },
+    "seed": 655344049
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a994043/yA6kQIFKdqrbdIJDqeJAP_video.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/opening-sequence-v2.mp4",
+      "bytes": 2965053,
+      "sha256": "a8fccc98d1b8504f4b7e9ae79b92336ab1492ff684146a60b9f9f2832ae0ba70"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/opening-sequence-v2.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
