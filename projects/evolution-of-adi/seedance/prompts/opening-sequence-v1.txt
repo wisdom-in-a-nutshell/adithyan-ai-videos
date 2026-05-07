@@ -1,0 +1,45 @@
+Continuous single-shot top-down view of a wooden desk with warm ambient light. The full sequence is one take, no cuts.
+
+References (assign roles explicitly):
+- @Image1: the real source photograph of a young South Indian boy (age ~9), head-and-shoulders, gentle closed-mouth smile, short dark hair. This exact photograph appears taped to the sketchbook page during the sequence.
+- @Image2: the target end-state illustrated portrait of the same boy, used ONLY as the medium and style anchor for the final drawing — pencil and watercolor on cream sketchbook paper, soft natural lighting, hand-drawn texture.
+
+Camera: locked overhead top-down framing for [0–2s]. Slow gentle dolly-in starting at [2s], settling by [3s] at a closer overhead view of the right page. Locked again from [3s] to end. No tilts, no pans.
+
+Lighting: warm soft ambient light from the upper-left throughout, gentle natural shadows, intimate desk-lamp mood. Consistent across the full take.
+
+Action timeline:
+
+[0.0 – 1.0s]
+A closed sketchbook lies in the center of a wooden desk, top-down framing. Soft warm light, subtle shadow on the desk surface. Camera locked. Subtle ambient stillness — no motion.
+
+[1.0 – 2.0s]
+A hand enters from the right side of the frame, gently grasps the cover of the sketchbook, and opens it to reveal a clean blank two-page spread of cream paper. The hand exits the frame to the right after the book settles flat. Camera remains locked.
+
+[2.0 – 3.0s]
+Camera slowly dollies in toward the right page of the open sketchbook. As the dolly-in completes, the real photograph (@Image1, head-and-shoulders portrait of the boy) appears taped or pinned at the center of the right page, slightly angled, small format like a snapshot.
+
+[3.0 – 5.0s]
+A hand re-enters from the right holding a pencil. The pencil tip touches the paper near the photograph and begins to sketch. Pencil strokes appear in real time around and over the photograph, building up an illustrated portrait. Soft watercolor washes — warm browns, gentle skin tones, subtle background — bloom in over the pencil strokes. The original photograph gradually fades into the paper as the watercolor saturates and the line work completes. By the end of [5.0s], the photograph has fully faded and an illustrated pencil + watercolor portrait of the same boy fills the page area where the photo was. The illustrated end state must match the medium, line quality, color palette, and composition of @Image2.
+
+[5.0 – 6.0s]
+The hand and pencil exit the frame to the right. Camera holds locked on the finished illustrated portrait sitting on the right page of the open sketchbook. Subtle paper grain visible. Quiet hold.
+
+Audio:
+- Throughout: warm quiet room tone, very subtle ambient bed.
+- [1.5s]: soft single creak of the sketchbook opening.
+- [3.0 – 5.0s]: gentle continuous pencil scratching across paper.
+- No music, no voice, no sudden audio events.
+
+Identity and style constraints:
+- The boy in the final illustration must be unmistakably the same boy as in @Image1 — same face shape, same eye shape, same hairline, same skin tone.
+- The illustrated end state must match @Image2's medium: pencil + watercolor on visible cream paper, hand-drawn texture, NOT photoreal, NOT 3D, NOT digital-looking.
+- The transformation must read as the photograph being redrawn by hand, not as a digital filter or morph.
+
+Hard constraints:
+- Single continuous take, no cuts, no scene changes.
+- Locked overhead camera with one slow dolly-in starting at [2s]; otherwise camera does not move.
+- No extra characters in frame beyond the disembodied hand.
+- No on-screen text, no titles, no captions.
+- No sudden movements, no jitter, no jump cuts.
+- The sketchbook stays flat on the desk throughout.
