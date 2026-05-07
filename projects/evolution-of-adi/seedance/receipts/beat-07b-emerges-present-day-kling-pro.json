@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "fal-ai/kling-video/o3/pro/image-to-video",
+  "local_request_id": "fal-seedance-1778181431132-3e9c7c74",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T19:20:47.552249Z",
+  "input": {
+    "prompt": "Locked camera, full-frame view of a blank cream sketchbook page. NO visible pencil, NO visible hand.\n\nPHASED ACTION \u2014 strokes building IN DRAWING ORDER:\n\n[0.0 \u2013 1.2s]: Pencil OUTLINE strokes appear in drawing order: head-and-shoulders contour, eyes, nose, mouth. Each stroke discretely. NO color.\n\n[1.2 \u2013 2.5s]: Outline continues \u2014 voluminous curly black hair shape, full trimmed beard, eyebrows. The drawing reads as a man in his mid-30s with curly hair, full beard, and a warm open smile, in pencil.\n\n[2.5 \u2013 4.0s]: Watercolor washes BLOOM in waves. Warm skin tone first, then darker wash for hair and beard, then dark crewneck shirt wash.\n\n[4.0 \u2013 4.8s]: Final shading details. The smile lands warm and genuine.\n\n[4.8 \u2013 5.0s]: Hold on the completed portrait.\n\nCritical: real artist time-lapse. NOT a fade. The smile is the key feature \u2014 it must read as a warm open smile.\n\nConstraints: locked camera. NO visible pencil or hand. Single continuous take. The clip MUST end exactly at the provided end frame.",
+    "image_url": "https://v3b.fal.media/files/b/0a994a1f/RK9aQTtAbJkwTvkVhYiz4_00_blank_page_landing.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a994a1f/YM3XoFWIVglIvc0VegYe3_08_standalone_present_day_age34.png",
+    "duration": 5,
+    "aspect_ratio": "1:1"
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/00_blank_page_landing.png",
+      "url": "https://v3b.fal.media/files/b/0a994a1f/RK9aQTtAbJkwTvkVhYiz4_00_blank_page_landing.png",
+      "uploaded": true,
+      "bytes": 1869205,
+      "sha256": "f29431c3347ad747fa1e1f71c62cf7147eef2ad139a85cde96386b91daefa803",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/08_standalone_present_day_age34.png",
+      "url": "https://v3b.fal.media/files/b/0a994a1f/YM3XoFWIVglIvc0VegYe3_08_standalone_present_day_age34.png",
+      "uploaded": true,
+      "bytes": 2295693,
+      "sha256": "8f858b8d8d9bd183f77dff46d82887243066d3a04a553e70cf7af57810a9f598",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a994a30/Xcc_nyMgo4DRc8we9dDJQ_output.mp4",
+      "content_type": "video/mp4",
+      "file_name": "output.mp4",
+      "file_size": 10077715
+    }
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a994a30/Xcc_nyMgo4DRc8we9dDJQ_output.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/review/kling-renders/beat-07b-emerges-present-day-kling-pro.mp4",
+      "bytes": 10077715,
+      "sha256": "13452d0d795309f957864ed729a8bab9755ca4a1dc768071c765bed19a4509e7"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-07b-emerges-present-day-kling-pro.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}

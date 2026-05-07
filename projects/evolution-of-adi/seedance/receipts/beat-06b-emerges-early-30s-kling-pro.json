@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "fal-ai/kling-video/o3/pro/image-to-video",
+  "local_request_id": "fal-seedance-1778181431132-fc5a8e8b",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T19:21:00.933036Z",
+  "input": {
+    "prompt": "Locked camera, full-frame view of a blank cream sketchbook page. NO visible pencil, NO visible hand.\n\nPHASED ACTION \u2014 strokes building IN DRAWING ORDER:\n\n[0.0 \u2013 1.2s]: Pencil OUTLINE strokes appear in drawing order: head-and-shoulders contour, eyes, nose, mouth. Each stroke discretely. NO color.\n\n[1.2 \u2013 2.5s]: Outline continues \u2014 dark hair shape, full beard outline, eyebrows. The drawing reads as a man in his early 30s with a full trimmed beard, calm composed expression, in pencil.\n\n[2.5 \u2013 4.0s]: Watercolor washes BLOOM in waves over the line work. Skin tone first, then darker wash for hair and beard, then shirt wash.\n\n[4.0 \u2013 4.8s]: Final shading details settle.\n\n[4.8 \u2013 5.0s]: Hold on the completed portrait.\n\nCritical: real artist time-lapse. NOT a fade.\n\nConstraints: locked camera. NO visible pencil or hand. Single continuous take. The clip MUST end exactly at the provided end frame.",
+    "image_url": "https://v3b.fal.media/files/b/0a994a1f/BOdUtSu0eLxDYwx8iwAGk_00_blank_page_landing.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a994a1f/6ozpdoND3pYZMrcFCSzOj_07_standalone_early_30s_age30.png",
+    "duration": 5,
+    "aspect_ratio": "1:1"
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/00_blank_page_landing.png",
+      "url": "https://v3b.fal.media/files/b/0a994a1f/BOdUtSu0eLxDYwx8iwAGk_00_blank_page_landing.png",
+      "uploaded": true,
+      "bytes": 1869205,
+      "sha256": "f29431c3347ad747fa1e1f71c62cf7147eef2ad139a85cde96386b91daefa803",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/07_standalone_early_30s_age30.png",
+      "url": "https://v3b.fal.media/files/b/0a994a1f/6ozpdoND3pYZMrcFCSzOj_07_standalone_early_30s_age30.png",
+      "uploaded": true,
+      "bytes": 2222980,
+      "sha256": "cbcef01822fbd08edab77753e08d23a26d745b31eebb0bdf9bc3a16af54f180b",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a994a32/pKQ0YEHd5fhc3zBJuG4zH_output.mp4",
+      "content_type": "video/mp4",
+      "file_name": "output.mp4",
+      "file_size": 9748011
+    }
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a994a32/pKQ0YEHd5fhc3zBJuG4zH_output.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/review/kling-renders/beat-06b-emerges-early-30s-kling-pro.mp4",
+      "bytes": 9748011,
+      "sha256": "1d09d67960cbe2e72e0014a7a1722b90c70fd8cf86743c19e7fc44fc6cc5e503"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-06b-emerges-early-30s-kling-pro.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
