@@ -1,0 +1,50 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "fal-ai/kling-video/o3/standard/image-to-video",
+  "local_request_id": "fal-seedance-1778168605126-94a3400e",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-07T15:44:31.088221Z",
+  "input": {
+    "prompt": "Locked overhead camera, top-down view of a closed sketchbook on a warm wooden desk. The cover has the title 'Adi, in Drawings' on it.\n\nAction: The cover of the sketchbook gently lifts and rotates open, hinging on the spine on the left side. As the cover swings open it reveals the inside two-page spread: a photograph is already taped to the inside left page (with small pieces of cream-colored masking tape on the corners), and the right page is blank cream paper. The book settles flat into the open position by the end of the clip.\n\nLighting: warm soft directional light from upper-left throughout, gentle natural shadows.\n\nConstraints: locked overhead camera (no pan, no zoom, no tilt). No hand or person visible \u2014 the cover lifts on its own. The photograph on the inside left page is the same as in the end frame \u2014 do not modify it. The title text on the cover should remain readable until the cover rotates out of view. Single continuous take, no cuts.",
+    "image_url": "https://v3b.fal.media/files/b/0a99451c/1PKPnOEk73TRw6hK5B8yv_01_closed_book.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a99451c/K3X2Eq9Ai-ilF5UJ8CHIQ_02_open_photo_blank.png",
+    "duration": 5,
+    "aspect_ratio": "1:1"
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/01_closed_book.png",
+      "url": "https://v3b.fal.media/files/b/0a99451c/1PKPnOEk73TRw6hK5B8yv_01_closed_book.png",
+      "uploaded": true,
+      "bytes": 673774,
+      "sha256": "61c8f0e8d8a020ec733d41ba7669b98e9cb77d7638918657ef8769631b815440",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/staging-frames/keyframes/02_open_photo_blank.png",
+      "url": "https://v3b.fal.media/files/b/0a99451c/K3X2Eq9Ai-ilF5UJ8CHIQ_02_open_photo_blank.png",
+      "uploaded": true,
+      "bytes": 644232,
+      "sha256": "8765feadb38df954ef6c3825048465d184f226a6f9429742a5c023f0c96fdebb",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a994522/RTaONVv1EJvGkycs_cG-3_output.mp4",
+      "content_type": "video/mp4",
+      "file_name": "output.mp4",
+      "file_size": 3376680
+    }
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a994522/RTaONVv1EJvGkycs_cG-3_output.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/renders/beat-01-book-opens-kling.mp4",
+      "bytes": 3376680,
+      "sha256": "5e1cfc21e95ff63077ffd3b33189a3ae954601738d0c4655d1fbe3208d4479cc"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/evolution-of-adi/seedance/receipts/beat-01-book-opens-kling.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
