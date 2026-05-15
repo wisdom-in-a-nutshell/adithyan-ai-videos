@@ -6,13 +6,11 @@ import {
   Sequence,
   interpolate,
   spring,
-  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from 'remotion';
-
-const SKETCH_IMAGE = '/imports/paper-portal/sketch-crop.png';
-const QUIVER_SVG = '/imports/paper-portal/quiver-vector.svg';
+import sketchImage from './media/sketch-crop.jpg';
+import quiverSvg from './media/quiver-vector.svg';
 
 const clamp = {
   extrapolateLeft: 'clamp',
@@ -28,14 +26,14 @@ const line = {
 
 const SketchPlate = ({frame}) => {
   const settle = spring({fps: 30, frame, config: {damping: 180}});
-  const photoOpacity = interpolate(frame, [0, 72, 116], [1, 0.74, 0.34], clamp);
-  const vectorOpacity = interpolate(frame, [32, 76, 130], [0, 0.58, 0.92], clamp);
-  const vectorLift = interpolate(frame, [64, 120], [6, 0], clamp);
+  const photoOpacity = interpolate(frame, [0, 34, 62], [1, 0.72, 0.28], clamp);
+  const vectorOpacity = interpolate(frame, [14, 40, 72], [0, 0.62, 0.96], clamp);
+  const vectorLift = interpolate(frame, [28, 64], [6, 0], clamp);
 
   return (
     <AbsoluteFill style={{backgroundColor: '#a8a29d'}}>
       <Img
-        src={staticFile(SKETCH_IMAGE)}
+        src={sketchImage}
         style={{
           position: 'absolute',
           inset: 0,
@@ -47,7 +45,7 @@ const SketchPlate = ({frame}) => {
         }}
       />
       <Img
-        src={staticFile(QUIVER_SVG)}
+        src={quiverSvg}
         style={{
           position: 'absolute',
           inset: 0,
@@ -64,11 +62,11 @@ const SketchPlate = ({frame}) => {
 };
 
 const ColorWorld = ({frame}) => {
-  const reveal = interpolate(frame, [148, 205], [0, 1], {
+  const reveal = interpolate(frame, [88, 132], [0, 1], {
     ...clamp,
     easing: Easing.bezier(0.16, 1, 0.3, 1),
   });
-  const wash = interpolate(frame, [176, 238], [0, 1], clamp);
+  const wash = interpolate(frame, [98, 148], [0, 1], clamp);
 
   return (
     <AbsoluteFill style={{opacity: wash}}>
@@ -107,12 +105,12 @@ const ColorWorld = ({frame}) => {
 };
 
 const WalkingFigure = ({frame}) => {
-  const walk = interpolate(frame, [92, 204], [0, 1], clamp);
-  const fade = interpolate(frame, [72, 104, 212, 250], [0, 1, 1, 0.18], clamp);
+  const walk = interpolate(frame, [42, 118], [0, 1], clamp);
+  const fade = interpolate(frame, [30, 48, 124, 150], [0, 1, 1, 0.2], clamp);
   const x = interpolate(walk, [0, 1], [450, 1265]);
   const y = interpolate(walk, [0, 0.7, 1], [632, 690, 728]);
   const step = Math.sin(walk * Math.PI * 8);
-  const color = interpolate(frame, [168, 224], [0, 1], clamp);
+  const color = interpolate(frame, [94, 136], [0, 1], clamp);
 
   return (
     <AbsoluteFill style={{opacity: fade}}>
@@ -146,7 +144,7 @@ const WalkingFigure = ({frame}) => {
 export const PaperPortalComp = () => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
-  const portalPulse = spring({fps, frame: frame - 138, config: {damping: 120}});
+  const portalPulse = spring({fps, frame: frame - 82, config: {damping: 120}});
 
   return (
     <AbsoluteFill style={{backgroundColor: '#a8a29d'}}>

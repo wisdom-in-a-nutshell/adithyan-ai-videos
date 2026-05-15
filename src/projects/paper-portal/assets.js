@@ -7,7 +7,7 @@ export const ALPHA_URL = '';
 export const FPS = 30;
 export const WIDTH = 1920;
 export const HEIGHT = 1080;
-export const DURATION_SECONDS = 10;
+export const DURATION_SECONDS = 5;
 export const DURATION_FRAMES = Math.ceil(DURATION_SECONDS * FPS);
 
 // Hardcode timing anchors once transcript is stable.
