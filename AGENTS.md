@@ -16,10 +16,11 @@ provide intent; agents implement and maintain code and docs.
 2. `docs/references/project-contract.md`
 3. `docs/references/effect-library.md` when visual reuse or house-style blocks are relevant
 4. `docs/references/repo-operations.md`
-5. `docs/references/docs-contract.md`
-6. `docs/references/verification-loop.md`
-7. `docs/setup/cloud-render-modal.md` when cloud render is relevant
-8. `docs/projects/<project>/tasks.md` for active execution state
+5. `docs/references/media-storage.md` when importing or moving large local media
+6. `docs/references/docs-contract.md`
+7. `docs/references/verification-loop.md`
+8. `docs/setup/cloud-render-modal.md` when cloud render is relevant
+9. `docs/projects/<project>/tasks.md` for active execution state
 
 ## Repo Rules
 

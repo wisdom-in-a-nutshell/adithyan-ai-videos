@@ -10,6 +10,10 @@
     "render": "node scripts/render.mjs",
     "render:cloud": "node scripts/render_cloud.mjs",
     "new:project": "node scripts/new_project.mjs",
+    "media:status": "node scripts/media_storage.mjs status",
+    "media:check": "node scripts/media_storage.mjs check",
+    "media:link": "node scripts/media_storage.mjs link",
+    "media:setup": "node scripts/media_storage.mjs link --apply",
     "doctor": "node scripts/doctor.mjs",
     "check:fast": "bash scripts/check-fast.sh",
     "check:full": "bash scripts/check-full.sh"

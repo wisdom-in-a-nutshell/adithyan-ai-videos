@@ -13,6 +13,13 @@
   render through the deployed Modal app and wait for the final URL.
 - `npm run new:project -- --id <project-id> --title "My Video"`: scaffold both
   project folders and register the new composition.
+- `npm run media:status`: inspect the local media storage state and folder
+  sizes.
+- `npm run media:check`: verify the managed local media link is usable when it
+  exists.
+- `npm run media:link -- --apply`: move `public/imports` to the configured
+  media root and replace it with a symlink.
+- `npm run media:setup`: agent-friendly alias for `npm run media:link -- --apply`.
 - `npm run doctor`: verify repo shape and composition registration.
 - `npm run check:fast`: run the staged-file guardrail used by the shared agent commit hook.
 
@@ -44,6 +51,10 @@
   long-term runtime dependencies. If a cutout/effect needs them for quality,
   prefer converting them into one uploaded transparent video and then pointing
   `assets.js` at that remote asset.
+- Large local runtime imports belong under `public/imports/<project-id>/`.
+  On the Mac Mini this path may be a symlink to
+  `/Volumes/DobbyData/Videos/adithyan-ai-videos/public/imports`; use
+  `npm run media:status` and `npm run media:check` to inspect it.
 - `npm run render:cloud` owns the cloud wait loop. It prints the Modal call id,
   dashboard URL, heartbeat status lines, and the final output URL. Do not do
   separate manual polling unless you are debugging the backend itself.
@@ -60,4 +71,5 @@
 ## Related References
 
 - `docs/references/verification-loop.md`
+- `docs/references/media-storage.md`
 - `docs/setup/cloud-render-modal.md`
