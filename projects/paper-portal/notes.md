@@ -41,6 +41,9 @@ Current hook drafts:
 - `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-07-12s-tap-punch-zoom.mp4`
 - `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-07-12s-tap-punch-zoom-final-frame.jpg`
 - `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-08-tap-flash-seed.mp4`
+- `projects/paper-portal/drafts/paper-portal-first-half-v01-clean-seed-handoff.mp4`
+- `projects/paper-portal/drafts/paper-portal-first-half-v01-clean-seed-handoff-contact.jpg`
+- `projects/paper-portal/drafts/paper-portal-first-half-v01-transition-frames.jpg`
 - `projects/paper-portal/drafts/paper-portal-option-a-final-seed-imagegen-clean-v01.png`
 - `projects/paper-portal/drafts/paper-portal-option-a-final-seed-imagegen-clean-v01-16x9.png`
 
@@ -64,6 +67,10 @@ Zoom options:
   crop pan entirely: the 12s wide video plays through the hand/tap gesture, then
   a quick paper-white flash/fade transitions into the Option A seed image and
   holds it for the AI handoff.
+- `paper-portal-first-half-v01-clean-seed-handoff.mp4` is the current finished
+  first-half handoff. It uses the liked 12s base, waits through the tap, applies
+  a short blur/white flash, fades into the cleaned ImageGen seed, and holds for
+  the next Omni/AI animation segment.
 
 Clean seed image:
 

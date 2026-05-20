@@ -35,6 +35,8 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-07-12s-tap-punch-zoom.mp4`
 - Current transition pass:
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-08-tap-flash-seed.mp4`
+- Current first-half output:
+  `projects/paper-portal/drafts/paper-portal-first-half-v01-clean-seed-handoff.mp4`
 - Clean ImageGen seed:
   `projects/paper-portal/drafts/paper-portal-option-a-final-seed-imagegen-clean-v01-16x9.png`
 - Current final seed frame:
@@ -74,6 +76,8 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
   visible camera pan.
 - [x] Generate a cleaner ImageGen recreation of the Option A final seed and make
   a 16:9 video-ready derivative.
+- [x] Finish first-half handoff with blur/white flash into the cleaned seed
+  image.
 
 ## Working Assumptions
 
