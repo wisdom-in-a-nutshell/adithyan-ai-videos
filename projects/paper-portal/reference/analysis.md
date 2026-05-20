@@ -39,3 +39,28 @@ the broader idea:
 - use the final drawing as the AI animation seed
 - decide later whether the continuation is pure AI video, Remotion-controlled
   animation, or a hybrid
+
+## Omni Flash Direction
+
+The target model direction is Gemini Omni Flash / Gemini Omni, accessed through
+Gemini or Google Flow unless an API becomes available later. Google describes
+Omni as a video-first model that can take text, images, audio, and video inputs,
+edit through natural conversation, and combine references into a single
+coherent output.
+
+This matters for the concept because the trend is not only "make my sketch
+move." The more interesting version is:
+
+1. Start with a fast live drawing hook.
+2. Hold on the finished sketch as the transition point.
+3. Use the finished sketch frame as the seed/reference.
+4. Generate a short animated continuation where the sketched character runs.
+5. End each generated beat on another door or portal.
+6. Use the next door crossing to change the style: pencil sketch, ink comic,
+   clay/stop-motion, 3D toy, pixel art, cinematic, etc.
+7. Stitch those independent generated clips into one continuous chase.
+
+Known risk: Google notes that complete consistency through edits and complex
+motion can still be hard. For this idea, that means we should keep the character
+simple, use doors as intentional reset points, and generate in short segments
+instead of relying on one long continuous model output.

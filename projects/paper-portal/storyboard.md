@@ -16,10 +16,11 @@ complete, the final drawing becomes the seed for animation. The current
 placeholder sketch is a stick figure and a door, but the final drawing may
 change once the exact video idea is chosen.
 
-One possible version: the live paper shot freezes or settles. A clean animated
-layer quietly aligns over the drawing, then the stick figure starts moving. It
-walks toward the door. As it crosses through, the rough monochrome sketch turns
-into a colorful, polished world.
+Current direction: the live drawing is the hook, likely sped up so it feels
+quick and satisfying. The finished sketch then turns into the AI-generated
+animated world. A simple sketched character runs through a course, opens a
+door, enters a new scene, finds another door, and keeps going. Each door crossing
+can change the visual style.
 
 ## Feeling to test
 
@@ -35,10 +36,12 @@ Keep this intentionally small once the exact drawing is known:
 1. Use a simple paper sketch: stick figure, floor line, door.
 2. Capture the real drawing process clearly enough for the trend format.
 3. Extract the finished drawing frame.
-4. Test one AI image-to-video animation prompt from that frame.
-5. If AI alone is not controllable enough, use Remotion overlays or SVG control
+4. Test one Omni Flash image/video-to-video animation prompt from that frame.
+5. Make the first generated beat end on another door so it can be stitched into
+   a second style-changing segment.
+6. If AI alone is not controllable enough, use Remotion overlays or SVG control
    for the first animated beat.
-6. Stop as soon as the visual feeling is proven or disproven.
+7. Stop as soon as the visual feeling is proven or disproven.
 
 ## Open questions
 
@@ -47,3 +50,7 @@ Keep this intentionally small once the exact drawing is known:
 - How much hand-drawn wobble/jitter makes it feel alive without becoming messy?
 - Should the AI video be the main continuation, or only a texture/assist layer
   under a controlled Remotion animation?
+- How many style changes can happen before the video feels random instead of
+  satisfying?
+- Should each style segment be generated independently and stitched, or should
+  Omni edit the previous output in conversation for continuity?
