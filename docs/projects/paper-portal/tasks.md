@@ -27,6 +27,10 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
   `public/imports/paper-portal/source/trimmed-drawing-source.mov`
 - Current review draft:
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-04-12s-ramp-audio.mp4`
+- Zoom option A:
+  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-05-12s-end-zoom.mp4`
+- Zoom option B:
+  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-06-12s-end-zoom-door-margin.mp4`
 - Current final seed frame:
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-04-12s-ramp-audio-final-frame.jpg`
 
@@ -57,6 +61,7 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
   speed ramp.
 - [x] Restore matching source audio to the 10s ramp draft.
 - [x] Produce 12s wide speed-up draft with audio and smoother pacing.
+- [x] Preserve the liked 12s draft and create end-zoom options from it.
 
 ## Working Assumptions
 

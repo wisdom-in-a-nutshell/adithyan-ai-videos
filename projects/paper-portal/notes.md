@@ -34,13 +34,25 @@ Current hook drafts:
 - `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-03-10s-ramp-audio.mp4`
 - `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-04-12s-ramp-audio.mp4`
 - `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-04-12s-ramp-audio-final-frame.jpg`
+- `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-05-12s-end-zoom.mp4`
+- `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-05-12s-end-zoom-final-frame.jpg`
+- `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-06-12s-end-zoom-door-margin.mp4`
+- `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-06-12s-end-zoom-door-margin-final-frame.jpg`
 
 `paper-portal-speedup-wide-draft-04-12s-ramp-audio.mp4` is the current base
 review pass. It compresses the 96.5s drawing clip into about 12.67s, starts
 with about 2.6s at natural speed, ramps through multiple faster speed bands,
 eases back toward natural speed near the end, keeps the frame stable, and
-includes matching speed-ramped source audio. Add the snap/punch-in zoom as a
-separate next pass after this timing feels right.
+includes matching speed-ramped source audio. Keep this file untouched as the
+liked timing baseline.
+
+Zoom options:
+
+- Draft 05 uses the confirmed tight boundary: character on the left, door close
+  to the right edge. It is the cleanest "drawn world" crop, but the door edge is
+  close to the frame boundary.
+- Draft 06 gives the door slightly more breathing room on the right. It is a
+  safer transition crop, but includes more paper edge/desk texture at the left.
 
 `paper-portal-hook-draft-02.mp4` is the earlier Ken Burns exploration with a
 slow zoom and temporal blending. Keep it for comparison, but do not treat it as
