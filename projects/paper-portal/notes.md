@@ -10,6 +10,30 @@ The Desktop reference clips have been sampled and summarized in
 `projects/paper-portal/reference/analysis.md`. Durable stills live beside that
 file so future work can resume without re-processing the source videos.
 
+## Source and draft media
+
+The Desktop originals are treated as read-only source captures. Current working
+copy:
+
+- original inspected file: `/Users/dobby/Desktop/Trimmed.mov`
+- project-local media import:
+  `public/imports/paper-portal/source/trimmed-drawing-source.mov`
+
+`public/imports` is backed by the repo media-storage symlink, so this large
+1.3GB file lives outside the Git repo while still using a repo-facing path.
+
+Current hook drafts:
+
+- `projects/paper-portal/drafts/paper-portal-hook-draft-01.mp4`
+- `projects/paper-portal/drafts/paper-portal-hook-draft-02.mp4`
+- `projects/paper-portal/drafts/paper-portal-hook-draft-02-final-frame.jpg`
+
+Draft 02 is the preferred first review pass. It compresses the 96.5s drawing
+clip into about 6.17s, starts briefly at natural speed, heavily speeds up the
+middle, eases back into the final sketch moment, adds a slow Ken Burns zoom
+toward the paper, and applies subtle temporal blending so the speedup feels less
+choppy.
+
 ## Concept
 
 Film a top-down drawing session: a stick figure and door on paper. Then transition from the real paper drawing into an animated SVG scene. The character walks through the door and the world becomes colorful/polished on the other side.

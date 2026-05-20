@@ -19,6 +19,17 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
 - `projects/paper-portal/reference/drawing-start-frame.jpg`
 - `projects/paper-portal/reference/final-sketch-crop.jpg`
 
+## Media layout
+
+- Desktop original, read-only:
+  `/Users/dobby/Desktop/Trimmed.mov`
+- Project-local working import:
+  `public/imports/paper-portal/source/trimmed-drawing-source.mov`
+- Current review draft:
+  `projects/paper-portal/drafts/paper-portal-hook-draft-02.mp4`
+- Current final seed frame:
+  `projects/paper-portal/drafts/paper-portal-hook-draft-02-final-frame.jpg`
+
 ## Next steps
 
 - [ ] Decide the exact drawing and story beat.
@@ -37,6 +48,9 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
 - [x] Confirm `paper-portal` as the canonical project home.
 - [x] Clarify the intended direction: fast drawing hook, then chained
   style-changing Omni Flash animation.
+- [x] Import the current drawing source into project-local media storage without
+  modifying the Desktop original.
+- [x] Produce first hook draft with speed ramp, slow zoom, and final seed frame.
 
 ## Working Assumptions
 
