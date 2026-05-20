@@ -26,9 +26,9 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
 - Project-local working import:
   `public/imports/paper-portal/source/trimmed-drawing-source.mov`
 - Current review draft:
-  `projects/paper-portal/drafts/paper-portal-hook-draft-02.mp4`
+  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-01.mp4`
 - Current final seed frame:
-  `projects/paper-portal/drafts/paper-portal-hook-draft-02-final-frame.jpg`
+  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-01-final-frame.jpg`
 
 ## Next steps
 
@@ -51,6 +51,8 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
 - [x] Import the current drawing source into project-local media storage without
   modifying the Desktop original.
 - [x] Produce first hook draft with speed ramp, slow zoom, and final seed frame.
+- [x] Produce simplified wide speed-up base draft without zoom/punch for timing
+  review.
 
 ## Working Assumptions
 

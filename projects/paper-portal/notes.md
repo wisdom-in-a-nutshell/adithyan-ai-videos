@@ -27,12 +27,18 @@ Current hook drafts:
 - `projects/paper-portal/drafts/paper-portal-hook-draft-01.mp4`
 - `projects/paper-portal/drafts/paper-portal-hook-draft-02.mp4`
 - `projects/paper-portal/drafts/paper-portal-hook-draft-02-final-frame.jpg`
+- `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-01.mp4`
+- `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-01-final-frame.jpg`
 
-Draft 02 is the preferred first review pass. It compresses the 96.5s drawing
-clip into about 6.17s, starts briefly at natural speed, heavily speeds up the
-middle, eases back into the final sketch moment, adds a slow Ken Burns zoom
-toward the paper, and applies subtle temporal blending so the speedup feels less
-choppy.
+`paper-portal-speedup-wide-draft-01.mp4` is the current base review pass. It
+compresses the 96.5s drawing clip into about 6.17s, starts briefly at natural
+speed, heavily speeds up the middle, eases back into the final sketch moment,
+and keeps the frame stable. Add the snap/punch-in zoom as a separate next pass
+after this timing feels right.
+
+`paper-portal-hook-draft-02.mp4` is the earlier Ken Burns exploration with a
+slow zoom and temporal blending. Keep it for comparison, but do not treat it as
+the current direction.
 
 ## Concept
 
