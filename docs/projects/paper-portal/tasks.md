@@ -31,6 +31,8 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-05-12s-end-zoom.mp4`
 - Zoom option B:
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-06-12s-end-zoom-door-margin.mp4`
+- Current zoom pass:
+  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-07-12s-tap-punch-zoom.mp4`
 - Current final seed frame:
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-04-12s-ramp-audio-final-frame.jpg`
 
@@ -62,6 +64,8 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
 - [x] Restore matching source audio to the 10s ramp draft.
 - [x] Produce 12s wide speed-up draft with audio and smoother pacing.
 - [x] Preserve the liked 12s draft and create end-zoom options from it.
+- [x] Fix zoom timing so punch-in happens after the hand/tap gesture and does
+  not drift in/out.
 
 ## Working Assumptions
 
