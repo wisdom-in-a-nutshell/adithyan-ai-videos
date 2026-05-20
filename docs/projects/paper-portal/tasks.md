@@ -26,9 +26,9 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
 - Project-local working import:
   `public/imports/paper-portal/source/trimmed-drawing-source.mov`
 - Current review draft:
-  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-01.mp4`
+  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-02-10s-ramp.mp4`
 - Current final seed frame:
-  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-01-final-frame.jpg`
+  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-02-10s-ramp-final-frame.jpg`
 
 ## Next steps
 
@@ -53,6 +53,8 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
 - [x] Produce first hook draft with speed ramp, slow zoom, and final seed frame.
 - [x] Produce simplified wide speed-up base draft without zoom/punch for timing
   review.
+- [x] Produce 10s wide speed-up draft with longer normal opening and gradual
+  speed ramp.
 
 ## Working Assumptions
 
