@@ -35,6 +35,8 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-07-12s-tap-punch-zoom.mp4`
 - Current transition pass:
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-08-tap-flash-seed.mp4`
+- Clean ImageGen seed:
+  `projects/paper-portal/drafts/paper-portal-option-a-final-seed-imagegen-clean-v01-16x9.png`
 - Current final seed frame:
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-04-12s-ramp-audio-final-frame.jpg`
 
@@ -70,6 +72,8 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
   not drift in/out.
 - [x] Produce flash/fade transition into the Option A seed image to avoid the
   visible camera pan.
+- [x] Generate a cleaner ImageGen recreation of the Option A final seed and make
+  a 16:9 video-ready derivative.
 
 ## Working Assumptions
 
