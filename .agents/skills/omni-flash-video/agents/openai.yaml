@@ -1,0 +1,4 @@
+interface:
+  display_name: "Omni Flash Video"
+  short_description: "Prompt and stitch Gemini Omni Flash videos"
+  default_prompt: "Use $omni-flash-video to plan and prompt a Gemini Omni Flash video sequence."

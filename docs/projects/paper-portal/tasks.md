@@ -27,31 +27,23 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
   `public/imports/paper-portal/source/trimmed-drawing-source.mov`
 - Current review draft:
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-04-12s-ramp-audio.mp4`
-- Zoom option A:
-  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-05-12s-end-zoom.mp4`
-- Zoom option B:
-  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-06-12s-end-zoom-door-margin.mp4`
-- Current zoom pass:
-  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-07-12s-tap-punch-zoom.mp4`
-- Current transition pass:
-  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-08-tap-flash-seed.mp4`
 - Current first-half output:
   `projects/paper-portal/drafts/paper-portal-first-half-v01-clean-seed-handoff.mp4`
 - Clean ImageGen seed:
   `projects/paper-portal/drafts/paper-portal-option-a-final-seed-imagegen-clean-v01-16x9.png`
 - Current final seed frame:
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-04-12s-ramp-audio-final-frame.jpg`
+- Archived older draft attempts:
+  `projects/paper-portal/drafts/archive-2026-05-20/`
 
 ## Next steps
 
-- [ ] Decide the exact drawing and story beat.
-- [ ] Record or select the real drawing source.
-- [ ] Extract a clean final drawing frame for AI animation.
-- [ ] Run one Omni Flash image/video-to-video test from the final drawing frame.
-- [ ] Make the generated beat end on a second door/portal.
-- [ ] Test one style-change continuation segment from that door/portal frame.
-- [ ] Decide whether to continue Omni-first, Remotion-first, or hybrid.
-- [ ] Render a short preview and judge whether the format has magic.
+- [ ] Upload the clean seed to Google Flow / Gemini Omni Flash.
+- [ ] Generate 2-4 first-clip canaries: stick figure walks to the door and opens
+  it slightly.
+- [ ] Save the strongest output and prompt notes under `projects/paper-portal/`.
+- [ ] Choose a final frame from the first Omni clip as the next segment seed.
+- [ ] Plan the first door/style-change continuation.
 
 ## Completed
 
@@ -78,6 +70,7 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
   a 16:9 video-ready derivative.
 - [x] Finish first-half handoff with blur/white flash into the cleaned seed
   image.
+- [x] Archive older intermediate draft attempts while preserving active outputs.
 
 ## Working Assumptions
 
