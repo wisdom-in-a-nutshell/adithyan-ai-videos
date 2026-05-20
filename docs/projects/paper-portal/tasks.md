@@ -33,6 +33,8 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-06-12s-end-zoom-door-margin.mp4`
 - Current zoom pass:
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-07-12s-tap-punch-zoom.mp4`
+- Current transition pass:
+  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-08-tap-flash-seed.mp4`
 - Current final seed frame:
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-04-12s-ramp-audio-final-frame.jpg`
 
@@ -66,6 +68,8 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
 - [x] Preserve the liked 12s draft and create end-zoom options from it.
 - [x] Fix zoom timing so punch-in happens after the hand/tap gesture and does
   not drift in/out.
+- [x] Produce flash/fade transition into the Option A seed image to avoid the
+  visible camera pan.
 
 ## Working Assumptions
 
