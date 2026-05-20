@@ -26,7 +26,7 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
 - Project-local working import:
   `public/imports/paper-portal/source/trimmed-drawing-source.mov`
 - Current review draft:
-  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-02-10s-ramp.mp4`
+  `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-03-10s-ramp-audio.mp4`
 - Current final seed frame:
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-02-10s-ramp-final-frame.jpg`
 
@@ -55,6 +55,7 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
   review.
 - [x] Produce 10s wide speed-up draft with longer normal opening and gradual
   speed ramp.
+- [x] Restore matching source audio to the 10s ramp draft.
 
 ## Working Assumptions
 

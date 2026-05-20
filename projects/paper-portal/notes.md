@@ -31,12 +31,14 @@ Current hook drafts:
 - `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-01-final-frame.jpg`
 - `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-02-10s-ramp.mp4`
 - `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-02-10s-ramp-final-frame.jpg`
+- `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-03-10s-ramp-audio.mp4`
 
-`paper-portal-speedup-wide-draft-02-10s-ramp.mp4` is the current base review
-pass. It compresses the 96.5s drawing clip into about 10.07s, starts with about
-2s at natural speed, ramps through multiple faster speed bands, eases back
-toward natural speed near the end, and keeps the frame stable. Add the
-snap/punch-in zoom as a separate next pass after this timing feels right.
+`paper-portal-speedup-wide-draft-03-10s-ramp-audio.mp4` is the current base
+review pass. It compresses the 96.5s drawing clip into about 10.07s, starts
+with about 2s at natural speed, ramps through multiple faster speed bands, eases
+back toward natural speed near the end, keeps the frame stable, and includes
+matching speed-ramped source audio. Add the snap/punch-in zoom as a separate
+next pass after this timing feels right.
 
 `paper-portal-hook-draft-02.mp4` is the earlier Ken Burns exploration with a
 slow zoom and temporal blending. Keep it for comparison, but do not treat it as
