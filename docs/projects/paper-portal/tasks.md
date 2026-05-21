@@ -56,6 +56,12 @@ Upload-ready three-frame set:
   `projects/paper-portal/seedance/renders/seedance-regular-walk-to-handle-v02.mp4`
 - Liked walk-to-handle keeper:
   `projects/paper-portal/seedance/renders/seedance-regular-walk-to-handle-v02.mp4`
+- Current transition canary:
+  `projects/paper-portal/seedance/renders/seedance-fast-door-transition-variant3-v01.mp4`
+- Current full transition render:
+  `projects/paper-portal/seedance/renders/seedance-regular-door-transition-variant3-v02-surprise.mp4`
+- Current selected transition end frame:
+  `projects/paper-portal/transition-keyframes/selected/door-pushed-in-glow-variant-3-selected.png`
 - Clean ImageGen seed:
   `projects/paper-portal/drafts/paper-portal-option-a-final-seed-imagegen-clean-v01-16x9.png`
 - Current final seed frame:
@@ -75,6 +81,10 @@ Upload-ready three-frame set:
   fixes the fast Seedance articulation issue.
 - [ ] Extract the final frame from the liked regular Seedance walk-to-handle
   keeper as the start frame for the door-opening beat.
+- [ ] Review the Variant 3 Seedance fast transition canary for whether the
+  figure disappears cleanly through the glowing pushed-in door.
+- [ ] Review the regular 1080p Variant 3 transition render with the small
+  surprise reaction before the figure enters the glow.
 - [ ] Save the strongest Clip 02 output and extract its final frame as the Clip
   03 seed.
 - [ ] Generate Clip 03: figure enters the bright doorway and lands in the first

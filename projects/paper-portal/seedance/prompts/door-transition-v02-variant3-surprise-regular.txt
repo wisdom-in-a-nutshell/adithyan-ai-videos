@@ -1,0 +1,15 @@
+Use the first image as the exact start frame and the second image as the exact final frame.
+
+Animate this as a simple graphite pencil drawing on plain white paper, in one continuous locked-off shot.
+
+@Image1 is the start frame: the stick figure is standing at the closed door with one hand on the handle.
+@Image2 is the final frame: the door has been pushed inward, the doorway glows bright white, and the stick figure is completely gone through the portal.
+
+[0-1.0s]: The stick figure gently pushes the handle and starts opening the door inward, away from the viewer. Keep the left hinge fixed. The door panel should not pull outward or detach.
+[1.0-2.0s]: As the bright white glow appears, the figure briefly reacts with a simple surprised pencil expression, like a small silent "oh" or "whoa" face. Keep the same stick-figure proportions and simple line style. Do not add text or a speech bubble.
+[2.0-4.4s]: The figure steps through the opening into the bright white glow. The movement is readable and calm, not a run. The figure passes fully through the doorway.
+[4.4-5.0s]: The figure is completely gone. The door remains pushed inward, and the white portal glow blooms softly from the other side. Hold the final state briefly.
+
+Keep the camera locked-off and preserve the plain white paper background, graphite pencil line style, ground line, simple door, and simple stick figure. The glow should be clean white light, not a colorful portal. No detailed new world is visible yet.
+
+Avoid: door opening outward, detached door, floating door, character visible in final frame, character stuck halfway, extra limbs, extra characters, realistic body, changing proportions, colorful portal, detailed world inside, thick black outlines, shadows, text, speech bubble, camera movement, background music.

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "bytedance/seedance-2.0/image-to-video",
+  "local_request_id": "fal-seedance-1779373163928-64ce0f80",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-21T14:22:16.512274Z",
+  "input": {
+    "prompt": "Use the first image as the exact start frame and the second image as the exact final frame.\n\nAnimate this as a simple graphite pencil drawing on plain white paper, in one continuous locked-off shot.\n\n@Image1 is the start frame: the stick figure is standing at the closed door with one hand on the handle.\n@Image2 is the final frame: the door has been pushed inward, the doorway glows bright white, and the stick figure is completely gone through the portal.\n\n[0-1.0s]: The stick figure gently pushes the handle and starts opening the door inward, away from the viewer. Keep the left hinge fixed. The door panel should not pull outward or detach.\n[1.0-2.0s]: As the bright white glow appears, the figure briefly reacts with a simple surprised pencil expression, like a small silent \"oh\" or \"whoa\" face. Keep the same stick-figure proportions and simple line style. Do not add text or a speech bubble.\n[2.0-4.4s]: The figure steps through the opening into the bright white glow. The movement is readable and calm, not a run. The figure passes fully through the doorway.\n[4.4-5.0s]: The figure is completely gone. The door remains pushed inward, and the white portal glow blooms softly from the other side. Hold the final state briefly.\n\nKeep the camera locked-off and preserve the plain white paper background, graphite pencil line style, ground line, simple door, and simple stick figure. The glow should be clean white light, not a colorful portal. No detailed new world is visible yet.\n\nAvoid: door opening outward, detached door, floating door, character visible in final frame, character stuck halfway, extra limbs, extra characters, realistic body, changing proportions, colorful portal, detailed world inside, thick black outlines, shadows, text, speech bubble, camera movement, background music.",
+    "image_url": "https://v3b.fal.media/files/b/0a9b1ba4/faBUfBNX3zA93qkO3J-M4_01-seedance-v02-final-frame.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a9b1ba4/B7H-xmXTSWvOjo6nAa-1v_door-pushed-in-glow-variant-3-selected.png",
+    "duration": 5,
+    "aspect_ratio": "16:9",
+    "resolution": "1080p",
+    "generate_audio": false
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/paper-portal/transition-keyframes/01-seedance-v02-final-frame.png",
+      "url": "https://v3b.fal.media/files/b/0a9b1ba4/faBUfBNX3zA93qkO3J-M4_01-seedance-v02-final-frame.png",
+      "uploaded": true,
+      "bytes": 119266,
+      "sha256": "a92882d7f89559f1195ec18a7c9bcd5c1f7b75f492f439a362aacdf1c9ba2bd3",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/paper-portal/transition-keyframes/selected/door-pushed-in-glow-variant-3-selected.png",
+      "url": "https://v3b.fal.media/files/b/0a9b1ba4/B7H-xmXTSWvOjo6nAa-1v_door-pushed-in-glow-variant-3-selected.png",
+      "uploaded": true,
+      "bytes": 1332091,
+      "sha256": "cb82a1ee74acd07ee4558a5d7e33ab4a1458fa0d933ecf9626953103d288fd2a",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a9b1bb5/VimqRuxNlxtw2opkCDf5x_video.mp4",
+      "content_type": "video/mp4",
+      "file_name": "video.mp4",
+      "file_size": 1925457
+    },
+    "seed": 1161901056
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a9b1bb5/VimqRuxNlxtw2opkCDf5x_video.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/paper-portal/seedance/renders/seedance-regular-door-transition-variant3-v02-surprise.mp4",
+      "bytes": 1925457,
+      "sha256": "b620ebc3a8c1c4f2592f60ccc5d40bc3d96f49acab11b9b15ab753acae223477"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/paper-portal/seedance/receipts/seedance-regular-door-transition-variant3-v02-surprise.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}
