@@ -68,6 +68,8 @@ Upload-ready three-frame set:
   `projects/paper-portal/drafts/paper-portal-seedance-walk-plus-transition-clean-v02.mp4`
 - Current cleaned full review:
   `projects/paper-portal/drafts/paper-portal-full-clean-transition-v02.mp4`
+- Current anchored full review:
+  `projects/paper-portal/drafts/paper-portal-full-anchor-blend-transition-v03.mp4`
 - Current selected transition end frame:
   `projects/paper-portal/transition-keyframes/selected/door-pushed-in-glow-variant-3-selected.png`
 - Clean ImageGen seed:
@@ -99,6 +101,9 @@ Upload-ready three-frame set:
 - [ ] Review cleaned v02 sequence: hook cut at the white flash, 0.25s blend
   between walk and transition, and portal clip trimmed when the figure has
   disappeared.
+- [ ] Review anchored v03 full sequence: hook flash, short seed-frame anchor,
+  soft blend into Seedance walk, existing 0.25s walk/portal blend, and trimmed
+  portal ending.
 - [ ] Save the strongest Clip 02 output and extract its final frame as the Clip
   03 seed.
 - [ ] Generate Clip 03: figure enters the bright doorway and lands in the first
@@ -147,6 +152,8 @@ Upload-ready three-frame set:
   full-sequence review.
 - [x] Remove the dead still-image hold after the hook flash, blend the two
   Seedance clips, and trim the portal ending to the disappearance moment.
+- [x] Add a short seed-frame anchor plus soft blend after the hook flash so the
+  real sketch handoff reads as intentional instead of abrupt.
 
 ## Working Assumptions
 
