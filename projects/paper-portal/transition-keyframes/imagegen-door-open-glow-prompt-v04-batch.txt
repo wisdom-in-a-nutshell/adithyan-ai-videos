@@ -1,0 +1,8 @@
+Use case: precise-object-edit
+Primary request: Create a clean transition end keyframe from this no-person pencil door plate. The stick figure has already gone through the doorway and is not visible. The door is pushed inward, away from the viewer, and is only slightly open. A bright white portal-like glow spills from the opening.
+
+Style/medium: simple graphite pencil drawing on plain white paper, matching the source exactly. Quiet, minimal, hand-drawn, not cinematic.
+Composition/framing: keep the same 16:9 frame, same white paper background, same ground line, same far-right door placement. Preserve as much of the original door geometry as possible. The left vertical door edge/hinge stays fixed. The open door panel is a narrow angled pencil panel inside/behind the doorway, pushed inward. The opening is a thin-to-medium crack filled with clean white light.
+Lighting/mood: restrained magical white glow from inside the door, soft halo, gentle light spill on the ground near the threshold, a few subtle pencil-like sparkle/tinkle marks only if they look natural.
+Constraints: Use the input no-person plate as the anchor. Keep nobody visible. Change only the masked door/portal area. Preserve the ground line continuity and paper texture. Keep line weight close to the original. Door should remain a simple flat pencil drawing, not a realistic 3D object.
+Avoid: stick figure, person, character, door pulled outward, detached door, floating door, door moved to the right, huge dramatic burst, colorful portal, detailed world inside, realistic door, thick black outlines, shadows, new scenery, text, watermark.
