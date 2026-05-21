@@ -60,6 +60,10 @@ Upload-ready three-frame set:
   `projects/paper-portal/seedance/renders/seedance-fast-door-transition-variant3-v01.mp4`
 - Current full transition render:
   `projects/paper-portal/seedance/renders/seedance-regular-door-transition-variant3-v02-surprise.mp4`
+- Current stitched AI-only review:
+  `projects/paper-portal/drafts/paper-portal-seedance-walk-plus-transition-v01.mp4`
+- Current stitched full review:
+  `projects/paper-portal/drafts/paper-portal-first-half-plus-seedance-walk-transition-v01.mp4`
 - Current selected transition end frame:
   `projects/paper-portal/transition-keyframes/selected/door-pushed-in-glow-variant-3-selected.png`
 - Clean ImageGen seed:
@@ -85,6 +89,9 @@ Upload-ready three-frame set:
   figure disappears cleanly through the glowing pushed-in door.
 - [ ] Review the regular 1080p Variant 3 transition render with the small
   surprise reaction before the figure enters the glow.
+- [ ] Review the stitched AI-only sequence for the cut between walk-to-handle
+  and door-transition.
+- [ ] Review the stitched full sequence from sketch hook through door transition.
 - [ ] Save the strongest Clip 02 output and extract its final frame as the Clip
   03 seed.
 - [ ] Generate Clip 03: figure enters the bright doorway and lands in the first
@@ -127,6 +134,10 @@ Upload-ready three-frame set:
   `flow-storyboard-frames/3.png`.
 - [x] Rebuild Quiver-derived vector keyframes with a full 16:9 paper background
   and the figure feet aligned to the ground line.
+- [x] Stitch the liked Seedance walk-to-handle clip with the liked door
+  transition for review.
+- [x] Stitch the first-half sketch handoff with the two liked Seedance clips for
+  full-sequence review.
 
 ## Working Assumptions
 
