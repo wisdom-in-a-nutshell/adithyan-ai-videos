@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "bytedance/seedance-2.0/image-to-video",
+  "local_request_id": "fal-seedance-1779370914055-51e757b5",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-21T13:44:57.001759Z",
+  "input": {
+    "prompt": "Use the first image as the exact start frame and the second image as the exact final frame.\n\nAnimate this as a simple graphite pencil drawing on plain white paper, in one continuous locked-off shot.\n\n@Image1 is the exact first frame: the stick figure starts on the left, the door is closed on the right.\n@Image2 is the exact final frame: the same stick figure has walked to the closed door and one hand touches the right-side handle.\n\n[0-3.6s]: The stick figure walks from left to right with a calm, natural, readable old-cartoon walk. Use only a few clear steps with planted feet. The figure should not run, hop, slide, jitter, or flail. Keep the body as a basic stick figure with simple arm swing and clean leg motion.\n[3.6-5.0s]: The figure reaches the handle, lightly touches it, and holds still in the final pose. The door stays completely closed.\n\nThe door is only a flat closed pencil drawing on paper. Keep it closed for the whole clip. Do not interpret the door edge as an opening. Do not put the character behind the door or inside the doorway.\n\nKeep the camera completely static. Preserve the plain white paper background, graphite pencil line style, ground line, closed door outline, right-side handle, and simple stick-figure design. No zoom, pan, tilt, crop, reframing, color, text, shadows, extra characters, or realistic body.\n\nAudio: no background music. If audio is generated, use only very subtle synchronized pencil-on-paper footstep ticks and one tiny soft touch sound when the hand reaches the handle.\n\nCritical constraints: do not open the door, do not create a doorway gap, do not create a vertical slit, do not create a second door seam, do not make the character enter the doorway, do not move the handle, do not run.",
+    "image_url": "https://v3b.fal.media/files/b/0a9b1ac3/q_IrgYse-PCz8XdbCnJxA_01-original-vector-scene.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a9b1ac3/bbDxjy96nCkQX8Rfc2Zth_03-hand-on-handle.png",
+    "duration": 5,
+    "aspect_ratio": "16:9",
+    "resolution": "1080p",
+    "generate_audio": false
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/paper-portal/keyframe-upload-set-01/01-original-vector-scene.png",
+      "url": "https://v3b.fal.media/files/b/0a9b1ac3/q_IrgYse-PCz8XdbCnJxA_01-original-vector-scene.png",
+      "uploaded": true,
+      "bytes": 30217,
+      "sha256": "da50a135e5b61fda9906660da4b49167a4c97c472610919d7c57a6be4ffa967b",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/paper-portal/keyframe-upload-set-01/03-hand-on-handle.png",
+      "url": "https://v3b.fal.media/files/b/0a9b1ac3/bbDxjy96nCkQX8Rfc2Zth_03-hand-on-handle.png",
+      "uploaded": true,
+      "bytes": 29608,
+      "sha256": "fea65abe5eb4aa9f3526a674b46186b379235dd032c839b31934df5896e6a3a8",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a9b1ad5/b0nKcNZs8FL-V1r5DpHrm_video.mp4",
+      "content_type": "video/mp4",
+      "file_name": "video.mp4",
+      "file_size": 1134079
+    },
+    "seed": 117456780
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a9b1ad5/b0nKcNZs8FL-V1r5DpHrm_video.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/paper-portal/seedance/renders/seedance-regular-walk-to-handle-v02.mp4",
+      "bytes": 1134079,
+      "sha256": "6371002e56ae4944bb785e2ff55ea8587a1af2404bdd45dbf30473dc8765c30f"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/paper-portal/seedance/receipts/seedance-regular-walk-to-handle-v02.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}

@@ -52,6 +52,10 @@ Upload-ready three-frame set:
 - Current Seedance/Kling i2v comparison renders:
   `projects/paper-portal/seedance/renders/seedance-walk-to-handle-v01.mp4` and
   `projects/paper-portal/seedance/renders/kling-o3-walk-to-handle-v01.mp4`
+- Current regular Seedance 1080p comparison render:
+  `projects/paper-portal/seedance/renders/seedance-regular-walk-to-handle-v02.mp4`
+- Liked walk-to-handle keeper:
+  `projects/paper-portal/seedance/renders/seedance-regular-walk-to-handle-v02.mp4`
 - Clean ImageGen seed:
   `projects/paper-portal/drafts/paper-portal-option-a-final-seed-imagegen-clean-v01-16x9.png`
 - Current final seed frame:
@@ -67,6 +71,10 @@ Upload-ready three-frame set:
   interpolation than the model-generated door-opening stills.
 - [ ] Review Seedance fast vs Kling O3 standard i2v canaries and pick the better
   base for the walk-to-handle beat.
+- [ ] Review regular Seedance 1080p canary for whether slower walk prompting
+  fixes the fast Seedance articulation issue.
+- [ ] Extract the final frame from the liked regular Seedance walk-to-handle
+  keeper as the start frame for the door-opening beat.
 - [ ] Save the strongest Clip 02 output and extract its final frame as the Clip
   03 seed.
 - [ ] Generate Clip 03: figure enters the bright doorway and lands in the first
