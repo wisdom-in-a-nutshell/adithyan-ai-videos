@@ -18,6 +18,7 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
 - `projects/paper-portal/reference/trend-contact-sheet.jpg`
 - `projects/paper-portal/reference/drawing-start-frame.jpg`
 - `projects/paper-portal/reference/final-sketch-crop.jpg`
+- `projects/paper-portal/omni-storyboard.md`
 
 ## Media layout
 
@@ -39,8 +40,9 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
 ## Next steps
 
 - [ ] Upload the clean seed to Google Flow / Gemini Omni Flash.
-- [ ] Generate 2-4 first-clip canaries: stick figure walks to the door and opens
-  it slightly.
+- [ ] Create or choose Clip 01 end frame: figure at the door, hand on handle.
+- [ ] Generate 2-4 first-clip canaries: stick figure walks to the door and
+  reaches/holds the handle.
 - [ ] Save the strongest output and prompt notes under `projects/paper-portal/`.
 - [ ] Choose a final frame from the first Omni clip as the next segment seed.
 - [ ] Plan the first door/style-change continuation.
@@ -71,6 +73,7 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
 - [x] Finish first-half handoff with blur/white flash into the cleaned seed
   image.
 - [x] Archive older intermediate draft attempts while preserving active outputs.
+- [x] Draft Omni storyboard and shot-by-shot build plan.
 
 ## Working Assumptions
 
