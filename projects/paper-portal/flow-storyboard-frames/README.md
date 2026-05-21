@@ -8,6 +8,7 @@ Use these as the current upload set for Google Flow.
 - `2B.png` - Option C, simpler near-door endpoint
 - `2C.png` - Generated hand-on-handle target, rejected because the arm is too stretched
 - `3.png` - Actual clean final frame extracted from the accepted 5s Flow clip
+- `4.png` - Draft scene 2 end frame: door cracked open with a thin white glow
 
 Accepted first test:
 
@@ -18,5 +19,6 @@ Accepted first test:
 Recommended next test:
 
 - Start: `3.png`
+- End: `4.png`
 - Action: turn handle, open the door slightly, reveal a bright blank paper portal
 - Do not enter the new world yet
