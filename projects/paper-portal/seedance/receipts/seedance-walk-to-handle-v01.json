@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "endpoint": "bytedance/seedance-2.0/fast/image-to-video",
+  "local_request_id": "fal-seedance-1779370620078-e808c917",
+  "fal_request_id": null,
+  "created_at_utc": "2026-05-21T13:39:13.644269Z",
+  "input": {
+    "prompt": "Use the first image as the exact start frame and the second image as the exact final frame.\n\nAnimate this as a simple graphite pencil drawing on plain white paper, in one continuous locked-off shot.\n\n@Image1 is the exact first frame: the stick figure starts on the left, the door is closed on the right.\n@Image2 is the exact final frame: the same stick figure has walked to the closed door and one hand touches the right-side handle.\n\n[0-3.4s]: The stick figure walks from left to right with simple readable old-cartoon steps. Keep the body as a basic stick figure. The door remains a flat closed pencil drawing on the paper.\n[3.4-4.0s]: The figure reaches the handle and holds still in the final pose. The door stays completely closed.\n\nKeep the camera completely static. Preserve the plain white paper background, graphite pencil line style, ground line, closed door outline, right-side handle, and simple stick-figure design. No zoom, pan, tilt, crop, reframing, color, text, shadows, extra characters, or realistic body.\n\nCritical constraints: do not open the door, do not create a doorway gap, do not create a vertical slit, do not create a second door seam, do not put the character behind the door, do not make the character enter the doorway, do not move the handle.",
+    "image_url": "https://v3b.fal.media/files/b/0a9b1aa6/9bc7MewGQnau6oifYZ7Fu_01-original-vector-scene.png",
+    "end_image_url": "https://v3b.fal.media/files/b/0a9b1aa6/N1H4UXMRdDK88SYPggPCr_03-hand-on-handle.png",
+    "duration": 4,
+    "aspect_ratio": "16:9",
+    "resolution": "720p",
+    "generate_audio": false
+  },
+  "references": [
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/paper-portal/keyframe-upload-set-01/01-original-vector-scene.png",
+      "url": "https://v3b.fal.media/files/b/0a9b1aa6/9bc7MewGQnau6oifYZ7Fu_01-original-vector-scene.png",
+      "uploaded": true,
+      "bytes": 30217,
+      "sha256": "da50a135e5b61fda9906660da4b49167a4c97c472610919d7c57a6be4ffa967b",
+      "role": "start_image"
+    },
+    {
+      "source": "/Users/dobby/GitHub/adithyan-ai-videos/projects/paper-portal/keyframe-upload-set-01/03-hand-on-handle.png",
+      "url": "https://v3b.fal.media/files/b/0a9b1aa6/N1H4UXMRdDK88SYPggPCr_03-hand-on-handle.png",
+      "uploaded": true,
+      "bytes": 29608,
+      "sha256": "fea65abe5eb4aa9f3526a674b46186b379235dd032c839b31934df5896e6a3a8",
+      "role": "end_image"
+    }
+  ],
+  "result": {
+    "video": {
+      "url": "https://v3b.fal.media/files/b/0a9b1ab3/Gaa8zE3GJ3aGvh_2iS-Fr_video.mp4",
+      "content_type": "video/mp4",
+      "file_name": "video.mp4",
+      "file_size": 272755
+    },
+    "seed": 56122380
+  },
+  "output": {
+    "video_url": "https://v3b.fal.media/files/b/0a9b1ab3/Gaa8zE3GJ3aGvh_2iS-Fr_video.mp4",
+    "local_video": {
+      "path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/paper-portal/seedance/renders/seedance-walk-to-handle-v01.mp4",
+      "bytes": 272755,
+      "sha256": "787a0c5fde4f4a77cacfefe08130f15987e99341eff93f00548ab2a24b0056d9"
+    },
+    "receipt_path": "/Users/dobby/GitHub/adithyan-ai-videos/projects/paper-portal/seedance/receipts/seedance-walk-to-handle-v01.json"
+  },
+  "secret_env_file": "/Users/dobby/.secrets/fal/env"
+}

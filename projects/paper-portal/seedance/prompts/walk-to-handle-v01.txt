@@ -1,0 +1,13 @@
+Use the first image as the exact start frame and the second image as the exact final frame.
+
+Animate this as a simple graphite pencil drawing on plain white paper, in one continuous locked-off shot.
+
+@Image1 is the exact first frame: the stick figure starts on the left, the door is closed on the right.
+@Image2 is the exact final frame: the same stick figure has walked to the closed door and one hand touches the right-side handle.
+
+[0-3.4s]: The stick figure walks from left to right with simple readable old-cartoon steps. Keep the body as a basic stick figure. The door remains a flat closed pencil drawing on the paper.
+[3.4-4.0s]: The figure reaches the handle and holds still in the final pose. The door stays completely closed.
+
+Keep the camera completely static. Preserve the plain white paper background, graphite pencil line style, ground line, closed door outline, right-side handle, and simple stick-figure design. No zoom, pan, tilt, crop, reframing, color, text, shadows, extra characters, or realistic body.
+
+Critical constraints: do not open the door, do not create a doorway gap, do not create a vertical slit, do not create a second door seam, do not put the character behind the door, do not make the character enter the doorway, do not move the handle.

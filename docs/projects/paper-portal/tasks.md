@@ -49,6 +49,9 @@ Upload-ready three-frame set:
 - Current vector control frames:
   `projects/paper-portal/flow-storyboard-frames/5A.png` and
   `projects/paper-portal/flow-storyboard-frames/5B.png`
+- Current Seedance/Kling i2v comparison renders:
+  `projects/paper-portal/seedance/renders/seedance-walk-to-handle-v01.mp4` and
+  `projects/paper-portal/seedance/renders/kling-o3-walk-to-handle-v01.mp4`
 - Clean ImageGen seed:
   `projects/paper-portal/drafts/paper-portal-option-a-final-seed-imagegen-clean-v01-16x9.png`
 - Current final seed frame:
@@ -62,6 +65,8 @@ Upload-ready three-frame set:
   opens slightly, bright blank portal appears, figure reacts but does not enter.
 - [ ] Test whether the vector control frames give more reliable keyframe
   interpolation than the model-generated door-opening stills.
+- [ ] Review Seedance fast vs Kling O3 standard i2v canaries and pick the better
+  base for the walk-to-handle beat.
 - [ ] Save the strongest Clip 02 output and extract its final frame as the Clip
   03 seed.
 - [ ] Generate Clip 03: figure enters the bright doorway and lands in the first
