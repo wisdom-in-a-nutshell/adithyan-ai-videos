@@ -84,6 +84,10 @@ Upload-ready three-frame set:
   Use `01-omni-source-walk-only-4s.mp4` first to test whether short walk-only
   source video is accepted, then `02-omni-source-door-portal-4s.mp4` to isolate
   the door/glow section.
+- Current style reference stills:
+  `projects/paper-portal/style-reference-stills/`
+  First paper/clay style target:
+  `01-paper-clay-start-reference.png`.
 - Current selected transition end frame:
   `projects/paper-portal/transition-keyframes/selected/door-pushed-in-glow-variant-3-selected.png`
 - Clean ImageGen seed:
@@ -122,6 +126,8 @@ Upload-ready three-frame set:
   real drawing hook.
 - [ ] Try the 4s diagnostic style-transfer source clips to isolate whether Flow
   rejects the full source video or specifically the door/glow section.
+- [ ] If the paper/clay still direction is approved, generate the matching
+  hand-on-handle end keyframe in the same visual style.
 - [ ] Revise Omni / Flow setup after first magical-forest canary: it restyled
   too much too early, changed the character into a generic 3D mascot, introduced
   the forest before the portal, and did not preserve the source clip as a strict
@@ -180,6 +186,8 @@ Upload-ready three-frame set:
   and the AI-only Omni style-transfer source.
 - [x] Create two 4s diagnostic cuts from the AI-only source for Flow
   style-transfer rejection testing.
+- [x] Generate first paper/clay style reference still from the SVG-derived
+  original scene keyframe.
 
 ## Working Assumptions
 
