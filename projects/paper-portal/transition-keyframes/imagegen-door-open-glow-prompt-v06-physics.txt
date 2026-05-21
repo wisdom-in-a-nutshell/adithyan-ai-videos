@@ -1,0 +1,14 @@
+Use case: precise-object-edit
+Primary request: Create a polished transition end keyframe. The stick figure is completely gone through the doorway. The pencil door is pushed inward, away from the viewer, with the hinge fixed on the left side. A strong clean white portal glow pours from the other side and spills softly onto the paper floor.
+
+Input roles:
+- Image 1 is the clean no-person pencil door plate. Preserve its paper texture, ground line, framing, and simple pencil style.
+- Image 2 is a rough geometry guide only. Follow its door physics: fixed left hinge, door panel pushed inward into the doorway, handle on the free/right side of the pushed-in panel, bright glow behind the door. Do not copy its thick lines, doubled floor line, hard geometry, or yellow tint.
+
+Door physics: the left vertical hinge stays fixed at the doorway. The handle side is pushed inward through the doorway. The visible door panel should be a simple narrow angled pencil panel receding inside the doorframe, not pulled outward and not detached. The opening behind it is filled with bright white light.
+
+Style/medium: quiet graphite pencil drawing on plain white paper, matching the original sketch. Thin soft pencil lines, minimal, not 3D, not realistic.
+Composition/framing: same 16:9 frame and far-right door placement. Keep one continuous ground line. Preserve the original background. The glow should be strong enough to read as a portal/light from another world, but still clean white and elegant.
+Lighting/mood: bright white halo from the doorway, gentle light spill across the floor, a few very subtle pencil-like sparkles if natural.
+Constraints: no person visible, no character silhouette, no detailed world inside the door, no color. Keep the door simple and readable.
+Avoid: stick figure, person, character, door pulled outward, detached door, floating door, huge 3D door, thick black lines, doubled ground line, yellow glow, colorful portal, detailed scenery, shadows, text, watermark.
