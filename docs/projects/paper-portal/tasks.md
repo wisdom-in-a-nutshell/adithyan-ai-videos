@@ -75,6 +75,8 @@ Upload-ready three-frame set:
   This is the generated animation section only: character starts walking,
   reaches the door, reacts, opens/passes through, and disappears. Do not use the
   real drawing hook for style-transfer tests.
+- Latest Omni / Flow style-transfer download under review:
+  `projects/paper-portal/flow-downloads/omni-style-transfer-magical-portal-202605211748.mp4`
 - Current finalized working set:
   `projects/paper-portal/finalized-working-set/`
 - Current selected transition end frame:
@@ -113,6 +115,10 @@ Upload-ready three-frame set:
   portal ending.
 - [ ] Test Omni / Flow style transfer on the AI-only animation source, not the
   real drawing hook.
+- [ ] Revise Omni / Flow setup after first magical-forest canary: it restyled
+  too much too early, changed the character into a generic 3D mascot, introduced
+  the forest before the portal, and did not preserve the source clip as a strict
+  motion/timing reference.
 - [ ] Save the strongest Clip 02 output and extract its final frame as the Clip
   03 seed.
 - [ ] Generate Clip 03: figure enters the bright doorway and lands in the first
