@@ -50,6 +50,11 @@ official Flow help:
 - Uploaded video may be up to 60s / 1GB in `.mov`, `.mp4`, `.avi`, or `.wmv`,
   but editing selects up to a 10s segment.
 - Some video editing features are restricted by country/region.
+- Flow's creation workflow includes adding a start frame and an end frame:
+  choose Video > Frames, add a start frame, optionally add an end frame, then
+  prompt the action or transition between them. However, feature availability is
+  model/region dependent; always check the active Flow model/settings before
+  assuming first+last-frame control is available for Gemini Omni Flash.
 
 ## Prompt Guidance From Google
 
@@ -86,4 +91,3 @@ subject simple, and use door/portal transitions as reset points.
 If a workflow needs API automation before Omni Flash has public API access,
 consider Veo through the Gemini API for generation. Treat it as a fallback, not
 the same model.
-

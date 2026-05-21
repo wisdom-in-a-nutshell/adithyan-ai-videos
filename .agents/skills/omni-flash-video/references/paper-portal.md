@@ -33,6 +33,11 @@ Do not ask for the new world yet. Save that for the second clip.
 - Camera: locked/static.
 - Variations: generate multiple outputs if credits allow.
 
+If Flow exposes first+last-frame control for the selected model, test it after
+one start-frame-only canary. The first canary tells whether Omni understands the
+simple sketch and walk cycle. A custom end frame is useful only if the model
+fails to land on a usable door-open frame.
+
 ## First Prompt Candidate
 
 ```text
@@ -69,4 +74,3 @@ foot plants on each step, arms swing simply, then the right hand reaches the
 door handle and pulls the door open. Keep the pencil sketch line style and
 locked camera.
 ```
-
