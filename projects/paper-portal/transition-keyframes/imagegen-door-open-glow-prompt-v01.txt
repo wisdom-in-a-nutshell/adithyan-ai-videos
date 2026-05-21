@@ -1,0 +1,7 @@
+Use case: precise-object-edit
+Primary request: Edit only the masked right-side door/character region. Remove the stick figure completely, as if he has already gone through the doorway. Change the closed pencil door into a slightly open pencil-drawn door with a bright white magical glow coming from the other side.
+Style/medium: simple graphite pencil drawing on plain white paper, matching the input exactly.
+Composition/framing: keep the same 16:9 frame, same camera, same ground line, same door location. The door is on the far right. The doorway is cracked/open just enough to reveal a bright white portal-like light; no detailed new world is visible.
+Lighting/mood: strong clean white glow blooming from inside the door, with subtle pencil-like sparkle/tinkle marks near the opening. The glow should feel like light from another world, but still restrained and elegant.
+Constraints: Change only the masked area. Preserve the rest of the image exactly. Keep a hand-drawn pencil sketch look. Keep the ground line continuous. Do not add the stick figure anywhere. Do not add color, text, extra characters, realistic rendering, thick black outlines, shadows, scenery, or a detailed destination world.
+Avoid: person visible, character visible, closed door, fully realistic door, 3D door, colorful portal, dark portal, clutter, new background, text, watermark.

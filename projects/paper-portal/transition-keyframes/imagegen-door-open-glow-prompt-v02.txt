@@ -1,0 +1,12 @@
+Use case: precise-object-edit
+Primary request: Create the transition end keyframe. The stick figure has already stepped through the door and is completely gone. The pencil door is cracked open, and a strong clean white magical glow/halo spills from the doorway as if light is coming from another world.
+
+Input roles:
+- Image 1 is the exact composition/start-frame anchor. Preserve its 16:9 framing, white paper background, ground line, and general pencil softness.
+- Image 2 is the clean no-person door/background reference. Use it to keep the door, ground line, and empty paper field stable and clean.
+
+Style/medium: simple graphite pencil drawing on plain white paper, matching the input line quality. Minimal, elegant, hand-drawn.
+Composition/framing: same locked-off 16:9 frame. Door remains on the far right. The door is open only enough to read as a portal threshold. The opening glows bright white, with a soft halo and light spill across the floor near the doorway. No destination world is visible yet.
+Lighting/mood: bright white portal glow, soft halo blooming outward, subtle pencil-like sparkle/tinkle marks around the opening. The glow should feel magical but not colorful or busy.
+Constraints: Change only the right-side door/character region. Remove the figure completely. Preserve the rest of the paper and ground line. Keep the drawing flat and pencil-like, not realistic or 3D. No person remains visible.
+Avoid: stick figure visible, character visible, closed door, colorful portal, detailed world inside, realistic door, 3D door, thick black lines, clutter, new scenery, text, watermark.
