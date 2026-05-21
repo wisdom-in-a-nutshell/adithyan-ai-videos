@@ -79,6 +79,11 @@ Upload-ready three-frame set:
   `projects/paper-portal/flow-downloads/omni-style-transfer-magical-portal-202605211748.mp4`
 - Current finalized working set:
   `projects/paper-portal/finalized-working-set/`
+- Current Omni / Flow diagnostic test clips:
+  `projects/paper-portal/style-transfer-test-clips/`
+  Use `01-omni-source-walk-only-4s.mp4` first to test whether short walk-only
+  source video is accepted, then `02-omni-source-door-portal-4s.mp4` to isolate
+  the door/glow section.
 - Current selected transition end frame:
   `projects/paper-portal/transition-keyframes/selected/door-pushed-in-glow-variant-3-selected.png`
 - Clean ImageGen seed:
@@ -115,6 +120,8 @@ Upload-ready three-frame set:
   portal ending.
 - [ ] Test Omni / Flow style transfer on the AI-only animation source, not the
   real drawing hook.
+- [ ] Try the 4s diagnostic style-transfer source clips to isolate whether Flow
+  rejects the full source video or specifically the door/glow section.
 - [ ] Revise Omni / Flow setup after first magical-forest canary: it restyled
   too much too early, changed the character into a generic 3D mascot, introduced
   the forest before the portal, and did not preserve the source clip as a strict
@@ -171,6 +178,8 @@ Upload-ready three-frame set:
   real sketch handoff reads as intentional instead of abrupt.
 - [x] Create a clean finalized working set folder with the current full keeper
   and the AI-only Omni style-transfer source.
+- [x] Create two 4s diagnostic cuts from the AI-only source for Flow
+  style-transfer rejection testing.
 
 ## Working Assumptions
 
