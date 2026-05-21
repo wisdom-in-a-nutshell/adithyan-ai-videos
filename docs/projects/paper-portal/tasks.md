@@ -75,6 +75,8 @@ Upload-ready three-frame set:
   This is the generated animation section only: character starts walking,
   reaches the door, reacts, opens/passes through, and disappears. Do not use the
   real drawing hook for style-transfer tests.
+- Current finalized working set:
+  `projects/paper-portal/finalized-working-set/`
 - Current selected transition end frame:
   `projects/paper-portal/transition-keyframes/selected/door-pushed-in-glow-variant-3-selected.png`
 - Clean ImageGen seed:
@@ -161,6 +163,8 @@ Upload-ready three-frame set:
   Seedance clips, and trim the portal ending to the disappearance moment.
 - [x] Add a short seed-frame anchor plus soft blend after the hook flash so the
   real sketch handoff reads as intentional instead of abrupt.
+- [x] Create a clean finalized working set folder with the current full keeper
+  and the AI-only Omni style-transfer source.
 
 ## Working Assumptions
 
