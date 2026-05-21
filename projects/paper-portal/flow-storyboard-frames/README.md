@@ -12,6 +12,9 @@ Use these as the current upload set for Google Flow.
 - `4A.png` - Sequential scene 2 still: tiny door crack
 - `4B.png` - Sequential scene 2 still: small door opening
 - `4C.png` - Sequential scene 2 still: wider blank-white doorway with restrained glow
+- `5A.png` - Vector-derived empty door plate, no character, stable 16:9 paper background
+- `5B.png` - Vector-derived hand-on-handle keyframe, character feet re-baselined to the ground line
+- `5C.png` - Original Quiver SVG scene rendered to a stable 16:9 PNG
 
 Accepted first test:
 
@@ -34,3 +37,17 @@ Storyboard-only transition stills:
 - Kling / Seedance via fal can use start/end frame pairs, but the current local
   CLI supports integer durations from 4 to 15 seconds, not sub-second clips.
   Generate a controlled 4s canary and trim/speed-ramp locally if needed.
+
+Vector-derived control frames:
+
+- `vector-empty-door.png` and `5A.png` are the same no-character plate.
+- `vector-hand-on-handle.png` and `5B.png` are the same hand-on-handle pose.
+- `vector-original-scene.png` and `5C.png` are the same original SVG render.
+- The SVG sources live in `../vector-keyframes/` with true 16:9 variants in
+  `../vector-keyframes/16x9/`.
+
+Upload-ready keyframe folder:
+
+- `../keyframe-upload-set-01/01-original-vector-scene.png`
+- `../keyframe-upload-set-01/02-empty-door-plate.png`
+- `../keyframe-upload-set-01/03-hand-on-handle.png`

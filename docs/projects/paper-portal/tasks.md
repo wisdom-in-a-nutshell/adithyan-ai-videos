@@ -14,6 +14,14 @@ Continue from the accepted first Flow animation endpoint:
 Next prototype: open the closed pencil door into a bright blank portal while the
 stick figure stays outside. Do not enter the new world in the same clip.
 
+Current control-frame experiment: use the vector-derived keyframes under
+`projects/paper-portal/flow-storyboard-frames/5A.png` and `5B.png` when a stable
+plate or re-baselined hand-on-handle pose is more useful than model-generated
+stills.
+
+Upload-ready three-frame set:
+`projects/paper-portal/keyframe-upload-set-01/`.
+
 ## Reference files
 
 - `projects/paper-portal/reference/analysis.md`
@@ -38,6 +46,9 @@ stick figure stays outside. Do not enter the new world in the same clip.
   `projects/paper-portal/drafts/flow-stick-figure-walks-to-door-trim-5s-v01.mp4`
 - Current next seed frame:
   `projects/paper-portal/flow-storyboard-frames/3.png`
+- Current vector control frames:
+  `projects/paper-portal/flow-storyboard-frames/5A.png` and
+  `projects/paper-portal/flow-storyboard-frames/5B.png`
 - Clean ImageGen seed:
   `projects/paper-portal/drafts/paper-portal-option-a-final-seed-imagegen-clean-v01-16x9.png`
 - Current final seed frame:
@@ -49,6 +60,8 @@ stick figure stays outside. Do not enter the new world in the same clip.
 
 - [ ] Generate Clip 02 from `flow-storyboard-frames/3.png`: handle turns, door
   opens slightly, bright blank portal appears, figure reacts but does not enter.
+- [ ] Test whether the vector control frames give more reliable keyframe
+  interpolation than the model-generated door-opening stills.
 - [ ] Save the strongest Clip 02 output and extract its final frame as the Clip
   03 seed.
 - [ ] Generate Clip 03: figure enters the bright doorway and lands in the first
@@ -89,6 +102,8 @@ stick figure stays outside. Do not enter the new world in the same clip.
   video for review.
 - [x] Extract the accepted first animation final frame as
   `flow-storyboard-frames/3.png`.
+- [x] Rebuild Quiver-derived vector keyframes with a full 16:9 paper background
+  and the figure feet aligned to the ground line.
 
 ## Working Assumptions
 
