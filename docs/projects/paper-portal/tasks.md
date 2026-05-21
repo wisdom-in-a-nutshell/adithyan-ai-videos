@@ -3,14 +3,16 @@
 ## Status
 
 Project home is set up. Reference intake is captured. Creative direction is now
-centered on a fast live drawing hook followed by Gemini Omni Flash / Gemini Omni
-style-changing AI animation segments.
+centered on a fast live drawing hook followed by short Flow / Veo / Omni-style
+AI animation segments chained through doors.
 
 ## Resume point
 
-When ready, choose the exact drawing/story beat, then run the smallest
-prototype that tests the handoff: real drawing process -> finished sketch frame
--> Omni Flash animated continuation -> door transition into a new style.
+Continue from the accepted first Flow animation endpoint:
+`projects/paper-portal/flow-storyboard-frames/3.png`.
+
+Next prototype: open the closed pencil door into a bright blank portal while the
+stick figure stays outside. Do not enter the new world in the same clip.
 
 ## Reference files
 
@@ -30,6 +32,12 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
   `projects/paper-portal/drafts/paper-portal-speedup-wide-draft-04-12s-ramp-audio.mp4`
 - Current first-half output:
   `projects/paper-portal/drafts/paper-portal-first-half-v01-clean-seed-handoff.mp4`
+- Current combined hook + first Flow clip:
+  `projects/paper-portal/drafts/paper-portal-first-half-plus-flow-walk-trim5-v01.mp4`
+- Accepted first Flow segment:
+  `projects/paper-portal/drafts/flow-stick-figure-walks-to-door-trim-5s-v01.mp4`
+- Current next seed frame:
+  `projects/paper-portal/flow-storyboard-frames/3.png`
 - Clean ImageGen seed:
   `projects/paper-portal/drafts/paper-portal-option-a-final-seed-imagegen-clean-v01-16x9.png`
 - Current final seed frame:
@@ -39,13 +47,13 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
 
 ## Next steps
 
-- [ ] Upload the clean seed to Google Flow / Gemini Omni Flash.
-- [ ] Create or choose Clip 01 end frame: figure at the door, hand on handle.
-- [ ] Generate 2-4 first-clip canaries: stick figure walks to the door and
-  reaches/holds the handle.
-- [ ] Save the strongest output and prompt notes under `projects/paper-portal/`.
-- [ ] Choose a final frame from the first Omni clip as the next segment seed.
-- [ ] Plan the first door/style-change continuation.
+- [ ] Generate Clip 02 from `flow-storyboard-frames/3.png`: handle turns, door
+  opens slightly, bright blank portal appears, figure reacts but does not enter.
+- [ ] Save the strongest Clip 02 output and extract its final frame as the Clip
+  03 seed.
+- [ ] Generate Clip 03: figure enters the bright doorway and lands in the first
+  new world.
+- [ ] Choose the first world style and write its continuity rules.
 
 ## Completed
 
@@ -74,6 +82,13 @@ prototype that tests the handoff: real drawing process -> finished sketch frame
   image.
 - [x] Archive older intermediate draft attempts while preserving active outputs.
 - [x] Draft Omni storyboard and shot-by-shot build plan.
+- [x] Upload clean seed and test first generated animation.
+- [x] Trim the accepted Flow clip to the clean first 5 seconds before the model
+  starts opening or distorting the door.
+- [x] Append the accepted 5s Flow segment to the finished first-half handoff
+  video for review.
+- [x] Extract the accepted first animation final frame as
+  `flow-storyboard-frames/3.png`.
 
 ## Working Assumptions
 
