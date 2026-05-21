@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 139">
+<!-- Derived from QuiverAI vectorization for Paper Portal. -->
+<style type="text/css">.cls-0 {fill:#EDEDF0;}
+.cls-1 {fill:none;stroke:#979797;stroke-linecap:round;stroke-linejoin:round;}
+.cls-2 {fill:none;stroke:#787778;stroke-width:0.8;stroke-linecap:round;stroke-linejoin:round;}
+.cls-3 {fill:#787778;}</style>
+  <rect width="600" height="139" fill="#f7f7f6"/>
+  <path class="cls-1" d="m0.2 128.3c78 0.7 189.7 0 253.4 0.5 80.5 0.6 232.4 2.2 255 2.7l90.6 1"/>
+  <path class="cls-1" d="m512.8 27.7 78.7-23.9-2.5 128.7"/>
+  <path class="cls-1" d="m512.3 27.3-2.3 1-0.9 106.2"/>
+  <path class="cls-1" d="m576.5 68.5 4.8-1.5 0.2 16.5-5 1.5v-9l-7.5 2.5 7.5-3.5v-6.5z"/>
+</svg>
