@@ -70,6 +70,11 @@ Upload-ready three-frame set:
   `projects/paper-portal/drafts/paper-portal-full-clean-transition-v02.mp4`
 - Current anchored full review:
   `projects/paper-portal/drafts/paper-portal-full-anchor-blend-transition-v03.mp4`
+- Current Omni / Flow style-transfer source:
+  `projects/paper-portal/drafts/paper-portal-seedance-walk-plus-transition-clean-v02.mp4`
+  This is the generated animation section only: character starts walking,
+  reaches the door, reacts, opens/passes through, and disappears. Do not use the
+  real drawing hook for style-transfer tests.
 - Current selected transition end frame:
   `projects/paper-portal/transition-keyframes/selected/door-pushed-in-glow-variant-3-selected.png`
 - Clean ImageGen seed:
@@ -104,6 +109,8 @@ Upload-ready three-frame set:
 - [ ] Review anchored v03 full sequence: hook flash, short seed-frame anchor,
   soft blend into Seedance walk, existing 0.25s walk/portal blend, and trimmed
   portal ending.
+- [ ] Test Omni / Flow style transfer on the AI-only animation source, not the
+  real drawing hook.
 - [ ] Save the strongest Clip 02 output and extract its final frame as the Clip
   03 seed.
 - [ ] Generate Clip 03: figure enters the bright doorway and lands in the first
