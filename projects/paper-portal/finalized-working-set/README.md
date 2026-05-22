@@ -7,6 +7,19 @@ Use this folder for the current active review/upload files.
 - `03-pixel-world-walks-into-portal-current-candidate.mp4` - current Flow/Veo pixel-world candidate where the stick figure walks into the glowing pixel portal.
 - `04-full-sequence-plus-pixel-world-current-candidate.mp4` - stitched review sequence: current full keeper followed by the pixel-world portal candidate.
 - `PixarWorld.mp4` - current soft 3D/storybook world candidate. Name kept from the user's working label; prefer generic style wording in prompts.
+- `japanese.mp4` - imported hand-painted / Japanese fantasy style candidate.
+- `clay_motion.mp4` - imported stop-motion clay / cutout style candidate.
+- `plus_toy.mp4` - imported plush/toy style candidate. This intentionally has
+  more extra characters; keep it as a candidate and decide later whether to
+  regenerate it more strictly.
+- `neon.mp4` - imported neon arcade style candidate.
+- `world-clips-normalized/` - normalized 1920x1080, 30fps copies for assembly:
+  - `01-pixel-world.mp4`
+  - `02-soft-3d-storybook-world.mp4`
+  - `03-hand-painted-japanese-fantasy.mp4`
+  - `04-stop-motion-clay-cutout-world.mp4`
+  - `05-plush-toy-diorama-world.mp4`
+  - `06-neon-arcade-world.mp4`
 
 Canonical source paths:
 

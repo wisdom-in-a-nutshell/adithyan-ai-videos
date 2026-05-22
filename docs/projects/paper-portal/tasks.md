@@ -89,6 +89,12 @@ chosen sequence.
   `projects/paper-portal/finalized-working-set/04-full-sequence-plus-pixel-world-current-candidate.mp4`
 - Current soft 3D / storybook style candidate:
   `projects/paper-portal/finalized-working-set/PixarWorld.mp4`
+- Current normalized world clips:
+  `projects/paper-portal/finalized-working-set/world-clips-normalized/`
+  Includes pixel, soft 3D storybook, hand-painted Japanese fantasy, stop-motion
+  clay/cutout, plush/toy, and neon arcade candidates. The plush/toy candidate
+  intentionally has more extra characters and should be reviewed later before
+  final assembly.
 - Current Omni / Flow diagnostic test clips:
   `projects/paper-portal/style-transfer-test-clips/`
   Use `01-omni-source-walk-only-4s.mp4` first to test whether short walk-only
@@ -127,6 +133,8 @@ chosen sequence.
   edit mode with the locked-composition prompt from the handoff.
 - [ ] Copy each approved world render into
   `projects/paper-portal/finalized-working-set/` with a numbered filename.
+- [ ] Review normalized world clip contact sheets under
+  `projects/paper-portal/review-frames/world-clip-contact-sheets/normalized/`.
 - [ ] Stitch the approved worlds into one review sequence at 1920x1080, 30fps.
 - [ ] Add portal flash/glow transitions only after the world ordering is
   approved.
@@ -193,6 +201,8 @@ chosen sequence.
   candidate for review.
 - [x] Write detailed 2026-05-22 handoff with current files, prompts, lessons,
   open decisions, and resume instructions.
+- [x] Import and normalize the current world-style candidate clips into a clean
+  1920x1080, 30fps set for assembly.
 
 ## Working Assumptions
 
