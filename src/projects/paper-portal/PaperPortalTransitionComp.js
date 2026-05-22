@@ -8,9 +8,17 @@ import {
   useCurrentFrame,
 } from 'remotion';
 import {resolveAssetSrc} from '../../lib/resolveAssetSrc.js';
-import {CREDIT_DRAW_FRAMES, MAIN_SEQUENCE_DURATION_FRAMES, TRANSITION_FRAMES} from './assets.js';
+import {
+  CREDIT_DRAW_FRAMES,
+  END_CARD_VIDEO_FRAMES,
+  MAIN_SEQUENCE_DURATION_FRAMES,
+  TRANSITION_FRAMES,
+} from './assets.js';
 import {PaperPortalCreditDrawPreviewComp} from './CreditDrawPreviewComp.js';
 import {CLIP_SEQUENCE} from './transitionClips.js';
+
+const END_CARD_VIDEO_SRC =
+  'imports/paper-portal/end-card/01-end-card-normalized-1920x1080.mp4';
 
 const clamp = {
   extrapolateLeft: 'clamp',
@@ -322,7 +330,25 @@ const PortalTransitionOverlay = () => {
   );
 };
 
+const EndCardVideoLayer = ({assetMap}) => {
+  return (
+    <AbsoluteFill style={{backgroundColor: '#f5f1e6'}}>
+      <OffthreadVideo
+        src={resolveAssetSrc(END_CARD_VIDEO_SRC, assetMap)}
+        volume={0}
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+        }}
+      />
+    </AbsoluteFill>
+  );
+};
+
 export const PaperPortalTransitionComp = ({assetMap}) => {
+  const endCardStart = MAIN_SEQUENCE_DURATION_FRAMES + CREDIT_DRAW_FRAMES;
+
   return (
     <AbsoluteFill style={{backgroundColor: '#f5f1e6'}}>
       {CLIP_SEQUENCE.map((clip, index) => (
@@ -342,6 +368,13 @@ export const PaperPortalTransitionComp = ({assetMap}) => {
         durationInFrames={CREDIT_DRAW_FRAMES}
       >
         <PaperPortalCreditDrawPreviewComp />
+      </Sequence>
+      <Sequence
+        name="09 End-card source video"
+        from={endCardStart}
+        durationInFrames={END_CARD_VIDEO_FRAMES}
+      >
+        <EndCardVideoLayer assetMap={assetMap} />
       </Sequence>
     </AbsoluteFill>
   );
