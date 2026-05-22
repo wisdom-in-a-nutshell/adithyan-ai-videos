@@ -11,16 +11,17 @@ Detailed handoff for resuming in a fresh session:
 
 ## Resume point
 
-Current resume point: review the polished six-world portal-transition draft.
+Current resume point: review the polished six-world portal-transition draft with
+generated clip audio muted.
 
 Primary current review file:
-`projects/paper-portal/finalized-working-set/09-full-six-worlds-portal-energy-draft-v04.mp4`.
+`projects/paper-portal/finalized-working-set/10-full-six-worlds-portal-energy-muted-ai-draft-v05.mp4`.
 
 Transition audit stills:
 `projects/paper-portal/review-frames/full-sequence-drafts/transition-audit-v04/`.
 
-Next practical batch: review v04 for overall rhythm, then decide whether to
-lock visuals or tune individual transition timing before sound effects/music.
+Next practical batch: review v05 for overall rhythm, then decide whether to
+lock visuals or add intentional sound effects/music.
 
 ## Reference files
 
@@ -91,9 +92,11 @@ lock visuals or tune individual transition timing before sound effects/music.
   fantasy, plush/toy, and stop-motion clay/cutout in the approved assembly
   order. The plush/toy candidate has intentional extra characters.
 - Current Remotion portal-transition draft:
-  `projects/paper-portal/finalized-working-set/09-full-six-worlds-portal-energy-draft-v04.mp4`
+  `projects/paper-portal/finalized-working-set/10-full-six-worlds-portal-energy-muted-ai-draft-v05.mp4`
   is the recommended review file. It uses code-driven portal bloom/push
   transitions and a colored doorway veil to hide ghosted source silhouettes.
+  The first real sketch/keeper clip keeps audio; generated world clips are
+  muted in `src/projects/paper-portal/transitionClips.js`.
 - Current Omni / Flow diagnostic test clips:
   `projects/paper-portal/style-transfer-test-clips/`
   Use `01-omni-source-walk-only-4s.mp4` first to test whether short walk-only
@@ -135,9 +138,12 @@ lock visuals or tune individual transition timing before sound effects/music.
 - [x] Review
   `projects/paper-portal/finalized-working-set/05-full-six-worlds-direct-cut-draft-v01.mp4`.
 - [x] Add portal flash/glow transitions after the world ordering was approved.
-- [ ] Review
+- [x] Review
   `projects/paper-portal/finalized-working-set/09-full-six-worlds-portal-energy-draft-v04.mp4`
   and transition audit stills.
+- [ ] Review
+  `projects/paper-portal/finalized-working-set/10-full-six-worlds-portal-energy-muted-ai-draft-v05.mp4`
+  as the current muted-AI-audio draft.
 - [ ] Add sound effects/music only after the visual sequence is locked.
 
 ## Completed

@@ -14,9 +14,12 @@ Use this folder for the current active review/upload files.
   ring treatment, used as an intermediate review pass.
 - `08-full-six-worlds-portal-veil-draft-v03.mp4` - added a localized portal
   veil to reduce visible doorway ghosting.
-- `09-full-six-worlds-portal-energy-draft-v04.mp4` - current recommended
-  review draft: earlier colored portal energy fill, less pure-white flash,
-  and tighter masking over ghosted portal silhouettes.
+- `09-full-six-worlds-portal-energy-draft-v04.mp4` - polished visual transition
+  draft: earlier colored portal energy fill, less pure-white flash, and tighter
+  masking over ghosted portal silhouettes.
+- `10-full-six-worlds-portal-energy-muted-ai-draft-v05.mp4` - current
+  recommended review draft: same visual treatment as v04, with the real
+  sketch/keeper audio retained and all generated world clip audio muted.
 - `PixarWorld.mp4` - current soft 3D/storybook world candidate. Name kept from the user's working label; prefer generic style wording in prompts.
 - `japanese.mp4` - imported hand-painted / Japanese fantasy style candidate.
 - `clay_motion.mp4` - imported stop-motion clay / cutout style candidate.
