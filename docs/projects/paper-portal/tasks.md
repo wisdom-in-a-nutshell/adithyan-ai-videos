@@ -90,6 +90,9 @@ Upload-ready three-frame set:
   `01-paper-clay-start-reference.png`.
   Pixel-world branch:
   `style-reference-stills/pixel-world/01-pixel-world-start-reference.png`.
+  Current pixel-world start/end references:
+  `style-reference-stills/pixel-world/03-pixel-world-clear-portal-start.png` and
+  `style-reference-stills/pixel-world/04-pixel-world-hero-gone-end.png`.
 - Current selected transition end frame:
   `projects/paper-portal/transition-keyframes/selected/door-pushed-in-glow-variant-3-selected.png`
 - Clean ImageGen seed:
@@ -133,6 +136,8 @@ Upload-ready three-frame set:
 - [ ] If the pixel-world direction is approved, generate matching walk/end
   keyframes and test whether Flow can animate from stills instead of source
   video.
+- [ ] Test Flow with the pixel-world start/end references if single-image
+  prompting still causes backward walking or excessive side-character motion.
 - [ ] Revise Omni / Flow setup after first magical-forest canary: it restyled
   too much too early, changed the character into a generic 3D mascot, introduced
   the forest before the portal, and did not preserve the source clip as a strict
@@ -194,6 +199,8 @@ Upload-ready three-frame set:
 - [x] Generate first paper/clay style reference still from the SVG-derived
   original scene keyframe.
 - [x] Generate first pixel-world style reference still in its own subfolder.
+- [x] Generate pixel-world end reference with the hero gone and friendly
+  characters waving near the portal.
 
 ## Working Assumptions
 
