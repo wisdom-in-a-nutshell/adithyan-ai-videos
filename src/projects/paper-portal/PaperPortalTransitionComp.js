@@ -10,7 +10,10 @@ import {
 import {resolveAssetSrc} from '../../lib/resolveAssetSrc.js';
 import {
   CREDIT_DRAW_FRAMES,
+  END_CARD_FADE_OUT_FRAMES,
+  END_CARD_TRANSITION_FRAMES,
   END_CARD_VIDEO_DURATION_FRAMES,
+  END_CARD_VIDEO_PLAYBACK_RATE,
   END_CARD_VIDEO_START_FROM_FRAMES,
   MAIN_SEQUENCE_DURATION_FRAMES,
   TRANSITION_FRAMES,
@@ -332,11 +335,28 @@ const PortalTransitionOverlay = () => {
 };
 
 const EndCardVideoLayer = ({assetMap}) => {
+  const frame = useCurrentFrame();
+  const opacity = interpolate(
+    frame,
+    [
+      0,
+      END_CARD_TRANSITION_FRAMES,
+      Math.max(
+        END_CARD_TRANSITION_FRAMES + 1,
+        END_CARD_VIDEO_DURATION_FRAMES - END_CARD_FADE_OUT_FRAMES
+      ),
+      END_CARD_VIDEO_DURATION_FRAMES,
+    ],
+    [0, 1, 1, 0],
+    clamp
+  );
+
   return (
-    <AbsoluteFill style={{backgroundColor: '#f5f1e6'}}>
+    <AbsoluteFill style={{backgroundColor: '#f5f1e6', opacity}}>
       <OffthreadVideo
         src={resolveAssetSrc(END_CARD_VIDEO_SRC, assetMap)}
         startFrom={END_CARD_VIDEO_START_FROM_FRAMES}
+        playbackRate={END_CARD_VIDEO_PLAYBACK_RATE}
         volume={0}
         style={{
           width: '100%',
