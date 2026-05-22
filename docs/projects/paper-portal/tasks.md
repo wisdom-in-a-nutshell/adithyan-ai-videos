@@ -11,20 +11,16 @@ Detailed handoff for resuming in a fresh session:
 
 ## Resume point
 
-Current resume point: review the finalized working set and continue generating
-or collecting world-style variants.
+Current resume point: review the first full six-world direct-cut draft.
 
 Primary current review file:
 `projects/paper-portal/finalized-working-set/04-full-sequence-plus-pixel-world-current-candidate.mp4`.
 
-Current standalone world clips:
-`projects/paper-portal/finalized-working-set/03-pixel-world-walks-into-portal-current-candidate.mp4`
-and `projects/paper-portal/finalized-working-set/PixarWorld.mp4`.
+Primary current review file:
+`projects/paper-portal/finalized-working-set/05-full-six-worlds-direct-cut-draft-v01.mp4`.
 
-Next practical batch: decide the final world list, generate/edit additional
-style variants with the locked-composition prompt in the handoff, copy good
-renders into `projects/paper-portal/finalized-working-set/`, then stitch the
-chosen sequence.
+Next practical batch: review the direct cuts and decide whether to add portal
+flash/glow transitions between worlds before final assembly.
 
 ## Reference files
 
@@ -91,10 +87,9 @@ chosen sequence.
   `projects/paper-portal/finalized-working-set/PixarWorld.mp4`
 - Current normalized world clips:
   `projects/paper-portal/finalized-working-set/world-clips-normalized/`
-  Includes pixel, soft 3D storybook, hand-painted Japanese fantasy, stop-motion
-  clay/cutout, plush/toy, and neon arcade candidates. The plush/toy candidate
-  intentionally has more extra characters and should be reviewed later before
-  final assembly.
+  Includes pixel, neon arcade, soft 3D storybook, hand-painted Japanese
+  fantasy, plush/toy, and stop-motion clay/cutout in the approved assembly
+  order. The plush/toy candidate has intentional extra characters.
 - Current Omni / Flow diagnostic test clips:
   `projects/paper-portal/style-transfer-test-clips/`
   Use `01-omni-source-walk-only-4s.mp4` first to test whether short walk-only
@@ -127,15 +122,14 @@ chosen sequence.
   current stitched sequence.
 - [ ] Review `PixarWorld.mp4` and decide whether it should be one of the final
   worlds or regenerated with generic soft 3D storybook wording.
-- [ ] Choose the final world list. Current recommendation: keep it to about five
-  total worlds.
-- [ ] Generate or import the remaining world-style variants using Flow / Omni
-  edit mode with the locked-composition prompt from the handoff.
-- [ ] Copy each approved world render into
-  `projects/paper-portal/finalized-working-set/` with a numbered filename.
+- [x] Choose the final world list: use all six normalized worlds.
+- [x] Rename normalized world clips and contact sheets into the approved order.
 - [ ] Review normalized world clip contact sheets under
   `projects/paper-portal/review-frames/world-clip-contact-sheets/normalized/`.
-- [ ] Stitch the approved worlds into one review sequence at 1920x1080, 30fps.
+- [x] Stitch the approved six worlds into one review sequence at 1920x1080,
+  30fps.
+- [ ] Review
+  `projects/paper-portal/finalized-working-set/05-full-six-worlds-direct-cut-draft-v01.mp4`.
 - [ ] Add portal flash/glow transitions only after the world ordering is
   approved.
 - [ ] Add sound effects/music only after the visual sequence is locked.
