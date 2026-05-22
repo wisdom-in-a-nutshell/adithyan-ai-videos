@@ -3,7 +3,10 @@ import {TEXT_EFFECTS_COMPOSITION} from './text-effects/composition.js';
 import {C0040_COMPOSITION} from './c0040/composition.js';
 import {EFFECTS_LAB_COMPOSITION} from './effects-lab/composition.js';
 import {OBJECT_SEGMENTATION_COMPOSITION} from './object-segmentation/composition.js';
-import {PAPER_PORTAL_COMPOSITION} from './paper-portal/composition.js';
+import {
+  PAPER_PORTAL_COMPOSITION,
+  PAPER_PORTAL_CREDIT_DRAW_PREVIEW_COMPOSITION,
+} from './paper-portal/composition.js';
 // NEW_PROJECT_IMPORTS
 
 export const PROJECT_COMPOSITION_REGISTRY = [
@@ -12,7 +15,8 @@ export const PROJECT_COMPOSITION_REGISTRY = [
   {composition: C0040_COMPOSITION, enabled: false},
   {composition: OBJECT_SEGMENTATION_COMPOSITION, enabled: true},
   {composition: EFFECTS_LAB_COMPOSITION, enabled: true},
-    {composition: PAPER_PORTAL_COMPOSITION, enabled: true},
+  {composition: PAPER_PORTAL_COMPOSITION, enabled: true},
+  {composition: PAPER_PORTAL_CREDIT_DRAW_PREVIEW_COMPOSITION, enabled: true},
   // NEW_PROJECT_ENTRIES
 ];
 
