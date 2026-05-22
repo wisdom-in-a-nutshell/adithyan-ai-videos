@@ -92,7 +92,10 @@ Upload-ready three-frame set:
   `style-reference-stills/pixel-world/01-pixel-world-start-reference.png`.
   Current pixel-world start/end references:
   `style-reference-stills/pixel-world/03-pixel-world-clear-portal-start.png` and
-  `style-reference-stills/pixel-world/04-pixel-world-hero-gone-end.png`.
+  `style-reference-stills/pixel-world/08-pixel-world-end-face-arm-turn-only.png`.
+  Alternate end attempts:
+  `05-pixel-world-hero-gone-end-mascots-facing-portal.png`,
+  `07-pixel-world-end-from-start-mask.png`.
 - Current selected transition end frame:
   `projects/paper-portal/transition-keyframes/selected/door-pushed-in-glow-variant-3-selected.png`
 - Clean ImageGen seed:
@@ -201,6 +204,8 @@ Upload-ready three-frame set:
 - [x] Generate first pixel-world style reference still in its own subfolder.
 - [x] Generate pixel-world end reference with the hero gone and friendly
   characters waving near the portal.
+- [x] Generate tighter masked pixel-world end reference attempts so the three
+  mascots face the portal without moving the whole scene.
 
 ## Working Assumptions
 
