@@ -48,3 +48,25 @@ What feels off:
 
 What should improve next:
 - Regenerate with text inside the model output, make the paper sketch dominate the frame, and use short thumbnail copy: "OMNI FLASH" plus "MY PAPER SKETCH" or a close variant.
+
+## Self-review - Version 4
+
+Prompt used:
+- First Gemini Omni model-text batch: variants 10-13.
+
+Output path:
+- `tmp/imagegen/paper-portal-thumbnails/10-gemini-horizontal-clean.png`
+- `tmp/imagegen/paper-portal-thumbnails/11-gemini-paper-hero.png`
+- `tmp/imagegen/paper-portal-thumbnails/12-gemini-neon-payoff.png`
+- `tmp/imagegen/paper-portal-thumbnails/13-gemini-simple-mobile.png`
+
+What worked:
+- Text generally rendered with the intended words.
+- The before/after concept is coming through.
+
+What feels off:
+- Some title text is cropped or too close to the edge.
+- In several versions, the AI world and typography overpower the original paper sketch.
+
+What should improve next:
+- Iterate with strict safe margins, make the paper sketch larger, simplify the AI world payoff, and reject any output with cropped or misspelled text.
