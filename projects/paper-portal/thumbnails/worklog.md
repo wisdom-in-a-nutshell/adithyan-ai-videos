@@ -70,3 +70,23 @@ What feels off:
 
 What should improve next:
 - Iterate with strict safe margins, make the paper sketch larger, simplify the AI world payoff, and reject any output with cropped or misspelled text.
+
+## Self-review - Version 5
+
+Prompt used:
+- Native `1536x864`, no post-crop pass. Best user-liked direction is the more energetic neon style.
+
+Output path:
+- `projects/paper-portal/thumbnails/gemini-omni-neon-sketch-v01.png`
+- `projects/paper-portal/thumbnails/gemini-omni-paper-sketch-v01.png`
+
+What worked:
+- Native 16:9 output fixed hidden crop issues.
+- The neon style has the right YouTube energy.
+
+What feels off:
+- User wants the hand/finger, snap spark, and large portal/door treatment removed.
+- The concept should be more minimal: paper sketch on one side, the same sketch animated on the other.
+
+What should improve next:
+- Edit from the neon-style candidate into a cleaner before/after thumbnail with no hand, no spark, no large portal arch, and stronger focus on the sketch becoming animated.
