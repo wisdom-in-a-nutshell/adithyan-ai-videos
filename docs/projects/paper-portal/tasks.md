@@ -6,21 +6,25 @@ Project home is set up. Reference intake is captured. Creative direction is now
 centered on a fast live drawing hook followed by short Flow / Veo / Omni-style
 AI animation segments chained through doors.
 
+Detailed handoff for resuming in a fresh session:
+`docs/projects/paper-portal/handoff-2026-05-22.md`.
+
 ## Resume point
 
-Continue from the accepted first Flow animation endpoint:
-`projects/paper-portal/flow-storyboard-frames/3.png`.
+Current resume point: review the finalized working set and continue generating
+or collecting world-style variants.
 
-Next prototype: open the closed pencil door into a bright blank portal while the
-stick figure stays outside. Do not enter the new world in the same clip.
+Primary current review file:
+`projects/paper-portal/finalized-working-set/04-full-sequence-plus-pixel-world-current-candidate.mp4`.
 
-Current control-frame experiment: use the vector-derived keyframes under
-`projects/paper-portal/flow-storyboard-frames/5A.png` and `5B.png` when a stable
-plate or re-baselined hand-on-handle pose is more useful than model-generated
-stills.
+Current standalone world clips:
+`projects/paper-portal/finalized-working-set/03-pixel-world-walks-into-portal-current-candidate.mp4`
+and `projects/paper-portal/finalized-working-set/PixarWorld.mp4`.
 
-Upload-ready three-frame set:
-`projects/paper-portal/keyframe-upload-set-01/`.
+Next practical batch: decide the final world list, generate/edit additional
+style variants with the locked-composition prompt in the handoff, copy good
+renders into `projects/paper-portal/finalized-working-set/`, then stitch the
+chosen sequence.
 
 ## Reference files
 
@@ -83,6 +87,8 @@ Upload-ready three-frame set:
   `projects/paper-portal/finalized-working-set/03-pixel-world-walks-into-portal-current-candidate.mp4`
 - Current stitched full + pixel-world candidate:
   `projects/paper-portal/finalized-working-set/04-full-sequence-plus-pixel-world-current-candidate.mp4`
+- Current soft 3D / storybook style candidate:
+  `projects/paper-portal/finalized-working-set/PixarWorld.mp4`
 - Current Omni / Flow diagnostic test clips:
   `projects/paper-portal/style-transfer-test-clips/`
   Use `01-omni-source-walk-only-4s.mp4` first to test whether short walk-only
@@ -111,49 +117,20 @@ Upload-ready three-frame set:
 
 ## Next steps
 
-- [ ] Generate Clip 02 from `flow-storyboard-frames/3.png`: handle turns, door
-  opens slightly, bright blank portal appears, figure reacts but does not enter.
-- [ ] Test whether the vector control frames give more reliable keyframe
-  interpolation than the model-generated door-opening stills.
-- [ ] Review Seedance fast vs Kling O3 standard i2v canaries and pick the better
-  base for the walk-to-handle beat.
-- [ ] Review regular Seedance 1080p canary for whether slower walk prompting
-  fixes the fast Seedance articulation issue.
-- [ ] Extract the final frame from the liked regular Seedance walk-to-handle
-  keeper as the start frame for the door-opening beat.
-- [ ] Review the Variant 3 Seedance fast transition canary for whether the
-  figure disappears cleanly through the glowing pushed-in door.
-- [ ] Review the regular 1080p Variant 3 transition render with the small
-  surprise reaction before the figure enters the glow.
-- [ ] Review the stitched AI-only sequence for the cut between walk-to-handle
-  and door-transition.
-- [ ] Review the stitched full sequence from sketch hook through door transition.
-- [ ] Review cleaned v02 sequence: hook cut at the white flash, 0.25s blend
-  between walk and transition, and portal clip trimmed when the figure has
-  disappeared.
-- [ ] Review anchored v03 full sequence: hook flash, short seed-frame anchor,
-  soft blend into Seedance walk, existing 0.25s walk/portal blend, and trimmed
-  portal ending.
-- [ ] Test Omni / Flow style transfer on the AI-only animation source, not the
-  real drawing hook.
-- [ ] Try the 4s diagnostic style-transfer source clips to isolate whether Flow
-  rejects the full source video or specifically the door/glow section.
-- [ ] If the paper/clay still direction is approved, generate the matching
-  hand-on-handle end keyframe in the same visual style.
-- [ ] If the pixel-world direction is approved, generate matching walk/end
-  keyframes and test whether Flow can animate from stills instead of source
-  video.
-- [ ] Test Flow with the pixel-world start/end references if single-image
-  prompting still causes backward walking or excessive side-character motion.
-- [ ] Revise Omni / Flow setup after first magical-forest canary: it restyled
-  too much too early, changed the character into a generic 3D mascot, introduced
-  the forest before the portal, and did not preserve the source clip as a strict
-  motion/timing reference.
-- [ ] Save the strongest Clip 02 output and extract its final frame as the Clip
-  03 seed.
-- [ ] Generate Clip 03: figure enters the bright doorway and lands in the first
-  new world.
-- [ ] Choose the first world style and write its continuity rules.
+- [ ] Review `04-full-sequence-plus-pixel-world-current-candidate.mp4` as the
+  current stitched sequence.
+- [ ] Review `PixarWorld.mp4` and decide whether it should be one of the final
+  worlds or regenerated with generic soft 3D storybook wording.
+- [ ] Choose the final world list. Current recommendation: keep it to about five
+  total worlds.
+- [ ] Generate or import the remaining world-style variants using Flow / Omni
+  edit mode with the locked-composition prompt from the handoff.
+- [ ] Copy each approved world render into
+  `projects/paper-portal/finalized-working-set/` with a numbered filename.
+- [ ] Stitch the approved worlds into one review sequence at 1920x1080, 30fps.
+- [ ] Add portal flash/glow transitions only after the world ordering is
+  approved.
+- [ ] Add sound effects/music only after the visual sequence is locked.
 
 ## Completed
 
@@ -214,6 +191,8 @@ Upload-ready three-frame set:
   working set.
 - [x] Stitch the existing full keeper with the current pixel-world portal
   candidate for review.
+- [x] Write detailed 2026-05-22 handoff with current files, prompts, lessons,
+  open decisions, and resume instructions.
 
 ## Working Assumptions
 
