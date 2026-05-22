@@ -81,6 +81,8 @@ Upload-ready three-frame set:
   `projects/paper-portal/finalized-working-set/`
 - Current pixel-world video candidate:
   `projects/paper-portal/finalized-working-set/03-pixel-world-walks-into-portal-current-candidate.mp4`
+- Current stitched full + pixel-world candidate:
+  `projects/paper-portal/finalized-working-set/04-full-sequence-plus-pixel-world-current-candidate.mp4`
 - Current Omni / Flow diagnostic test clips:
   `projects/paper-portal/style-transfer-test-clips/`
   Use `01-omni-source-walk-only-4s.mp4` first to test whether short walk-only
@@ -210,6 +212,8 @@ Upload-ready three-frame set:
   mascots face the portal without moving the whole scene.
 - [x] Copy the liked pixel-world walk-into-portal download into the finalized
   working set.
+- [x] Stitch the existing full keeper with the current pixel-world portal
+  candidate for review.
 
 ## Working Assumptions
 
