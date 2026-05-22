@@ -8,6 +8,15 @@ Use this folder for the current active review/upload files.
 - `04-full-sequence-plus-pixel-world-current-candidate.mp4` - stitched review sequence: current full keeper followed by the pixel-world portal candidate.
 - `05-full-six-worlds-direct-cut-draft-v01.mp4` - first full direct-cut draft:
   current full keeper followed by all six normalized worlds in approved order.
+- `06-full-six-worlds-portal-bloom-draft-v01.mp4` - first Remotion portal
+  transition draft with bloom overlays between all worlds.
+- `07-full-six-worlds-portal-pulse-draft-v02.mp4` - stronger portal pulse /
+  ring treatment, used as an intermediate review pass.
+- `08-full-six-worlds-portal-veil-draft-v03.mp4` - added a localized portal
+  veil to reduce visible doorway ghosting.
+- `09-full-six-worlds-portal-energy-draft-v04.mp4` - current recommended
+  review draft: earlier colored portal energy fill, less pure-white flash,
+  and tighter masking over ghosted portal silhouettes.
 - `PixarWorld.mp4` - current soft 3D/storybook world candidate. Name kept from the user's working label; prefer generic style wording in prompts.
 - `japanese.mp4` - imported hand-painted / Japanese fantasy style candidate.
 - `clay_motion.mp4` - imported stop-motion clay / cutout style candidate.

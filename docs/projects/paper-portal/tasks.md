@@ -11,16 +11,16 @@ Detailed handoff for resuming in a fresh session:
 
 ## Resume point
 
-Current resume point: review the first full six-world direct-cut draft.
+Current resume point: review the polished six-world portal-transition draft.
 
 Primary current review file:
-`projects/paper-portal/finalized-working-set/04-full-sequence-plus-pixel-world-current-candidate.mp4`.
+`projects/paper-portal/finalized-working-set/09-full-six-worlds-portal-energy-draft-v04.mp4`.
 
-Primary current review file:
-`projects/paper-portal/finalized-working-set/05-full-six-worlds-direct-cut-draft-v01.mp4`.
+Transition audit stills:
+`projects/paper-portal/review-frames/full-sequence-drafts/transition-audit-v04/`.
 
-Next practical batch: review the direct cuts and decide whether to add portal
-flash/glow transitions between worlds before final assembly.
+Next practical batch: review v04 for overall rhythm, then decide whether to
+lock visuals or tune individual transition timing before sound effects/music.
 
 ## Reference files
 
@@ -90,6 +90,10 @@ flash/glow transitions between worlds before final assembly.
   Includes pixel, neon arcade, soft 3D storybook, hand-painted Japanese
   fantasy, plush/toy, and stop-motion clay/cutout in the approved assembly
   order. The plush/toy candidate has intentional extra characters.
+- Current Remotion portal-transition draft:
+  `projects/paper-portal/finalized-working-set/09-full-six-worlds-portal-energy-draft-v04.mp4`
+  is the recommended review file. It uses code-driven portal bloom/push
+  transitions and a colored doorway veil to hide ghosted source silhouettes.
 - Current Omni / Flow diagnostic test clips:
   `projects/paper-portal/style-transfer-test-clips/`
   Use `01-omni-source-walk-only-4s.mp4` first to test whether short walk-only
@@ -118,7 +122,7 @@ flash/glow transitions between worlds before final assembly.
 
 ## Next steps
 
-- [ ] Review `04-full-sequence-plus-pixel-world-current-candidate.mp4` as the
+- [x] Review `04-full-sequence-plus-pixel-world-current-candidate.mp4` as the
   current stitched sequence.
 - [ ] Review `PixarWorld.mp4` and decide whether it should be one of the final
   worlds or regenerated with generic soft 3D storybook wording.
@@ -128,10 +132,12 @@ flash/glow transitions between worlds before final assembly.
   `projects/paper-portal/review-frames/world-clip-contact-sheets/normalized/`.
 - [x] Stitch the approved six worlds into one review sequence at 1920x1080,
   30fps.
-- [ ] Review
+- [x] Review
   `projects/paper-portal/finalized-working-set/05-full-six-worlds-direct-cut-draft-v01.mp4`.
-- [ ] Add portal flash/glow transitions only after the world ordering is
-  approved.
+- [x] Add portal flash/glow transitions after the world ordering was approved.
+- [ ] Review
+  `projects/paper-portal/finalized-working-set/09-full-six-worlds-portal-energy-draft-v04.mp4`
+  and transition audit stills.
 - [ ] Add sound effects/music only after the visual sequence is locked.
 
 ## Completed

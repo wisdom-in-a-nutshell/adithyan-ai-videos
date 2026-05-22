@@ -4,7 +4,7 @@ export const PROJECT_TITLE = 'Paper Portal';
 export const FPS = 30;
 export const WIDTH = 1920;
 export const HEIGHT = 1080;
-export const TRANSITION_FRAMES = 16;
+export const TRANSITION_FRAMES = 18;
 
 export const DIRECT_CUT_DURATION_FRAMES = 1517;
 export const DURATION_FRAMES = DIRECT_CUT_DURATION_FRAMES - TRANSITION_FRAMES * 6;

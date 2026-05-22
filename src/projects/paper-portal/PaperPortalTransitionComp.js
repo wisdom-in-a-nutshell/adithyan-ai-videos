@@ -35,11 +35,23 @@ const transitionWindows = clipStarts.slice(1).map((start, index) => ({
 const ease = (value) =>
   Easing.bezier(0.16, 1, 0.3, 1)(Math.max(0, Math.min(1, value)));
 
+const rgba = (hex, alpha) => {
+  const normalized = hex.replace('#', '');
+  const value = Number.parseInt(normalized.length === 3 ? normalized.repeat(2) : normalized, 16);
+  if (!Number.isFinite(value)) {
+    return `rgba(255, 226, 135, ${alpha})`;
+  }
+  const r = (value >> 16) & 255;
+  const g = (value >> 8) & 255;
+  const b = value & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
 const getFade = (frame, clipIndex, durationFrames) => {
   const intro =
     clipIndex === 0
       ? 1
-      : interpolate(frame, [0, TRANSITION_FRAMES], [0, 1], {
+      : interpolate(frame, [0, TRANSITION_FRAMES * 0.42, TRANSITION_FRAMES], [0, 0, 1], {
           ...clamp,
           easing: Easing.bezier(0.16, 1, 0.3, 1),
         });
@@ -48,8 +60,8 @@ const getFade = (frame, clipIndex, durationFrames) => {
       ? 1
       : interpolate(
           frame,
-          [durationFrames - TRANSITION_FRAMES, durationFrames],
-          [1, 0],
+          [durationFrames - TRANSITION_FRAMES, durationFrames - TRANSITION_FRAMES * 0.58, durationFrames],
+          [1, 0, 0],
           {
             ...clamp,
             easing: Easing.bezier(0.7, 0, 0.84, 0),
@@ -81,18 +93,92 @@ const getPortalPush = (frame, clipIndex, durationFrames) => {
   return Math.max(intro, outro);
 };
 
+const PortalVeil = ({accent, progress}) => {
+  if (progress <= 0) {
+    return null;
+  }
+  const ambientOpacity = interpolate(progress, [0, 0.42, 1], [0, 0.48, 0.68], clamp);
+  const coreOpacity = interpolate(progress, [0, 0.32, 1], [0, 0.78, 0.94], clamp);
+  const rimOpacity = interpolate(progress, [0.18, 0.68, 1], [0, 0.68, 0.34], clamp);
+  const core = rgba(accent, 0.7);
+
+  return (
+    <AbsoluteFill
+      style={{
+        pointerEvents: 'none',
+      }}
+    >
+      <AbsoluteFill
+        style={{
+          opacity: ambientOpacity,
+          background: `radial-gradient(ellipse at 79% 52%, rgba(255, 238, 174, 0.92) 0%, ${core} 18%, rgba(255, 231, 145, 0.48) 31%, rgba(255, 231, 145, 0.16) 43%, rgba(255, 255, 255, 0) 58%)`,
+          filter: 'blur(4px)',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          left: '72.6%',
+          top: '16.5%',
+          width: '20.5%',
+          height: '70%',
+          opacity: coreOpacity,
+          borderRadius: '52% 48% 46% 54% / 42% 47% 53% 58%',
+          background: `radial-gradient(ellipse at 50% 46%, rgba(255, 255, 247, 0.98) 0%, rgba(255, 239, 177, 0.95) 30%, ${rgba(
+            accent,
+            0.88
+          )} 58%, rgba(255, 223, 122, 0.24) 82%, rgba(255, 255, 255, 0) 100%)`,
+          boxShadow: `0 0 34px ${rgba(accent, 0.58)}, inset 0 0 28px rgba(255, 255, 255, 0.74)`,
+          filter: 'blur(3px)',
+          transform: `scale(${0.96 + progress * 0.08}) skewX(-1.4deg)`,
+          transformOrigin: '50% 52%',
+        }}
+      />
+      <div
+        style={{
+          position: 'absolute',
+          left: '70.8%',
+          top: '12%',
+          width: '23.5%',
+          height: '77%',
+          opacity: rimOpacity,
+          borderRadius: '50%',
+          background: `radial-gradient(ellipse at 50% 52%, rgba(255, 255, 255, 0) 42%, ${rgba(
+            accent,
+            0.74
+          )} 55%, rgba(255, 248, 206, 0.72) 61%, rgba(255, 255, 255, 0) 73%)`,
+          filter: 'blur(4px)',
+        }}
+      />
+    </AbsoluteFill>
+  );
+};
+
 const ClipLayer = ({assetMap, clip, index}) => {
   const frame = useCurrentFrame();
   const fade = getFade(frame, index, clip.durationFrames);
   const push = getPortalPush(frame, index, clip.durationFrames);
+  const veilLeadFrames = clip.veilLeadFrames ?? 38;
+  const veilProgress =
+    index === 0 || index === CLIP_SEQUENCE.length - 1
+      ? 0
+      : interpolate(
+          frame,
+          [
+            Math.max(0, clip.durationFrames - TRANSITION_FRAMES - veilLeadFrames),
+            clip.durationFrames - TRANSITION_FRAMES * 0.72,
+          ],
+          [0, 1],
+          clamp
+        );
   const shake = push > 0.02 ? Math.sin(frame * 1.9 + index) * push : 0;
   const microJolt = push > 0.6 ? Math.sin(frame * 4.2) * (push - 0.6) * 3 : 0;
-  const scale = 1 + push * 0.055;
-  const x = push * 10 + shake * 1.6;
-  const y = shake * 0.9 + microJolt;
-  const brightness = 1 + push * 0.22;
-  const saturation = 1 + push * 0.14;
-  const blur = push * 1.2;
+  const scale = 1 + push * 0.045;
+  const x = push * 8 + shake * 1.25;
+  const y = shake * 0.7 + microJolt * 0.75;
+  const brightness = 1 + push * 0.16;
+  const saturation = 1 + push * 0.12;
+  const blur = push * 0.75;
 
   return (
     <AbsoluteFill
@@ -114,6 +200,7 @@ const ClipLayer = ({assetMap, clip, index}) => {
           objectFit: 'cover',
         }}
       />
+      <PortalVeil accent={clip.accent} progress={veilProgress} />
     </AbsoluteFill>
   );
 };
@@ -121,11 +208,14 @@ const ClipLayer = ({assetMap, clip, index}) => {
 const TransitionBurst = ({accent, progress}) => {
   const eased = ease(progress);
   const peak = Math.sin(Math.PI * eased);
-  const hardFlash = interpolate(peak, [0.72, 1], [0, 0.62], clamp);
-  const portalScale = interpolate(peak, [0, 1], [0.22, 1.35], clamp);
+  const hardFlash = interpolate(peak, [0.82, 1], [0, 0.28], clamp);
+  const portalScale = interpolate(peak, [0, 1], [0.2, 1.28], clamp);
   const streakOpacity = interpolate(peak, [0.15, 0.95], [0, 0.85], clamp);
   const chromaOpacity = interpolate(peak, [0.25, 1], [0, 0.38], clamp);
-  const shake = Math.sin(progress * Math.PI * 18) * peak * 5;
+  const ringOpacity = interpolate(peak, [0.12, 0.82, 1], [0, 0.86, 0.25], clamp);
+  const tunnelOpacity = interpolate(peak, [0.18, 0.9], [0, 0.28], clamp);
+  const curtainOpacity = interpolate(peak, [0.2, 0.84, 1], [0, 0.78, 0.5], clamp);
+  const shake = Math.sin(progress * Math.PI * 18) * peak * 3.5;
 
   return (
     <AbsoluteFill
@@ -136,23 +226,54 @@ const TransitionBurst = ({accent, progress}) => {
     >
       <AbsoluteFill
         style={{
+          opacity: curtainOpacity,
+          background: `radial-gradient(circle at 79% 52%, rgba(255, 238, 176, 0.96) 0%, ${rgba(
+            accent,
+            0.76
+          )} 24%, rgba(255, 245, 198, 0.78) 43%, rgba(255, 255, 255, 0.14) 68%, rgba(255, 255, 255, 0) 100%)`,
+        }}
+      />
+      <AbsoluteFill
+        style={{
           opacity: peak,
           mixBlendMode: 'screen',
-          background: `radial-gradient(circle at 79% 52%, rgba(255,255,255,0.98) 0%, rgba(255,244,183,0.92) ${
-            10 + portalScale * 8
-          }%, ${accent} ${24 + portalScale * 8}%, rgba(255,255,255,0.18) ${
-            42 + portalScale * 12
-          }%, rgba(255,255,255,0) ${66 + portalScale * 8}%)`,
+          background: `radial-gradient(circle at 79% 52%, rgba(255,255,255,0.96) 0%, rgba(255,244,183,0.86) ${
+            9 + portalScale * 7
+          }%, ${accent} ${22 + portalScale * 7}%, rgba(255,255,255,0.12) ${
+            38 + portalScale * 10
+          }%, rgba(255,255,255,0) ${58 + portalScale * 7}%)`,
+        }}
+      />
+      <AbsoluteFill
+        style={{
+          opacity: ringOpacity,
+          mixBlendMode: 'screen',
+          background: `radial-gradient(ellipse at 79% 52%, rgba(255,255,255,0) 0%, rgba(255,255,255,0) ${
+            13 + portalScale * 5
+          }%, ${accent} ${18 + portalScale * 7}%, rgba(255,255,255,0.9) ${
+            21 + portalScale * 8
+          }%, rgba(255,255,255,0) ${31 + portalScale * 10}%)`,
+          filter: 'blur(2px)',
+          transformOrigin: '79% 52%',
+          transform: `scale(${0.82 + portalScale * 0.36})`,
         }}
       />
       <AbsoluteFill
         style={{
           opacity: streakOpacity,
           mixBlendMode: 'screen',
-          background: `linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.12) 38%, ${accent} 48%, rgba(255,255,255,0.95) 55%, rgba(255,255,255,0.16) 67%, rgba(255,255,255,0) 100%)`,
+          background: `linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 38%, ${accent} 48%, rgba(255,255,255,0.8) 55%, rgba(255,255,255,0.14) 67%, rgba(255,255,255,0) 100%)`,
           transformOrigin: '79% 52%',
           transform: `scaleX(${0.55 + portalScale * 1.1})`,
           filter: 'blur(8px)',
+        }}
+      />
+      <AbsoluteFill
+        style={{
+          opacity: tunnelOpacity,
+          mixBlendMode: 'screen',
+          background: `conic-gradient(from ${progress * 120}deg at 79% 52%, rgba(255,255,255,0), ${accent}, rgba(255,255,255,0.42), rgba(255,255,255,0), ${accent}, rgba(255,255,255,0))`,
+          filter: 'blur(10px)',
         }}
       />
       <AbsoluteFill

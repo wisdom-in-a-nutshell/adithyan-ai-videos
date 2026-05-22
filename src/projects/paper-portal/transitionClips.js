@@ -29,6 +29,7 @@ export const CLIP_SEQUENCE = [
     src: 'imports/paper-portal/transition-draft-v01/04-soft-3d-storybook-world.mp4',
     durationFrames: 136,
     accent: '#ffe49c',
+    veilLeadFrames: 58,
     baseVolume: 0.82,
   },
   {
@@ -37,6 +38,7 @@ export const CLIP_SEQUENCE = [
     src: 'imports/paper-portal/transition-draft-v01/05-hand-painted-japanese-fantasy.mp4',
     durationFrames: 135,
     accent: '#fff0b8',
+    veilLeadFrames: 46,
     baseVolume: 0.82,
   },
   {
@@ -45,6 +47,7 @@ export const CLIP_SEQUENCE = [
     src: 'imports/paper-portal/transition-draft-v01/06-plush-toy-diorama-world.mp4',
     durationFrames: 125,
     accent: '#ffd7a8',
+    veilLeadFrames: 50,
     baseVolume: 0.82,
   },
   {
