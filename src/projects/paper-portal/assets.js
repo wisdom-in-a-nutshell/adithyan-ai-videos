@@ -1,14 +1,14 @@
 export const PROJECT_ID = 'paper-portal';
 export const PROJECT_TITLE = 'Paper Portal';
 
-export const VIDEO_URL = '';
-export const ALPHA_URL = '';
-
 export const FPS = 30;
 export const WIDTH = 1920;
 export const HEIGHT = 1080;
-export const DURATION_SECONDS = 5;
-export const DURATION_FRAMES = Math.ceil(DURATION_SECONDS * FPS);
+export const TRANSITION_FRAMES = 16;
+
+export const DIRECT_CUT_DURATION_FRAMES = 1517;
+export const DURATION_FRAMES = DIRECT_CUT_DURATION_FRAMES - TRANSITION_FRAMES * 6;
+export const DURATION_SECONDS = DURATION_FRAMES / FPS;
 
 // Hardcode timing anchors once transcript is stable.
 export const TIMING = {

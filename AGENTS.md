@@ -15,12 +15,13 @@ provide intent; agents implement and maintain code and docs.
 1. `docs/architecture/video-project-model.md`
 2. `docs/references/project-contract.md`
 3. `docs/references/effect-library.md` when visual reuse or house-style blocks are relevant
-4. `docs/references/repo-operations.md`
-5. `docs/references/media-storage.md` when importing or moving large local media
-6. `docs/references/docs-contract.md`
-7. `docs/references/verification-loop.md`
-8. `docs/setup/cloud-render-modal.md` when cloud render is relevant
-9. `docs/projects/<project>/tasks.md` for active execution state
+4. `docs/references/ai-video-generation-workflow.md` and `docs/references/ai-video-model-playbook.md` when external AI image/video generation is part of the workflow
+5. `docs/references/repo-operations.md`
+6. `docs/references/media-storage.md` when importing or moving large local media
+7. `docs/references/docs-contract.md`
+8. `docs/references/verification-loop.md`
+9. `docs/setup/cloud-render-modal.md` when cloud render is relevant
+10. `docs/projects/<project>/tasks.md` for active execution state
 
 ## Repo Rules
 
