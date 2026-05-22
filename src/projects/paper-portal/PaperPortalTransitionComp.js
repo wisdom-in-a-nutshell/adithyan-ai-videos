@@ -10,7 +10,8 @@ import {
 import {resolveAssetSrc} from '../../lib/resolveAssetSrc.js';
 import {
   CREDIT_DRAW_FRAMES,
-  END_CARD_VIDEO_FRAMES,
+  END_CARD_VIDEO_DURATION_FRAMES,
+  END_CARD_VIDEO_START_FROM_FRAMES,
   MAIN_SEQUENCE_DURATION_FRAMES,
   TRANSITION_FRAMES,
 } from './assets.js';
@@ -335,6 +336,7 @@ const EndCardVideoLayer = ({assetMap}) => {
     <AbsoluteFill style={{backgroundColor: '#f5f1e6'}}>
       <OffthreadVideo
         src={resolveAssetSrc(END_CARD_VIDEO_SRC, assetMap)}
+        startFrom={END_CARD_VIDEO_START_FROM_FRAMES}
         volume={0}
         style={{
           width: '100%',
@@ -372,7 +374,7 @@ export const PaperPortalTransitionComp = ({assetMap}) => {
       <Sequence
         name="09 End-card source video"
         from={endCardStart}
-        durationInFrames={END_CARD_VIDEO_FRAMES}
+        durationInFrames={END_CARD_VIDEO_DURATION_FRAMES}
       >
         <EndCardVideoLayer assetMap={assetMap} />
       </Sequence>
