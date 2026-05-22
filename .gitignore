@@ -12,6 +12,8 @@ tmp/
 # local asset cache (default is ~/.cache/win-remotion-assets, but keep safe)
 *.mp4
 *.webm
+*.mov
+*.MOV
 
 # Codex (legacy local skills path; use .agents/skills instead)
 .codex/skills/

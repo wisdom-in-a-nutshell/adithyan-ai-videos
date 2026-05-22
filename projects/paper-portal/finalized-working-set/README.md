@@ -20,6 +20,11 @@ Use this folder for the current active review/upload files.
 - `10-full-six-worlds-portal-energy-muted-ai-draft-v05.mp4` - current
   recommended review draft: same visual treatment as v04, with the real
   sketch/keeper audio retained and all generated world clip audio muted.
+- `end.MOV` - user-provided phone source for the eventual paper end card.
+  Original file has iPhone rotation metadata; keep it as the untouched source.
+- `end-normalized-1920x1080.mp4` - normalized end-card working copy:
+  1920x1080, 30fps, H.264/AAC, Rec.709, landscape pixels baked correctly, and
+  no rotation metadata.
 - `PixarWorld.mp4` - current soft 3D/storybook world candidate. Name kept from the user's working label; prefer generic style wording in prompts.
 - `japanese.mp4` - imported hand-painted / Japanese fantasy style candidate.
 - `clay_motion.mp4` - imported stop-motion clay / cutout style candidate.
