@@ -258,4 +258,3 @@ Before promoting a clip:
 - Did the style change break the story action?
 - Is the output normalized or ready to normalize?
 - Is the verdict recorded in the clip ledger?
-

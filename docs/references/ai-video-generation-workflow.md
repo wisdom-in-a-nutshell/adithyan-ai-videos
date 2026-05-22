@@ -253,4 +253,3 @@ The Paper Portal session produced these durable defaults:
 - Style names should be descriptive rather than brand-specific.
 - The agent should create screenshots/contact sheets without being asked.
 - The agent should import and normalize downloaded outputs immediately.
-
