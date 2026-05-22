@@ -90,3 +90,20 @@ What feels off:
 
 What should improve next:
 - Edit from the neon-style candidate into a cleaner before/after thumbnail with no hand, no spark, no large portal arch, and stronger focus on the sketch becoming animated.
+
+## Self-review - Version 6
+
+Prompt used:
+- User liked the simplified neon version and requested a couple of alternate styles to compare, especially a polished 3D animated-film direction.
+
+Output path:
+- Pending native `1536x864` style variants based on `gemini-omni-simplified-sketch-v02.png`.
+
+What worked:
+- Simplified before/after layout is now the right foundation.
+
+What feels off:
+- Current best is still neon-specific; user wants to make sure another style is not stronger.
+
+What should improve next:
+- Keep text and layout stable while varying only the right-side animated result style: polished 3D animated film, soft storybook 3D, and clay/toy stop-motion.
