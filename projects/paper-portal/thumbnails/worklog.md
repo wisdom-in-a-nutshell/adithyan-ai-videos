@@ -31,3 +31,20 @@ What feels off:
 
 What should improve next:
 - Generate three text-free thumbnail backgrounds around the opening sketch-to-worlds transformation, then apply crisp YouTube-readable text.
+
+## Self-review - Version 3
+
+Prompt used:
+- User rejected deterministic text overlay and asked for model-rendered text directly in the thumbnail.
+
+Output path:
+- Pending generation: model-rendered text variants using the corrected opening sketch reference sheet.
+
+What worked:
+- The concept should focus on the opening paper sketch, not the final end card.
+
+What feels off:
+- Previous deterministic mockups made the paper sketch too small and text felt externally pasted on.
+
+What should improve next:
+- Regenerate with text inside the model output, make the paper sketch dominate the frame, and use short thumbnail copy: "OMNI FLASH" plus "MY PAPER SKETCH" or a close variant.
