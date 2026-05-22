@@ -8,7 +8,8 @@ import {
   useCurrentFrame,
 } from 'remotion';
 import {resolveAssetSrc} from '../../lib/resolveAssetSrc.js';
-import {TRANSITION_FRAMES} from './assets.js';
+import {CREDIT_DRAW_FRAMES, MAIN_SEQUENCE_DURATION_FRAMES, TRANSITION_FRAMES} from './assets.js';
+import {PaperPortalCreditDrawPreviewComp} from './CreditDrawPreviewComp.js';
 import {CLIP_SEQUENCE} from './transitionClips.js';
 
 const clamp = {
@@ -335,6 +336,13 @@ export const PaperPortalTransitionComp = ({assetMap}) => {
         </Sequence>
       ))}
       <PortalTransitionOverlay />
+      <Sequence
+        name="08 Created by Adityan draw-on"
+        from={MAIN_SEQUENCE_DURATION_FRAMES}
+        durationInFrames={CREDIT_DRAW_FRAMES}
+      >
+        <PaperPortalCreditDrawPreviewComp />
+      </Sequence>
     </AbsoluteFill>
   );
 };

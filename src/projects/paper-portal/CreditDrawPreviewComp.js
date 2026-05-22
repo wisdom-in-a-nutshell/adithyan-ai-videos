@@ -98,7 +98,7 @@ export const PaperPortalCreditDrawPreviewComp = () => {
   const paperScale = Math.min(width / 1920, height / 1080);
   const svgWidth = Math.round(900 * paperScale);
   const svgHeight = Math.round(svgWidth * (100 / 168));
-  const jitter = writing ? Math.sin(frame * 1.7) * 0.22 : 0;
+  const jitter = writing ? Math.sin(frame * 1.7) * 0.07 : 0;
 
   return (
     <AbsoluteFill
