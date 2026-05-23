@@ -33,6 +33,7 @@
 - Deleted/replaced earlier X attempts while testing the thumbnail-preview strategy.
 - Reddit posts used YouTube link posts with a short first comment. The comment was revised after posting to remove the long credits block and keep only a rough workflow note.
 - r/VEO3 was posted as a YouTube link despite subreddit guidance preferring native video and links in comments, so it has higher removal risk than the other Reddit posts.
+- Reddit API status check on 2026-05-23 showed r/MediaSynthesis had `removed_by_category: reddit`; other Reddit submissions were still visible with no removal marker at that check.
 - r/AIanimation and r/aifilm were attempted as expansion targets but rejected live submission with `SUBREDDIT_NOTALLOWED: This community only allows trusted members to post here`.
 
 ## Current YouTube Packaging Direction
