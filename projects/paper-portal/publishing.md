@@ -7,13 +7,14 @@
 ## Published Links
 
 - YouTube: `https://www.youtube.com/watch?v=TAbqNdE-Atg`
-- LinkedIn: `https://www.linkedin.com/feed/update/urn:li:ugcPost:7463849540974964736/`
+- LinkedIn: `https://www.linkedin.com/feed/update/urn:li:ugcPost:7463854813076729856/`
 - X: `https://x.com/adithyan_ai/status/2058083718531514502`
 
 ## Platform Notes
 
 - YouTube upload used the selected custom thumbnail.
-- LinkedIn upload used the native video flow. The current local CLI does not expose custom thumbnail upload, although LinkedIn's Videos API supports thumbnail upload during video initialization.
+- LinkedIn upload used the native video flow with custom thumbnail upload via `initializeUploadRequest.uploadThumbnail: true`.
+- Deleted old LinkedIn post manually before retrying with thumbnail. Old post was `urn:li:ugcPost:7463849540974964736`.
 - X upload used the native video flow. Current standard X post/media-upload docs expose video upload and media attachment, but not custom organic video thumbnail selection.
 - X API response text was truncated after `Continuity Supervisor:...`; use shorter X copy or a follow-up reply for long credits in future posts.
 
