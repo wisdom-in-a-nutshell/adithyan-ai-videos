@@ -8,7 +8,7 @@
 
 - YouTube: `https://www.youtube.com/watch?v=TAbqNdE-Atg`
 - LinkedIn: `https://www.linkedin.com/feed/update/urn:li:ugcPost:7463854813076729856/`
-- X: `https://x.com/adithyan_ai/status/2058083718531514502`
+- X: `https://x.com/adithyan_ai/status/2058095049636770275`
 
 ## Platform Notes
 
@@ -17,8 +17,9 @@
 - LinkedIn video uploads should pass an explicit media title. For this project, use `I Animated My Paper Sketch with Gemini Omni`.
 - LinkedIn media titles are set at post creation time through `content.media.title`; do not rely on remote-download staging filenames such as `source.mp4`.
 - Deleted old LinkedIn post manually before retrying with thumbnail. Old post was `urn:li:ugcPost:7463849540974964736`.
-- X upload used the native video flow. Current standard X post/media-upload docs expose video upload and media attachment, but not custom organic video thumbnail selection.
-- X API response text was truncated after `Continuity Supervisor:...`; use shorter X copy or a follow-up reply for long credits in future posts.
+- X upload used the native video flow with `projects/paper-portal/finalized-working-set/12-x-poster-hold-0p5s.mp4`, an X-specific derivative that holds the chosen thumbnail for 0.5 seconds before the full master video.
+- X API responses may show a shortened text preview with an ellipsis. Do not treat that as live post truncation without checking the actual post; the full intended copy was posted as one native video post.
+- Deleted/replaced earlier X attempts while testing the thumbnail-preview strategy.
 
 ## Current YouTube Packaging Direction
 
