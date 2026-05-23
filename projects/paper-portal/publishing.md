@@ -9,6 +9,15 @@
 - YouTube: `https://www.youtube.com/watch?v=TAbqNdE-Atg`
 - LinkedIn: `https://www.linkedin.com/feed/update/urn:li:ugcPost:7463854813076729856/`
 - X: `https://x.com/adithyan_ai/status/2058095049636770275`
+- Reddit / r/GeminiAI: `https://reddit.com/r/GeminiAI/comments/1tlalvj/i_animated_my_paper_sketch_with_gemini_omni/`
+- Reddit / r/Bard: `https://reddit.com/r/Bard/comments/1tlalyf/i_animated_my_paper_sketch_with_gemini_omni/`
+- Reddit / r/GoogleGeminiAI: `https://reddit.com/r/GoogleGeminiAI/comments/1tlam1j/i_animated_my_paper_sketch_with_gemini_omni/`
+- Reddit / r/GoogleGemini: `https://reddit.com/r/GoogleGemini/comments/1tlam5n/i_animated_my_paper_sketch_with_gemini_omni/`
+- Reddit / r/aivideos: `https://reddit.com/r/aivideos/comments/1tlamc9/i_animated_my_paper_sketch_with_gemini_omni/`
+- Reddit / r/VEO3: `https://reddit.com/r/VEO3/comments/1tlamiv/i_tried_gemini_omni_on_a_paper_sketchtovideo/`
+- Reddit / r/generativeAI: `https://reddit.com/r/generativeAI/comments/1tlantx/i_animated_my_paper_sketch_with_gemini_omni/`
+- Reddit / r/MediaSynthesis: `https://reddit.com/r/MediaSynthesis/comments/1tlanxp/paper_sketch_to_multiworld_ai_video_with_gemini/`
+- Reddit / r/aicuriosity: `https://reddit.com/r/aicuriosity/comments/1tlao0i/i_animated_my_paper_sketch_with_gemini_omni/`
 
 ## Platform Notes
 
@@ -20,6 +29,8 @@
 - X upload used the native video flow with `projects/paper-portal/finalized-working-set/12-x-poster-hold-0p5s.mp4`, an X-specific derivative that holds the chosen thumbnail for 0.5 seconds before the full master video.
 - X API responses may show a shortened text preview with an ellipsis. Do not treat that as live post truncation without checking the actual post; the full intended copy was posted as one native video post.
 - Deleted/replaced earlier X attempts while testing the thumbnail-preview strategy.
+- Reddit posts used YouTube link posts with a short first comment. The comment was revised after posting to remove the long credits block and keep only a rough workflow note.
+- r/VEO3 was posted as a YouTube link despite subreddit guidance preferring native video and links in comments, so it has higher removal risk than the other Reddit posts.
 
 ## Current YouTube Packaging Direction
 
