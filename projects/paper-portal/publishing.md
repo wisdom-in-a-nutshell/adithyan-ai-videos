@@ -18,6 +18,8 @@
 - Reddit / r/generativeAI: `https://reddit.com/r/generativeAI/comments/1tlantx/i_animated_my_paper_sketch_with_gemini_omni/`
 - Reddit / r/MediaSynthesis: `https://reddit.com/r/MediaSynthesis/comments/1tlanxp/paper_sketch_to_multiworld_ai_video_with_gemini/`
 - Reddit / r/aicuriosity: `https://reddit.com/r/aicuriosity/comments/1tlao0i/i_animated_my_paper_sketch_with_gemini_omni/`
+- Reddit / r/aivids: `https://reddit.com/r/aivids/comments/1tlar4e/i_animated_my_paper_sketch_with_gemini_omni/`
+- Reddit / r/SoraAi: `https://reddit.com/r/SoraAi/comments/1tlar7v/i_animated_my_paper_sketch_with_gemini_omni/`
 
 ## Platform Notes
 
@@ -31,6 +33,7 @@
 - Deleted/replaced earlier X attempts while testing the thumbnail-preview strategy.
 - Reddit posts used YouTube link posts with a short first comment. The comment was revised after posting to remove the long credits block and keep only a rough workflow note.
 - r/VEO3 was posted as a YouTube link despite subreddit guidance preferring native video and links in comments, so it has higher removal risk than the other Reddit posts.
+- r/AIanimation and r/aifilm were attempted as expansion targets but rejected live submission with `SUBREDDIT_NOTALLOWED: This community only allows trusted members to post here`.
 
 ## Current YouTube Packaging Direction
 
