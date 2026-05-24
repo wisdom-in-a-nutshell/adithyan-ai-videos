@@ -35,6 +35,10 @@
 - r/VEO3 was posted as a YouTube link despite subreddit guidance preferring native video and links in comments, so it has higher removal risk than the other Reddit posts.
 - Reddit API status check on 2026-05-23 showed r/MediaSynthesis had `removed_by_category: reddit`; other Reddit submissions were still visible with no removal marker at that check.
 - r/AIanimation and r/aifilm were attempted as expansion targets but rejected live submission with `SUBREDDIT_NOTALLOWED: This community only allows trusted members to post here`.
+- Reddit comment follow-ups posted on 2026-05-24:
+  - r/VEO3 thank-you reply: `https://reddit.com/r/VEO3/comments/1tlamiv/i_tried_gemini_omni_on_a_paper_sketchtovideo/onkpij9/`
+  - r/VEO3 thank-you reply: `https://reddit.com/r/VEO3/comments/1tlamiv/i_tried_gemini_omni_on_a_paper_sketchtovideo/onkpija/`
+  - r/generativeAI Seedance 2.0 reply: `https://reddit.com/r/generativeAI/comments/1tlantx/i_animated_my_paper_sketch_with_gemini_omni/onkpijg/`
 
 ## Current YouTube Packaging Direction
 
