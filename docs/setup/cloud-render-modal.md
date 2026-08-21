@@ -28,6 +28,9 @@ npm run render:cloud -- --comp ObjectSegmentation --hq
 - The repo cloud wrapper now waits internally and emits heartbeat status lines
   while the render is running. The command returns the final URL when the cloud
   render completes.
+- Cloud renders default to lifecycle-managed `cache/`. Pass
+  `--storage-prefix share` or `--storage-prefix permanent` only when a
+  deliberately longer-lived public render is required.
 - Current backend tuning is calibrated against `ObjectSegmentation` on a representative
   `72s -> 88s` slice:
   - currently deployed worker reservation: `32` CPU cores, `65536` MB memory

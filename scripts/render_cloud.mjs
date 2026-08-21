@@ -27,7 +27,7 @@ const scale = getArg('--scale');
 const crf = getArg('--crf');
 const concurrency = getArg('--concurrency');
 const delayRenderTimeoutMs = getArg('--delay-render-timeout-ms');
-const storagePrefix = getArg('--storage-prefix') || 'share';
+const storagePrefix = getArg('--storage-prefix') || 'cache';
 
 if (hasFlag('--help') || hasFlag('-h')) {
   // eslint-disable-next-line no-console
@@ -36,7 +36,7 @@ Usage:
   npm run render:cloud -- [--comp <Name>] [--preview] [--from <sec>] [--to <sec>]
                        [--scale <n>] [--crf <n>]
                        [--concurrency <n>] [--delay-render-timeout-ms <ms>]
-                       [--storage-prefix <share|cache|permanent>]
+                       [--storage-prefix <share|cache|permanent>] (default: cache)
 
 Notes:
   - Requires Modal auth and the deployed 'aip-processor' app.

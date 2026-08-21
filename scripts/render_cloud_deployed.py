@@ -43,7 +43,7 @@ def main() -> int:
     parser.add_argument("--crf", type=int)
     parser.add_argument("--concurrency", type=int)
     parser.add_argument("--delay-render-timeout-ms", type=int)
-    parser.add_argument("--storage-prefix", default="share")
+    parser.add_argument("--storage-prefix", default="cache")
     parser.add_argument("--no-hq", action="store_true")
     args = parser.parse_args()
 
