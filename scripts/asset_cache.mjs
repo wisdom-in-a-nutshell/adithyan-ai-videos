@@ -9,7 +9,8 @@
  * Cache strategy:
  * - Each URL is stored under a stable filename derived from a SHA-1 of the URL.
  * - If the URL changes, the hash changes, so we auto-download without any manual refresh.
- * - Old files remain; you can delete the cache dir if you want to reclaim space.
+ * - Cache hits refresh file timestamps so Modal can prune assets after 72 hours
+ *   without use while keeping assets from active render iterations warm.
  */
 
 import fs from 'node:fs';
@@ -44,6 +45,8 @@ const isHttpUrl = (s) => typeof s === 'string' && /^https?:\/\//i.test(s);
 
 const downloadToFile = async ({url, outPath, refresh}) => {
   if (!refresh && fs.existsSync(outPath)) {
+    const now = new Date();
+    fs.utimesSync(outPath, now, now);
     return {downloaded: false};
   }
 

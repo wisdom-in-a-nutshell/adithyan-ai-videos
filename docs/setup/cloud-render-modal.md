@@ -31,6 +31,10 @@ npm run render:cloud -- --comp ObjectSegmentation --hq
 - Cloud renders default to lifecycle-managed `cache/`. Pass
   `--storage-prefix share` or `--storage-prefix permanent` only when a
   deliberately longer-lived public render is required.
+- Remote render inputs are reused through Modal's
+  `/cache/win-remotion-assets` working cache. Cache hits refresh their age, and
+  the shared daily Modal cleanup removes inputs unused for 72 hours. Missing
+  inputs are downloaded again automatically on the next render.
 - Current backend tuning is calibrated against `ObjectSegmentation` on a representative
   `72s -> 88s` slice:
   - currently deployed worker reservation: `32` CPU cores, `65536` MB memory
