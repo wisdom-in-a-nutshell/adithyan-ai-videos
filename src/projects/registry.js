@@ -13,8 +13,10 @@ export const PROJECT_COMPOSITION_REGISTRY = [
   {composition: ACTIVE_SPEAKER_DETECTION_COMPOSITION, enabled: false},
   {composition: TEXT_EFFECTS_COMPOSITION, enabled: false},
   {composition: C0040_COMPOSITION, enabled: false},
-  {composition: OBJECT_SEGMENTATION_COMPOSITION, enabled: true},
-  {composition: EFFECTS_LAB_COMPOSITION, enabled: true},
+  // Disabled: required media is missing from native storage and R2 (verified 2026-09-09).
+  {composition: OBJECT_SEGMENTATION_COMPOSITION, enabled: false},
+  // Disabled: this composition shares the missing ObjectSegmentation media.
+  {composition: EFFECTS_LAB_COMPOSITION, enabled: false},
   {composition: PAPER_PORTAL_COMPOSITION, enabled: true},
   {composition: PAPER_PORTAL_CREDIT_DRAW_PREVIEW_COMPOSITION, enabled: true},
   // NEW_PROJECT_ENTRIES

@@ -89,6 +89,27 @@ When media needs to work across machines or in cloud renders, upload it through
 the shared media uploader and store the resulting URL in
 `src/projects/<project-id>/assets.js`.
 
+## Public Object Storage
+
+The shared uploader now returns native S3 URLs with the bucket in the path:
+`https://storage.aipodcast.ing/assets/<object-key>`. Preserve the complete
+returned URL, including `/assets/`, and encode object-key path segments. The
+old root-level storage URLs are not an alias for this layout.
+
+On 2026-09-09, all 20 unique storage URLs referenced by the older video runtime
+inputs returned 404 from both native storage and the retained R2 source.
+`ObjectSegmentation` and its dependent `EffectsLab` composition are disabled in
+`src/projects/registry.js` with explicit missing-media reasons. `TextEffects`
+was already disabled. Their required asset contracts and historical project
+materials remain intact for a future restoration; do not enable these
+compositions until their inputs are available and verified. The unused
+`source_url` provenance field was removed from `active_speaker_frames.json`;
+its frame data remains intact.
+
+For future durable render inputs, use authorized `permanent/` or `share/`
+objects instead of expiring `cache/` URLs. Promoting or restoring source media
+is separate work; disabling these compositions did not copy or regenerate it.
+
 ## Recovery
 
 If `public/imports` is a symlink and `/Volumes/DobbyData` is unavailable:
