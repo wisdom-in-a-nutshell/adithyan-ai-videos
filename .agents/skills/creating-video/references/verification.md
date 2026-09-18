@@ -1,41 +1,7 @@
-# Verification Loop
+# Compositing and Render Pitfalls
 
-Goal: close the loop with rendered output, not Studio playback alone.
-
-## Preferred Flow
-
-1. Render a short clip.
-2. Review the clip.
-3. Extract exact stills from that clip if needed.
-
-Examples:
-
-```bash
-cd ~/GitHub/adithyan-ai-videos
-
-# Active project slice
-npm run render -- --comp ObjectSegmentation --from 68 --to 90
-
-# Later beat-stack slice
-npm run render -- --comp ObjectSegmentation --from 150 --to 206
-
-# Shared-block preview surface
-npm run render -- --comp EffectsLab --from 0 --to 8
-
-# Exact stills from a rendered clip
-ffmpeg -y -ss 8.0 -i tmp/ObjectSegmentation.mp4 -frames:v 1 tmp/object-segmentation-f080.png
-```
-
-Outputs:
-
-- Video: `tmp/<CompositionId>.mp4`
-- Stills: `tmp/<id>-f*.png`
-
-If you need a direct Remotion still for a single frame, use it as a secondary path, not the default:
-
-```bash
-npx remotion still src/index.js <CompositionId> tmp/<id>-f0048.png --frame 48
-```
+Render/still commands and the proof loop live in
+`docs/references/verification-loop.md`. Apply these checks to affected layers.
 
 ## Checklist (What To Look For)
 

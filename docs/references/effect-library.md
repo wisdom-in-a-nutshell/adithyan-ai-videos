@@ -71,7 +71,7 @@ When a new video prompt arrives:
   then hardcode the final chosen anchors in project `assets.js`
 
 - If a pattern is generic to Remotion itself, keep it in the external
-  `remotion-best-practices` skill rather than restating it here.
+  `remotion` skill rather than restating it here.
 - If a pattern is a repeated visual move in this repo, prefer shared code in
   `src/effects/` over copying old project code.
 - If a scene is still highly bespoke, keep it in the project comp until a

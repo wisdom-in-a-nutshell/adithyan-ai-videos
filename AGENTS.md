@@ -10,18 +10,17 @@ instead of adding nested `AGENTS.md` or `CLAUDE.md` files.
 Agent-first, solo Remotion workspace for repeatable video production. Humans
 provide intent; agents implement and maintain code and docs.
 
-## Read Order
+## Task Routes
 
-1. `docs/architecture/video-project-model.md`
-2. `docs/references/project-contract.md`
-3. `docs/references/effect-library.md` when visual reuse or house-style blocks are relevant
-4. `docs/references/ai-video-generation-workflow.md` and `docs/references/ai-video-model-playbook.md` when external AI image/video generation is part of the workflow
-5. `docs/references/repo-operations.md`
-6. `docs/references/media-storage.md` when importing or moving large local media
-7. `docs/references/docs-contract.md`
-8. `docs/references/verification-loop.md`
-9. `docs/setup/cloud-render-modal.md` when cloud render is relevant
-10. `docs/projects/<project>/tasks.md` for active execution state
+- New composition or project ownership: `docs/references/project-contract.md`.
+- Reusable visual blocks: `docs/references/effect-library.md` and `src/projects/effects-lab/`.
+- External generation: `docs/references/ai-video-generation-workflow.md`; choose a
+  provider with `docs/references/ai-video-model-playbook.md` only when needed.
+- Commands and rendering proof: `docs/references/repo-operations.md` and
+  `docs/references/verification-loop.md`.
+- Importing or retaining media: `docs/references/media-storage.md`.
+- Cloud delivery: `docs/setup/cloud-render-modal.md`.
+- Existing longer work: its `docs/projects/<project>/tasks.md`.
 
 ## Repo Rules
 

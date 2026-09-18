@@ -1,17 +1,12 @@
-# Intake (Ask First)
+# Source and Timing Intake
 
-Before writing code, get the video URL, transcribe it, then clarify: goal, beats, constraints.
+Resolve the viewer goal, source section, output format, and style from the
+request and existing project. Ask only for missing decisions that block the
+work. Transcribe only when the edit needs dialogue or timing that is not already
+available. For an authorized end-to-end video, draft missing beats and continue
+through implementation and rendered proof.
 
-Use these questions (keep it short; don’t interrogate):
-
-1. Goal: What should a viewer think/do at the end?
-2. Storyboard: Do you already have one? If yes, paste it. If no, do you want me to draft one?
-3. Source: What’s the source video (URL or `source_id`), and what section(s) of it do we use?
-4. Overlays/FX: Which overlays do you want (text-behind-subject, callouts, lower-third, sketch style, etc.)?
-5. Style reference: Which existing video/project should it match?
-6. Output constraints: Aspect ratio, resolution, fps, and target platform (X/LinkedIn/YouTube/Shorts).
-
-## Transcription (Default)
+## When transcription is needed
 
 First check `$media-toolkit` for media-processing work in this repo. It should usually be the default surface for transcription and other media jobs when it supports what you need.
 
@@ -44,12 +39,6 @@ Outputs:
 - `projects/<project-id>/words.json`
 - `projects/<project-id>/sentences.json`
 
-If the user does not have a storyboard:
-
-- Draft a 3–7 beat storyboard (timestamps, intent, overlay notes).
-- Confirm it with the user.
-- Then implement in Remotion and verify with short renders.
-
 ## Proxies / Scaling (Optional)
 
 If iteration is slow (matting, Studio playback, remote fetch), it’s ok to work off a smaller proxy video.
@@ -72,7 +61,3 @@ Notes:
 
 - We are intentionally not standardizing on `projects/<project-id>/matting.json` as a required artifact.
 - If you keep any generated matte metadata, treat it as a scratch artifact, not a contract.
-
-## Other Tools
-
-Use `$media-toolkit` as the first place to look for media operations from this repo. Only reach for lower-level backend paths when the toolkit does not cover the task.

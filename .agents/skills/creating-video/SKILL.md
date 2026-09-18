@@ -1,102 +1,52 @@
 ---
 name: creating-video
-description: "Idea → storyboard → Remotion overlays/animation → short renders + stills for fast visual iteration."
+description: Creates or edits code-first Remotion videos in this repo, from a supplied recording or idea through beat planning, overlays, composition registration, and rendered visual proof.
 ---
 
 # Creating Video
 
-## Overview
+Start from the affected project and the user's intended deliverable. Use an
+existing storyboard when supplied. Otherwise draft enough beats to implement;
+an authorized end-to-end request does not require a separate storyboard approval.
+Ask when a missing creative decision would materially change the result. Keep
+new spending and publication within the user's authorized scope.
 
-Use this skill to collaborate from idea -> storyboard -> Remotion implementation with a tight verification loop.
+## Repo contracts
 
-## Default Workflow
+- Per-video implementation and runtime assets live in `src/projects/<project-id>/`.
+  `npm run new:project -- --id <project-id> --title "My Video"` scaffolds it and
+  source material under `projects/<project-id>/`, and updates `src/projects/registry.js`.
+  Do not add project manifests or hand-wire compositions into `src/Root.js`.
+- Keep transcript words/timestamps with the composition. Derive stable effect
+  anchors once and store them in `assets.js`; avoid runtime phrase searches.
+- `src/overlay_kit/` owns primitives, `src/effects/` owns repeated visual blocks,
+  and each project owns its copy/timing. Keep one-off choreography local.
+- Use named `<Sequence>` blocks for major beats. Extra video layers must be muted
+  and aligned to the source timeline; Sequence-local frames are not absolute time.
+- For cloud delivery, runtime inputs must be reachable from cloud. Preserve local
+  source media separately; an asset URL must have the retention needed by the
+  composition. See `docs/references/media-storage.md` before promoting media.
+- Use `$media-toolkit` when it covers a needed transcription/transform/matting
+  operation. Use the installed `$remotion` skill for unfamiliar Remotion APIs.
 
-Use code-first by default:
+## Read only for the affected work
 
-- Put per-video code under `src/projects/<project-id>/`.
-- Prefer descriptive project ids such as `object-segmentation`, not opaque ticket-style ids, unless the repo already has a legacy id you are intentionally preserving.
-- Register the composition through `src/projects/registry.js`; `src/Root.js` should continue rendering `PROJECT_COMPOSITIONS`.
-- Keep URLs, cut length, and per-video constants in code (e.g. `assets.js`).
-- Prefer remote-first runtime media in `assets.js` for compositions that may need cloud render; keep local files as editable source material until they are promoted into the runtime path.
-- For media-processing steps, first check `$media-toolkit` for a suitable command surface (for example transcription, transform, matting, or job status). If it fits the task, prefer it over lower-level backend-specific paths.
-- We removed `projects/<id>/project.json` / `scripts/*project*.mjs` workflows. Don’t reintroduce them unless the user explicitly asks.
-- Wrap major overlays in named `<Sequence>` blocks so effects are visible in Studio’s timeline.
-- Keep transcript timing data as a JSON file committed with the project (prefer `src/projects/<id>/transcript_words.json` so the project is self-contained).
-- For stable recordings, hardcode key effect timestamps in `src/projects/<id>/assets.js` (don’t re-find phrases at runtime). See `references/timeline-patterns.md`.
-- Don’t depend on “manifest” files at runtime (e.g. `projects/<id>/matting.json`). If they exist, treat them as scratch notes only.
-- For work that may span multiple sessions, keep active execution state in `docs/projects/<project-id>/tasks.md`.
-- Prefer shared house-style blocks from `src/effects/` once a visual pattern has repeated. Keep one-off scene wiring inside the project until the abstraction is proven.
+- Source/timing gaps and proxies: `references/intake.md`.
+- Beat format: `references/storyboard.md`; timing: `references/timeline-patterns.md`.
+- Visual language: `references/style-tokens.md`; existing primitives:
+  `references/overlay-components.md`.
+- Reuse boundaries: `references/effect-extraction.md` and
+  `docs/references/effect-library.md`.
+- Layer alignment, alpha edges, and render pitfalls: `references/verification.md`.
+- Asset cache behavior: `references/asset-caching.md`.
+- Prior production lessons: `references/lessons-learned.md`.
 
-1. If the user already has a storyboard:
-   - implement overlays/animations from it, then verify with short renders.
-2. If the user does not have a storyboard:
-   - draft a 3–7 beat storyboard, confirm it, then implement + verify.
+## Complete the deliverable
 
-References:
-
-- New prompt -> project flow: `references/new-project-flow.md`
-- Intake questions: `references/intake.md`
-- Storyboard format: `references/storyboard.md`
-- Verification loop (render/stills): `references/verification.md`
-- Overlay component catalog: `references/overlay-components.md`
-- Effect extraction rule: `references/effect-extraction.md`
-- Shared effect blocks: `~/GitHub/adithyan-ai-videos/docs/references/effect-library.md`
-- Shared block preview surface: `src/projects/effects-lab/`
-- Style tokens + readability rules: `references/style-tokens.md`
-- Lessons learned (condensed do/don't): `references/lessons-learned.md`
-- Asset caching (default-on): `references/asset-caching.md`
-- Quick checklist: `references/checklist.md`
-- Commands: `references/commands.md`
-- Also use `$remotion-best-practices` whenever you touch Remotion code.
-
-## Where Things Live
-
-- Per-video code: `<repo-root>/src/projects/<project-id>/`
-- Shared effect blocks: `<repo-root>/src/effects/`
-- Artifact folder: `<repo-root>/projects/<project-id>/`
-- Composition registry: `<repo-root>/src/projects/registry.js`
-- Transcript timing data (recommended): `<repo-root>/src/projects/<project-id>/transcript_words.json` (keep it “thin”: words + timestamps)
-- Active execution state: `<repo-root>/docs/projects/<project-id>/tasks.md`
-
-## Golden Path (Code-First)
-
-1. Scaffold the project: `npm run new:project -- --id <project-id> --title "My Video"`.
-2. Fill `src/projects/<project-id>/assets.js`, refine `<Project>Comp.js`, and keep editable source notes in `projects/<project-id>/`.
-3. If the work is likely to continue across sessions, create `docs/projects/<project-id>/tasks.md` and keep the resume state there.
-4. Preview: `npm start` and select the composition in Studio.
-5. Render locally first: `npm run render`.
-   - Render a time slice in seconds (recommended for iteration): `npm run render -- --from 0 --to 6`
-   - Full quality: `npm run render -- --hq`
-6. When the project reaches a stable checkpoint, use `npm run render:cloud` so the repo-owned client handles submission, waiting, status, and the final URL.
-
-## Expected Outputs (What To Produce)
-
-For a new video project, the “done” state is:
-
-- `<repo-root>/src/projects/<project-id>/` (composition + assets/constants + transcript data)
-- `<repo-root>/projects/<project-id>/` (storyboard, notes, scratch artifacts)
-- `<repo-root>/src/projects/registry.js` registration
-- Remotion code changes (new overlay primitives or a per-project composition wiring), as needed
-- `<repo-root>/docs/projects/<project-id>/tasks.md` when the work needs a durable resume point
-- A verification render + stills under repo-local `tmp/` (see `references/verification.md`)
-
-## Workflow (Close The Loop)
-
-Use short renders + a few stills to validate quickly while iterating (don’t trust Studio playback alone).
-
-See `references/verification.md` for the recommended commands and what to look for.
-
-## Practical Boundaries
-
-- `src/overlay_kit/` is for low-level primitives.
-- `src/effects/` is for repeated repo-specific beats and compositing blocks.
-- `src/projects/<project-id>/` is for project-specific assembly, copy, timing, and assets.
-- `projects/<project-id>/` is for source notes, receipts, sketches, and scratch artifacts.
-
-## Self-Improvement (Document Learnings)
-
-When you learn something that is likely to repeat (a reliable workflow, a recurring pitfall, or a reusable contract):
-
-- Update this skill (prefer a short addition to `references/*` rather than bloating this file).
-- Update the nearest `AGENTS.md` if it is a repo-local operational rule for agents returning cold.
-- Prefer turning learnings into reusable artifacts: `storyboard.md` conventions, named `<Sequence>` patterns, `src/overlay_kit/` primitives, and `src/effects/` blocks once the pattern has repeated across scenes.
+The command reference is `docs/references/repo-operations.md`; inspect command
+help for flags. Use `docs/references/verification-loop.md` to inspect actual
+rendered output. Verify shared effects in EffectsLab and an affected narrative
+slice. Studio playback alone is insufficient. Cloud rendering is needed only
+when cloud delivery is part of the task; use the repo client that waits for the
+final URL. Keep temporary renders/stills under `tmp/` and active multi-session
+state in `docs/projects/<project-id>/tasks.md`.
